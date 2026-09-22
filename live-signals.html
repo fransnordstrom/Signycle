@@ -861,7 +861,7 @@ const SIGNALS = [
     id:'alum', name:'LME Aluminium', category:'Metals',
     ticker:'alum', live:true,
     manualValue:3478, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:1700, sellThresh:2900, decimals:0,
+    unit:'USD/t', buyThresh:1600, sellThresh:3200, decimals:0,
     min:1000, max:4000,
     stocks:[
       {t:'NHY',u:'blog-norsk-hydro-alum-cycle.html'},
@@ -873,7 +873,7 @@ const SIGNALS = [
     id:'lng', name:'LNG Spot Charter Rate', category:'Shipping',
     ticker:null, live:false,
     manualValue:55000, manualDate:'17 Apr 2026',
-    unit:'USD/day', buyThresh:30000, sellThresh:120000, decimals:0,
+    unit:'USD/day', buyThresh:10000, sellThresh:80000, decimals:0,
     min:0, max:200000,
     stocks:[
       {t:'ALNG',u:'blog-awilco-lng-cycle.html'},
@@ -907,7 +907,7 @@ const SIGNALS = [
     id:'pmi', name:'Global Manufacturing PMI', category:'Industrial',
     ticker:null, live:false,
     manualValue:51.4, manualDate:'Feb 2026',
-    unit:'index', buyThresh:49.0, sellThresh:53.5, decimals:1,
+    unit:'index', buyThresh:48, sellThresh:60, decimals:1,
     min:40, max:60,
     stocks:[
       {t:'BMW',u:'blog-bmw-volkswagen-cycle.html'},
@@ -921,7 +921,7 @@ const SIGNALS = [
     id:'eur10y',signalPage:'signal-eur-10y-rate.html', name:'EUR 10-Year Rate', category:'Rates',
     ticker:'EURIBOR=', live:false,
     manualValue:2.93, manualDate:'8 Apr 2026',
-    unit:'% yield', buyThresh:1.5, sellThresh:3.0, decimals:2,
+    unit:'% yield', buyThresh:1.5, sellThresh:3.5, decimals:2,
     min:0, max:5,
     stocks:[
       {t:'VER',u:'blog-verbund-rate-cycle.html'},
@@ -944,9 +944,9 @@ const SIGNALS = [
   {
     id:'steel', name:'Steel HRC Price', category:'Metals',
     ticker:null, live:false,
-    manualValue:90, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:380, sellThresh:1100, decimals:0,
-    min:200, max:1500,
+    manualValue:1322, manualDate:'8 Apr 2026',
+    unit:'USD/t', buyThresh:700, sellThresh:1450, decimals:0,
+    min:200, max:2000,
     stocks:[
       {t:'MT',u:'blog-arcelormittal-steel-cycle.html'},
       {t:'SSAB',u:'blog-ssab-steel-analysis.html'},
@@ -960,7 +960,7 @@ const SIGNALS = [
     id:'ironore', name:'Iron Ore (62% Fe)', category:'Metals',
     ticker:null, live:false,
     manualValue:96, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:85, sellThresh:130, decimals:0,
+    unit:'USD/t', buyThresh:60, sellThresh:100, decimals:0,
     min:50, max:200,
     stocks:[
       {t:'RIO',u:'blog-rio-tinto-analysis.html'},
@@ -972,7 +972,7 @@ const SIGNALS = [
     id:'nbsk', name:'NBSK Pulp Price', category:'Forest',
     ticker:null, live:false,
     manualValue:920, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:750, sellThresh:1350, decimals:0,
+    unit:'USD/t', buyThresh:750, sellThresh:1300, decimals:0,
     min:500, max:1800,
     stocks:[
       {t:'STERV',u:'blog-stora-enso-upm-cycle.html'},
@@ -994,7 +994,7 @@ const SIGNALS = [
     id:'scfi', name:'SCFI Container Freight', category:'Shipping',
     ticker:null, live:false,
     manualValue:1850, manualDate:'8 Apr 2026',
-    unit:'points', buyThresh:850, sellThresh:2800, decimals:0,
+    unit:'points', buyThresh:800, sellThresh:3500, decimals:0,
     min:400, max:5000,
     stocks:[
       {t:'MAERSK',u:'blog-maersk-container-shipping.html'},
@@ -1005,7 +1005,7 @@ const SIGNALS = [
     id:'pctc', name:'PCTC Daily Rate', category:'Shipping',
     ticker:null, live:false,
     manualValue:28000, manualDate:'8 Apr 2026',
-    unit:'USD/day', buyThresh:9000, sellThresh:40000, decimals:0,
+    unit:'USD/day', buyThresh:8000, sellThresh:45000, decimals:0,
     min:5000, max:60000,
     stocks:[
       {t:'HAUTO',u:'blog-hoegh-autoliners-pctc-cycle.html'},
@@ -1015,7 +1015,7 @@ const SIGNALS = [
     id:'rig', name:'Offshore Rig Utilisation', category:'Energy',
     ticker:null, live:false,
     manualValue:82, manualDate:'8 Apr 2026',
-    unit:'% utilised', buyThresh:58, sellThresh:85, decimals:0,
+    unit:'% utilised', buyThresh:70, sellThresh:92, decimals:0,
     min:40, max:100,
     stocks:[
       {t:'AKA',u:'blog-akastor-rig-cycle.html'},
@@ -1026,7 +1026,7 @@ const SIGNALS = [
     id:'flying', name:'Wide-Body Flying Hours', category:'Aviation',
     ticker:null, live:false,
     manualValue:104, manualDate:'8 Apr 2026',
-    unit:'% of 2019', buyThresh:80, sellThresh:108, decimals:0,
+    unit:'% of 2019', buyThresh:85, sellThresh:130, decimals:0,
     min:0, max:130,
     stocks:[
       {t:'RR',u:'blog-rolls-royce-aerospace-cycle.html'},
@@ -1038,7 +1038,7 @@ const SIGNALS = [
     id:'wfe', name:'Wafer Fab Equipment Spend', category:'Technology',
     ticker:null, live:false,
     manualValue:102, manualDate:'2025 est.',
-    unit:'USD bn/yr', buyThresh:55, sellThresh:95, decimals:0,
+    unit:'USD bn/yr', buyThresh:80, sellThresh:140, decimals:0,
     min:30, max:140,
     stocks:[
       {t:'ASML',u:'blog-asml-semiconductor-cycle.html'},
@@ -1057,7 +1057,7 @@ const SIGNALS = [
       {t:'AU',u:'blog-anglogold-gold-cycle.html'},
     ]
   },
-  {d:'lithium', name:'Lithium Carbonate', category:'Battery Materials',
+  {id:'lithium', name:'Lithium Carbonate', category:'Battery Materials',
     ticker:null, live:false,
     manualValue:17000, manualDate:'8 Apr 2026',
     unit:'$/t', buyThresh:12000, sellThresh:40000, decimals:0,
@@ -1096,8 +1096,8 @@ function fmtVal(val, decimals, unit) {
 }
 
 // ── RENDER CARD ───────────────────────────────────────────────────────────
-function renderCard(sig, val, loading) {
-  const status = loading ? 'neutral' : getStatus(val, sig.buyThresh, sig.sellThresh);
+function renderCard(sig, val, loading, forceStatus) {
+  const status = loading ? 'neutral' : (forceStatus || getStatus(val, sig.buyThresh, sig.sellThresh));
   const pct = loading ? 50 : getPct(val, sig.min, sig.max);
   const buyPct = getPct(sig.buyThresh, sig.min, sig.max);
   const sellPct = getPct(sig.sellThresh, sig.min, sig.max);
@@ -1154,25 +1154,47 @@ function renderCard(sig, val, loading) {
 </div>`;
 }
 
-// ── FETCH LIVE PRICES ─────────────────────────────────────────────────────
-const PROXY = 'https://query1.finance.yahoo.com/v8/finance/chart/';
+// ── LIVE DATA ─────────────────────────────────────────────────────────────
+// Sourced entirely from signycle-signals.fransbgn.workers.dev via
+// signals-loader.js's `signalsLoaded` event — the same data every other page
+// on the site uses. Two earlier, independent fetch attempts used to live
+// here (a direct browser->Yahoo Finance call, blocked by Yahoo's CORS policy,
+// and a call to a `/api/price` route that was never implemented) — both
+// failed silently on every load, which is why this page never actually
+// updated despite the "live" badge and ticking timestamp.
 const VALUES = {};
 
-async function fetchPrice(sig) {
-  try {
-    const res = await fetch(`${PROXY}${sig.ticker}?interval=1d&range=1d`, {
-      headers:{'Accept':'application/json'}
-    });
-    const data = await res.json();
-    let price = data.chart.result[0].meta.regularMarketPrice;
-    // Convert units
-    if (sig.lbsToTonnes) price = price * sig.lbsToTonnes;
-    if (sig.centsToUSD) price = price / sig.centsToUSD;
-    return price;
-  } catch(e) {
-    return null;
+function applyLiveSignals(d) {
+  if (!d || !d.signals) return;
+  var liveCount = 0;
+  SIGNALS.forEach(function(sig) {
+    var match = d.signals[sig.id];
+    if (!match || match.value == null || isNaN(parseFloat(match.value))) return;
+    var val = parseFloat(match.value);
+    VALUES[sig.id] = val;
+    sig.live = !!match.live;
+    if (match.date) sig.manualDate = match.date;
+    if (sig.live) liveCount++;
+    var card = document.querySelector('[data-id="' + sig.id + '"]');
+    if (card) {
+      var newCard = document.createElement('div');
+      newCard.innerHTML = renderCard(sig, val, false, match.zone);
+      card.replaceWith(newCard.firstElementChild);
+    }
+  });
+  updateCounts();
+
+  var badge = document.querySelector('.live-badge');
+  if (badge) {
+    badge.innerHTML = '<div class="live-dot"></div>' + liveCount + ' signals live · Yahoo Finance';
+  }
+  var tsEl = document.getElementById('updateTs');
+  if (tsEl) {
+    var now = new Date();
+    tsEl.textContent = 'Updated ' + now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
   }
 }
+document.addEventListener('signalsLoaded', function(e) { applyLiveSignals(e.detail); });
 
 // ── INIT ──────────────────────────────────────────────────────────────────
 async function init() {
@@ -1183,9 +1205,7 @@ async function init() {
 
   updateCounts();
 
-  // Timestamp
-  const ts = new Date();
-  document.getElementById('updateTs').textContent = 'Live prices · Manual data updated 6 Apr 2026';
+  document.getElementById('updateTs').textContent = 'Loading live data…';
 }
 
 function updateCounts() {
@@ -1214,77 +1234,6 @@ function filterCards(type, btn) {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
-
-// Auto-refresh live prices every 5 minutes
-setInterval(async () => {
-  const liveSignals = SIGNALS.filter(s => s.live);
-  for (const sig of liveSignals) {
-    const price = await fetchPrice(sig);
-    if (!price) continue;
-    VALUES[sig.id] = price;
-    const card = document.querySelector(`[data-id="${sig.id}"]`);
-    if (card) {
-      const newCard = document.createElement('div');
-      newCard.innerHTML = renderCard(sig, price, false);
-      card.replaceWith(newCard.firstElementChild);
-    }
-  }
-  updateCounts();
-  const now = new Date();
-  document.getElementById('updateTs').textContent =
-    `Updated ${now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'})} UTC`;
-}, 5 * 60 * 1000);
-
-// Live prices via Cloudflare Worker
-async function fetchLivePrice(signal) {
-  try {
-    var res = await fetch('/api/price?signal=' + signal);
-    var data = await res.json();
-    if (data && data.price && data.price > 0) {
-      return { price: data.price, source: data.source || 'live' };
-    }
-    return null;
-  } catch(e) {
-    return null;
-  }
-}
-
-async function updateLivePrices() {
-  var liveSignals = ['brent', 'copper', 'alum'];
-  for (var i = 0; i < liveSignals.length; i++) {
-    var sigId = liveSignals[i];
-    var result = await fetchLivePrice(sigId);
-    if (!result) continue;
-
-    var sigDef = SIGNALS.find(s => s.id === sigId);
-    if (!sigDef) continue;
-
-    VALUES[sigId] = result.price;
-
-    // Re-render the whole card so status/zone/badge recompute correctly,
-    // instead of only patching the price text (which left stale zone badges).
-    var card = document.querySelector('[data-id="' + sigId + '"]');
-    if (card) {
-      var newCard = document.createElement('div');
-      newCard.innerHTML = renderCard(sigDef, result.price, false);
-      card.replaceWith(newCard.firstElementChild);
-    }
-  }
-  updateCounts();
-  
-  // Update timestamp
-  var tsEl = document.getElementById('updateTs');
-  if (tsEl) {
-    var now = new Date();
-    tsEl.textContent = 'Live · ' + now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
-  }
-}
-
-// Run on load and every 5 minutes
-updateLivePrices();
-setInterval(updateLivePrices, 5 * 60 * 1000);
 
 </script>
 <script>

@@ -1,8 +1,11 @@
 /**
- * Signycle Signals Loader v3.2
+ * Signycle Signals Loader v3.3
  * Always loads signals-data.json for manual fields (cycleScore, recessionProb, hormuzStatus).
  * Then overlays live Worker data on top of the signals sub-object (Brent, copper, etc.).
  * v3.2: Treats 0/null/NaN from Worker as missing — falls back to manual value.
+ * v3.3: Re-fetches every 2 minutes so pages update without a manual reload,
+ * and stops cache-busting the Worker call so Cloudflare's edge cache (5min)
+ * actually gets used instead of every page view re-hitting Yahoo Finance directly.
  */
 (function() {
   var WORKER_URL = 'https://signycle-signals.fransbgn.workers.dev';
@@ -68,12 +71,16 @@
     document.dispatchEvent(new CustomEvent('signalsLoaded', { detail: d }));
   }
 
+  function loadSignals() {
   // Step 1: Always load manual JSON first (gives us cycleScore, recessionProb, hormuzStatus, and signals as fallback)
   fetch(FALLBACK_SOURCE + '?v=' + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(manualData) {
-      // Step 2: Try to overlay Worker data on top of the signals sub-object
-      fetch(WORKER_SOURCE + '?v=' + Date.now())
+      // Step 2: Try to overlay Worker data on top of the signals sub-object.
+      // No cache-buster here — the Worker sets a 5min Cache-Control, and we
+      // want Cloudflare's edge to actually serve from that shared cache
+      // instead of every single page view re-triggering 8 Yahoo Finance calls.
+      fetch(WORKER_SOURCE)
         .then(function(r) { return r.json(); })
         .then(function(workerData) {
           var merged = {
@@ -125,4 +132,8 @@
         el.title = 'Signal data unavailable — please refresh';
       });
     });
+  }
+
+  loadSignals();
+  setInterval(loadSignals, 2 * 60 * 1000);
 })();
