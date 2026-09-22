@@ -52,7 +52,7 @@ const LIVE_TICKERS = {
   brent:  { ticker: 'BZ=F',  multiply: 1       },
   wti:    { ticker: 'CL=F',  multiply: 1       },
   copper: { ticker: 'HG=F',  multiply: 2204.62 }, // lbs → $/t
-  alum:   { ticker: 'ALI=F', multiply: 2204.62 }, // lbs → $/t
+  alum:   { ticker: 'ALI=F', multiply: 1        }, // already quoted in $/t on COMEX
   gold:   { ticker: 'GC=F',  multiply: 1       },
 };
 
