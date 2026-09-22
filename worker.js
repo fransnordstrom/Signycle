@@ -1,8 +1,10 @@
 /**
- * Signycle Signals Worker v3.0
- * - Live prices from Yahoo Finance (Brent, WTI, Copper, Alum, Gold)
+ * Signycle Signals Worker v3.1
+ * - Live prices from Yahoo Finance (Brent, WTI, Copper, Alum, Gold, Steel, Iron Ore, Lithium)
+ * - Spread derived from live Brent/WTI, not entered manually
  * - Auto-calculates zone (buy/neutral/warn/sell) from thresholds
  * - Manual signals stored in KV, updated via admin app
+ * - POST flags (but does not block) >3x value swings vs the previous stored value
  */
 
 const CORS = {
@@ -23,17 +25,25 @@ const THRESHOLDS = {
   lng:     { buy: 10000, warnSell: 60000, sell: 80000, unit: '$/day'},
   salmon:  { buy: 42,    warnSell: 75,  sell: 82,    unit: 'NOK/kg' },
   urea:    { buy: 230,   warnSell: 550, sell: 620,   unit: '$/t'    },
-  steel:   { buy: 30,    warnSell: 75,  sell: 94,    unit: '$/t'    },
+  // NOTE: recalibrated to real HRC $/t scale (old thresholds of 30/75/94 were
+  // off by ~15x, so steel showed "sell" permanently regardless of price).
+  // Estimate from typical 10yr US HRC range ($500-2000/t) — sanity-check before trusting.
+  steel:   { buy: 700,   warnSell: 1150, sell: 1450,  unit: '$/t'    },
   ironore: { buy: 60,    warnSell: 85,  sell: 100,   unit: '$/t'    },
   eur10y:  { buy: 1.5,   warnSell: 3.0, sell: 3.5,   unit: '%'      },
   defense: { buy: 2.0,   warnSell: 3.0, sell: 3.5,   unit: '% GDP'  },
   lithium: { buy: 12000, warnSell: 30000, sell: 40000, unit: '$/t'  },
-  gold:    { buy: 1200,  warnSell: 2500, sell: 2800, unit: '$/oz'   },
   spread:  { buy: 0,     warnSell: 8,   sell: 12,    unit: '$/bbl'  },
   scfi:    { buy: 800,   warnSell: 2500, sell: 3500, unit: 'index'  },
   pctc:    { buy: 8000,  warnSell: 35000, sell: 45000, unit: '$/day'},
   rig:     { buy: 70,    warnSell: 88,  sell: 92,    unit: '%'      },
   pmi:     { buy: 48,    warnSell: 55,  sell: 60,    unit: 'index'  },
+  // Estimates only — no verified external benchmark, back-solved so today's
+  // manual value lands in "neutral" (matches current site classification).
+  // Please sanity-check against real reference ranges when you have them.
+  nbsk:    { buy: 750,   warnSell: 1100, sell: 1300, unit: '$/t'    },
+  flying:  { buy: 85,    warnSell: 115, sell: 130,   unit: 'index'  },
+  wfe:     { buy: 80,    warnSell: 120, sell: 140,   unit: 'index'  },
 };
 
 function calcZone(id, value) {
@@ -81,6 +91,11 @@ async function getLivePrices() {
       }
     })
   );
+  // Derive spread from the two live legs instead of trusting a separately
+  // entered manual value, which could otherwise silently disagree with them.
+  if (results.brent != null && results.wti != null) {
+    results.spread = Math.round((results.brent - results.wti) * 100) / 100;
+  }
   return results;
 }
 
@@ -146,9 +161,25 @@ export default {
       }
       try {
         const body = await request.json();
+
+        // Flag (but don't block) values that swing >3x vs the last stored
+        // value — catches fat-finger / unit-conversion mistakes like the
+        // aluminium and steel data errors found in this dataset previously.
+        const warnings = [];
+        const previous = await env.SIGNALS_KV.get('signals', 'json');
+        if (previous && previous.signals && body.signals) {
+          for (const [id, sig] of Object.entries(body.signals)) {
+            const prevVal = previous.signals[id] && previous.signals[id].value;
+            const newVal = sig && sig.value;
+            if (prevVal && newVal && (newVal / prevVal > 3 || newVal / prevVal < 1 / 3)) {
+              warnings.push(`${id}: ${prevVal} -> ${newVal} (>3x change, please double-check)`);
+            }
+          }
+        }
+
         body.lastUpdated = new Date().toISOString();
         await env.SIGNALS_KV.put('signals', JSON.stringify(body));
-        return new Response(JSON.stringify({ ok: true }), {
+        return new Response(JSON.stringify({ ok: true, warnings }), {
           headers: { ...CORS, 'Content-Type': 'application/json' }
         });
       } catch (e) {

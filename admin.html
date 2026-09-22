@@ -215,6 +215,9 @@ body {
 
 .sig-label { font-size: 0.78rem; font-weight: 600; color: var(--text); flex: 1; min-width: 0; }
 .sig-unit { font-size: 0.6rem; color: var(--dim); display: block; font-weight: 400; }
+.sig-stale { font-size: 0.6rem; display: block; font-weight: 700; }
+.sig-stale.warn { color: var(--orange); }
+.sig-stale.err { color: var(--red); }
 
 .sig-inputs { display: flex; flex-direction: column; gap: 0.25rem; align-items: flex-end; min-width: 120px; }
 .val-input {
@@ -452,6 +455,7 @@ var SIGNAL_META = [
 var PASSWORD_KEY = 'sgnycl_pw';
 var WORKER_KEY   = 'sgnycl_worker';
 var DATA_KEY     = 'sgnycl_data';
+var lastLoadedData = null; // freshest known signals payload, used to detect real value changes
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 function login() {
@@ -480,6 +484,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 function initApp() {
+  // Build the input rows first so populateForm() below has elements to fill —
+  // previously this ran last, so the localStorage-cached prefill silently
+  // no-op'd (its document.getElementById calls all returned null).
+  buildSignalRows();
+
   // Load worker URL
   var wu = localStorage.getItem(WORKER_KEY) || '';
   document.getElementById('workerUrl').value = wu;
@@ -488,7 +497,8 @@ function initApp() {
   // Load saved data or fetch from worker
   var saved = localStorage.getItem(DATA_KEY);
   if (saved) {
-    populateForm(JSON.parse(saved));
+    lastLoadedData = JSON.parse(saved);
+    populateForm(lastLoadedData);
   }
 
   // Try fetching latest from worker
@@ -497,6 +507,7 @@ function initApp() {
     fetch(workerUrl + '/api/signals')
       .then(function(r) { return r.json(); })
       .then(function(d) {
+        lastLoadedData = d;
         populateForm(d);
         localStorage.setItem(DATA_KEY, JSON.stringify(d));
         setStatus('ok', 'Live data loaded');
@@ -510,6 +521,7 @@ function initApp() {
     fetch('/signals-data.json')
       .then(function(r) { return r.json(); })
       .then(function(d) {
+        lastLoadedData = d;
         populateForm(d);
         setStatus('pending', 'Setup worker to publish live');
       })
@@ -518,8 +530,6 @@ function initApp() {
         setStatus('pending', 'Enter Worker URL to go live');
       });
   }
-
-  buildSignalRows();
 }
 
 function saveWorkerUrl() {
@@ -537,7 +547,8 @@ function buildSignalRows() {
     row.className = 'sig-row neutral';
     row.id = 'row_' + m.id;
     row.innerHTML =
-      '<div class="sig-label">' + m.label + '<span class="sig-unit">' + m.unit + '</span></div>' +
+      '<div class="sig-label">' + m.label + '<span class="sig-unit">' + m.unit + '</span>' +
+        '<span class="sig-stale" id="stale_' + m.id + '"></span></div>' +
       '<div class="sig-inputs">' +
         '<input class="val-input" type="number" id="val_' + m.id + '" step="' + m.step + '" oninput="markDirty()">' +
         '<select class="zone-select" id="zone_' + m.id + '" onchange="updateRowStyle(\'' + m.id + '\')">' +
@@ -573,6 +584,24 @@ function populateForm(d) {
       var zoneEl = document.getElementById('zone_' + m.id);
       if (valEl) valEl.value = sig.value;
       if (zoneEl) { zoneEl.value = sig.zone || 'neutral'; updateRowStyle(m.id); }
+
+      var staleEl = document.getElementById('stale_' + m.id);
+      if (staleEl) {
+        var age = daysOld(sig.date);
+        if (sig.live || age === null) {
+          staleEl.textContent = '';
+          staleEl.className = 'sig-stale';
+        } else if (age >= 30) {
+          staleEl.textContent = age + 'd old';
+          staleEl.className = 'sig-stale err';
+        } else if (age >= 14) {
+          staleEl.textContent = age + 'd old';
+          staleEl.className = 'sig-stale warn';
+        } else {
+          staleEl.textContent = '';
+          staleEl.className = 'sig-stale';
+        }
+      }
     });
   }
 
@@ -596,10 +625,17 @@ function collectData() {
     hormuzColor: document.getElementById('meta_hormuzColor').value || 'red',
     signals: {}
   };
+  var prevSignals = (lastLoadedData && lastLoadedData.signals) || {};
   SIGNAL_META.forEach(function(m) {
     var val = parseFloat(document.getElementById('val_' + m.id).value);
     var zone = document.getElementById('zone_' + m.id).value;
-    d.signals[m.id] = { value: isNaN(val) ? 0 : val, unit: m.unit, zone: zone, date: d.updated };
+    val = isNaN(val) ? 0 : val;
+    // Only bump the date when the value actually changed — otherwise every
+    // publish silently resets every signal's date to today, which defeats
+    // any attempt to track how stale a given manual value really is.
+    var prev = prevSignals[m.id];
+    var date = (prev && prev.value === val && prev.date && prev.date !== 'Live') ? prev.date : d.updated;
+    d.signals[m.id] = { value: val, unit: m.unit, zone: zone, date: date };
   });
   return d;
 }
@@ -645,9 +681,16 @@ function publishSignals() {
   })
   .then(function(res) {
     btn.disabled = false;
-    btn.className = 'publish-btn success';
-    btn.textContent = '✅ Published!';
-    setStatus('ok', 'Live on signycle.com');
+    lastLoadedData = d;
+    if (res.warnings && res.warnings.length) {
+      btn.className = 'publish-btn error';
+      btn.textContent = '⚠️ Published — check values';
+      setStatus('err', res.warnings.join(' · '));
+    } else {
+      btn.className = 'publish-btn success';
+      btn.textContent = '✅ Published!';
+      setStatus('ok', 'Live on signycle.com');
+    }
     document.getElementById('headerMeta').textContent = 'Updated ' + d.updated;
     setTimeout(function() {
       btn.className = 'publish-btn';
@@ -680,6 +723,20 @@ function getTodayStr() {
   var d = new Date();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+// Parses "D Mon YYYY" (the format getTodayStr() produces). Returns null for
+// anything else (e.g. "2025 est.") rather than guessing — an unparseable
+// date shouldn't be flagged as stale, since we genuinely don't know its age.
+function daysOld(dateStr) {
+  if (!dateStr) return null;
+  var months = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+  var m = /^(\d{1,2}) (\w{3}) (\d{4})$/.exec(dateStr.trim());
+  if (!m || !(m[2] in months)) return null;
+  var then = new Date(parseInt(m[3], 10), months[m[2]], parseInt(m[1], 10));
+  if (isNaN(then.getTime())) return null;
+  var ms = new Date().setHours(0,0,0,0) - then.setHours(0,0,0,0);
+  return Math.max(0, Math.round(ms / 86400000));
 }
 
 function getDefaultData() {
