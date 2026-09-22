@@ -1,0 +1,149 @@
+{
+  "updated": "2026-09-10",
+  "cycleScore": 73,
+  "cyclePhase": "Late Expansion",
+  "recessionProb": 55,
+  "sellZoneCount": 5,
+  "hormuzStatus": "Deal stalled \u2014 Hezbollah rejected US ceasefire \u00b7 New clashes US/Iran \u00b7 Brent bounced $92\u2192$96 \u00b7 OPEC+ +188k bpd July \u00b7 China imports 10-yr low",
+  "hormuzColor": "red",
+  "signals": {
+    "brent": {
+      "value": 108.7,
+      "unit": "$/bbl",
+      "date": "10 Sep 2026",
+      "zone": "sell"
+    },
+    "wti": {
+      "value": 91.5,
+      "unit": "$/bbl",
+      "date": "9 Jun 2026",
+      "zone": "sell"
+    },
+    "vlcc": {
+      "value": 320000,
+      "unit": "$/day",
+      "date": "9 Jun 2026",
+      "zone": "sell"
+    },
+    "lng": {
+      "value": 75000,
+      "unit": "$/day",
+      "date": "9 Jun 2026",
+      "zone": "sell"
+    },
+    "bdi": {
+      "value": 3180,
+      "unit": "pts",
+      "date": "9 Jun 2026",
+      "zone": "warn"
+    },
+    "copper": {
+      "value": 13200,
+      "unit": "$/t",
+      "date": "9 Jun 2026",
+      "zone": "sell"
+    },
+    "alum": {
+      "value": 3478,
+      "unit": "$/t",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "gold": {
+      "value": 4365.1,
+      "unit": "$/oz",
+      "date": "10 Sep 2026",
+      "zone": "sell"
+    },
+    "salmon": {
+      "value": 91,
+      "unit": "NOK/kg",
+      "date": "22 Apr 2026",
+      "zone": "sell"
+    },
+    "urea": {
+      "value": 530,
+      "unit": "$/t",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "steel": {
+      "value": 1192,
+      "unit": "$/t",
+      "date": "9 Jun 2026",
+      "zone": "warn"
+    },
+    "ironore": {
+      "value": 96,
+      "unit": "$/t",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "eur10y": {
+      "value": 2.93,
+      "unit": "%",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "defense": {
+      "value": 2.4,
+      "unit": "% GDP",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "pmi": {
+      "value": 51.4,
+      "unit": "index",
+      "date": "Feb 2026",
+      "zone": "neutral"
+    },
+    "scfi": {
+      "value": 1850,
+      "unit": "index",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "nbsk": {
+      "value": 920,
+      "unit": "$/t",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "pctc": {
+      "value": 28000,
+      "unit": "$/day",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "rig": {
+      "value": 82,
+      "unit": "%",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "flying": {
+      "value": 104,
+      "unit": "index",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "wfe": {
+      "value": 102,
+      "unit": "index",
+      "date": "2025 est.",
+      "zone": "neutral"
+    },
+    "lithium": {
+      "value": 17000,
+      "unit": "$/t",
+      "date": "22 Apr 2026",
+      "zone": "neutral"
+    },
+    "spread": {
+      "value": 4.5,
+      "unit": "$/bbl",
+      "date": "9 Jun 2026",
+      "zone": "warn"
+    }
+  }
+}

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Signycle Admin">
+<meta name="theme-color" content="#0c1c2e">
+<title>Signycle Admin</title>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f0f4f2;
+  --surface: #ffffff;
+  --border: #e2e8e5;
+  --text: #0c1c2e;
+  --dim: #94a3b8;
+  --green: #00956e;
+  --red: #dc2626;
+  --orange: #d97706;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  min-height: 100vh;
+  padding-bottom: calc(80px + var(--safe-bottom));
+}
+
+/* ── Login screen ── */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #0c1c2e;
+}
+.login-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+.login-logo span { color: var(--green); }
+.login-sub { color: rgba(255,255,255,0.4); font-size: 0.8rem; margin-bottom: 2rem; }
+.login-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+.login-card label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 0.5rem;
+}
+.login-card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-bottom: 1rem;
+  letter-spacing: 0.15em;
+}
+.login-card input:focus { outline: none; border-color: var(--green); }
+.login-btn {
+  width: 100%;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+.login-error { color: #f87171; font-size: 0.75rem; margin-top: 0.5rem; text-align: center; }
+
+/* ── Main app ── */
+.app { display: none; }
+.app.visible { display: block; }
+
+.app-header {
+  background: #0c1c2e;
+  padding: calc(var(--safe-top) + 0.9rem) 1.2rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.app-header h1 { color: #fff; font-size: 1rem; font-weight: 700; }
+.app-header h1 span { color: var(--green); }
+.header-meta { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-align: right; }
+
+.publish-bar {
+  padding: 0.7rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  position: sticky;
+  top: calc(var(--safe-top) + 52px);
+  z-index: 90;
+}
+.publish-btn {
+  flex: 1;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.publish-btn:disabled { background: var(--dim); cursor: not-allowed; }
+.publish-btn.success { background: #059669; }
+.publish-btn.error { background: var(--red); }
+
+.status-pill {
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.status-pill.ok { background: #d1fae5; color: #059669; }
+.status-pill.err { background: #fee2e2; color: var(--red); }
+.status-pill.pending { background: #fef3c7; color: var(--orange); }
+
+.app-body { padding: 0.8rem 0.9rem 1rem; }
+
+.section-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 0.8rem 0 0.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+}
+
+/* Meta cards */
+.meta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem; }
+.meta-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+}
+.meta-card.full { grid-column: 1 / -1; }
+.meta-card label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.35rem;
+}
+.meta-card input, .meta-card select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  background: transparent;
+  padding: 0;
+}
+.meta-card select { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; }
+
+/* Signal cards */
+.signals-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.sig-row {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.sig-row.sell { border-left: 3px solid var(--red); }
+.sig-row.warn { border-left: 3px solid var(--orange); }
+.sig-row.neutral { border-left: 3px solid #cbd5e1; }
+.sig-row.buy { border-left: 3px solid var(--green); }
+
+.sig-label { font-size: 0.78rem; font-weight: 600; color: var(--text); flex: 1; min-width: 0; }
+.sig-unit { font-size: 0.6rem; color: var(--dim); display: block; font-weight: 400; }
+
+.sig-inputs { display: flex; flex-direction: column; gap: 0.25rem; align-items: flex-end; min-width: 120px; }
+.val-input {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+  border: none;
+  outline: none;
+  background: #f8faf9;
+  border-radius: 6px;
+  padding: 0.2rem 0.4rem;
+  width: 110px;
+  border: 1px solid transparent;
+}
+.val-input:focus { border-color: var(--green); background: #fff; }
+.zone-select {
+  font-size: 0.62rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.15rem 0.3rem;
+  background: #f8faf9;
+  color: var(--text);
+  width: 110px;
+  font-family: inherit;
+}
+.zone-select:focus { outline: none; border-color: var(--green); }
+
+/* Setup instructions */
+.setup-card {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+.setup-card h3 { font-size: 0.85rem; margin-bottom: 0.8rem; }
+.setup-step {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-bottom: 0.6rem;
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.5;
+}
+.step-num {
+  background: #0c1c2e;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.setup-card code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  background: #f0f4f2;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  display: block;
+  margin-top: 0.3rem;
+  word-break: break-all;
+}
+.worker-url-input {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  margin-top: 0.4rem;
+}
+.worker-url-input:focus { outline: none; border-color: var(--green); }
+
+/* Logout */
+.logout-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.5);
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-logo">● <span>Signycle</span> Admin</div>
+  <div class="login-sub">Signal update panel</div>
+  <div class="login-card">
+    <label>Password</label>
+    <input type="password" id="passwordInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Sign in →</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="app" id="mainApp">
+  <div class="app-header">
+    <h1>● <span>Signycle</span> Admin</h1>
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <div class="header-meta" id="headerMeta">Loading...</div>
+      <button class="logout-btn" onclick="logout()">Out</button>
+    </div>
+  </div>
+
+  <div class="publish-bar">
+    <button class="publish-btn" id="publishBtn" onclick="publishSignals()">
+      🚀 Publish to Signycle
+    </button>
+    <span class="status-pill pending" id="statusPill">Not published</span>
+  </div>
+
+  <div class="app-body">
+
+    <!-- WORKER URL SETUP -->
+    <div id="setupSection">
+      <div class="section-label">⚙️ Setup — Worker URL</div>
+      <div class="setup-card">
+        <div class="setup-step">
+          <div class="step-num">1</div>
+          <div>Go to <strong>dash.cloudflare.com</strong> → Workers → Create Worker → paste <strong>worker.js</strong></div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">2</div>
+          <div>Add KV namespace called <strong>SIGNALS_KV</strong> and bind it to the worker</div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">3</div>
+          <div>Add secret variable <strong>ADMIN_PASSWORD</strong> with your password</div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">4</div>
+          <div>Paste your Worker URL below:
+            <input class="worker-url-input" id="workerUrl" placeholder="https://signycle-signals.fransbgn.workers.dev" value="https://signycle-signals.fransbgn.workers.dev" oninput="saveWorkerUrl()">
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">5</div>
+          <div>Add to <strong>signycle.com/signals-loader.js</strong>: change fetch URL from <code>/signals-data.json</code> to your worker URL + <code>/api/signals</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SITE META -->
+    <div class="section-label">Site-wide</div>
+    <div class="meta-row">
+      <div class="meta-card">
+        <label>Updated</label>
+        <input type="text" id="meta_updated" placeholder="13 Apr 2026">
+      </div>
+      <div class="meta-card">
+        <label>Cycle score</label>
+        <input type="number" id="meta_cycleScore" min="0" max="100" step="1">
+      </div>
+      <div class="meta-card">
+        <label>Recession %</label>
+        <input type="number" id="meta_recessionProb" min="0" max="100" step="1">
+      </div>
+      <div class="meta-card">
+        <label>SELL signals</label>
+        <input type="number" id="meta_sellZoneCount" min="0" max="23" step="1">
+      </div>
+      <div class="meta-card full">
+        <label>Cycle phase</label>
+        <input type="text" id="meta_cyclePhase" placeholder="Mid Expansion">
+      </div>
+      <div class="meta-card full">
+        <label>Hormuz status</label>
+        <input type="text" id="meta_hormuzStatus" placeholder="US Navy Blockade — Day 43">
+      </div>
+      <div class="meta-card full">
+        <label>Hormuz colour</label>
+        <select id="meta_hormuzColor">
+          <option value="red">🔴 Red — crisis/blockade</option>
+          <option value="orange">🟡 Yellow — ceasefire/warning</option>
+          <option value="green">🟢 Green — open/resolved</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SIGNALS -->
+    <div class="section-label">Signal values</div>
+<div style="background:#e6f5f1;border-radius:8px;padding:0.6rem 0.8rem;margin-bottom:0.5rem;font-size:0.72rem;color:#00956e;line-height:1.5;">
+  <strong>🟢 Brent · WTI · Copper · Aluminium · Gold</strong> — live fra Yahoo Finance, zone beregnes automatisk.<br>
+  <strong>Alle andre</strong> — oppdater verdi nedenfor, zone settes automatisk fra terskler.
+</div>
+    <div class="signals-list" id="signalsList"></div>
+
+  </div>
+</div>
+
+<script>
+// ── Config ────────────────────────────────────────────────────────────────────
+var SIGNAL_META = [
+  { id:'brent',   label:'Brent Crude',       unit:'$/bbl',   step:0.5  },
+  { id:'wti',     label:'WTI Crude',         unit:'$/bbl',   step:0.5  },
+  { id:'spread',  label:'Brent/WTI Spread',  unit:'$/bbl',   step:0.25 },
+  { id:'vlcc',    label:'VLCC Rate',         unit:'$/day',   step:1000 },
+  { id:'lng',     label:'LNG Rate',          unit:'$/day',   step:1000 },
+  { id:'bdi',     label:'Baltic Dry Index',  unit:'pts',     step:1    },
+  { id:'copper',  label:'LME Copper',        unit:'$/t',     step:1    },
+  { id:'alum',    label:'LME Aluminium',     unit:'$/t',     step:1    },
+  { id:'gold',    label:'Gold',              unit:'$/oz',    step:1    },
+  { id:'salmon',  label:'Salmon Price',      unit:'NOK/kg',  step:0.5  },
+  { id:'urea',    label:'Urea Price',        unit:'$/t',     step:1    },
+  { id:'steel',   label:'Steel HRC',         unit:'$/t',     step:1    },
+  { id:'ironore', label:'Iron Ore',          unit:'$/t',     step:1    },
+  { id:'eur10y',  label:'EUR 10Y Rate',      unit:'%',       step:0.01 },
+  { id:'defense', label:'NATO Defence',      unit:'% GDP',   step:0.1  },
+  { id:'pmi',     label:'Global PMI',        unit:'index',   step:0.1  },
+  { id:'scfi',    label:'SCFI Container',    unit:'index',   step:1    },
+  { id:'nbsk',    label:'NBSK Pulp',         unit:'$/t',     step:1    },
+  { id:'pctc',    label:'PCTC Car Carrier',  unit:'$/day',   step:500  },
+  { id:'rig',     label:'Rig Utilisation',   unit:'%',       step:1    },
+  { id:'flying',  label:'Wide-Body Flying',  unit:'index',   step:1    },
+  { id:'wfe',     label:'Wafer Fab Equip',   unit:'index',   step:1    },
+  { id:'lithium', label:'Lithium Carbonate', unit:'$/t',     step:100  },
+];
+
+var PASSWORD_KEY = 'sgnycl_pw';
+var WORKER_KEY   = 'sgnycl_worker';
+var DATA_KEY     = 'sgnycl_data';
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+function login() {
+  var pw = document.getElementById('passwordInput').value.trim();
+  if (!pw) return;
+  // Store password locally — verified server-side on publish
+  localStorage.setItem(PASSWORD_KEY, pw);
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('mainApp').className = 'app visible';
+  initApp();
+}
+
+function logout() {
+  localStorage.removeItem(PASSWORD_KEY);
+  location.reload();
+}
+
+// Check if already logged in
+window.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem(PASSWORD_KEY)) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('mainApp').className = 'app visible';
+    initApp();
+  }
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+function initApp() {
+  // Load worker URL
+  var wu = localStorage.getItem(WORKER_KEY) || '';
+  document.getElementById('workerUrl').value = wu;
+  if (wu) document.getElementById('setupSection').style.display = 'none';
+
+  // Load saved data or fetch from worker
+  var saved = localStorage.getItem(DATA_KEY);
+  if (saved) {
+    populateForm(JSON.parse(saved));
+  }
+
+  // Try fetching latest from worker
+  var workerUrl = localStorage.getItem(WORKER_KEY);
+  if (workerUrl) {
+    fetch(workerUrl + '/api/signals')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        populateForm(d);
+        localStorage.setItem(DATA_KEY, JSON.stringify(d));
+        setStatus('ok', 'Live data loaded');
+        document.getElementById('headerMeta').textContent = 'Updated ' + (d.updated || '—');
+      })
+      .catch(function() {
+        setStatus('pending', 'Worker offline — using cached');
+      });
+  } else {
+    // Load from signals-data.json fallback
+    fetch('/signals-data.json')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        populateForm(d);
+        setStatus('pending', 'Setup worker to publish live');
+      })
+      .catch(function() {
+        populateForm(getDefaultData());
+        setStatus('pending', 'Enter Worker URL to go live');
+      });
+  }
+
+  buildSignalRows();
+}
+
+function saveWorkerUrl() {
+  var url = document.getElementById('workerUrl').value.trim();
+  localStorage.setItem(WORKER_KEY, url);
+  if (url) document.getElementById('setupSection').style.display = 'none';
+}
+
+// ── Form ──────────────────────────────────────────────────────────────────────
+function buildSignalRows() {
+  var list = document.getElementById('signalsList');
+  list.innerHTML = '';
+  SIGNAL_META.forEach(function(m) {
+    var row = document.createElement('div');
+    row.className = 'sig-row neutral';
+    row.id = 'row_' + m.id;
+    row.innerHTML =
+      '<div class="sig-label">' + m.label + '<span class="sig-unit">' + m.unit + '</span></div>' +
+      '<div class="sig-inputs">' +
+        '<input class="val-input" type="number" id="val_' + m.id + '" step="' + m.step + '" oninput="markDirty()">' +
+        '<select class="zone-select" id="zone_' + m.id + '" onchange="updateRowStyle(\'' + m.id + '\')">' +
+          '<option value="buy">BUY</option>' +
+          '<option value="neutral">Neutral</option>' +
+          '<option value="warn">Near sell</option>' +
+          '<option value="sell">SELL</option>' +
+        '</select>' +
+      '</div>';
+    list.appendChild(row);
+  });
+}
+
+function populateForm(d) {
+  if (!d) return;
+  // Meta
+  var set = function(id, val) { var el = document.getElementById(id); if(el) el.value = val || ''; };
+  set('meta_updated', d.updated);
+  set('meta_cycleScore', d.cycleScore);
+  set('meta_cyclePhase', d.cyclePhase);
+  set('meta_recessionProb', d.recessionProb);
+  set('meta_sellZoneCount', d.sellZoneCount);
+  set('meta_hormuzStatus', d.hormuzStatus);
+  if (document.getElementById('meta_hormuzColor'))
+    document.getElementById('meta_hormuzColor').value = d.hormuzColor || 'red';
+
+  // Signals
+  if (d.signals) {
+    SIGNAL_META.forEach(function(m) {
+      var sig = d.signals[m.id];
+      if (!sig) return;
+      var valEl = document.getElementById('val_' + m.id);
+      var zoneEl = document.getElementById('zone_' + m.id);
+      if (valEl) valEl.value = sig.value;
+      if (zoneEl) { zoneEl.value = sig.zone || 'neutral'; updateRowStyle(m.id); }
+    });
+  }
+
+  if (d.updated) document.getElementById('headerMeta').textContent = 'Updated ' + d.updated;
+}
+
+function updateRowStyle(id) {
+  var zone = document.getElementById('zone_' + id).value;
+  var row = document.getElementById('row_' + id);
+  row.className = 'sig-row ' + zone;
+}
+
+function collectData() {
+  var d = {
+    updated: document.getElementById('meta_updated').value || getTodayStr(),
+    cycleScore: parseFloat(document.getElementById('meta_cycleScore').value) || 0,
+    cyclePhase: document.getElementById('meta_cyclePhase').value || '',
+    recessionProb: parseFloat(document.getElementById('meta_recessionProb').value) || 0,
+    sellZoneCount: parseInt(document.getElementById('meta_sellZoneCount').value) || 0,
+    hormuzStatus: document.getElementById('meta_hormuzStatus').value || '',
+    hormuzColor: document.getElementById('meta_hormuzColor').value || 'red',
+    signals: {}
+  };
+  SIGNAL_META.forEach(function(m) {
+    var val = parseFloat(document.getElementById('val_' + m.id).value);
+    var zone = document.getElementById('zone_' + m.id).value;
+    d.signals[m.id] = { value: isNaN(val) ? 0 : val, unit: m.unit, zone: zone, date: d.updated };
+  });
+  return d;
+}
+
+// ── Publish ───────────────────────────────────────────────────────────────────
+function publishSignals() {
+  var workerUrl = localStorage.getItem(WORKER_KEY);
+  var btn = document.getElementById('publishBtn');
+  var d = collectData();
+
+  // Save locally always
+  localStorage.setItem(DATA_KEY, JSON.stringify(d));
+
+  if (!workerUrl) {
+    // No worker — download JSON fallback
+    var json = JSON.stringify(d, null, 2);
+    var blob = new Blob([json], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'signals-data.json'; a.click();
+    URL.revokeObjectURL(url);
+    setStatus('pending', '⬇️ Downloaded — upload to Cloudflare');
+    return;
+  }
+
+  // Publish to worker
+  btn.disabled = true;
+  btn.textContent = '⏳ Publishing...';
+  setStatus('pending', 'Sending...');
+
+  var pw = localStorage.getItem(PASSWORD_KEY);
+  fetch(workerUrl + '/api/signals', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + pw
+    },
+    body: JSON.stringify(d)
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('Status ' + r.status);
+    return r.json();
+  })
+  .then(function(res) {
+    btn.disabled = false;
+    btn.className = 'publish-btn success';
+    btn.textContent = '✅ Published!';
+    setStatus('ok', 'Live on signycle.com');
+    document.getElementById('headerMeta').textContent = 'Updated ' + d.updated;
+    setTimeout(function() {
+      btn.className = 'publish-btn';
+      btn.textContent = '🚀 Publish to Signycle';
+    }, 3000);
+  })
+  .catch(function(e) {
+    btn.disabled = false;
+    btn.className = 'publish-btn error';
+    btn.textContent = '❌ Failed — check password';
+    setStatus('err', e.message);
+    setTimeout(function() {
+      btn.className = 'publish-btn';
+      btn.textContent = '🚀 Publish to Signycle';
+    }, 3000);
+  });
+}
+
+function setStatus(type, msg) {
+  var el = document.getElementById('statusPill');
+  el.textContent = msg;
+  el.className = 'status-pill ' + type;
+}
+
+function markDirty() {
+  setStatus('pending', 'Unsaved changes');
+}
+
+function getTodayStr() {
+  var d = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+function getDefaultData() {
+  return {
+    updated: getTodayStr(), cycleScore: 72, cyclePhase: 'Mid Expansion',
+    recessionProb: 48, sellZoneCount: 5,
+    hormuzStatus: 'US Navy Blockade — Day 43', hormuzColor: 'red',
+    signals: {}
+  };
+}
+</script>
+</body>
+</html>

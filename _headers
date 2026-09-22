@@ -1,0 +1,66 @@
+# Signycle — Cloudflare Cache Headers
+# Mål: cache-rate 80%+
+# OBS: Cloudflare cacher ikke HTML automatisk.
+# Du MÅ opprette en Cache Rule i dashbordet (se instruksjoner nedenfor).
+
+# ── HTML-sider: 4 timer edge, 24 timer stale-while-revalidate ────────────
+/*.html
+  Cache-Control: public, max-age=14400, stale-while-revalidate=86400
+  X-Content-Type-Options: nosniff
+
+# ── Rotsiden ──────────────────────────────────────────────────────────────
+/
+  Cache-Control: public, max-age=14400, stale-while-revalidate=86400
+  X-Content-Type-Options: nosniff
+
+# ── Sitemap og robots ─────────────────────────────────────────────────────
+/sitemap.xml
+  Cache-Control: public, max-age=86400
+
+/robots.txt
+  Cache-Control: public, max-age=86400
+
+# ── ads.txt: serve as plain text (AdSense requires this) ──────────────────
+/ads.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+# ── JSON-data (search-index) ───────────────────────────────────────────────
+/*.json
+  Cache-Control: public, max-age=14400, stale-while-revalidate=86400
+
+# ── Bilder: 30 dager, immutable ──────────────────────────────────────────
+/*.png
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=2592000, immutable
+
+# ── Fonter: 1 år, immutable ───────────────────────────────────────────────
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── CSS og JS: 24 timer ───────────────────────────────────────────────────
+/*.css
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/*.js
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# ── Security headers på alle sider ────────────────────────────────────────
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

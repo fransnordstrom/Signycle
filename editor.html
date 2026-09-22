@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MXQHBG9KDV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signycle — Signal Editor</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #05080f; color: #94a3b8; font-family: 'IBM Plex Mono', monospace, system-ui; padding: 2rem; }
+h1 { color: #f0f7ff; font-size: 1.4rem; margin-bottom: 0.3rem; }
+.subtitle { font-size: 0.7rem; color: #64748b; margin-bottom: 2rem; }
+.sector { background: #080d18; border: 1px solid #162030; border-radius: 6px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.sector-title { color: #38bdf8; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+.signal-select { background: #101828; border: 1px solid #1e2f45; color: #94a3b8; font-family: inherit; font-size: 0.65rem; padding: 0.3rem 0.6rem; border-radius: 3px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 0.8rem; }
+label { font-size: 0.6rem; color: #64748b; display: block; margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+input { width: 100%; background: #101828; border: 1px solid #1e2f45; color: #e2eaf4; font-family: inherit; font-size: 0.72rem; padding: 0.5rem 0.7rem; border-radius: 3px; }
+input:focus { outline: none; border-color: #0ea5e9; }
+.divider { border: none; border-top: 1px solid #162030; margin: 1rem 0; }
+.btn { background: #0ea5e9; color: #05080f; border: none; font-family: inherit; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2rem; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 1rem; }
+.btn:hover { background: #38bdf8; }
+.output { background: #0c1322; border: 1px solid #1e2f45; border-radius: 4px; padding: 1.2rem; margin-top: 1.5rem; font-size: 0.65rem; color: #10b981; display: none; }
+.output pre { white-space: pre-wrap; word-break: break-all; }
+.instructions { background: rgba(14,165,233,0.06); border: 1px solid rgba(14,165,233,0.15); border-radius: 4px; padding: 1rem 1.2rem; margin-bottom: 2rem; font-size: 0.65rem; line-height: 1.9; color: #94a3b8; }
+.instructions strong { color: #38bdf8; }
+.updated { font-size: 0.6rem; color: #64748b; margin-top: 0.5rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>🌊 Signycle — Signal Editor</h1>
+<p class="subtitle">Oppdater tallene ukentlig — ta 10 minutter hver mandag morgen</p>
+
+<div class="instructions">
+  <strong>Slik bruker du denne siden:</strong><br>
+  1. Fyll inn oppdaterte verdier for hver sektor<br>
+  2. Velg signal (BUY / NEUTRAL / SELL) basert på terskelverdiene<br>
+  3. Klikk "Generer kode" nederst<br>
+  4. Kopier koden og send til Claude for å oppdatere index.html<br><br>
+  <strong>Gode datakilder:</strong>
+  BDI → <a href="https://www.handybulk.com/baltic-dry-index/" target="_blank" style="color:#0ea5e9">handybulk.com</a> ·
+  Brent → <a href="https://oilprice.com" target="_blank" style="color:#0ea5e9">oilprice.com</a> ·
+  CAPE → <a href="https://www.gurufocus.com/shiller-PE.php" target="_blank" style="color:#0ea5e9">gurufocus.com</a> ·
+  VIX → <a href="https://finance.yahoo.com/quote/%5EVIX/" target="_blank" style="color:#0ea5e9">Yahoo Finance</a> ·
+  Fear &amp; Greed → <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" style="color:#0ea5e9">CNN</a>
+</div>
+
+<form id="editorForm">
+
+<!-- SHIPPING -->
+<div class="sector">
+  <div class="sector-title">
+    Shipping — Oslo Børs
+    <select class="signal-select" id="sig_shipping">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Baltic Dry Index (BDI)</label><input id="bdi" placeholder="e.g. 2,138 pts"></div>
+    <div><label>Order book (% of fleet)</label><input id="orderbook" placeholder="e.g. 11% of fleet"></div>
+  </div>
+  <div class="row">
+    <div><label>VLCC spot rate</label><input id="vlcc" placeholder="e.g. $30k/day"></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- ENERGY -->
+<div class="sector">
+  <div class="sector-title">
+    Energy — Oslo Børs
+    <select class="signal-select" id="sig_energy">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Brent crude (USD/bbl)</label><input id="brent" placeholder="e.g. $93/bbl"></div>
+    <div><label>Rig utilization</label><input id="rig" placeholder="e.g. 82%"></div>
+  </div>
+  <div class="row">
+    <div><label>P/B Equinor</label><input id="pb_equinor" placeholder="e.g. 1.4x"></div>
+    <div><label>Geopolitical note (optional)</label><input id="geo" placeholder="e.g. Iran/Hormuz risk elevated"></div>
+  </div>
+</div>
+
+<!-- SEAFOOD -->
+<div class="sector">
+  <div class="sector-title">
+    Seafood — Oslo Børs
+    <select class="signal-select" id="sig_seafood">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Salmon spot price (NOK/kg)</label><input id="salmon" placeholder="e.g. NOK 75/kg"></div>
+    <div><label>P/B Mowi</label><input id="pb_mowi" placeholder="e.g. 2.0x"></div>
+  </div>
+  <div class="row">
+    <div><label>Regulatory risk</label>
+      <select class="signal-select" id="reg_risk" style="width:100%;padding:0.5rem 0.7rem;">
+        <option>Low</option>
+        <option selected>Elevated</option>
+        <option>High</option>
+        <option>Improving</option>
+      </select>
+    </div>
+    <div></div>
+  </div>
+</div>
+
+<!-- OFFSHORE -->
+<div class="sector">
+  <div class="sector-title">
+    Offshore — Oslo Børs
+    <select class="signal-select" id="sig_offshore">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Fleet utilization</label><input id="fleet_util" placeholder="e.g. 80%"></div>
+    <div><label>Backlog trend</label>
+      <select class="signal-select" id="backlog" style="width:100%;padding:0.5rem 0.7rem;">
+        <option>Improving</option>
+        <option>Stable</option>
+        <option>Declining</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- MATERIALS -->
+<div class="sector">
+  <div class="sector-title">
+    Materials — Oslo Børs
+    <select class="signal-select" id="sig_materials">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Aluminium (USD/t)</label><input id="aluminium" placeholder="e.g. $2,600/t"></div>
+    <div><label>Urea price (USD/t)</label><input id="urea" placeholder="e.g. $310/t"></div>
+  </div>
+  <div class="row">
+    <div><label>P/B Norsk Hydro</label><input id="pb_hydro" placeholder="e.g. 1.1x"></div>
+    <div></div>
+  </div>
+</div>
+
+<!-- MACRO -->
+<div class="sector">
+  <div class="sector-title">
+    Macro — Global Markets
+    <select class="signal-select" id="sig_macro">
+      <option value="neutral">NEUTRAL</option>
+      <option value="buy">BUY ZONE</option>
+      <option value="sell">SELL ZONE</option>
+    </select>
+  </div>
+  <div class="row">
+    <div><label>Shiller CAPE (S&P 500)</label><input id="cape" placeholder="e.g. 38.2x"></div>
+    <div><label>VIX</label><input id="vix" placeholder="e.g. 25.0"></div>
+  </div>
+  <div class="row">
+    <div><label>Fear & Greed Index (0–100)</label><input id="fg" placeholder="e.g. 25 · Fear"></div>
+    <div><label>Yield curve (10y–2y)</label><input id="yield" placeholder="e.g. +0.30%"></div>
+  </div>
+</div>
+
+<button type="button" class="btn" onclick="generate()">⚡ Generer oppdatert kode</button>
+
+</form>
+
+<div class="output" id="output">
+  <strong style="color:#38bdf8;font-size:0.7rem;">Kopier dette og send til Claude:</strong><br><br>
+  <pre id="outputCode"></pre>
+</div>
+<p class="updated" id="updatedLabel"></p>
+
+<script>
+function v(id) { return document.getElementById(id).value.trim() || document.getElementById(id).placeholder.replace('e.g. ',''); }
+function s(id) { return document.getElementById(id).value; }
+
+function colorFor(sig) {
+  if (sig === 'buy') return '#10b981';
+  if (sig === 'sell') return '#ef4444';
+  return '#f59e0b';
+}
+function pctFor(sig) {
+  if (sig === 'buy') return 28;
+  if (sig === 'sell') return 78;
+  return 52;
+}
+
+function generate() {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+
+  const signals = [
+    { exchange:"Oslo Børs · Norway", sector:"Shipping", sig:s('sig_shipping'),
+      inds:[
+        { n:"Baltic Dry Index", v:v('bdi'), pct:pctFor(s('sig_shipping')), c:colorFor(s('sig_shipping')) },
+        { n:"Order book", v:v('orderbook'), pct:pctFor(s('sig_shipping')), c:colorFor(s('sig_shipping')) },
+        { n:"VLCC spot rate", v:v('vlcc'), pct:pctFor(s('sig_shipping')), c:colorFor(s('sig_shipping')) },
+      ]},
+    { exchange:"Oslo Børs · Norway", sector:"Energy", sig:s('sig_energy'),
+      inds:[
+        { n:"Brent crude", v:v('brent'), pct:pctFor(s('sig_energy')), c:colorFor(s('sig_energy')) },
+        { n:"Rig utilization", v:v('rig'), pct:pctFor(s('sig_energy')), c:colorFor(s('sig_energy')) },
+        { n:"P/B Equinor", v:v('pb_equinor'), pct:pctFor(s('sig_energy')), c:colorFor(s('sig_energy')) },
+      ]},
+    { exchange:"Oslo Børs · Norway", sector:"Seafood", sig:s('sig_seafood'),
+      inds:[
+        { n:"Salmon price", v:v('salmon'), pct:pctFor(s('sig_seafood')), c:colorFor(s('sig_seafood')) },
+        { n:"P/B Mowi", v:v('pb_mowi'), pct:pctFor(s('sig_seafood')), c:colorFor(s('sig_seafood')) },
+        { n:"Regulatory risk", v:s('reg_risk'), pct:pctFor(s('sig_seafood')), c:colorFor(s('sig_seafood')) },
+      ]},
+    { exchange:"Oslo Børs · Norway", sector:"Offshore", sig:s('sig_offshore'),
+      inds:[
+        { n:"Fleet utilization", v:v('fleet_util'), pct:pctFor(s('sig_offshore')), c:colorFor(s('sig_offshore')) },
+        { n:"Brent stable >$60", v:v('brent')+' ✓', pct:pctFor(s('sig_offshore')), c:colorFor(s('sig_offshore')) },
+        { n:"Backlog trend", v:s('backlog'), pct:pctFor(s('sig_offshore')), c:colorFor(s('sig_offshore')) },
+      ]},
+    { exchange:"Oslo Børs · Norway", sector:"Materials", sig:s('sig_materials'),
+      inds:[
+        { n:"Aluminium", v:v('aluminium'), pct:pctFor(s('sig_materials')), c:colorFor(s('sig_materials')) },
+        { n:"Urea price", v:v('urea'), pct:pctFor(s('sig_materials')), c:colorFor(s('sig_materials')) },
+        { n:"P/B Hydro", v:v('pb_hydro'), pct:pctFor(s('sig_materials')), c:colorFor(s('sig_materials')) },
+      ]},
+    { exchange:"Global · S&P 500", sector:"Macro", sig:s('sig_macro'),
+      inds:[
+        { n:"Shiller P/E (CAPE)", v:v('cape'), pct:pctFor(s('sig_macro')), c:colorFor(s('sig_macro')) },
+        { n:"VIX", v:v('vix'), pct:pctFor(s('sig_macro')), c:colorFor(s('sig_macro')) },
+        { n:"Fear & Greed", v:v('fg'), pct:pctFor(s('sig_macro')), c:colorFor(s('sig_macro')) },
+      ]},
+  ];
+
+  const code = `Oppdater SIGNALS i index.html til dette (${dateStr}):\n\n// Last updated: ${dateStr}\nconst SIGNALS = ${JSON.stringify(signals, null, 2)};`;
+
+  document.getElementById('outputCode').textContent = code;
+  document.getElementById('output').style.display = 'block';
+  document.getElementById('updatedLabel').textContent = `Generert ${dateStr}`;
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+</script>
+<script src="/signals-loader.js"></script>
+</body>
+</html>

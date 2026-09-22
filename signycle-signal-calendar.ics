@@ -1,0 +1,212 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Signycle//Signal Calendar 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Signycle Signal Calendar
+X-WR-CALDESC:Macro signal events that can move Signycle's 18 commodity signals — OPEC, PMI, Fed, BDI, salmon and more.
+X-WR-TIMEZONE:UTC
+BEGIN:VEVENT
+UID:20260320T080000Z📊FlashPMIMarch(Globa@signycle.com
+DTSTART:20260320T080000Z
+DTEND:20260320T083000Z
+SUMMARY:📊 Flash PMI March (Global)
+DESCRIPTION:PMI currently 49.8 — below 50. Key recession signal. signycle.com/signal-calendar.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260320T090000Z🐟SalmonWeeklyAuction@signycle.com
+DTSTART:20260320T090000Z
+DTEND:20260320T093000Z
+SUMMARY:🐟 Salmon Weekly Auction
+DESCRIPTION:Salmon now NOK 95/kg — SELL zone above 82. signycle.com/precious-metals-cycle.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260324T090000Z🛢️IEAOilMarketReport@signycle.com
+DTSTART:20260324T090000Z
+DTEND:20260324T093000Z
+SUMMARY:🛢️ IEA Oil Market Report
+DESCRIPTION:First full Hormuz supply disruption assessment. Brent $107. signycle.com/compare-wti-brent.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260325T130000Z🛢️EIAWeeklyCrudeInve@signycle.com
+DTSTART:20260325T130000Z
+DTEND:20260325T133000Z
+SUMMARY:🛢️ EIA Weekly Crude Inventory
+DESCRIPTION:Watch for large build (>3m barrels) = bearish Brent. signycle.com/live-signals.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260327T080000Z⚓BDIWeeklyPrint@signycle.com
+DTSTART:20260327T080000Z
+DTEND:20260327T083000Z
+SUMMARY:⚓ BDI Weekly Print
+DESCRIPTION:Baltic Dry Index 2,024 pts — neutral. signycle.com/live-signals.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260327T080000Z🐟SalmonWeeklyPrice@signycle.com
+DTSTART:20260327T080000Z
+DTEND:20260327T083000Z
+SUMMARY:🐟 Salmon Weekly Price
+DESCRIPTION:Track NOK/kg vs 82 SELL threshold. signycle.com/oslo-bors.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260331T090000Z💶EurozoneCPIFlash@signycle.com
+DTSTART:20260331T090000Z
+DTEND:20260331T093000Z
+SUMMARY:💶 Eurozone CPI Flash
+DESCRIPTION:Oil shock pass-through to inflation. EUR 10Y 2.6%. signycle.com/signal-calendar.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260401T080000Z📊GlobalPMIFinal(Marc@signycle.com
+DTSTART:20260401T080000Z
+DTEND:20260401T083000Z
+SUMMARY:📊 Global PMI Final (March)
+DESCRIPTION:Currently 49.8 — watch for below 48. signycle.com/recession-tracker.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260402T120000Z🛢️OPEC+MonthlyDecisi@signycle.com
+DTSTART:20260402T120000Z
+DTEND:20260402T123000Z
+SUMMARY:🛢️ OPEC+ Monthly Decision
+DESCRIPTION:Brent $107 — pressure to increase output. signycle.com/compare-wti-brent.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260403T123000Z📊USNon-FarmPayrolls(@signycle.com
+DTSTART:20260403T123000Z
+DTEND:20260403T130000Z
+SUMMARY:📊 US Non-Farm Payrolls (March)
+DESCRIPTION:Key recession indicator. <100k = recession risk spike. signycle.com/recession-tracker.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260409T120000Z💶ECBRateDecision@signycle.com
+DTSTART:20260409T120000Z
+DTEND:20260409T123000Z
+SUMMARY:💶 ECB Rate Decision
+DESCRIPTION:Oil shock complicates rate path. signycle.com/liquidity-cycle.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260410T123000Z📊USCPI(March)@signycle.com
+DTSTART:20260410T123000Z
+DTEND:20260410T130000Z
+SUMMARY:📊 US CPI (March)
+DESCRIPTION:Brent above $100 feeding into transport costs. signycle.com/recession-tracker.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260414T020000Z🔩ChinaQ1GDP@signycle.com
+DTSTART:20260414T020000Z
+DTEND:20260414T023000Z
+SUMMARY:🔩 China Q1 GDP
+DESCRIPTION:Most important release for BDI + copper signals. signycle.com/best-copper-stocks.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260416T090000Z🛢️IEAOilReport(April@signycle.com
+DTSTART:20260416T090000Z
+DTEND:20260416T093000Z
+SUMMARY:🛢️ IEA Oil Report (April)
+DESCRIPTION:First post-Hormuz full assessment. signycle.com/compare-wti-brent.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260422T120000Z⚔️NATODefenceMiniste@signycle.com
+DTSTART:20260422T120000Z
+DTEND:20260422T123000Z
+SUMMARY:⚔️ NATO Defence Ministers
+DESCRIPTION:New spending pledges = defence signal update. signycle.com/nyse-cyclical-stocks.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260423T080000Z📊FlashPMIApril@signycle.com
+DTSTART:20260423T080000Z
+DTEND:20260423T083000Z
+SUMMARY:📊 Flash PMI April
+DESCRIPTION:Watch for below 48 = recession signal escalates. signycle.com/recession-tracker.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260429T180000Z💶USFederalReserveFOM@signycle.com
+DTSTART:20260429T180000Z
+DTEND:20260429T183000Z
+SUMMARY:💶 US Federal Reserve FOMC
+DESCRIPTION:Rate cut window opens? Key for EUR 10Y signal. signycle.com/liquidity-cycle.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260507T120000Z🛢️OPEC+FullMinisteri@signycle.com
+DTSTART:20260507T120000Z
+DTEND:20260507T123000Z
+SUMMARY:🛢️ OPEC+ Full Ministerial
+DESCRIPTION:H2 2026 production quotas. Most important oil event Q2. signycle.com/compare-wti-brent.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260519T090000Z🔩LMEMetalsWeekLondon@signycle.com
+DTSTART:20260519T090000Z
+DTEND:20260519T093000Z
+SUMMARY:🔩 LME Metals Week London
+DESCRIPTION:Annual copper/aluminium price discovery. signycle.com/best-copper-stocks.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260522T080000Z📊FlashPMIMay@signycle.com
+DTSTART:20260522T080000Z
+DTEND:20260522T083000Z
+SUMMARY:📊 Flash PMI May
+DESCRIPTION:Third consecutive month under watch. signycle.com/recession-tracker.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260611T120000Z💶ECBRateDecision@signycle.com
+DTSTART:20260611T120000Z
+DTEND:20260611T123000Z
+SUMMARY:💶 ECB Rate Decision
+DESCRIPTION:Summer meeting — first cut window? signycle.com/liquidity-cycle.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260618T180000Z💶USFederalReserveFOM@signycle.com
+DTSTART:20260618T180000Z
+DTEND:20260618T183000Z
+SUMMARY:💶 US Federal Reserve FOMC
+DESCRIPTION:Summer Fed meeting — most likely cut window. signycle.com/liquidity-cycle.html
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260323T080000Z⚓Signycle:BDIWe@signycle.com
+DTSTART:20260323T080000Z
+DTEND:20260323T083000Z
+SUMMARY:⚓ Signycle: BDI Weekly
+DESCRIPTION:Baltic Dry Index — weekly update. Current: 2,024 pts (neutral). signycle.com/live-signals.html
+RRULE:FREQ=WEEKLY;BYDAY=MO;COUNT=52
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260327T080000Z🐟Signycle:Salmo@signycle.com
+DTSTART:20260327T080000Z
+DTEND:20260327T083000Z
+SUMMARY:🐟 Signycle: Salmon Price
+DESCRIPTION:Norwegian salmon weekly auction. Current: NOK 95/kg (SELL). signycle.com/oslo-bors.html
+RRULE:FREQ=WEEKLY;BYDAY=FR;COUNT=52
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:20260325T080000Z🛢️Signycle:EIAC@signycle.com
+DTSTART:20260325T080000Z
+DTEND:20260325T083000Z
+SUMMARY:🛢️ Signycle: EIA Crude
+DESCRIPTION:US crude inventory — weekly Brent signal input. signycle.com/compare-wti-brent.html
+RRULE:FREQ=WEEKLY;BYDAY=WE;COUNT=52
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

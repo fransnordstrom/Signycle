@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seed Signycle Worker</title>
+<style>
+body { font-family: -apple-system, sans-serif; background: #0c1c2e; color: #a0b0ab; padding: 1.5rem; }
+h1 { color: #00956e; font-size: 1rem; margin-bottom: 0.5rem; }
+button { background: #00956e; color: #fff; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-size: 1rem; cursor: pointer; width: 100%; margin-bottom: 0.5rem; font-family: inherit; }
+button.sec { background: #1e3a5f; }
+pre { background: #1e3a5f; padding: 1rem; border-radius: 8px; font-size: 0.72rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; margin-top: 1rem; }
+input { background: #1e3a5f; border: 1px solid #2a5080; color: #fff; padding: 0.7rem; border-radius: 6px; width: 100%; margin-bottom: 0.5rem; font-family: monospace; font-size: 1rem; box-sizing: border-box; }
+label { font-size: 0.75rem; color: #6b8080; display: block; margin-bottom: 0.25rem; }
+</style>
+</head>
+<body>
+<h1>⚙️ Seed Signycle Worker</h1>
+
+<label>Admin password</label>
+<input type="password" id="pw" placeholder="your ADMIN_PASSWORD">
+
+<button onclick="seed()">🚀 Seed Worker</button>
+<button class="sec" onclick="testGet()">🔍 Test GET first</button>
+
+<pre id="output">Ready — tap "Test GET first" to verify Worker is responding</pre>
+
+<script>
+var WORKER = 'https://signycle-signals.fransbgn.workers.dev';
+
+var DATA = {
+  updated: "15 Apr 2026",
+  cycleScore: 72,
+  cyclePhase: "Mid Expansion",
+  recessionProb: 48,
+  sellZoneCount: 5,
+  hormuzStatus: "US Navy Blockade — Day 43",
+  hormuzColor: "red",
+  signals: {
+    brent:   { value: 103,    unit: "$/bbl",   zone: "warn",    date: "15 Apr 2026" },
+    wti:     { value: 104,    unit: "$/bbl",   zone: "warn",    date: "15 Apr 2026" },
+    spread:  { value: 14,     unit: "$/bbl",   zone: "sell",    date: "15 Apr 2026" },
+    vlcc:    { value: 280000, unit: "$/day",   zone: "sell",    date: "12 Apr 2026" },
+    lng:     { value: 85000,  unit: "$/day",   zone: "sell",    date: "12 Apr 2026" },
+    bdi:     { value: 2095,   unit: "pts",     zone: "neutral", date: "12 Apr 2026" },
+    copper:  { value: 12138,  unit: "$/t",     zone: "sell",    date: "12 Apr 2026" },
+    alum:    { value: 3478,   unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  },
+    gold:    { value: 4743,   unit: "$/oz",    zone: "sell",    date: "12 Apr 2026" },
+    salmon:  { value: 91,     unit: "NOK/kg",  zone: "sell",    date: "8 Apr 2026"  },
+    urea:    { value: 530,    unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  },
+    steel:   { value: 90,     unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  },
+    ironore: { value: 96,     unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  },
+    eur10y:  { value: 2.93,   unit: "%",       zone: "neutral", date: "8 Apr 2026"  },
+    defense: { value: 2.4,    unit: "% GDP",   zone: "neutral", date: "8 Apr 2026"  },
+    pmi:     { value: 51.4,   unit: "index",   zone: "neutral", date: "Feb 2026"    },
+    scfi:    { value: 1850,   unit: "index",   zone: "neutral", date: "8 Apr 2026"  },
+    nbsk:    { value: 920,    unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  },
+    pctc:    { value: 28000,  unit: "$/day",   zone: "neutral", date: "8 Apr 2026"  },
+    rig:     { value: 82,     unit: "%",       zone: "neutral", date: "8 Apr 2026"  },
+    flying:  { value: 104,    unit: "index",   zone: "neutral", date: "8 Apr 2026"  },
+    wfe:     { value: 102,    unit: "index",   zone: "neutral", date: "2025 est."   },
+    lithium: { value: 17000,  unit: "$/t",     zone: "neutral", date: "8 Apr 2026"  }
+  }
+};
+
+function log(msg) {
+  document.getElementById('output').textContent = msg;
+}
+
+async function testGet() {
+  log('Testing GET...');
+  try {
+    var res = await fetch(WORKER + '/api/signals');
+    var text = await res.text();
+    log('✅ GET works! Status: ' + res.status + '\n\nFirst 300 chars:\n' + text.slice(0, 300));
+  } catch(e) {
+    log('❌ GET failed: ' + e.message + '\n\nThis means Worker is not reachable.');
+  }
+}
+
+async function seed() {
+  var pw = document.getElementById('pw').value.trim();
+  if (!pw) { log('Enter password first'); return; }
+
+  log('Sending...');
+  
+  try {
+    var res = await fetch(WORKER + '/api/signals', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + pw
+      },
+      body: JSON.stringify(DATA)
+    });
+    
+    var text = await res.text();
+    log('Status: ' + res.status + '\nResponse: ' + text);
+    
+    if (res.status === 200) {
+      log('✅ SUCCESS! Worker seeded with all signal values.\n\nYou can now close this page.');
+    } else if (res.status === 401) {
+      log('❌ Wrong password (401 Unauthorized)\n\nCheck ADMIN_PASSWORD in Cloudflare Worker settings.');
+    } else {
+      log('❌ Error ' + res.status + ': ' + text);
+    }
+  } catch(e) {
+    log('❌ Network error: ' + e.message + '\n\nPossible causes:\n- Safari blocking CORS\n- Worker not deployed\n- Wrong URL\n\nTry from desktop Chrome instead.');
+  }
+}
+</script>
+</body>
+</html>

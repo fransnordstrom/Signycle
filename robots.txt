@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block utility pages
+Disallow: /editor.html
+Disallow: /landingsside.html
+Disallow: /tidal-landing.html
+
+Sitemap: https://signycle.com/sitemap.xml
+
+Disallow: /admin.html

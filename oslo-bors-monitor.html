@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oslo Børs Signal Monitor | Signycle</title>
+<meta name="description" content="Interactive cyclical investment monitor for Oslo Bors. Track Brent, BDI, VLCC and salmon signals alongside top Norwegian cyclical stocks.">
+<link rel="canonical" href="https://signycle.com/oslo-bors-monitor">
+<meta property="og:title" content="Oslo Børs Signal Monitor | Signycle">
+<meta property="og:description" content="Interactive cyclical investment monitor for Oslo Bors. Update indicators with fresh data and see buy/sell signals for shipping, energy, seafood...">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signycle.com/oslo-bors-monitor.html">
+<meta property="og:site_name" content="Signycle">
+<meta property="og:image" content="https://signycle.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>/* ── NAV ── */
+/* ── DROPDOWN NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.logo{font-size:1.1rem;font-weight:700;color:#0c1c2e;text-decoration:none;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.logo-dot{width:8px;height:8px;background:#00956e;border-radius:50%;}
+.nav-links{display:flex;align-items:center;list-style:none;gap:0;margin:0;padding:0;}
+.nav-links > li{position:relative;}
+.nav-parent,.nav-direct{display:flex;align-items:center;gap:4px;padding:0 11px;height:58px;font-size:0.82rem;font-weight:500;color:#475569;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;text-decoration:none;}
+.nav-parent:hover,.nav-direct:hover,.nav-links>li:hover>.nav-parent{color:#0c1c2e;border-bottom-color:#00956e;}
+.nav-chev{width:9px;height:6px;opacity:.5;transition:transform .15s;}
+.nav-links>li:hover .nav-chev{transform:rotate(180deg);opacity:.8;}
+.nav-drop{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:6px;min-width:220px;box-shadow:0 8px 32px rgba(12,28,46,.1);z-index:300;}
+.nav-drop.nav-drop-wide{min-width:340px;columns:2;column-gap:0;}
+@media(hover:hover){.nav-links>li:hover .nav-drop{display:block;}}
+
+.nav-drop a{display:flex;flex-direction:column;padding:7px 10px;border-radius:7px;text-decoration:none;transition:background .12s;break-inside:avoid;}
+.nav-drop a:hover{background:#f8faf9;}
+.nav-drop a b{font-size:0.82rem;font-weight:600;color:#0c1c2e;font-style:normal;}
+.nav-drop a span{font-size:0.7rem;color:#94a3b8;margin-top:1px;}
+
+
+.nav-drop-rule{height:1px;background:#f0f4f2;margin:5px 4px;}
+.nav-top-right{display:flex;gap:0.8rem;align-items:center;}
+.nav-top-link{font-size:0.78rem;color:#6b7f78;text-decoration:none;font-weight:500;transition:color .15s;}
+.nav-top-link:hover{color:#00956e;}
+.nav-cta{background:#00956e;color:#fff;font-size:0.78rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;transition:background .15s;}
+.nav-cta:hover{background:#007a5a;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:#0c1c2e;border-radius:2px;}
+@media(max-width:960px){.nav-links{display:none;}.nav-top-right{display:none;}.hamburger{display:flex;}}
+/* ── END DROPDOWN NAV ── */
+.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:#fff;border-bottom:1px solid #e2e8e5;z-index:199;}
+.mobile-menu.open{display:block;height:calc(100vh - 58px);}
+.mobile-menu-inner{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;}
+.mobile-menu .nav-link{font-size:0.88rem;color:#0c1c2e;padding:0.45rem 0;border-bottom:1px solid #f0f4f2;text-decoration:none;display:block;}
+.mobile-menu .nav-link:hover{color:#00956e;}
+.mobile-menu .nav-cta{background:#00956e;color:#fff;font-weight:700;font-size:0.88rem;padding:0.55rem 1rem;border-radius:8px;text-decoration:none;display:block;text-align:center;margin-top:0.6rem;}
+.mob-section-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a0b0ab;padding:0.6rem 0 0.1rem;}
+@media(max-width:1080px){
+  .nav-top{border-bottom:none;padding:0.85rem 1.25rem;}
+  .nav-top-right{display:none;}
+  .hamburger{display:flex;}
+}
+:root {
+  --bg:#ffffff; --surface:#f8faf9; --surface2:#f0f4f2;
+  --border:#e2e8e5; --border2:#d1dbd7;
+  --green:#00956e; --green-dark:#007a5a; --green-light:#e6f5f1; --green-border:#b3e8d8;
+  --buy:#00956e; --sell:#e03e3e; --neutral:#d97706;
+  --buy-bg:rgba(0,149,110,0.08); --sell-bg:rgba(224,62,62,0.08); --neutral-bg:rgba(217,119,6,0.08);
+  --text:#475569; --dim:#6b7f78; --muted:#a0b0ab; --ink:#0c1c2e;
+  --mono:'IBM Plex Mono',monospace; --sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{max-width:100%;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;}
+
+/* ── NAV ── */
+
+.logo{font-family:var(--sans);font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+
+
+.nav-link:hover,
+.nav-cta{background:var(--green);color:#fff;font-family:var(--sans);font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;transition:background 0.15s;}
+.nav-cta:hover{background:var(--green-dark);}
+
+
+.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+
+.mobile-menu 
+@media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1080px;margin:0 auto;padding:6rem 1.5rem 4rem;}
+
+/* ── HEADER ── */
+.page-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:1rem;}
+.page-title{font-family:var(--sans);font-size:1.9rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;}
+.page-title span{color:var(--green);}
+.page-sub{font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+.hint{font-size:0.75rem;color:var(--dim);background:#f0f4f2;border:1px solid #e2e8e5;border-radius:6px;padding:0.6rem 1rem;line-height:1.6;max-width:260px;}
+
+/* ── BANNER ── */
+.banner{background:#f0f4f2;border:1px solid #e2e8e5;border-radius:10px;padding:1.5rem 1.8rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;position:relative;overflow:hidden;}
+.banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:background 0.5s;}
+.banner.buy{background:var(--buy-bg);border-color:rgba(0,149,110,0.25);}
+.banner.buy::before{background:linear-gradient(90deg,var(--buy),#00c48a);}
+.banner.sell{background:var(--sell-bg);border-color:rgba(224,62,62,0.25);}
+.banner.sell::before{background:linear-gradient(90deg,var(--sell),#c0392b);}
+.banner.neutral{background:var(--neutral-bg);border-color:rgba(217,119,6,0.25);}
+.banner.neutral::before{background:linear-gradient(90deg,var(--neutral),#b45309);}
+.banner-label{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
+.banner-val{font-family:var(--sans);font-size:2.2rem;font-weight:700;transition:color 0.4s;letter-spacing:-0.02em;}
+.banner-val.buy{color:var(--buy);}
+.banner-val.sell{color:var(--sell);}
+.banner-val.neutral{color:var(--neutral);}
+.banner-desc{font-size:0.82rem;color:var(--dim);margin-top:0.4rem;line-height:1.7;max-width:500px;}
+.score-ring{position:relative;width:82px;height:82px;flex-shrink:0;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:1.3rem;font-weight:700;color:var(--ink);}
+
+/* ── TABS ── */
+.tabs{display:flex;gap:0.4rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.tab{background:#fff;border:1px solid #e2e8e5;border-radius:6px;padding:0.45rem 1.1rem;font-family:var(--sans);font-size:0.82rem;font-weight:500;color:var(--dim);cursor:pointer;transition:all 0.2s;}
+.tab:hover{border-color:var(--green);color:var(--green);}
+.tab.active{background:var(--green-light);border-color:var(--green-border);color:var(--green);font-weight:600;}
+
+/* ── PANELS ── */
+.sector-panel{display:none;animation:fadeUp 0.25s ease;}
+.sector-panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── INDICATOR CARDS ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.card{background:#fff;border:1px solid #e2e8e5;border-radius:10px;padding:1.3rem;transition:border-color 0.2s,box-shadow 0.2s;}
+.card:hover{border-color:var(--green-border);box-shadow:0 2px 12px rgba(0,149,110,0.08);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.6rem;}
+.card-name{font-size:0.75rem;font-weight:600;color:var(--ink);max-width:180px;line-height:1.4;}
+.badge{font-size:0.6rem;letter-spacing:0.08em;font-family:var(--mono);padding:0.2rem 0.6rem;border-radius:4px;font-weight:700;white-space:nowrap;}
+.badge.buy{background:rgba(0,149,110,0.1);color:var(--buy);border:1px solid rgba(0,149,110,0.3);}
+.badge.sell{background:rgba(224,62,62,0.1);color:var(--sell);border:1px solid rgba(224,62,62,0.3);}
+.badge.neutral{background:rgba(217,119,6,0.1);color:var(--neutral);border:1px solid rgba(217,119,6,0.3);}
+.card-val{font-family:var(--mono);font-size:1.5rem;font-weight:500;color:var(--ink);margin-bottom:0.15rem;}
+.card-range{font-size:0.68rem;color:var(--muted);font-family:var(--mono);margin-bottom:0.7rem;}
+.bar-track{height:5px;background:var(--surface2);border-radius:3px;margin-bottom:0.9rem;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;transition:width 0.6s cubic-bezier(0.4,0,0.2,1),background 0.4s;}
+.slider-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.7rem;}
+.slider-row label{font-size:0.68rem;font-weight:500;color:var(--dim);white-space:nowrap;}
+input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:2px;background:var(--border2);outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--green);cursor:pointer;transition:transform 0.15s;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.15);}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3);}
+.slider-val{font-size:0.68rem;font-family:var(--mono);color:var(--ink);min-width:72px;text-align:right;}
+.card-desc{font-size:0.72rem;color:var(--dim);line-height:1.7;}
+
+/* ── STOCK TABLE ── */
+.section-title{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.8rem;letter-spacing:-0.01em;}
+.stock-table{background:#fff;border:1px solid #e2e8e5;border-radius:10px;overflow:hidden;}
+.stock-row{display:grid;grid-template-columns:80px 1fr 80px 90px 110px;padding:0.75rem 1.2rem;border-bottom:1px solid var(--border);align-items:center;font-size:0.78rem;gap:0.5rem;transition:background 0.15s;}
+.stock-row:last-child{border-bottom:none;}
+.stock-row:hover:not(.hdr){background:#f0f4f2;}
+.stock-row.hdr{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:#f0f4f2;font-family:var(--mono);}
+.ticker{color:var(--green);font-weight:700;font-family:var(--mono);}
+.right{text-align:right;}
+
+/* ── FOOTER ── */
+footer{background:#f0f4f2;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.75rem;color:var(--muted);}
+.footer-logo{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--ink);}
+
+@media(max-width:768px){
+  .wrap{padding:5rem 1.1rem 3rem;}
+  .grid{grid-template-columns:1fr;}
+  .stock-row{grid-template-columns:65px 1fr 70px 80px;}
+  .stock-row .seg{display:none;}
+  .page-title{font-size:1.5rem;}
+  .hint{max-width:100%;}
+  footer{padding:1.5rem;}
+}
+
+
+
+/* ── MEGA MENU NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
+.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
+.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
+.nav-top-right{display:flex;gap:1rem;align-items:center;}
+.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
+.nav-top-link:hover{color:var(--green);}
+.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
+.nav-cta:hover{background:#007a5a;}
+
+/* Mega row */
+.nav-col{padding:0.6rem 0;}
+.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
+.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
+.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
+.nav-item:hover{background:#f8faf9;}
+.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
+.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
+.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
+.nav-item.crisis .nav-item-text{color:#dc2626;}
+.nav-item.crisis:hover{background:#fef2f2;}
+.nav-item.featured .nav-item-text{color:#ea580c;}
+
+/* Mobile */
+
+
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:199;overflow-y:auto;}
+.mobile-menu.open{display:block;}
+.mobile-menu-inner{padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
+
+
+.mob-link:hover{color:var(--green);}
+.mob-link.crisis{color:#dc2626;}
+
+
+@media(max-width:1080px){
+  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
+  .nav-top-right{display:none!important;}
+  
+}
+
+  
+}
+
+
+
+
+/* Nav toggle bar — sits inside nav at the bottom */
+
+
+
+
+
+@media(max-width:1080px){}
+
+/* ── SEARCH OVERLAY ── */
+.search-overlay{position:fixed;inset:0;background:rgba(12,28,46,.85);z-index:600;display:none;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(4px);}
+.search-overlay.open{display:flex;}
+.search-box{background:#fff;border-radius:14px;width:100%;max-width:620px;box-shadow:0 24px 64px rgba(12,28,46,.25);overflow:hidden;margin:0 1rem;}
+.search-box-top{display:flex;align-items:center;gap:0.5rem;padding:0.8rem 1rem;border-bottom:1px solid #e2e8f0;}
+.search-box-icon{color:#94a3b8;font-size:1rem;flex-shrink:0;}
+.search-box-input{flex:1;border:none;outline:none;font-family:inherit;font-size:1rem;color:#0c1c2e;background:transparent;}
+.search-box-input::placeholder{color:#94a3b8;}
+.search-box-close{background:none;border:none;cursor:pointer;color:#94a3b8;font-size:1.1rem;padding:0.2rem 0.4rem;border-radius:4px;}
+.search-box-close:hover{background:#f1f5f9;color:#0c1c2e;}
+.search-box-results{max-height:400px;overflow-y:auto;}
+.search-box-result{display:flex;align-items:flex-start;gap:0.7rem;padding:0.7rem 1rem;text-decoration:none;color:inherit;border-bottom:1px solid #f1f5f9;transition:background .1s;}
+.search-box-result:hover{background:#f8faf9;}
+.sbr-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;margin-top:1px;}
+.sbr-icon.article{background:#e6f5f1;}.sbr-icon.exchange{background:#fff8e6;}.sbr-icon.tool{background:#efe8ff;}.sbr-icon.compare{background:#fff0f0;}.sbr-icon.guide{background:#e8f4ff;}.sbr-icon.page{background:#f1f5f9;}
+.sbr-body{flex:1;min-width:0;}
+.sbr-title{font-size:0.84rem;font-weight:600;color:#0c1c2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sbr-desc{font-size:0.72rem;color:#64748b;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sbr-meta{display:flex;gap:0.3rem;flex-wrap:wrap;margin-top:0.3rem;}
+.sbr-tag{font-size:0.6rem;font-weight:600;padding:0.1rem 0.4rem;border-radius:3px;background:#f0f4f2;color:#4a7060;text-transform:uppercase;letter-spacing:0.04em;}
+.sbr-tag.green{background:#e6f5f1;color:#00956e;}
+.search-box-empty{padding:2rem;text-align:center;font-size:0.85rem;color:#94a3b8;line-height:1.6;}
+.search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
+.search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
+.search-box-result.sel{background:#f0fdf4;}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
+     crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Oslo Bors Cyclical Stocks Monitor","description":"Interactive cyclical investment monitor for Oslo Bors. Update indicators with fresh data and see buy/sell signals for ","url":"https://signycle.com/oslo-bors-monitor.html","publisher":{"@type":"Organization","name":"Signycle","url":"https://signycle.com"},"about":{"@type":"StockExchange","name":"Oslo Bors Cyclical Stocks Monitor","addressCountry":"Norway","addressLocality":"Oslo"}}</script>
+</head>
+<body><h1 style="position:absolute;width:1px;height:1px;overflow:hidden">Oslo Børs Signal Monitor | Signycle</h1>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><div class="logo-dot"></div>Signycle</a>
+
+    <ul class="nav-links">
+      <li>
+        <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
+        <div class="nav-drop">
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
+          <div class="nav-drop-rule"></div>
+          <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
+        </div>
+      </li>
+      <li>
+        <span class="nav-parent">Cycle Tools <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
+        <div class="nav-drop">
+          <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
+          <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
+          <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
+          <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
+          <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
+        </div>
+      </li>
+      <li>
+        <span class="nav-parent">Stock Tools <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
+        <div class="nav-drop">
+          <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
+          <a href="cyclical-dividend-scanner.html"><b>Dividend Scanner</b><span>Yield vs cycle &mdash; 33 stocks</span></a>
+          <a href="stock-comparison.html"><b>Stock Comparison</b><span>Side-by-side analysis</span></a>
+          <a href="compare-wti-brent.html"><b>WTI vs Brent</b><span>Spread &middot; Hormuz premium</span></a>
+          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
+          <div class="nav-drop-rule"></div>
+          <a href="market-cycles-history.html"><b>Cycle Scenarios</b><span>Historical cycle analysis hub</span></a>
+          <a href="blog-recession-cyclical-stocks.html"><b>Recession Playbook</b><span>What to buy when PMI crashes</span></a>
+        </div>
+      </li>
+      <li>
+        <span class="nav-parent">Exchanges <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
+        <div class="nav-drop nav-drop-wide">
+          <a href="oslo-bors.html"><b>&#127475;&#127476; Oslo B&oslash;rs</b><span>Shipping &middot; Energy &middot; Seafood</span></a>
+          <a href="nyse-cyclical-stocks.html"><b>&#127482;&#127480; NYSE</b><span>Energy &middot; Copper &middot; Mining</span></a>
+          <a href="london-stock-exchange.html"><b>&#127468;&#127463; London</b><span>Mining &middot; Oil majors</span></a>
+          <a href="nasdaq-stockholm.html"><b>&#127480;&#127466; Stockholm</b><span>Copper &middot; Steel &middot; Materials</span></a>
+          <a href="tsx-cyclical-stocks.html"><b>&#127464;&#127462; TSX Canada</b><span>Energy &middot; Metals</span></a>
+          <a href="asx-australia.html"><b>&#127462;&#127482; ASX Australia</b><span>Mining &middot; LNG</span></a>
+          <a href="bolsa-madrid.html"><b>&#127466;&#127480; Bolsa Madrid</b><span>Energy &middot; Renewables &middot; Banks</span></a>
+          <a href="borsa-italiana-milano.html"><b>&#127470;&#127481; Borsa Milano</b><span>Oil &middot; Cables &middot; Defence</span></a>
+          <a href="euronext-lisboa.html"><b>&#127477;&#127481; Euronext Lisboa</b><span>Oil &middot; Renewables &middot; Pulp</span></a>
+          <a href="frankfurt-xetra.html"><b>&#127465;&#127466; Frankfurt</b><span>Chemicals &middot; Auto &middot; Industry</span></a>
+          <a href="b3-brazil.html"><b>&#127463;&#127479; B3 Brazil</b><span>Mining &middot; Energy &middot; Pulp</span></a>
+          <a href="bolsa-santiago.html"><b>&#127464;&#127473; Bolsa Santiago</b><span>Copper &middot; Lithium &middot; Pulp</span></a>
+          <a href="bolsa-lima.html"><b>&#127477;&#127466; Bolsa Lima</b><span>Copper &middot; Gold &middot; Silver</span></a>
+          <a href="bolsa-colombia.html"><b>&#127464;&#127476; Bolsa Colombia</b><span>Oil &middot; Power &middot; Cement</span></a>
+          <a href="bolsa-buenos-aires.html"><b>&#127462;&#127479; Buenos Aires</b><span>Vaca Muerta &middot; Agri</span></a>
+          <a href="dubai-dfm.html"><b>&#127462;&#127466; Dubai DFM</b><span>Energy &middot; Real Estate</span></a>
+          <a href="sgx-hub.html"><b>&#127480;&#127468; Singapore SGX</b><span>Shipping &middot; Agri</span></a>
+          <a href="egypt-egx.html"><b>&#127466;&#127468; Egypt EGX</b><span>Energy &middot; Fertilizers &middot; Suez</span></a>
+          <a href="tokyo-stock-exchange.html"><b>&#127471;&#127477; Tokyo TSE</b><span>Shipping &middot; Steel &middot; Mining</span></a>
+          <a href="euronext-paris.html"><b>&#127467;&#127479; Euronext Paris</b><span>Aerospace &middot; Energy &middot; Metals</span></a>
+          <a href="athens-stock-exchange.html"><b>&#127468;&#127479; Athens ASE</b><span>Shipping &middot; Refining &middot; Energy</span></a>
+          <a href="istanbul-stock-exchange.html"><b>&#127481;&#127479; Istanbul</b><span>Steel &middot; Refining &middot; Conglomerates</span></a>
+          <a href="euronext-amsterdam.html"><b>&#127475;&#127473; Amsterdam</b><span>Semicon &middot; Chemicals &middot; Steel</span></a>
+          <a href="euronext-brussels.html"><b>&#127463;&#127466; Brussels</b><span>Stainless &middot; Cables &middot; Umicore</span></a>
+          <a href="nasdaq-copenhagen.html"><b>&#127465;&#127472; Copenhagen</b><span>Shipping &middot; Wind &middot; Logistics</span></a>
+          <a href="nasdaq-helsinki.html"><b>&#127467;&#127470; Helsinki</b><span>Paper &middot; Steel &middot; Renewables</span></a>
+          <a href="six-swiss-exchange.html"><b>&#127464;&#127469; Swiss SIX</b><span>Glencore &middot; ABB &middot; Sika</span></a>
+          <a href="wiener-boerse.html"><b>&#127462;&#127481; Vienna</b><span>Steel &middot; Hydro &middot; Cement</span></a>
+          <a href="warsaw-stock-exchange.html"><b>&#127477;&#127473; Warsaw</b><span>Copper &middot; Coal &middot; Chemicals</span></a>
+          <a href="hkex-hong-kong.html"><b>&#127469;&#127472; HKEX</b><span>Mining &middot; Coal &middot; Shipping</span></a>
+          <a href="sse-shanghai.html"><b>&#127464;&#127475; SSE Shanghai</b><span>Steel &middot; Coal &middot; Energy</span></a>
+          <a href="szse-shenzhen.html"><b>&#127464;&#127475; SZSE Shenzhen</b><span>EV &middot; Battery &middot; Solar</span></a>
+          <a href="twse-taiwan.html"><b>&#127481;&#127484; TWSE Taiwan</b><span>Semicon &middot; Shipping &middot; Steel</span></a>
+          <a href="krx-korea.html"><b>&#127472;&#127479; KRX Korea</b><span>Steel &middot; Shipping &middot; Batteries</span></a>
+          <a href="tadawul-saudi-arabia.html"><b>&#127480;&#127462; Tadawul</b><span>Oil &middot; Chemicals &middot; Cement</span></a>
+          <a href="jse-south-africa.html"><b>&#127480;&#127462; JSE South Africa</b><span>PGM &middot; Gold &middot; Coal</span></a>
+          <a href="nse-india.html"><b>&#127470;&#127475; NSE India</b><span>Steel &middot; Coal &middot; Copper</span></a>
+          <a href="bmv-mexico.html"><b>&#127474;&#127485; BMV Mexico</b><span>Copper &middot; Oil &middot; Cement</span></a>
+          <a href="exchanges.html"><b>&#127758; All 49+ Exchanges</b><span>250+ cyclical stocks</span></a>
+        </div>
+      </li>
+      <li>
+        <a href="blog.html" class="nav-direct">Research</a>
+      </li>
+      <li>
+        <a href="investor-guides.html" class="nav-direct">Guides</a>
+      </li>
+      <li>
+        <span class="nav-parent">Learn <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
+        <div class="nav-drop">
+          <a href="how-it-works.html"><b>How it works</b><span>Methodology &amp; signals</span></a>
+          <a href="coming-soon.html" style="color:#00956e;"><b>Coming Soon</b><span>What&rsquo;s being built</span></a>
+          <a href="market-cycles-history.html"><b>Cycle Scenarios</b><span>All historical cycle analyses</span></a>
+          <a href="blog-gfc-2008-commodity-cycle.html"><b>2008 GFC</b><span>All signals fire simultaneously</span></a>
+          <a href="blog-covid-2020-cycle.html"><b>2020 COVID</b><span>+963% GOGL &middot; fastest recovery</span></a>
+          <a href="blog-sector-rotation-commodity-cycle.html"><b>Sector Rotation</b><span>Which sectors lead each phase</span></a>
+          <a href="podcasts.html"><b>Podcasts</b><span>Curated for cycle investors</span></a>
+          <div class="nav-drop-rule"></div>
+          <a href="faq.html"><b>FAQ</b><span>Common questions</span></a>
+          <a href="about.html"><b>About Signycle</b><span>Who built this</span></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-top-right">
+    <button onclick="openSearch()" style="background:none;border:1.5px solid #e2e8f0;border-radius:7px;padding:0.3rem 0.7rem;cursor:pointer;font-size:0.75rem;color:#64748b;display:flex;align-items:center;gap:0.4rem;transition:all .15s;" onmouseover="this.style.borderColor='#00956e';this.style.color='#00956e'" onmouseout="this.style.borderColor='#e2e8f0';this.style.color='#64748b'">🔍 <span style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;">/ or ⌘K</span></button>
+      <a href="blog.html" class="nav-top-link">Research</a>
+      <a href="about.html" class="nav-top-link">About</a>
+      
+      <a href="live-signals.html" class="nav-cta">Live Signals</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:2px;"><button onclick="openSearch()" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:6px 8px;display:flex;align-items:center;color:#475569;font-size:1.1rem;">🔍</button>
+    <button class="hamburger" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button></div>
+  </div>
+</nav>
+
+
+<div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner">
+  <a href="index.html" class="nav-link"> Home</a>
+  <a href="where-are-we-in-the-cycle.html" class="nav-link"> Where are we in the cycle?</a>
+  <a href="live-signals.html" class="nav-link"> Live Signals</a>
+  <a href="how-it-works.html" class="nav-link"> How it works</a>
+  <a href="coming-soon.html" class="nav-link" style="font-weight:600;color:#00956e;"> Coming Soon</a>
+  <div class="mob-section-label">Cycle Tools</div>
+  <a href="cycle-screener.html" class="nav-link" style="padding-left:0.5rem;font-weight:700;color:#00956e;">Cycle Screener</a>
+  <a href="cycle-dashboard.html" class="nav-link" style="padding-left:0.5rem;">Cycle Dashboard</a>
+  <a href="backtest.html" class="nav-link" style="padding-left:0.5rem;">Signal Backtest</a>
+  <a href="live-signals.html" class="nav-link" style="padding-left:0.5rem;">Live Signals</a>
+  <a href="recession-tracker.html" class="nav-link" style="padding-left:0.5rem;">Recession Tracker</a>
+  <a href="liquidity-cycle.html" class="nav-link" style="padding-left:0.5rem;">Liquidity Cycle</a>
+  <a href="hormuz-dashboard.html" class="nav-link" style="padding-left:0.5rem;color:#dc2626;font-weight:600;">Hormuz Dashboard</a>
+  <div class="mob-section-label">Stock Tools</div>
+  <a href="cyclical-dividend-scanner.html" class="nav-link" style="padding-left:0.5rem;">Dividend Scanner</a>
+  <a href="stock-comparison.html" class="nav-link" style="padding-left:0.5rem;">Stock Comparison</a>
+  <a href="precious-metals-cycle.html" class="nav-link" style="padding-left:0.5rem;">Precious Metals</a>
+  <a href="compare-wti-brent.html" class="nav-link" style="padding-left:0.5rem;">WTI vs Brent</a>
+  <div class="mob-section-label">Exchanges</div>
+  <div class="mob-region-toggle" data-region="na" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>North America</span>
+    <span id="na-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="na-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127482;&#127480; NYSE</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #3b82f6;margin-left:0.3rem;">
+      <a href="nyse-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">NYSE Cycle Hub</a>
+      <a href="blog-nyse-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="nyse-cyclical-stocks.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All NYSE Stocks</a>
+      <a href="nyse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-sp500-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">S&amp;P 500 Signal</a>
+      <a href="nyse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="nyse-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="nyse-industrials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Industrials</a>
+      <a href="nyse-transport-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Airlines</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tsx-cyclical-stocks.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127462; TSX Canada</a>
+      <a href="blog-tsx-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bmv-mexico.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127474;&#127485; BMV Mexico</a>
+      <a href="blog-bmv-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="sa" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>South America</span>
+    <span id="sa-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="sa-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="b3-brazil.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127463;&#127479; B3 Brazil</a>
+      <a href="blog-b3-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-buenos-aires.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127479; Buenos Aires</a>
+      <a href="blog-buenos-aires-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-santiago.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127473; Santiago</a>
+      <a href="blog-santiago-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-lima.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127466; Lima</a>
+      <a href="blog-lima-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-colombia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127476; Colombia</a>
+      <a href="blog-colombia-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="eu" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Europe</span>
+    <span id="eu-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="eu-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" data-oslo="1" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127475;&#127476; Oslo Bors</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #86efac;margin-left:0.3rem;">
+      <a href="oslo-bors-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Oslo Bors Hub</a>
+      <a href="blog-oslo-bors-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="oslo-bors.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All 25 Stocks</a>
+      <a href="oslo-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-obx-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">OBX Signal</a>
+      <a href="oslo-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="oslo-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="oslo-seafood-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Seafood</a>
+      <a href="oslo-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="compare-equinor-vs-akerbp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Equinor vs Aker BP</a>
+      <a href="compare-mowi-vs-salmar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Mowi vs SalMar</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127468;&#127463; London LSE</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #c026d3;margin-left:0.3rem;">
+      <a href="lse-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">LSE Cycle Hub</a>
+      <a href="blog-london-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="london-stock-exchange.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All LSE Stocks</a>
+      <a href="lse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-ftse100-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">FTSE 100 Signal</a>
+      <a href="lse-mining-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Mining</a>
+      <a href="lse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="lse-defence-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Defence</a>
+      <a href="lse-aviation-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Aviation</a>
+      <a href="compare-shell-vs-bp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shell vs BP</a>
+      <a href="compare-rio-vs-bhp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Rio vs BHP</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127465;&#127466; Frankfurt</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #f59e0b;margin-left:0.3rem;">
+      <a href="frankfurt-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Frankfurt Hub</a>
+      <a href="blog-frankfurt-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="frankfurt-xetra.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All Frankfurt Stocks</a>
+      <a href="signal-dax-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">DAX 40 Signal</a>
+      <a href="frankfurt-defence-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Defence</a>
+      <a href="frankfurt-industrials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Industrials</a>
+      <a href="frankfurt-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="frankfurt-aviation-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Aviation</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-paris.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127467;&#127479; Euronext Paris</a>
+      <a href="blog-euronext-paris-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-amsterdam.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127475;&#127473; Amsterdam</a>
+      <a href="blog-amsterdam-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-brussels.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127463;&#127466; Brussels</a>
+      <a href="blog-brussels-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-madrid.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127466;&#127480; Madrid</a>
+      <a href="blog-madrid-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="borsa-italiana-milano.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127470;&#127481; Milano</a>
+      <a href="blog-milano-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="six-swiss-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127469; Swiss SIX</a>
+      <a href="blog-swiss-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="warsaw-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127473; Warsaw</a>
+      <a href="blog-warsaw-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="athens-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127468;&#127479; Athens</a>
+      <a href="blog-athens-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="istanbul-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127481;&#127479; Istanbul</a>
+      <a href="blog-istanbul-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-lisboa.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127481; Lisboa</a>
+      <a href="blog-lisboa-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="me" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Africa &amp; Middle East</span>
+    <span id="me-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="me-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tadawul-saudi-arabia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127480;&#127462; Tadawul Saudi</a>
+      <a href="blog-tadawul-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="dubai-dfm.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127466; Dubai DFM</a>
+      <a href="blog-dubai-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="jse-south-africa.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127480;&#127462; JSE South Africa</a>
+      <a href="blog-jse-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="egypt-egx.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127466; Egypt EGX</a>
+      <a href="blog-egypt-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="ap" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Asia Pacific</span>
+    <span id="ap-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="ap-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.85rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+      <span>&#127480;&#127468; Singapore SGX</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #86efac;margin-left:0.3rem;">
+      <a href="sgx-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">SGX Cycle Hub</a>
+      <a href="blog-singapore-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Investor Guide</a>
+      <a href="singapore-exchange.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">All 25 Stocks</a>
+      <a href="sgx-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Earnings Calendar</a>
+      <a href="signal-sti-singapore.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">STI Signal</a>
+      <a href="sgx-banking-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Banking</a>
+      <a href="sgx-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Shipping</a>
+      <a href="sgx-reit-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">REITs</a>
+      <a href="sgx-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Energy</a>
+      <a href="sgx-stocks-under-2.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Stocks Under $2</a>
+      <a href="compare-dbs-vs-ocbc.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">DBS vs OCBC</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127469;&#127472; HKEX / China</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #e53e3e;margin-left:0.3rem;">
+      <a href="china-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">China Cycle Hub</a>
+      <a href="hkex-hong-kong.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">HKEX Stocks</a>
+      <a href="blog-hkex-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="china-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-hscei-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">HSCEI Signal</a>
+      <a href="china-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="china-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="china-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="china-ev-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">EV &amp; Battery</a>
+      <a href="compare-byd-vs-catl.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">BYD vs CATL</a>
+      <a href="hkex-stocks-under-5hkd.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Stocks Under HKD 5</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="sse-shanghai.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127475; SSE Shanghai</a>
+      <a href="blog-sse-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="szse-shenzhen.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127475; SZSE Shenzhen</a>
+      <a href="blog-szse-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tokyo-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127471;&#127477; Tokyo TSE</a>
+      <a href="blog-tokyo-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127470;&#127475; NSE India</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #f97316;margin-left:0.3rem;">
+      <a href="nse-india-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">NSE Cycle Hub</a>
+      <a href="nse-india.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All NSE Stocks</a>
+      <a href="blog-nse-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="nse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-nifty50-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Nifty 50 Signal</a>
+      <a href="nse-metals-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Metals &amp; Mining</a>
+      <a href="nse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy &amp; Refining</a>
+      <a href="nse-it-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">IT Services</a>
+      <a href="nse-banking-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Banking</a>
+      <a href="compare-tata-vs-jsw-steel.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Tata vs JSW Steel</a>
+      <a href="compare-reliance-vs-ongc.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Reliance vs ONGC</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="asx-australia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127482; ASX Australia</a>
+      <a href="blog-asx-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <a href="exchanges.html" class="nav-link" style="padding:0.45rem 0.5rem;font-size:0.82rem;color:#00956e;font-weight:700;">All 49+ Exchanges</a>
+
+  <div class="mob-section-label">Cycle Scenarios</div>
+  <a href="market-cycles-history.html" class="nav-link" style="padding-left:0.5rem;"> All Scenarios</a>
+  <a href="blog-gfc-2008-commodity-cycle.html" class="nav-link" style="padding-left:0.5rem;"> 2008 GFC — All Signals Fire</a>
+  <a href="blog-covid-2020-cycle.html" class="nav-link" style="padding-left:0.5rem;"> 2020 COVID — Fastest Recovery</a>
+  <a href="blog-sector-rotation-commodity-cycle.html" class="nav-link" style="padding-left:0.5rem;"> Sector Rotation Guide</a>
+  <a href="blog-recession-cyclical-stocks.html" class="nav-link" style="padding-left:0.5rem;"> Recession Playbook</a>
+  <div class="mob-section-label">Signycle Research</div>
+  <a href="blog.html" class="nav-link" style="padding-left:0.5rem;font-weight:600;"> Signycle Research</a>
+  <a href="investor-guides.html" class="nav-link" style="padding-left:0.5rem;font-weight:600;color:#00956e;"> &#127758; Investor Guides</a>
+  <a href="podcasts.html" class="nav-link" style="padding-left:0.5rem;"> Podcasts</a>
+  <a href="watch.html" class="nav-link" style="padding-left:0.5rem;"> Watch</a>
+  <a href="how-it-works.html" class="nav-link" style="padding-left:0.5rem;"> How it works</a>
+  <a href="faq.html" class="nav-link" style="padding-left:0.5rem;">FAQ</a>
+  <a href="about.html" class="nav-link" style="padding-left:0.5rem;">About</a>
+  <a href="live-signals.html" class="nav-cta">Live Signals →</a>
+</div></div>
+
+
+<script>
+/* hamburger v3 — 2apr2026 */
+function _initHamburger() {
+  var btn = document.getElementById('hambBtn');
+  var menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) { setTimeout(_initHamburger, 50); return; }
+
+  window.closeMenu = function() {
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  btn.onclick = function(e) {
+    e.stopPropagation();
+    var isOpen = menu.classList.toggle('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  document.body.addEventListener('click', function(e) {
+    if (menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+}
+_initHamburger();
+</script>
+
+
+
+
+
+
+
+
+<div class="wrap">
+  <div class="page-header">
+    <div>
+      <div class="page-title">Oslo Børs <span>Signal</span> Monitor</div>
+      <div class="page-sub">Cyclical investment monitor · 5 sectors · 17 indicators</div>
+    </div>
+    <div class="hint">Update the sliders with fresh data from Infront, Bloomberg or Netfonds — the signal is calculated automatically.</div>
+  </div>
+
+  <div class="banner neutral" id="banner">
+    <div>
+      <div class="banner-label">Overall signal — selected sector</div>
+      <div class="banner-val neutral" id="bannerVal">NEUTRAL</div>
+      <div class="banner-desc" id="bannerDesc">Juster indikatorene nedenfor med ferske tall for å se oppdatert signal.</div>
+    </div>
+    <div class="score-ring">
+      <svg width="82" height="82" viewBox="0 0 82 82">
+        <circle cx="41" cy="41" r="34" fill="none" stroke="#e2e8e5" stroke-width="6"/>
+        <circle id="arc" cx="41" cy="41" r="34" fill="none" stroke="#d97706" stroke-width="6"
+          stroke-dasharray="213.6" stroke-dashoffset="106.8" stroke-linecap="round"
+          style="transition:stroke-dashoffset 0.7s ease,stroke 0.4s"/>
+      </svg>
+      <div class="score-num" id="scoreNum">50</div>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+
+
+
+<div style="background:#e6f5f1;border:1.5px solid #b3e8d8;border-radius:12px;padding:1.5rem;margin:2rem 0;">
+  <div style="display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#00956e;margin-bottom:0.4rem;">Signal Alerts</div>
+      <div style="font-size:0.92rem;font-weight:700;color:#0c1c2e;margin-bottom:0.3rem;">Get alerted when signals change</div>
+      <div style="font-size:0.78rem;color:#6b7f78;">Weekly cycle updates and signal threshold alerts across all 18 macro indicators.</div>
+    </div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;">
+        <input type="email" placeholder="your@email.com" style="flex:1;min-width:160px;padding:0.6rem 0.9rem;border:1px solid #b3e8d8;border-radius:8px;background:#fff;color:#0c1c2e;font-size:0.85rem;" onkeydown="if(event.key==='Enter'){window.location.href='https://www.beehiiv.com/subscribe/signycle?email='+encodeURIComponent(this.value);}">
+        <button onclick="window.location.href='https://www.beehiiv.com/subscribe/signycle?email='+encodeURIComponent(this.previousElementSibling.value)" style="background:#00956e;color:#fff;font-weight:700;font-size:0.85rem;padding:0.6rem 1.2rem;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;">Subscribe</button>
+      </div>
+  </div>
+</div>
+<!-- Money Pages Internal Links -->
+<div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:10px;padding:1.2rem 1.5rem;margin:2rem 0;font-size:0.85rem;">
+  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a0b0ab;margin-bottom:0.7rem;">Macro Cycle Intelligence</div>
+  <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+    <a href="where-are-we-in-the-cycle.html" style="background:#0c1c2e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;"> Where are we in the cycle?</a>
+    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: 54%</a>
+    <a href="market-cycles-history.html" style="background:#e6f5f1;color:#00956e;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #b3e8d8;">📈 Market cycle indicator history</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">Signycle</div>
+  <div>⚠ Not financial advice. Signals are rule-based estimates based on historical patterns. Always do your own research. · © 2026 Signycle</div>
+
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a>
+    <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
+    <a href="disclaimer.html" style="color:#a0b0ab;text-decoration:none;">Disclaimer</a>
+  </div>
+</footer>
+
+<script>
+const SECTORS = [
+  { id:"shipping", label:"🚢 Shipping",
+    desc:"Drevet av tilbud/etterspørsel etter tonnasje. BDI og rater er de viktigste ledende indikatorene.",
+    indicators:[
+      {id:"bdi",name:"Baltic Dry Index (BDI)",min:200,max:5000,value:1450,step:50,buyBelow:900,sellAbove:3000,desc:"Global benchmark for dry bulk rates. Under 900 = historical buy zone. Over 3000 = danger.",fmt:v=>v.toLocaleString("en-US")+" pts"},
+      {id:"pb",name:"Pris / Bok (P/B)",min:0.2,max:3.0,value:0.95,step:0.05,buyBelow:0.75,sellAbove:1.8,desc:"P/B under 0.75 = stock trades at a discount to ship value. Historically strong buy signal.",fmt:v=>"~"+v.toFixed(2)+"x"},
+      {id:"orderbook",name:"Ordrebok (% av flåten)",min:2,max:30,value:10,step:1,buyBelow:8,sellAbove:18,desc:"Høy ordrebok = fremtidig overkapasitet. Under 8% = sunt marked. Over 18% = fare.",fmt:v=>"~"+v+"% av flåten"},
+      {id:"rates",name:"VLCC/Capesize spot-rater",min:5,max:100,value:28,step:1,buyBelow:12,sellAbove:55,desc:"Daglige rater for store tankere/bulkskip. Under $12k = bunn. Over $55k = topp.",fmt:v=>"$"+v+"k/dag"},
+      {id:"sentiment",name:"Markedssentiment (0–100)",min:0,max:100,value:45,step:1,buyBelow:25,sellAbove:75,desc:"0 = extreme pessimism (contrarian buy), 100 = euphoria (contrarian sell).",fmt:v=>v<25?"Svært negativt":v>75?"Euphoric":v<45?"Pessimistic":v>55?"Optimistic":"Neutral"},
+      {id:"pmi",name:"Global PMI",min:40,max:62,value:50.5,step:0.5,buyBelow:47,sellAbove:56,desc:"Under 50 = kontraksjon. Lavt PMI nå kan bety bedring for shipping om 6–12 måneder.",fmt:v=>"PMI "+v.toFixed(1)},
+    ],
+    stocks:[
+      {ticker:"FRO",name:"Frontline",seg:"Råoljetank",pb:0.95,sig:"neutral"},
+      {ticker:"GOGL",name:"Golden Ocean",seg:"Dry bulk",pb:0.78,sig:"buy"},
+      {ticker:"MPCC",name:"MPC Container Ships",seg:"Container",pb:1.05,sig:"neutral"},
+      {ticker:"HAFNI",name:"Hafnia",seg:"Produkttank",pb:1.1,sig:"neutral"},
+      {ticker:"BWLPG",name:"BW LPG",seg:"LPG",pb:0.88,sig:"buy"},
+      {ticker:"FLNG",name:"Flex LNG",seg:"LNG",pb:1.2,sig:"neutral"},
+      {ticker:"HSHIP",name:"Himalaya Shipping",seg:"Dry bulk",pb:0.68,sig:"buy"},
+    ]},
+  { id:"energy", label:"⛽ Energi",
+    desc:"Norwegian oil & gas. Earnings swing with oil prices and investment cycles.",
+    indicators:[
+      {id:"oil",name:"Oljepris Brent ($/fat)",min:30,max:150,value:75,step:1,buyBelow:50,sellAbove:105,desc:"Under $50 = historical buy zone for oil stocks. Over $104 = sell signal.",fmt:v=>"$"+v+"/fat"},
+      {id:"pb_e",name:"Pris / Bok (P/B)",min:0.3,max:3.0,value:1.1,step:0.05,buyBelow:0.8,sellAbove:2.0,desc:"Norwegian oil stocks typically trade below 1x book at troughs.",fmt:v=>"~"+v.toFixed(2)+"x"},
+      {id:"rig",name:"Riggutnyttelse (%)",min:50,max:100,value:82,step:1,buyBelow:65,sellAbove:92,desc:"Lav riggutnyttelse = lavt investeringsnivå = potensiell bunn i syklusen.",fmt:v=>v+"% utnyttelse"},
+      {id:"capex",name:"Olje-CAPEX vekst (% YoY)",min:-30,max:40,value:5,step:1,buyBelow:-10,sellAbove:25,desc:"Negativ CAPEX-vekst = bransjen investerer lite = fremtidig tilbudsunderskudd.",fmt:v=>(v>=0?"+":"")+v+"% YoY"},
+      {id:"sent_e",name:"Analytiker-sentiment (0–100)",min:0,max:100,value:55,step:1,buyBelow:25,sellAbove:75,desc:"0 = all bearish (buying opportunity), 100 = all bullish (sell signal).",fmt:v=>v<25?"Svært negativt":v>75?"Euphoric":"Moderat"},
+    ],
+    stocks:[
+      {ticker:"EQNR",name:"Equinor",seg:"Integrert",pb:1.3,sig:"neutral"},
+      {ticker:"AKRBP",name:"Aker BP",seg:"E&P",pb:1.1,sig:"neutral"},
+      {ticker:"VAR",name:"Vår Energi",seg:"E&P",pb:1.0,sig:"neutral"},
+      {ticker:"PGS",name:"PGS",seg:"Seismikk",pb:0.7,sig:"buy"},
+      {ticker:"SUBC",name:"Subsea 7",seg:"Offshore service",pb:1.2,sig:"neutral"},
+    ]},
+  { id:"seafood", label:"🐟 Sjømat",
+    desc:"Havbruk og lakseoppdrett. Lakseprisen er den viktigste enkeltfaktoren for inntjening.",
+    indicators:[
+      {id:"salmon",name:"Laksepris (NOK/kg)",min:40,max:130,value:72,step:1,buyBelow:55,sellAbove:95,desc:"Lakseprisen driver inntjeningen direkte. Under 55 kr = bunn. Over 95 kr = topp.",fmt:v=>v+" kr/kg"},
+      {id:"pb_s",name:"Pris / Bok (P/B)",min:0.5,max:5.0,value:2.2,step:0.1,buyBelow:1.2,sellAbove:3.5,desc:"Aquaculture stocks trade at high P/B at peaks. Under 1.2x is historically attractive.",fmt:v=>"~"+v.toFixed(1)+"x"},
+      {id:"bio",name:"Biologisk risiko (0–100)",min:0,max:100,value:40,step:1,buyBelow:25,sellAbove:70,desc:"Lus og sykdom reduserer produksjonsvolum. Lav risiko er positivt for marginer.",fmt:v=>v<25?"Lav risiko":v>70?"Høy risiko":"Moderat risiko"},
+      {id:"feed",name:"Fôrkostnad-indeks (0–100)",min:0,max:100,value:50,step:1,buyBelow:30,sellAbove:70,desc:"Høye fôrkostnader presser marginene. Følg soyabønne- og fiskemelspriser.",fmt:v=>v<30?"Lav":v>70?"Høy":"Moderat"},
+      {id:"reg",name:"Reguleringsrisiko (0–100)",min:0,max:100,value:65,step:1,buyBelow:30,sellAbove:80,desc:"Grunnrenteskatt og konsesjonsregler. Høy usikkerhet presser multippelen ned.",fmt:v=>v<30?"Lav":v>80?"Svært høy":"Forhøyet"},
+    ],
+    stocks:[
+      {ticker:"MOWI",name:"Mowi",seg:"Atlantisk laks",pb:2.1,sig:"neutral"},
+      {ticker:"SALM",name:"SalMar",seg:"Atlantisk laks",pb:2.3,sig:"neutral"},
+      {ticker:"LSG",name:"Lerøy Seafood",seg:"Atlantisk laks",pb:1.5,sig:"neutral"},
+      {ticker:"GSF",name:"Grieg Seafood",seg:"Atlantisk laks",pb:1.2,sig:"neutral"},
+      {ticker:"AUSS",name:"Austevoll Seafood",seg:"Pelagisk/laks",pb:1.3,sig:"neutral"},
+    ]},
+  { id:"offshore", label:"⚓ Offshore",
+    desc:"Olje-service og offshore. Investeringsnivået følger oljeprisen med 12–18 mnd forsinkelse.",
+    indicators:[
+      {id:"oil2",name:"Oljepris Brent ($/fat)",min:30,max:150,value:75,step:1,buyBelow:50,sellAbove:105,desc:"Trigger for nye investeringsbeslutninger hos operatørene. Under $50 = investeringsstopp.",fmt:v=>"$"+v+"/fat"},
+      {id:"backlog",name:"Ordrereserve (år)",min:0.5,max:5.0,value:2.5,step:0.1,buyBelow:1.2,sellAbove:3.5,desc:"Lav ordrereserve = usikker inntjening, men ofte lav verdsettelse. Høy = trygghet.",fmt:v=>v.toFixed(1)+" år"},
+      {id:"util",name:"Flåteutnyttelse (%)",min:40,max:100,value:78,step:1,buyBelow:60,sellAbove:90,desc:"Lav utnyttelse presser dagratene ned. Over 90% gir oppside i kontrakter.",fmt:v=>v+"% utnyttelse"},
+      {id:"pb_o",name:"Pris / Bok (P/B)",min:0.2,max:3.0,value:0.9,step:0.05,buyBelow:0.6,sellAbove:1.8,desc:"Offshore-stocks kan handles langt under bokverdi i bunner. Under 0.6x = ekstremt.",fmt:v=>"~"+v.toFixed(2)+"x"},
+    ],
+    stocks:[
+      {ticker:"SUBC",name:"Subsea 7",seg:"EPIC",pb:1.2,sig:"neutral"},
+      {ticker:"AKSO",name:"Aker Solutions",seg:"OilService",pb:0.95,sig:"neutral"},
+      {ticker:"BORR",name:"Borr Drilling",seg:"Jack-up",pb:0.85,sig:"buy"},
+      {ticker:"ODFJB",name:"Odfjell Drilling",seg:"Semi-sub",pb:0.75,sig:"buy"},
+      {ticker:"DOF",name:"DOF Group",seg:"Subsea/PSV",pb:0.8,sig:"buy"},
+    ]},
+  { id:"materials", label:"🏭 Materialer",
+    desc:"Aluminium and fertilisers. Commodity prices and energy costs are the key drivers.",
+    indicators:[
+      {id:"alu",name:"Aluminiumspris ($/tonn)",min:1400,max:3500,value:2300,step:50,buyBelow:1700,sellAbove:2900,desc:"Norsk Hydro tracks the aluminium price closely. Under $1700/t = historical buy zone.",fmt:v=>"$"+v.toLocaleString("en-US")+"/t"},
+      {id:"urea",name:"Ureapris ($/tonn)",min:150,max:900,value:320,step:10,buyBelow:200,sellAbove:600,desc:"Yara earnings are driven by fertiliser prices. Low price = potential buy level.",fmt:v=>"$"+v+"/t"},
+      {id:"energy_m",name:"Energikostnad-indeks (0–100)",min:0,max:100,value:55,step:1,buyBelow:30,sellAbove:75,desc:"Høye energipriser presser marginene i aluminium- og gjødselproduksjon hardt.",fmt:v=>v<30?"Lav":v>75?"Svært høy":"Moderat"},
+      {id:"pb_m",name:"Pris / Bok (P/B)",min:0.3,max:2.5,value:1.0,step:0.05,buyBelow:0.7,sellAbove:1.8,desc:"P/B under 0.7 = potensiell undervurdering av aktiva. Sjeldent, men kraftig signal.",fmt:v=>"~"+v.toFixed(2)+"x"},
+    ],
+    stocks:[
+      {ticker:"NHY",name:"Norsk Hydro",seg:"Aluminium",pb:1.0,sig:"neutral"},
+      {ticker:"YAR",name:"Yara International",seg:"Gjødsel",pb:0.9,sig:"neutral"},
+      {ticker:"AKER",name:"Aker ASA",seg:"Industri/Holding",pb:0.8,sig:"neutral"},
+    ]}
+];
+
+let current = 0;
+
+function sig(v,b,s){return v<=b?"buy":v>=s?"sell":"neutral";}
+function pct(v,mn,mx){return Math.round(((v-mn)/(mx-mn))*100);}
+function barBg(s){return s==="buy"?"linear-gradient(90deg,#007a5a,#00956e)":s==="sell"?"linear-gradient(90deg,#c0392b,#e03e3e)":"linear-gradient(90deg,#b45309,#d97706)";}
+function badgeText(s){return s==="buy"?"BUY":s==="sell"?"SELL":"NEUTRAL";}
+
+function calcOverall(si){
+  const inds=SECTORS[si].indicators;
+  const avg=Math.round(inds.reduce((a,i)=>a+pct(i.value,i.min,i.max),0)/inds.length);
+  return{avg,sig:avg<=38?"buy":avg>=62?"sell":"neutral"};
+}
+
+function updateBanner(){
+  const{avg,sig:s}=calcOverall(current);
+  const sec=SECTORS[current];
+  document.getElementById("banner").className="banner "+s;
+  const bv=document.getElementById("bannerVal");
+  bv.className="banner-val "+s;
+  bv.textContent=s==="buy"?"BUY ZONE":s==="sell"?"SALG-SONE":"NEUTRAL";
+  document.getElementById("bannerDesc").textContent=
+    s==="buy"?"Flere indikatorer i "+sec.label+" sector points to historically attractive levels. Consider gradual accumulation.":
+    s==="sell"?"Markedet viser tegn til overoppheting i "+sec.label+". Vurder å ta gevinst og redusere eksponering.":
+    sec.desc;
+  const arc=document.getElementById("arc");
+  arc.style.strokeDashoffset=213.6*(1-avg/100);
+  arc.style.stroke=s==="buy"?"#00956e":s==="sell"?"#e03e3e":"#d97706";
+  document.getElementById("scoreNum").textContent=avg;
+}
+
+function updateInd(si,id,v){
+  const ind=SECTORS[si].indicators.find(i=>i.id===id);
+  ind.value=+v;
+  const s=sig(+v,ind.buyBelow,ind.sellAbove);
+  const p=pct(+v,ind.min,ind.max);
+  const display=ind.fmt(+v);
+  document.getElementById(`cv-${si}-${id}`).textContent=display;
+  document.getElementById(`sl-${si}-${id}`).textContent=display;
+  const b=document.getElementById(`badge-${si}-${id}`);
+  b.className="badge "+s;b.textContent=badgeText(s);
+  const bar=document.getElementById(`bar-${si}-${id}`);
+  bar.style.width=p+"%";bar.style.background=barBg(s);
+  if(si===current)updateBanner();
+}
+
+function cardHTML(ind,si){
+  const s=sig(ind.value,ind.buyBelow,ind.sellAbove);
+  const p=pct(ind.value,ind.min,ind.max);
+  return`<div class="card">
+    <div class="card-top">
+      <div class="card-name">${ind.name}</div>
+      <div class="badge ${s}" id="badge-${si}-${ind.id}">${badgeText(s)}</div>
+    </div>
+    <div class="card-val" id="cv-${si}-${ind.id}">${ind.fmt(ind.value)}</div>
+    <div class="card-range">Buy ≤ ${ind.fmt(ind.buyBelow)} &nbsp;·&nbsp; Sell ≥ ${ind.fmt(ind.sellAbove)}</div>
+    <div class="bar-track"><div class="bar-fill" id="bar-${si}-${ind.id}" style="width:${p}%;background:${barBg(s)}"></div></div>
+    <div class="slider-row">
+      <label>Oppdater</label>
+      <input type="range" min="${ind.min}" max="${ind.max}" step="${ind.step||1}" value="${ind.value}"
+        oninput="updateInd(${si},'${ind.id}',this.value)">
+      <span class="slider-val" id="sl-${si}-${ind.id}">${ind.fmt(ind.value)}</span>
+    </div>
+    <div class="card-desc">${ind.desc}</div>
+  </div>`;}
+
+function stocksHTML(sec){
+  return`<div class="section-title">Nøkkelstocks — ${sec.label.replace(/^\S+ /,'')}</div>
+  <div class="stock-table">
+    <div class="stock-row hdr"><span>Ticker</span><span>Selskap</span><span class="right">P/B est.</span><span class="right">Signal</span><span class="right seg">Segment</span></div>
+    ${sec.stocks.map(s=>`<div class="stock-row">
+      <span class="ticker">${s.ticker}</span>
+      <span>${s.name}</span>
+      <span class="right" style="color:${s.pb<0.8?"var(--buy)":s.pb>1.5?"var(--sell)":"var(--text)"};font-family:var(--mono)">${s.pb.toFixed(2)}x</span>
+      <span class="right"><span class="badge ${s.sig}">${badgeText(s.sig)}</span></span>
+      <span class="right seg" style="color:var(--muted);font-size:0.7rem">${s.seg}</span>
+    </div>`).join("")}
+  </div>`;}
+
+function switchTab(i){
+  current=i;
+  document.querySelectorAll(".tab").forEach((t,j)=>t.classList.toggle("active",i===j));
+  document.querySelectorAll(".sector-panel").forEach((p,j)=>p.classList.toggle("active",i===j));
+  updateBanner();
+}
+
+function init(){
+  const tabsEl=document.getElementById("tabs");
+  const panelsEl=document.getElementById("panels");
+  SECTORS.forEach((sec,si)=>{
+    const tab=document.createElement("button");
+    tab.className="tab"+(si===0?" active":"");
+    tab.textContent=sec.label;
+    tab.onclick=()=>switchTab(si);
+    tabsEl.appendChild(tab);
+    const panel=document.createElement("div");
+    panel.className="sector-panel"+(si===0?" active":"");
+    panel.innerHTML=`<div class="grid">${sec.indicators.map(i=>cardHTML(i,si)).join("")}</div>${stocksHTML(sec)}`;
+    panelsEl.appendChild(panel);
+  });
+  updateBanner();
+}
+
+document.querySelector(".hamburger").addEventListener("click",()=>{
+  document.querySelector(".mobile-menu").classList.toggle("open");
+});
+
+init();
+</script>
+<script>
+(function(){
+  var INDEX=null, isOpen=false, selIdx=-1;
+  var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
+
+  // Load index once
+  fetch('/search-index.json').then(function(r){return r.json();}).then(function(d){INDEX=d;}).catch(function(){});
+
+  window.openSearch=function(){
+    if(isOpen) return;
+    isOpen=true; selIdx=-1;
+    document.getElementById('searchOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){
+      var inp=document.getElementById('overlayInput');
+      if(inp){inp.focus();inp.select();}
+    },40);
+  };
+  window.closeSearch=function(){
+    if(!isOpen) return;
+    isOpen=false; selIdx=-1;
+    var el=document.getElementById('searchOverlay');
+    if(el) el.classList.remove('open');
+    document.body.style.overflow='';
+    var inp=document.getElementById('overlayInput');
+    var res=document.getElementById('overlayResults');
+    if(inp) inp.value='';
+    if(res) res.innerHTML='';
+  };
+
+  function score(item,q){
+    var ql=q.toLowerCase(), s=0;
+    var title=(item.title||'').toLowerCase();
+    var kw=(item.keywords||'').toLowerCase();
+    var tickers=(item.tickers||[]).join(' ').toLowerCase();
+    if(title===ql) s+=20;
+    else if(title.startsWith(ql)) s+=12;
+    else if(title.includes(ql)) s+=8;
+    if(tickers.split(' ').indexOf(ql)>-1) s+=15;
+    else if(tickers.includes(ql)) s+=8;
+    if((item.exchange||'').toLowerCase()===ql) s+=10;
+    if((item.signal||'').toLowerCase()===ql) s+=8;
+    if(kw.includes(ql)) s+=3;
+    // Boost tools and exchanges
+    if(item.category==='tool') s+=4;
+    if(item.category==='exchange') s+=2;
+    return s;
+  }
+
+  // Safe highlight — no regex on user input
+  function hl(text,q){
+    if(!q||!text) return text||'';
+    var lq=q.toLowerCase(), lt=text.toLowerCase(), out='', i=0;
+    while(i<text.length){
+      var idx=lt.indexOf(lq,i);
+      if(idx===-1){out+=text.slice(i);break;}
+      out+=text.slice(i,idx)+'<mark style="background:rgba(0,149,110,.15);border-radius:2px;padding:0 1px;">'+text.slice(idx,idx+q.length)+'</mark>';
+      i=idx+q.length;
+      if(i>=text.length) break;
+    }
+    return out;
+  }
+
+  function render(items,q){
+    if(!items.length) return '<div class="search-box-empty">No results for "'+q+'"<br><small>Try: Equinor, copper, VLCC, Oslo, BDI, PMI</small></div>';
+    return items.slice(0,8).map(function(item,i){
+      var tags='';
+      if(item.exchange) tags+='<span class="sbr-tag">'+item.exchange+'</span>';
+      if(item.signal) tags+='<span class="sbr-tag green">'+item.signal+'</span>';
+      (item.tickers||[]).slice(0,3).forEach(function(t){tags+='<span class="sbr-tag">'+t+'</span>';});
+      return '<a href="'+item.url+'" class="search-box-result'+(i===selIdx?' sel':'')+'" onclick="closeSearch()">'+
+        '<div class="sbr-icon '+(item.category||'page')+'">'+(ICONS[item.category]||'🔵')+'</div>'+
+        '<div class="sbr-body">'+
+          '<div class="sbr-title">'+hl(item.title,q)+'</div>'+
+          '<div class="sbr-desc">'+hl(item.desc,q)+'</div>'+
+          (tags?'<div class="sbr-meta">'+tags+'</div>':'')+
+        '</div>'+
+      '</a>';
+    }).join('');
+  }
+
+  function runSearch(){
+    var inp=document.getElementById('overlayInput');
+    var res=document.getElementById('overlayResults');
+    if(!inp||!res) return;
+    var q=(inp.value||'').trim();
+    if(!q){res.innerHTML='';return;}
+    if(!INDEX){res.innerHTML='<div class="search-box-empty">Loading…</div>';return;}
+    var scored=INDEX.map(function(item){return{item:item,s:score(item,q)};})
+      .filter(function(x){return x.s>0;})
+      .sort(function(a,b){return b.s-a.s;})
+      .map(function(x){return x.item;});
+    selIdx=-1;
+    res.innerHTML=render(scored,q);
+  }
+
+  function navigate(dir){
+    var links=document.querySelectorAll('.search-box-result');
+    if(!links.length) return;
+    selIdx=Math.max(-1,Math.min(links.length-1,selIdx+dir));
+    links.forEach(function(l,i){
+      l.classList.toggle('sel',i===selIdx);
+      if(i===selIdx) l.scrollIntoView({block:'nearest'});
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var inp=document.getElementById('overlayInput');
+    if(!inp) return;
+    inp.addEventListener('input',runSearch);
+    inp.addEventListener('keydown',function(e){
+      if(e.key==='ArrowDown'){e.preventDefault();navigate(1);}
+      else if(e.key==='ArrowUp'){e.preventDefault();navigate(-1);}
+      else if(e.key==='Escape'){closeSearch();}
+      else if(e.key==='Enter'){
+        var sel=document.querySelector('.search-box-result.sel');
+        var first=document.querySelector('.search-box-result');
+        var target=sel||first;
+        if(target){closeSearch();window.location.href=target.href;}
+      }
+    });
+  });
+  document.addEventListener('keydown',function(e){
+    if(isOpen&&e.key==='Escape'){closeSearch();return;}
+    if(!isOpen&&(e.key==='/'||(e.ctrlKey&&e.key==='k'))){
+      var tag=document.activeElement.tagName;
+      if(tag!=='INPUT'&&tag!=='TEXTAREA'){e.preventDefault();openSearch();}
+    }
+  });
+})();
+</script>
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <div class="search-box-top">
+      <span class="search-box-icon">🔍</span>
+      <input class="search-box-input" id="overlayInput" placeholder="Search stocks, signals, exchanges…" autocomplete="off" spellcheck="false">
+      <button class="search-box-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-box-results" id="overlayResults"></div>
+    <div class="search-box-footer">
+      <span>↑↓ navigate · Enter select · Esc close</span>
+      <span><span class="search-box-kbd">/ or ⌘K</span> to open</span>
+    </div>
+  </div>
+</div>
+<script src="/signals-loader.js"></script>
+<script>
+function toggleRegion(id) {
+  var sub = document.getElementById(id + '-sub');
+  var chev = document.getElementById(id + '-chev');
+  if (!sub) return;
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(90deg)';
+}
+function toggleSGX(el) {
+  var sub = el.nextElementSibling;
+  var chev = el.querySelector('.sgx-chev');
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(180deg)';
+}
+// iOS Safari: attach touch+click handlers via addEventListener
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.mob-region-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
+  });
+  document.querySelectorAll('.mob-sgx-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) { toggleSGX(el); });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleSGX(el);
+    });
+  });
+});
+</script>
+</body>
+</html>
