@@ -54,6 +54,9 @@ const LIVE_TICKERS = {
   copper: { ticker: 'HG=F',  multiply: 2204.62 }, // lbs → $/t
   alum:   { ticker: 'ALI=F', multiply: 1        }, // already quoted in $/t on COMEX
   gold:   { ticker: 'GC=F',  multiply: 1       },
+  steel:   { ticker: 'HRC=F', multiply: 1    }, // already quoted in $/t (US Midwest HRC)
+  ironore: { ticker: 'TIO=F', multiply: 1    }, // already quoted in $/t (62% Fe CFR China)
+  lithium: { ticker: 'LTH=F', multiply: 1000 }, // Fastmarkets lithium hydroxide, $/kg → $/t
 };
 
 async function fetchYahoo(ticker) {
