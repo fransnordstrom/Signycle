@@ -142,6 +142,59 @@ footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem
 .zone-tag.buy{background:#e6f5f1;color:#00956e;}
 .insight-box{background:#f0fdf4;border-left:3px solid #00956e;border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.85rem;color:#166534;line-height:1.6;}
 .warn-box{background:#fffbeb;border-left:3px solid #d97706;border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:0.85rem;color:#92400e;line-height:1.6;}
+.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin: 1.5rem 0 2rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--green); color: #fff; font-weight: 700; font-size: 0.92rem;
+  padding: 0.85rem 1.4rem; border-radius: 10px; text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+}
+.btn-primary:hover { background: #007a5a; transform: translateY(-1px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: #fff; color: var(--ink); font-weight: 600; font-size: 0.88rem;
+  padding: 0.8rem 1.3rem; border-radius: 10px; border: 1.5px solid var(--border);
+  text-decoration: none; transition: border-color 0.15s, color 0.15s;
+}
+.btn-secondary:hover { border-color: var(--green); color: var(--green); }
+.hero-proof{display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.proof-item{text-align:center;}.proof-item strong{display:block;font-size:1.1rem;font-weight:800;color:var(--green);font-family:'IBM Plex Mono',monospace;}
+.proof-item span{font-size:0.65rem;color:var(--muted);}
+.proof-divider{width:1px;height:32px;background:var(--border);}
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 3rem; margin: 2.5rem 0; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border); padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.5rem; }
+.pulse { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.3); } }
+.hero-h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--ink); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem; }
+.hero-h1 em { font-style: italic; color: var(--green); }
+.hero-sub { font-size: 1rem; color: var(--text); line-height: 1.7; margin-bottom: 1.5rem; max-width: 500px; }
+.hero-right { position: relative; }
+.signal-dashboard { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04); }
+.dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.dash-title { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+.dash-live { display: flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.62rem; color: var(--green); background: var(--green-bg); padding: 0.2rem 0.6rem; border-radius: 4px; }
+.dash-rows { display: flex; flex-direction: column; gap: 0.6rem; }
+.dash-row { display: flex; align-items: center; gap: 1rem; padding: 0.8rem 1rem; border-radius: 8px; background: var(--off); border-left: 3px solid transparent; }
+.dash-row.green-row { background: var(--green-bg); border-left-color: var(--green); }
+.dash-row.amber-row { background: var(--amber-bg); border-left-color: var(--amber); }
+.dash-row.red-row { background: var(--red-bg); border-left-color: var(--red); }
+.dash-row-left { flex: 1; }
+.dash-row-exch { font-size: 0.62rem; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.dash-row-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-top: 1px; }
+.dash-badge { font-family: var(--mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
+.badge-buy { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.badge-neutral { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
+.badge-sell { background: var(--red-bg); color: var(--red); border: 1px solid #fca5a5; }
+.badge-neu2 { background: #f1f5f4; color: #64748b; border: 1px solid #cbd5d1; }
+.dash-val { font-family: var(--mono); font-size: 0.75rem; color: var(--text); white-space: nowrap; }
+.dash-footer { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--muted); text-align: center; }
+.float-card { position: absolute; background: white; border: 1px solid var(--border); border-radius: 10px; padding: 0.8rem 1.1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.1); font-size: 0.75rem; }
+.float-card-top { font-size: 0.6rem; color: var(--muted); font-family: var(--mono); text-transform: uppercase; margin-bottom: 0.25rem; }
+.float-card-val { font-size: 1.3rem; font-weight: 700; color: var(--green); font-family: var(--mono); }
+.float-card-sub { font-size: 0.6rem; color: var(--muted); }
+.float-left { top: -100px; left: -20px; }
+.float-right { bottom: -100px; right: -20px; }
+@media(max-width:900px) { .hero { grid-template-columns:1fr; } .hero-right { display:none; } }
 </style>
 </head>
 <body>
@@ -153,9 +206,9 @@ footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem
       <li>
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -167,8 +220,8 @@ footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
           <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -601,9 +654,9 @@ _initHamburger();
     <h1 class="hero-h1">Know when to buy.<br>Know when to <em>sell.</em></h1>
 
     <p class="hero-sub" style="font-size:1rem;line-height:1.75;">
-  Track 18 commodity and macro signals — each with a <strong style="color:var(--ink);">historical BUY and SELL threshold.</strong><br>
+  Track 21 commodity and macro signals — each with a <strong style="color:var(--ink);">historical BUY and SELL threshold.</strong><br>
   Know when oil, copper, shipping and gold are cheap or expensive relative to history.<br>
-  <strong style="color:#dc2626;">Right now: <span data-signal="sellZoneCount">5</span> signals are in SELL zone. Cycle score 68/100.</strong>
+  <strong style="color:#dc2626;">Right now: <span data-signal="sellZoneCount">5</span> signals are in SELL zone. Cycle score <span data-signal="cycleScore">73/100</span>.</strong>
 </p>
 
 <!-- For who -->
@@ -635,7 +688,7 @@ _initHamburger();
     </div>
 
 <div class="hero-ctas">
-      <a href="where-are-we-in-the-cycle.html" class="btn-primary">📍 Where are we now? <span style="font-weight:400;opacity:0.85;">Cycle score 68/100</span></a>
+      <a href="where-are-we-in-the-cycle.html" class="btn-primary">📍 Where are we now? <span style="font-weight:400;opacity:0.85;">Cycle score <span data-signal="cycleScore">73/100</span></span></a>
       <a href="how-it-works.html" class="btn-secondary">How it works →</a>
       <a href="backtest.html" class="btn-secondary" style="border-color:var(--green-border);color:var(--green);">📈 See the backtest →</a>
     </div>
@@ -654,79 +707,110 @@ _initHamburger();
   <div class="hero-right" style="position:relative;">
     <div class="float-card float-left">
       <div class="float-card-top">Cycle score</div>
-      <div class="float-card-val" style="color:#d97706;">82/100</div>
-      <div class="float-card-sub">Late Expansion</div>
+      <div class="float-card-val" style="color:#d97706;"><span data-signal="cycleScore">73/100</span></div>
+      <div class="float-card-sub"><span data-signal="cyclePhase">Late Expansion</span></div>
     </div>
 
     <div class="signal-dashboard">
       <div class="dash-header">
-        <div class="dash-title">Live signals — 4 Apr 2026</div>
+        <div class="dash-title">Live signals — <span id="dashTitleDate2">10 Sep 2026</span></div>
         <div class="dash-live"><span class="pulse"></span>Live</div>
       </div>
-      <div class="dash-rows">
-        <div class="dash-row red-row">
+      <div class="dash-rows" id="heroDashRows2">
+        <div class="dash-row" data-dashid="brent">
           <div class="dash-row-left">
             <div class="dash-row-exch">Global · Energy</div>
             <div class="dash-row-name">Brent Crude</div>
           </div>
-          <div class="dash-val"><span data-signal="brent" data-format="valueOnly"></span>/bbl</div>
-          <div class="dash-badge badge-sell">SELL</div>
+          <div class="dash-val">$<span data-signal="brent" data-format="valueOnly"></span>/bbl</div>
+          <div class="dash-badge">···</div>
         </div>
-        <div class="dash-row red-row">
+        <div class="dash-row" data-dashid="copper">
           <div class="dash-row-left">
             <div class="dash-row-exch">Global · Metals</div>
             <div class="dash-row-name">LME Copper</div>
           </div>
-          <div class="dash-val">$12,043/t</div>
-          <div class="dash-badge badge-sell">SELL</div>
+          <div class="dash-val">$<span data-signal="copper" data-format="valueOnly"></span>/t</div>
+          <div class="dash-badge">···</div>
         </div>
-        <div class="dash-row red-row">
+        <div class="dash-row" data-dashid="gold">
           <div class="dash-row-left">
             <div class="dash-row-exch">Global · Metals</div>
             <div class="dash-row-name">Gold</div>
           </div>
-          <div class="dash-val">$4,493/oz</div>
-          <div class="dash-badge badge-sell">SELL</div>
+          <div class="dash-val">$<span data-signal="gold" data-format="valueOnly"></span>/oz</div>
+          <div class="dash-badge">···</div>
         </div>
-        <div class="dash-row amber-row">
+        <div class="dash-row" data-dashid="vlcc">
           <div class="dash-row-left">
             <div class="dash-row-exch">Oslo Børs · Shipping</div>
             <div class="dash-row-name">VLCC Rate</div>
           </div>
-          <div class="dash-val">~$120k/day</div>
-          <div class="dash-badge badge-neutral">Near SELL</div>
+          <div class="dash-val">$<span data-signal="vlcc" data-format="valueOnly"></span>/day</div>
+          <div class="dash-badge">···</div>
         </div>
-        <div class="dash-row neutral-row">
+        <div class="dash-row" data-dashid="bdi">
           <div class="dash-row-left">
             <div class="dash-row-exch">Global · Shipping</div>
             <div class="dash-row-name">Baltic Dry Index</div>
           </div>
-          <div class="dash-val">2,014 pts</div>
-          <div class="dash-badge badge-neutral">Neutral</div>
+          <div class="dash-val"><span data-signal="bdi" data-format="valueOnly"></span> pts</div>
+          <div class="dash-badge">···</div>
         </div>
-        <div class="dash-row neutral-row">
+        <div class="dash-row" data-dashid="pmi">
           <div class="dash-row-left">
             <div class="dash-row-exch">Global · Macro</div>
             <div class="dash-row-name">Manufacturing PMI</div>
           </div>
-          <div class="dash-val">51.4</div>
-          <div class="dash-badge badge-neutral">Neutral</div>
+          <div class="dash-val"><span data-signal="pmi" data-format="valueOnly"></span></div>
+          <div class="dash-badge">···</div>
         </div>
       </div>
       <div class="dash-footer">
-        <a href="live-signals.html" style="color:var(--green);font-weight:600;text-decoration:none;">View all 18 signals →</a>
+        <a href="live-signals.html" style="color:var(--green);font-weight:600;text-decoration:none;">View all 21 signals →</a>
         &nbsp;·&nbsp; Not financial advice
       </div>
     </div>
 
     <div class="float-card float-right">
       <div class="float-card-top">Recession prob.</div>
-      <div class="float-card-val" style="color:#dc2626;">54%</div>
-      <div class="float-card-sub">↑ from 48%</div>
+      <div class="float-card-val" style="color:#dc2626;"><span data-signal="recessionProb">55%</span></div>
+      <div class="float-card-sub">6-indicator model</div>
     </div>
   </div>
 </section>
 </div>
+<script>
+(function(){
+  var ZONE={
+    buy:    {row:'green-row',   badge:'badge-buy',  label:'BUY'},
+    neutral:{row:'neutral-row', badge:'badge-neu2', label:'NEUTRAL'},
+    warn:   {row:'amber-row',   badge:'badge-neutral', label:'WARN'},
+    sell:   {row:'red-row',     badge:'badge-sell', label:'SELL'}
+  };
+  function render(){
+    var rows=document.querySelectorAll('#heroDashRows2 .dash-row[data-dashid]');
+    var d=window.SignycleData;
+    if(!d||!d.signals)return;
+    rows.forEach(function(row){
+      var sig=d.signals[row.getAttribute('data-dashid')];
+      var z=ZONE[(sig&&sig.zone)||'neutral'];
+      row.className='dash-row '+z.row;
+      var badge=row.querySelector('.dash-badge');
+      if(badge){badge.className='dash-badge '+z.badge;badge.textContent=z.label;}
+    });
+    try{
+      var span=document.getElementById('dashTitleDate2');
+      if(d.updated&&span){
+        var m=String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if(m){var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];span.textContent=parseInt(m[3],10)+' '+mo[parseInt(m[2],10)-1]+' '+m[1];}
+      }
+    }catch(e){}
+  }
+  render();
+  document.addEventListener('signalsLoaded',render);
+})();
+</script>
 
 
 <!-- QUICK TAKE BOX -->
@@ -751,7 +835,7 @@ _initHamburger();
         </div>
       </div>
     </div>
-    <a href="live-signals.html" style="display:block;text-align:center;margin-top:0.75rem;font-size:0.72rem;font-weight:700;color:#00956e;text-decoration:none;">View all 18 signals →</a>
+    <a href="live-signals.html" style="display:block;text-align:center;margin-top:0.75rem;font-size:0.72rem;font-weight:700;color:#00956e;text-decoration:none;">View all 21 signals →</a>
   <div class="mob-section-label" style="margin-top:0.5rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:0.8rem;">Legal</div>
   <a href="terms.html" class="nav-link" style="padding-left:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.5);">Terms and Conditions</a>
   <a href="privacy.html" class="nav-link" style="padding-left:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.5);">Privacy Policy</a>

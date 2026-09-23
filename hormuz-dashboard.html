@@ -546,9 +546,9 @@ footer div { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
       <li>
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -560,8 +560,8 @@ footer div { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
           <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -985,11 +985,11 @@ _initHamburger();
   <div class="hero-inner">
     <div class="crisis-badge">Hormuz Ceasefire Extended — Iran Attacks 3 Ships — Crisis Dashboard — Day 53</div>
     <h1>Strait of Hormuz<br>Signal Dashboard</h1>
-    <p class="hero-sub">All commodity signals affected by the Hormuz crisis — Brent, WTI, spread, tanker rates, LNG, urea, gold. Updated 10 Sep 2026. BRENT SIGNAL TRIGGERS SELL — first time this crisis, now $108.70, still climbing intraday.</p>
+    <p class="hero-sub">All commodity signals affected by the Hormuz crisis — Brent, WTI, spread, tanker rates, LNG, urea, gold. Brent triggered SELL for the first time this crisis on 10 Sep, touching $108.70 intraday, and has since eased to $<span data-signal="brent" data-format="valueOnly"></span>/bbl.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hs-label">Cycle score</div>
-        <div class="hs-val" style="color:#d97706;"><span data-signal="cycleScore">72/100</span></div>
+        <div class="hs-val" style="color:#d97706;"><span data-signal="cycleScore">73/100</span></div>
       </div>
       <div class="hero-stat">
         <div class="hs-label">Recession prob.</div>
@@ -1240,8 +1240,8 @@ _initHamburger();
 
   <!-- CTA -->
   <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:3rem;">
-    <div style="font-family:var(--display);font-weight:700;color:var(--ink);margin-bottom:0.5rem;">Track all 18 signals live</div>
-    <p style="font-size:0.82rem;color:var(--dim);margin-bottom:1rem;">Cycle score 72/100 · 5 signals in SELL zone · Recession 52%</p>
+    <div style="font-family:var(--display);font-weight:700;color:var(--ink);margin-bottom:0.5rem;">Track all 21 signals live</div>
+    <p style="font-size:0.82rem;color:var(--dim);margin-bottom:1rem;">Cycle score <span data-signal="cycleScore">73/100</span> · <span data-signal="sellZoneCount">5</span> signals in SELL zone · Recession <span data-signal="recessionProb">55%</span></p>
     <div style="display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;">
       <a href="cycle-dashboard.html" style="background:var(--ink);color:#fff;font-weight:700;font-size:0.82rem;padding:0.45rem 1.1rem;border-radius:7px;text-decoration:none;">Full Dashboard</a>
       <a href="compare-wti-brent.html" style="background:#fff;color:var(--ink);font-weight:700;font-size:0.82rem;padding:0.45rem 1.1rem;border-radius:7px;text-decoration:none;border:1.5px solid var(--border);">WTI vs Brent Spread</a>

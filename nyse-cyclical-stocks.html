@@ -16,7 +16,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What are the best cyclical stocks on NYSE in 2026?","acceptedAnswer":{"@type":"Answer","text":"The best NYSE cyclical stocks to watch in 2026 are those linked to macro signals at BUY levels. Currently most commodity signals are at SELL levels — Brent crude $104, copper $12,043/t, gold $4,493. This is a late-cycle environment. The best entry opportunities historically come when these signals reset to BUY levels. Key stocks to watch include Freeport-McMoRan (FCX) for copper, ConocoPhillips (COP) for energy, Mosaic (MOS) for fertilizers, and RTX for defence."}},
-{"@type":"Question","name":"What is a cyclical stock?","acceptedAnswer":{"@type":"Answer","text":"A cyclical stock is a company whose earnings and share price closely follow the economic cycle and commodity price cycles. When commodity prices (oil, copper, fertilizers) are low, cyclical stocks are cheap and represent buying opportunities. When commodity prices peak, cyclical stocks are typically expensive and represent selling opportunities. Signycle tracks 18 macro signals to identify these turning points."}},
+{"@type":"Question","name":"What is a cyclical stock?","acceptedAnswer":{"@type":"Answer","text":"A cyclical stock is a company whose earnings and share price closely follow the economic cycle and commodity price cycles. When commodity prices (oil, copper, fertilizers) are low, cyclical stocks are cheap and represent buying opportunities. When commodity prices peak, cyclical stocks are typically expensive and represent selling opportunities. Signycle tracks 21 macro signals to identify these turning points."}},
 {"@type":"Question","name":"Is Freeport-McMoRan a good buy in 2026?","acceptedAnswer":{"@type":"Answer","text":"Based on the Signycle copper cycle signal, LME copper is above the historical SELL threshold of $9,000/t. This suggests Freeport-McMoRan (FCX) is in late-cycle territory — the signal framework indicates caution for new positions at current levels. The best historical entry for FCX has been when copper falls below $5,000/t (BUY signal). See the copper cycle tracker for the full analysis."}}
 ]}
 </script>
@@ -214,9 +214,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
       <li>
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -228,8 +228,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
           <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -652,7 +652,7 @@ _initHamburger();
     <div class="americas-badge">🌎 Americas Coverage · New March 2026</div>
     <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;">🔄 Updated weekly &nbsp;·&nbsp; Last update: 30 Mar 2026</div>
     <h1>NYSE Cyclical Stocks — Macro Signal Tracker</h1>
-    <p style="font-size:1rem;color:var(--dim);max-width:600px;">25 NYSE-listed cyclical stocks mapped to the same 18 macro signals that drive European markets — Brent crude, copper, BDI, NATO defence, fertilizers and more. Where is each sector in the cycle right now?</p>
+    <p style="font-size:1rem;color:var(--dim);max-width:600px;">25 NYSE-listed cyclical stocks mapped to the same 21 macro signals that drive European markets — Brent crude, copper, BDI, NATO defence, fertilizers and more. Where is each sector in the cycle right now?</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:0.6rem 1rem;font-size:0.8rem;"><span style="font-weight:700;color:#0c1c2e;">16</span> <span style="color:var(--muted);">NYSE stocks tracked</span></div>
       <div style="background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:0.6rem 1rem;font-size:0.8rem;"><span style="font-weight:700;color:#dc2626;">6</span> <span style="color:var(--muted);">signals in SELL zone</span></div>
@@ -747,7 +747,7 @@ _initHamburger();
   </div>
   <div class="faq-item">
     <div class="faq-q">How does Signycle track NYSE stocks?</div>
-    <div class="faq-a">Signycle uses 18 global macro signals — commodity prices, shipping rates, interest rates and economic indicators — to identify cycle turning points. These signals apply equally to NYSE and European stocks because the underlying commodities (copper, oil, steel) are global markets. Freeport-McMoRan (NYSE: FCX) and Boliden (Stockholm: BOL) both track LME copper. The signal is the same; only the stock exchange differs.</div>
+    <div class="faq-a">Signycle uses 21 global macro signals — commodity prices, shipping rates, interest rates and economic indicators — to identify cycle turning points. These signals apply equally to NYSE and European stocks because the underlying commodities (copper, oil, steel) are global markets. Freeport-McMoRan (NYSE: FCX) and Boliden (Stockholm: BOL) both track LME copper. The signal is the same; only the stock exchange differs.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">Is Freeport-McMoRan a good investment right now?</div>
@@ -795,7 +795,7 @@ _initHamburger();
     <a href="compare-brent.html" class="rel-link">→ Brent $108 🔴 SELL</a>
     <a href="best-copper-stocks.html" class="rel-link">→ Copper $11,750 🔴 SELL</a>
     <a href="precious-metals-cycle.html" class="rel-link">→ Gold $4,493 🔴 SELL</a>
-    <a href="live-signals.html" class="rel-link">→ All 18 live signals</a>
+    <a href="live-signals.html" class="rel-link">→ All 21 live signals</a>
   </div>
 </div>
 </div>

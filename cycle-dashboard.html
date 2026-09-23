@@ -233,9 +233,9 @@ canvas{display:block;width:100%;}
       <li>
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -247,8 +247,8 @@ canvas{display:block;width:100%;}
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
           <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -675,11 +675,11 @@ _initHamburger();
     <div class="hero-meta">12 signals · Updated 8 Apr 2026 · <span id="liveTs"></span></div>
   </div>
   <div class="cycle-badge">
-    <div class="cycle-score-num" id="cycleScoreNum">68/100</div>
+    <div class="cycle-score-num" id="cycleScoreNum">73/100</div>
     <div class="cycle-score-label">Cycle Score</div>
   </div>
   <div class="cycle-badge">
-    <div class="cycle-score-num" id="recessionProb" style="color:var(--red);">54%</div>
+    <div class="cycle-score-num" id="recessionProb" style="color:var(--red);">55%</div>
     <div class="cycle-score-label">Recession Risk</div>
   </div>
 </div>
@@ -780,12 +780,22 @@ function syncFromLoader() {
       sig.status = sd.signals[key].zone || sig.status;
     }
   });
+  if (sd.cycleScore != null) {
+    CYCLE_SCORE = sd.cycleScore;
+    var scoreEl = document.getElementById('cycleScoreNum');
+    if (scoreEl) scoreEl.textContent = CYCLE_SCORE + '/100';
+  }
+  if (sd.recessionProb != null) {
+    RECESSION_PROB = sd.recessionProb;
+    var probEl = document.getElementById('recessionProb');
+    if (probEl) probEl.textContent = RECESSION_PROB + '%';
+  }
   render(); /* re-render with live values */
 }
 /* Try syncing after loader has had time to run */
 setTimeout(syncFromLoader, 1500);
-var CYCLE_SCORE = 82;
-var RECESSION_PROB = 54;
+var CYCLE_SCORE = 73;
+var RECESSION_PROB = 55;
 
 
 // Init

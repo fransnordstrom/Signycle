@@ -243,9 +243,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
       <li>
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">72/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; 23 Mar 2026</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>54% probability</span></a>
+          <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -257,8 +257,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
           <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>18 signals &middot; updated weekly</span></a>
-          <a href="recession-tracker.html"><b>Recession Tracker</b><span>42% probability</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
@@ -681,7 +681,7 @@ _initHamburger();
   <div class="pod-hero-inner">
     <div class="pod-eyebrow">📻 Signycle Picks · Updated March 2026</div>
     <h1>Podcasts for Cyclical Investors</h1>
-    <p>The best podcasts for understanding commodity cycles, macro signals and cyclical stock investing — curated and matched to Signycle's 18 signals.</p>
+    <p>The best podcasts for understanding commodity cycles, macro signals and cyclical stock investing — curated and matched to Signycle's 21 signals.</p>
   </div>
 </div>
 <div class="pod-wrap">
@@ -701,7 +701,7 @@ _initHamburger();
 <script>
 var PODCASTS=[
   {name:"MacroVoices",host:"Erik Townsend & Patrick Ceresna",icon:"🎙️",bg:"#0c1c2e",tags:["macro","oil","metals"],desc:"Weekly interviews with the world's top macro investors and commodity analysts. Covers oil, gold, copper, rates and geopolitics in depth.",signal:"📡 Brent, Copper, Gold, EUR 10y Rate",freq:"Weekly · ~60 min",spotify:"https://open.spotify.com/show/6DX9sYVSZq4YqbpGuxRg6f",apple:"https://podcasts.apple.com/us/podcast/macro-voices/id1079172742",web:"https://www.macrovoices.com"},
-  {name:"Odd Lots",host:"Joe Weisenthal & Tracy Alloway · Bloomberg",icon:"📻",bg:"#1a56db",tags:["macro","oil","metals","shipping"],desc:"Bloomberg's flagship macro podcast. Covers commodities, shipping, energy markets, Fed policy — exceptional quality and depth.",signal:"📡 Relevant to all 18 Signycle signals",freq:"2-3x per week · ~45 min",spotify:"https://open.spotify.com/show/7BkvCLMX5ITuuBvHU9TCLS",apple:"https://podcasts.apple.com/us/podcast/odd-lots/id1056200096",web:"https://www.bloomberg.com/oddlots"},
+  {name:"Odd Lots",host:"Joe Weisenthal & Tracy Alloway · Bloomberg",icon:"📻",bg:"#1a56db",tags:["macro","oil","metals","shipping"],desc:"Bloomberg's flagship macro podcast. Covers commodities, shipping, energy markets, Fed policy — exceptional quality and depth.",signal:"📡 Relevant to all 21 Signycle signals",freq:"2-3x per week · ~45 min",spotify:"https://open.spotify.com/show/7BkvCLMX5ITuuBvHU9TCLS",apple:"https://podcasts.apple.com/us/podcast/odd-lots/id1056200096",web:"https://www.bloomberg.com/oddlots"},
   {name:"Top Traders Unplugged",host:"Niels Kaastrup-Larsen",icon:"📈",bg:"#00956e",tags:["macro","general"],desc:"Legendary investors on global macro, commodities, trend following and systematic trading. Strong on commodity cycles.",signal:"📡 Cycle score, PMI, commodity signals",freq:"Weekly · ~60 min",spotify:"https://open.spotify.com/show/2wv9sxQCyKVUZ3Uu1dDSXZ",apple:"https://podcasts.apple.com/us/podcast/top-traders-unplugged/id888420325",web:"https://toptraders.com"},
   {name:"The Meb Faber Show",host:"Meb Faber · Cambria Investments",icon:"🌍",bg:"#d97706",tags:["macro","general","metals"],desc:"Weekly conversations on global equities, commodities and macro. Jeff Currie of Goldman on commodities is a must-listen episode.",signal:"📡 Copper, Gold, global PMI",freq:"Weekly · ~60 min",spotify:"https://open.spotify.com/show/1cOgGgDPpBnXP8pXYhTZJI",apple:"https://podcasts.apple.com/us/podcast/the-meb-faber-show/id1144182905",web:"https://mebfaber.com/podcast"},
   {name:"Goldman Sachs Exchanges",host:"Goldman Sachs Research",icon:"🏦",bg:"#0c1c2e",tags:["macro","oil","metals"],desc:"Institutional-level commodity research. Episodes on oil supply/demand, copper deficit, gold and macro outlook from the analysts that move markets.",signal:"📡 Brent, Copper, Gold signals",freq:"Weekly · ~25 min",spotify:"https://open.spotify.com/show/3dEBvhXJBGnAX7W4SDLMBr",apple:"https://podcasts.apple.com/us/podcast/goldman-sachs-exchanges/id1161882526",web:"https://www.goldmansachs.com/insights/goldman-sachs-exchanges/"},
