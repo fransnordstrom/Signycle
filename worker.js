@@ -15,7 +15,7 @@ const CORS = {
 
 // Signal thresholds — zone is calculated automatically from these
 const THRESHOLDS = {
-  brent:   { buy: 50,    warnSell: 95,  sell: 105,   unit: '$/bbl'  },
+  brent:   { buy: 50,    warnSell: 95,  sell: 1,   unit: '$/bbl'  }, // TEMP: forces a sell-zone crossing to test alert emails end-to-end
   wti:     { buy: 45,    warnSell: 88,  sell: 95,    unit: '$/bbl'  },
   copper:  { buy: 5000,  warnSell: 8500, sell: 9000, unit: '$/t'    },
   alum:    { buy: 1600,  warnSell: 2800, sell: 3200, unit: '$/t'    },
