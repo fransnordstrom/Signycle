@@ -1,16 +1,26 @@
 /**
- * Signycle Signals Loader v3.3
+ * Signycle Signals Loader v3.4
  * Always loads signals-data.json for manual fields (cycleScore, recessionProb, hormuzStatus).
  * Then overlays live Worker data on top of the signals sub-object (Brent, copper, etc.).
  * v3.2: Treats 0/null/NaN from Worker as missing — falls back to manual value.
  * v3.3: Re-fetches every 2 minutes so pages update without a manual reload,
  * and stops cache-busting the Worker call so Cloudflare's edge cache (5min)
  * actually gets used instead of every page view re-hitting Yahoo Finance directly.
+ * v3.4: Only overlay Worker data for the signals it actually prices live (Yahoo
+ * Finance tickers). The Worker's KV also echoes back non-live manual signals
+ * (BDI, VLCC, PMI, etc.) from whatever was last POSTed via admin.html — that
+ * snapshot goes stale independently of signals-data.json and was overriding
+ * fresher git-committed values with old ones (wrong value AND wrong zone).
  */
 (function() {
   var WORKER_URL = 'https://signycle-signals.fransbgn.workers.dev';
   var WORKER_SOURCE = WORKER_URL + '/api/signals';
   var FALLBACK_SOURCE = '/signals-data.json';
+  // Must match worker.js's LIVE_TICKERS keys — the only signals the Worker
+  // actually prices live from Yahoo Finance. Everything else in its KV is
+  // just a stale mirror of a past manual publish, never more current than
+  // signals-data.json.
+  var LIVE_IDS = { brent:1, wti:1, spread:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1 };
 
   // Inject a subtle loading placeholder for any [data-signal] element that
   // hasn't been filled yet, so an empty span never reads as a rendering bug
@@ -96,25 +106,29 @@
             for (var k in manualData.signals) merged.signals[k] = manualData.signals[k];
           }
           if (workerData.signals) {
-            var manualDate = new Date(manualData.updated || '2020-01-01');
-            var daysSinceUpdate = (new Date() - manualDate) / (1000 * 60 * 60 * 24);
-            var useWorker = daysSinceUpdate > 3;
-            if (!useWorker) { /* Skip worker override - manual data is recent */ }
-            else {
             for (var wk in workerData.signals) {
+              if (!LIVE_IDS[wk]) continue; // not a Yahoo-priced signal — KV is a stale mirror, ignore it
               var workerSig = workerData.signals[wk];
               var manualSig = merged.signals[wk] || {};
               // Treat 0, null, undefined, NaN as missing — fall back to manual value
               var workerVal = workerSig.value;
               var useWorkerVal = workerVal != null && workerVal !== 0 && !isNaN(parseFloat(workerVal));
-              merged.signals[wk] = {
-                value: useWorkerVal ? workerVal : manualSig.value,
-                unit:  workerSig.unit  || manualSig.unit,
-                date:  workerSig.date  || manualSig.date,
-                zone:  workerSig.zone  || manualSig.zone,
-                live:  useWorkerVal && workerSig.live || false
+              // Keep unit/date/zone consistent with whichever value we actually used —
+              // otherwise a stale worker zone (from old KV data) can be shown next to
+              // a fresh manual value, or vice versa.
+              merged.signals[wk] = useWorkerVal ? {
+                value: workerVal,
+                unit:  workerSig.unit || manualSig.unit,
+                date:  workerSig.date || manualSig.date,
+                zone:  workerSig.zone || manualSig.zone,
+                live:  !!workerSig.live
+              } : {
+                value: manualSig.value,
+                unit:  manualSig.unit || workerSig.unit,
+                date:  manualSig.date || workerSig.date,
+                zone:  manualSig.zone || workerSig.zone,
+                live:  false
               };
-            }
             }
           }
           applyData(merged);
