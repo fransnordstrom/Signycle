@@ -777,7 +777,7 @@ _initHamburger();
       Get emailed when a signal crosses a zone
       <span>Brent, copper, gold and more — sent the moment it happens, both ways.</span>
     </div>
-    <form class="alert-signup-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event)">
+    <form class="alert-signup-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
       <input type="email" id="alertSignupEmail" placeholder="you@example.com" required>
       <button type="submit" id="alertSignupBtn">Get alerts</button>
       <div class="alert-signup-msg" id="alertSignupMsg"></div>
@@ -786,11 +786,12 @@ _initHamburger();
 </div>
 
 <script>
-function submitAlertSignup(e) {
+function submitAlertSignup(e, emailId, btnId, msgId) {
   e.preventDefault();
-  var btn = document.getElementById('alertSignupBtn');
-  var msg = document.getElementById('alertSignupMsg');
-  var email = document.getElementById('alertSignupEmail').value.trim();
+  var btn = document.getElementById(btnId);
+  var msg = document.getElementById(msgId);
+  var emailEl = document.getElementById(emailId);
+  var email = emailEl.value.trim();
   btn.disabled = true;
   msg.textContent = '';
   msg.className = 'alert-signup-msg';
@@ -805,7 +806,7 @@ function submitAlertSignup(e) {
       if (res.status === 200) {
         msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'You’re subscribed!';
         msg.className = 'alert-signup-msg ok';
-        document.getElementById('alertSignupEmail').value = '';
+        emailEl.value = '';
       } else {
         msg.textContent = res.data.error || 'Something went wrong — please try again.';
         msg.className = 'alert-signup-msg err';
@@ -845,7 +846,11 @@ function submitAlertSignup(e) {
       <h3>Get real-time alerts when signals cross thresholds</h3>
       <p>Signycle monitors all 18 signals 24/7 and emails you the moment a cycle signal fires.</p>
     </div>
-    <a href="live-signals.html" class="cta-btn">View live signals →</a>
+    <form onsubmit="return submitAlertSignup(event, 'ctaSignupEmail', 'ctaSignupBtn', 'ctaSignupMsg')" style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+      <input type="email" id="ctaSignupEmail" placeholder="you@example.com" required style="padding:0.6rem 0.9rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.85rem;font-family:var(--sans);min-width:220px;">
+      <button type="submit" id="ctaSignupBtn" class="cta-btn" style="border:none;cursor:pointer;">Get alerts →</button>
+      <div class="alert-signup-msg" id="ctaSignupMsg" style="width:100%;"></div>
+    </form>
   </div>
 </div>
 
