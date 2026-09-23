@@ -190,5 +190,65 @@ export default {
     }
 
     return new Response('Not found', { status: 404, headers: CORS });
+  },
+
+  // Cron Trigger (configure in dash.cloudflare.com -> this Worker -> Settings
+  // -> Triggers -> Cron Triggers, e.g. every 15 minutes: */15 * * * *).
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(checkAlerts(env));
   }
 };
+
+// Emails env.ALERT_EMAIL via Resend whenever a live signal's zone actually
+// changes (buy/neutral/warn/sell) vs the last scheduled check — covers both
+// "just crossed into sell" and "just came back down out of it".
+async function checkAlerts(env) {
+  const live = await getLivePrices();
+  const zones = {};
+  for (const [id, price] of Object.entries(live)) {
+    zones[id] = calcZone(id, price);
+  }
+
+  const prevZones = await env.SIGNALS_KV.get('alertZones', 'json') || {};
+  const crossings = [];
+  for (const [id, zone] of Object.entries(zones)) {
+    const prevZone = prevZones[id];
+    if (prevZone && prevZone !== zone) {
+      crossings.push({ id: id, from: prevZone, to: zone, value: live[id], unit: THRESHOLDS[id]?.unit || '' });
+    }
+  }
+
+  // Store the new state regardless of whether we alert, so a failed email
+  // send doesn't cause the same crossing to be re-detected next run.
+  await env.SIGNALS_KV.put('alertZones', JSON.stringify(zones));
+
+  if (crossings.length && env.RESEND_API_KEY && env.ALERT_EMAIL && env.ALERT_FROM) {
+    await sendAlertEmail(env, crossings);
+  }
+}
+
+async function sendAlertEmail(env, crossings) {
+  const lines = crossings.map(function(c) {
+    return c.id.toUpperCase() + ': ' + c.from + ' -> ' + c.to + ' zone (now ' + c.value + ' ' + c.unit + ')';
+  });
+  const subject = 'Signycle alert: ' + crossings.map(function(c) { return c.id; }).join(', ') + ' crossed zones';
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + env.RESEND_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: env.ALERT_FROM,
+        to: env.ALERT_EMAIL,
+        subject: subject,
+        text: lines.join('\n')
+      })
+    });
+  } catch (e) {
+    // Swallow — a failed send shouldn't crash the scheduled run. alertZones
+    // is already updated, so this specific crossing won't re-fire; the next
+    // real crossing will still be attempted normally.
+  }
+}
