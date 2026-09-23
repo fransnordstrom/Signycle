@@ -126,8 +126,9 @@ body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
 .main{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
 
 /* FILTER TABS */
-.filter-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
-.ftab{font-size:0.75rem;font-weight:600;padding:0.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);color:var(--dim);cursor:pointer;transition:all 0.15s;background:#fff;}
+.filter-row{display:flex;gap:0.5rem;flex-wrap:nowrap;overflow-x:auto;margin-bottom:2rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.filter-row::-webkit-scrollbar{display:none;}
+.ftab{font-size:0.75rem;font-weight:600;padding:0.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);color:var(--dim);cursor:pointer;transition:all 0.15s;background:#fff;white-space:nowrap;flex-shrink:0;}
 .ftab.active,.ftab:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
 
 /* SIGNAL GRID */
@@ -149,10 +150,11 @@ body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
 
 .sig-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
 .sig-name{font-size:0.95rem;font-weight:700;color:var(--ink);}
-.sig-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;font-family:var(--mono);padding:0.2rem 0.7rem;border-radius:20px;}
+.sig-badge{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;font-family:var(--mono);padding:0.3rem 0.9rem;border-radius:20px;}
 .sig-badge.buy{background:#f0fdf4;color:#166534;border:1px solid #86efac;}
 .sig-badge.sell{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
 .sig-badge.neutral{background:#f0fdf4;color:#15803d;border:1px solid #86efac;}
+.sig-badge.warn{background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border);}
 
 .sig-value{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--ink);line-height:1;margin-bottom:0.3rem;}
 .sig-value.loading{color:var(--muted);font-size:1.2rem;}
@@ -180,6 +182,8 @@ body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
 .stock-chips{display:flex;flex-wrap:wrap;gap:0.3rem;}
 .stock-chip{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#f0f4f2;border:1px solid #e2e8e5;border-radius:4px;color:var(--dim);text-decoration:none;}
 .stock-chip:hover{border-color:var(--green);color:var(--green);}
+.stock-chip-more{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#fff;border:1px dashed #cbd5d1;border-radius:4px;color:var(--dim);cursor:pointer;}
+.stock-chip-more:hover{border-color:var(--green);color:var(--green);}
 
 .sig-source{font-size:0.62rem;color:var(--muted);margin-top:0.6rem;display:flex;align-items:center;gap:0.3rem;}
 .sig-source.live::before{content:'●';color:var(--green);font-size:0.5rem;}
@@ -1144,7 +1148,8 @@ function getPct(val, min, max) {
 function getBarColor(status) {
   if (status === 'buy') return 'var(--green)';
   if (status === 'sell') return 'var(--sell)';
-  return 'var(--gold)';
+  if (status === 'warn') return 'var(--gold)';
+  return 'var(--muted)';
 }
 
 function fmtVal(val, decimals, unit) {
@@ -1162,9 +1167,18 @@ function renderCard(sig, val, loading, forceStatus) {
   const buyPct = getPct(sig.buyThresh, sig.min, sig.max);
   const sellPct = getPct(sig.sellThresh, sig.min, sig.max);
 
-  const stockChips = (sig.stocks || []).map(s =>
+  const allStocks = sig.stocks || [];
+  const visibleStocks = allStocks.slice(0, 3);
+  const hiddenStocks = allStocks.slice(3);
+  const stockChips = visibleStocks.map(s =>
     `<a href="${s.u}" class="stock-chip">${s.t}</a>`
   ).join('');
+  const hiddenChips = hiddenStocks.map(s =>
+    `<a href="${s.u}" class="stock-chip">${s.t}</a>`
+  ).join('');
+  const moreToggle = hiddenStocks.length
+    ? `<button type="button" class="stock-chip-more" onclick="this.style.display='none';this.nextElementSibling.style.display='contents';">+${hiddenStocks.length} more</button><span style="display:none;">${hiddenChips}</span>`
+    : '';
 
   const badgeText = loading ? '…' : status.toUpperCase();
   const valDisplay = loading
@@ -1197,15 +1211,10 @@ function renderCard(sig, val, loading, forceStatus) {
     </div>
   </div>
 
-  <div class="sig-thresholds">
-    <div class="thresh-pill buy">▲ BUY &lt; ${fmtVal(sig.buyThresh, sig.decimals)}</div>
-    <div class="thresh-pill sell">▼ SELL &gt; ${fmtVal(sig.sellThresh, sig.decimals)}</div>
-  </div>
-
-  ${sig.stocks && sig.stocks.length ? `
+  ${allStocks.length ? `
   <div class="sig-stocks">
     <div class="sig-stocks-label">Affected stocks</div>
-    <div class="stock-chips">${stockChips}</div>
+    <div class="stock-chips">${stockChips}${moreToggle}</div>
   </div>` : ''}
 
   <div class="sig-source ${sig.live ? 'live' : 'manual'}">
