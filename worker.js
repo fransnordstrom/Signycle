@@ -189,6 +189,61 @@ export default {
       }
     }
 
+    // ── POST /api/subscribe ──────────────────────────────────────────────────
+    // Public — anyone can add their email to the alert subscriber list.
+    if (request.method === 'POST' && url.pathname === '/api/subscribe') {
+      try {
+        const body = await request.json();
+        const email = (body.email || '').trim().toLowerCase();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          return new Response(JSON.stringify({ error: 'Invalid email address' }), {
+            status: 400, headers: { ...CORS, 'Content-Type': 'application/json' }
+          });
+        }
+        const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+        if (subs.some(function(s) { return s.email === email; })) {
+          return new Response(JSON.stringify({ ok: true, message: 'Already subscribed' }), {
+            headers: { ...CORS, 'Content-Type': 'application/json' }
+          });
+        }
+        subs.push({ email: email, token: crypto.randomUUID(), subscribedAt: new Date().toISOString() });
+        await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
+        return new Response(JSON.stringify({ ok: true }), {
+          headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: e.message }), {
+          status: 400, headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      }
+    }
+
+    // ── GET /api/unsubscribe ─────────────────────────────────────────────────
+    // Public, token-protected — clicked from an email link, so it returns a
+    // plain HTML page rather than JSON, and needs no login: the per-subscriber
+    // token (issued at signup, not derived from a shared secret) is the auth.
+    if (request.method === 'GET' && url.pathname === '/api/unsubscribe') {
+      const email = (url.searchParams.get('email') || '').trim().toLowerCase();
+      const token = url.searchParams.get('token') || '';
+      const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+      const idx = subs.findIndex(function(s) { return s.email === email && s.token === token; });
+      const page = function(msg) {
+        return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+          '<title>Signycle</title><style>body{font-family:-apple-system,sans-serif;max-width:480px;margin:4rem auto;padding:0 1rem;text-align:center;color:#0c1c2e;}</style>' +
+          '</head><body><h2>Signycle</h2><p>' + msg + '</p></body></html>';
+      };
+      if (idx === -1) {
+        return new Response(page('This link is invalid or you’re already unsubscribed.'), {
+          headers: { ...CORS, 'Content-Type': 'text/html' }
+        });
+      }
+      subs.splice(idx, 1);
+      await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
+      return new Response(page('You’ve been unsubscribed from Signycle alerts.'), {
+        headers: { ...CORS, 'Content-Type': 'text/html' }
+      });
+    }
+
     // ── GET /api/check-alerts (debug) ───────────────────────────────────────
     // Manually runs the same logic as the Cron Trigger and returns exactly
     // what happened, instead of the silent scheduled() path. Auth-protected
@@ -253,13 +308,19 @@ async function checkAlerts(env) {
     emailResult = await sendAlertEmail(env, crossings);
   }
 
+  let publicEmailResult = null;
+  if (crossings.length && env.RESEND_API_KEY && env.ALERT_FROM) {
+    publicEmailResult = await sendPublicAlertEmails(env, crossings);
+  }
+
   return {
     prevZones: prevZones,
     newZones: zones,
     crossings: crossings,
     envVarsPresent: envCheck,
     emailAttempted: !!emailResult,
-    emailResult: emailResult
+    emailResult: emailResult,
+    publicEmailResult: publicEmailResult
   };
 }
 
@@ -287,4 +348,50 @@ async function sendAlertEmail(env, crossings) {
   } catch (e) {
     return { error: e.message };
   }
+}
+
+// Blasts the public subscriber list via Resend's batch endpoint. This can't
+// use a single bcc'd email like sendAlertEmail does, because each recipient
+// needs their OWN unsubscribe link (with their own token) embedded in the
+// body — the batch endpoint supports different content per recipient in one
+// API call, up to 100 emails per request, so we chunk into groups of 100.
+async function sendPublicAlertEmails(env, crossings) {
+  const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+  if (!subs.length) return { subscriberCount: 0 };
+
+  const lines = crossings.map(function(c) {
+    return c.id.toUpperCase() + ': ' + c.from + ' -> ' + c.to + ' zone (now ' + c.value + ' ' + c.unit + ')';
+  }).join('\n');
+  const subject = 'Signycle alert: ' + crossings.map(function(c) { return c.id; }).join(', ') + ' crossed zones';
+
+  const batches = [];
+  for (let i = 0; i < subs.length; i += 100) {
+    const chunk = subs.slice(i, i + 100);
+    const items = chunk.map(function(s) {
+      const unsubUrl = 'https://signycle-signals.fransbgn.workers.dev/api/unsubscribe?email=' +
+        encodeURIComponent(s.email) + '&token=' + s.token;
+      return {
+        from: env.ALERT_FROM,
+        to: s.email,
+        subject: subject,
+        text: lines + '\n\nUnsubscribe: ' + unsubUrl
+      };
+    });
+    try {
+      const res = await fetch('https://api.resend.com/emails/batch', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + env.RESEND_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(items)
+      });
+      const bodyText = await res.text();
+      batches.push({ status: res.status, ok: res.ok, count: chunk.length, body: bodyText });
+    } catch (e) {
+      batches.push({ error: e.message, count: chunk.length });
+    }
+  }
+
+  return { subscriberCount: subs.length, batches: batches };
 }
