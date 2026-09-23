@@ -189,6 +189,24 @@ export default {
       }
     }
 
+    // ── GET /api/check-alerts (debug) ───────────────────────────────────────
+    // Manually runs the same logic as the Cron Trigger and returns exactly
+    // what happened, instead of the silent scheduled() path. Auth-protected
+    // since it can send a real email and reveals whether secrets are set.
+    if (request.method === 'GET' && url.pathname === '/api/check-alerts') {
+      const auth = request.headers.get('Authorization') || '';
+      const pw = auth.replace('Bearer ', '') || url.searchParams.get('pw') || '';
+      if (pw !== env.ADMIN_PASSWORD) {
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401, headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      }
+      const result = await checkAlerts(env);
+      return new Response(JSON.stringify(result, null, 2), {
+        headers: { ...CORS, 'Content-Type': 'application/json' }
+      });
+    }
+
     return new Response('Not found', { status: 404, headers: CORS });
   },
 
@@ -201,7 +219,9 @@ export default {
 
 // Emails env.ALERT_EMAIL via Resend whenever a live signal's zone actually
 // changes (buy/neutral/warn/sell) vs the last scheduled check — covers both
-// "just crossed into sell" and "just came back down out of it".
+// "just crossed into sell" and "just came back down out of it". Returns a
+// diagnostic object so both the Cron Trigger and the debug endpoint can see
+// exactly what happened, instead of failures disappearing silently.
 async function checkAlerts(env) {
   const live = await getLivePrices();
   const zones = {};
@@ -222,9 +242,25 @@ async function checkAlerts(env) {
   // send doesn't cause the same crossing to be re-detected next run.
   await env.SIGNALS_KV.put('alertZones', JSON.stringify(zones));
 
+  const envCheck = {
+    RESEND_API_KEY: !!env.RESEND_API_KEY,
+    ALERT_EMAIL: !!env.ALERT_EMAIL,
+    ALERT_FROM: !!env.ALERT_FROM
+  };
+
+  let emailResult = null;
   if (crossings.length && env.RESEND_API_KEY && env.ALERT_EMAIL && env.ALERT_FROM) {
-    await sendAlertEmail(env, crossings);
+    emailResult = await sendAlertEmail(env, crossings);
   }
+
+  return {
+    prevZones: prevZones,
+    newZones: zones,
+    crossings: crossings,
+    envVarsPresent: envCheck,
+    emailAttempted: !!emailResult,
+    emailResult: emailResult
+  };
 }
 
 async function sendAlertEmail(env, crossings) {
@@ -233,7 +269,7 @@ async function sendAlertEmail(env, crossings) {
   });
   const subject = 'Signycle alert: ' + crossings.map(function(c) { return c.id; }).join(', ') + ' crossed zones';
   try {
-    await fetch('https://api.resend.com/emails', {
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + env.RESEND_API_KEY,
@@ -246,9 +282,9 @@ async function sendAlertEmail(env, crossings) {
         text: lines.join('\n')
       })
     });
+    const bodyText = await res.text();
+    return { status: res.status, ok: res.ok, body: bodyText };
   } catch (e) {
-    // Swallow — a failed send shouldn't crash the scheduled run. alertZones
-    // is already updated, so this specific crossing won't re-fire; the next
-    // real crossing will still be attempted normally.
+    return { error: e.message };
   }
 }
