@@ -88,7 +88,7 @@
             cyclePhase: manualData.cyclePhase,
             recessionProb: manualData.recessionProb,
             sellZoneCount: manualData.sellZoneCount,
-            updated: workerData.updated || manualData.updated,
+            updated: manualData.updated,
             hormuzStatus: manualData.hormuzStatus,
             signals: {}
           };
