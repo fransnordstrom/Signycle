@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Live Commodity Signals — Brent, BDI, Copper | Signycle</title>
-<meta name="description" content="Real-time tracking of 18 macro signals. Current: Brent $109 SELL, copper DEEP SELL, BDI neutral.">
+<meta name="description" content="Real-time tracking of 21 macro signals across commodities, shipping, and metals — see current BUY/SELL zones for Brent, copper, gold and more instantly.">
 <link rel="canonical" href="https://signycle.com/live-signals">
 <meta property="og:title" content="Live Commodity Signals — Brent, BDI, Copper | Signycle">
-<meta property="og:description" content="Real-time tracking of 18 macro signals. Current: Brent $109 SELL, copper DEEP SELL, BDI neutral.">
+<meta property="og:description" content="Real-time tracking of 21 macro signals across commodities, shipping, and metals — see current BUY/SELL zones for Brent, copper, gold and more instantly.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/live-signals.html">
 <meta property="og:image" content="https://signycle.com/og-image.png">
@@ -764,7 +764,7 @@ _initHamburger();
   <div class="hero-inner">
     <div class="hero-left">
       <h1>Live Signal Dashboard</h1>
-      <p>18 macro signals · 250+ stocks · 42+ global exchanges</p>
+      <p>21 macro signals · 250+ stocks · 42+ global exchanges</p>
     </div>
     <div class="hero-meta">
       <div class="live-badge"><div class="live-dot"></div>Brent · Copper · Aluminium live</div>
@@ -828,7 +828,6 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     <div class="sum-item"><div class="sum-dot buy"></div><span class="sum-count" id="countBuy">–</span><span class="sum-label">&nbsp;BUY zone</span></div>
     <div class="sum-item"><div class="sum-dot neutral"></div><span class="sum-count" id="countNeutral">–</span><span class="sum-label">&nbsp;Neutral</span></div>
     <div class="sum-item"><div class="sum-dot sell"></div><span class="sum-count" id="countSell">–</span><span class="sum-label">&nbsp;SELL zone</span></div>
-    <div style="margin-left:auto;font-size:0.72rem;color:var(--muted)">● Live from Yahoo Finance &nbsp;○ Weekly manual update</div>
   </div>
 </div>
 
@@ -847,17 +846,6 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   <h2 class="signals-section-title" style="margin-top:2.5rem;">Weekly-updated signals <span>Hand-researched, updated manually — see each card's date</span></h2>
   <div class="signals-grid" id="signalsGridManual"></div>
 
-  <div class="cta-box">
-    <div class="cta-text">
-      <h3>Get real-time alerts when signals cross thresholds</h3>
-      <p>Signycle monitors all 18 signals 24/7 and emails you the moment a cycle signal fires.</p>
-    </div>
-    <form onsubmit="return submitAlertSignup(event, 'ctaSignupEmail', 'ctaSignupBtn', 'ctaSignupMsg')" style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
-      <input type="email" id="ctaSignupEmail" placeholder="you@example.com" required style="padding:0.6rem 0.9rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.85rem;font-family:var(--sans);min-width:220px;">
-      <button type="submit" id="ctaSignupBtn" class="cta-btn" style="border:none;cursor:pointer;">Get alerts →</button>
-      <div class="alert-signup-msg" id="ctaSignupMsg" style="width:100%;"></div>
-    </form>
-  </div>
 </div>
 
 
