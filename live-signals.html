@@ -132,6 +132,8 @@ body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
 
 /* SIGNAL GRID */
 .signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;}
+.signals-section-title{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:1rem;display:flex;align-items:baseline;gap:0.6rem;flex-wrap:wrap;}
+.signals-section-title span{font-size:0.76rem;font-weight:400;color:var(--dim);}
 
 /* SIGNAL CARD */
 .sig-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow 0.15s;}
@@ -839,7 +841,11 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     <div class="ftab" onclick="filterCards('live',this)">Live only</div>
   </div>
 
-  <div class="signals-grid" id="signalsGrid"></div>
+  <h2 class="signals-section-title">Live signals <span>Updated every few minutes from Yahoo Finance</span></h2>
+  <div class="signals-grid" id="signalsGridLive"></div>
+
+  <h2 class="signals-section-title" style="margin-top:2.5rem;">Weekly-updated signals <span>Hand-researched, updated manually — see each card's date</span></h2>
+  <div class="signals-grid" id="signalsGridManual"></div>
 
   <div class="cta-box">
     <div class="cta-text">
@@ -1009,7 +1015,7 @@ const SIGNALS = [
   },
   {
     id:'steel', name:'Steel HRC Price', category:'Metals',
-    ticker:null, live:false,
+    ticker:'steel', live:true,
     manualValue:1322, manualDate:'8 Apr 2026',
     unit:'USD/t', buyThresh:700, sellThresh:1450, decimals:0,
     min:200, max:2000,
@@ -1024,7 +1030,7 @@ const SIGNALS = [
   },
   {
     id:'ironore', name:'Iron Ore (62% Fe)', category:'Metals',
-    ticker:null, live:false,
+    ticker:'ironore', live:true,
     manualValue:96, manualDate:'8 Apr 2026',
     unit:'USD/t', buyThresh:60, sellThresh:100, decimals:0,
     min:50, max:200,
@@ -1113,7 +1119,7 @@ const SIGNALS = [
   },
   {
     id:'gold', name:'Gold Price', category:'Precious Metals',
-    ticker:null, live:false,
+    ticker:'gold', live:true,
     manualValue:4743, manualDate:'12 Apr 2026',
     unit:'$/oz', buyThresh:1200, sellThresh:2800, decimals:0,
     min:1000, max:5000,
@@ -1124,7 +1130,7 @@ const SIGNALS = [
     ]
   },
   {id:'lithium', name:'Lithium Carbonate', category:'Battery Materials',
-    ticker:null, live:false,
+    ticker:'lithium', live:true,
     manualValue:17000, manualDate:'8 Apr 2026',
     unit:'$/t', buyThresh:12000, sellThresh:40000, decimals:0,
     min:5000, max:85000,
@@ -1264,10 +1270,12 @@ document.addEventListener('signalsLoaded', function(e) { applyLiveSignals(e.deta
 
 // ── INIT ──────────────────────────────────────────────────────────────────
 async function init() {
-  const grid = document.getElementById('signalsGrid');
+  const liveGrid = document.getElementById('signalsGridLive');
+  const manualGrid = document.getElementById('signalsGridManual');
 
-  // Render all cards with loading state first
-  grid.innerHTML = SIGNALS.map(s => renderCard(s, s.manualValue, false)).join('');
+  // Render all cards with loading state first, split by live vs. manual
+  liveGrid.innerHTML = SIGNALS.filter(s => s.live).map(s => renderCard(s, s.manualValue, false)).join('');
+  manualGrid.innerHTML = SIGNALS.filter(s => !s.live).map(s => renderCard(s, s.manualValue, false)).join('');
 
   updateCounts();
 
