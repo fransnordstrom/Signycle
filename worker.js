@@ -1,10 +1,15 @@
 /**
- * Signycle Signals Worker v3.1
+ * Signycle Signals Worker v3.2
  * - Live prices from Yahoo Finance (Brent, WTI, Copper, Alum, Gold, Steel, Iron Ore, Lithium)
  * - Spread derived from live Brent/WTI, not entered manually
  * - Auto-calculates zone (buy/neutral/warn/sell) from thresholds
  * - Manual signals stored in KV, updated via admin app
  * - POST flags (but does not block) >3x value swings vs the previous stored value
+ * - v3.2: records one row per live signal to D1 (HISTORY_DB binding) on every
+ *   Cron Trigger tick, and serves it back via GET /api/history?signal=X - a
+ *   real, growing price history to eventually replace the illustrative chart
+ *   data currently baked into the site's HTML. Inert (no-op, no errors)
+ *   until HISTORY_DB is bound to this Worker in the dashboard.
  */
 
 const CORS = {
@@ -244,6 +249,38 @@ export default {
       });
     }
 
+    // ── GET /api/history ─────────────────────────────────────────────────────
+    // Returns real recorded price history for one signal, populated by the
+    // Cron Trigger every ~15 minutes via recordHistory() below. Only exists
+    // from whenever HISTORY_DB was bound onward — there is no backfill for
+    // dates before that, unlike the illustrative chart data baked into the
+    // site's HTML which claims a multi-year history it never actually
+    // measured.
+    if (request.method === 'GET' && url.pathname === '/api/history') {
+      if (!env.HISTORY_DB) {
+        return new Response(JSON.stringify({ error: 'HISTORY_DB not bound' }), {
+          status: 503, headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      }
+      const signal = url.searchParams.get('signal');
+      if (!signal) {
+        return new Response(JSON.stringify({ error: 'Missing ?signal= parameter' }), {
+          status: 400, headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      }
+      const limit = Math.min(parseInt(url.searchParams.get('limit') || '500', 10) || 500, 2000);
+      const rows = await env.HISTORY_DB.prepare(
+        'SELECT value, zone, recorded_at FROM signal_history WHERE signal_id = ? ORDER BY recorded_at DESC LIMIT ?'
+      ).bind(signal, limit).all();
+      return new Response(JSON.stringify({
+        signal: signal,
+        unit: THRESHOLDS[signal]?.unit || '',
+        points: (rows.results || []).reverse()
+      }), {
+        headers: { ...CORS, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=300' }
+      });
+    }
+
     // ── GET /api/check-alerts (debug) ───────────────────────────────────────
     // Manually runs the same logic as the Cron Trigger and returns exactly
     // what happened, instead of the silent scheduled() path. Auth-protected
@@ -284,6 +321,10 @@ async function checkAlerts(env) {
     zones[id] = calcZone(id, price);
   }
 
+  if (env.HISTORY_DB) {
+    await recordHistory(env, live, zones);
+  }
+
   const prevZones = await env.SIGNALS_KV.get('alertZones', 'json') || {};
   const crossings = [];
   for (const [id, zone] of Object.entries(zones)) {
@@ -318,10 +359,32 @@ async function checkAlerts(env) {
     newZones: zones,
     crossings: crossings,
     envVarsPresent: envCheck,
+    historyRecorded: !!env.HISTORY_DB,
     emailAttempted: !!emailResult,
     emailResult: emailResult,
     publicEmailResult: publicEmailResult
   };
+}
+
+// Appends one row per live signal to D1 (HISTORY_DB binding) so charts can
+// eventually be built from real recorded prices instead of the illustrative
+// arrays currently baked into the site's HTML. Runs once per Cron Trigger
+// tick (~every 15 min), not on every /api/signals page-load request, so the
+// table grows at a fixed, predictable rate regardless of site traffic.
+async function recordHistory(env, live, zones) {
+  const now = new Date().toISOString();
+  const stmt = env.HISTORY_DB.prepare(
+    'INSERT INTO signal_history (signal_id, value, zone, recorded_at) VALUES (?, ?, ?, ?)'
+  );
+  const batch = Object.entries(live).map(([id, value]) =>
+    stmt.bind(id, value, zones[id] || 'neutral', now)
+  );
+  try {
+    await env.HISTORY_DB.batch(batch);
+  } catch (e) {
+    // Never let history logging break alerting — it's a best-effort addition.
+    console.log('[Signycle] recordHistory failed:', e.message);
+  }
 }
 
 async function sendAlertEmail(env, crossings) {
