@@ -115,6 +115,27 @@
       }
     });
 
+    // Generic zone-status badge: <span data-zone-badge="brent">···</span> gets its
+    // label + colors set from that signal's live zone. One shared mechanism instead
+    // of every hub/sector/compare page hardcoding its own "SELL ZONE" text that
+    // never updates when the underlying signal's zone actually changes.
+    var ZONE_BADGE = {
+      buy:     { label: 'BUY',       bg: '#e6f5f1', color: '#00956e' },
+      neutral: { label: 'NEUTRAL',   bg: '#f0f4f2', color: '#475569' },
+      warn:    { label: 'NEAR SELL', bg: '#fffbeb', color: '#d97706' },
+      sell:    { label: 'SELL',      bg: '#fef2f2', color: '#dc2626' }
+    };
+    document.querySelectorAll('[data-zone-badge]').forEach(function(el) {
+      var key = el.getAttribute('data-zone-badge');
+      var sig = d.signals && d.signals[key];
+      var zone = sig && ZONE_BADGE[sig.zone] ? sig.zone : null;
+      if (!zone) return;
+      var z = ZONE_BADGE[zone];
+      el.textContent = z.label;
+      el.style.background = z.bg;
+      el.style.color = z.color;
+    });
+
     document.dispatchEvent(new CustomEvent('signalsLoaded', { detail: d }));
   }
 
