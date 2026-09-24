@@ -242,7 +242,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
 
 html, body { max-width: 100%; overflow-x: hidden; }
-@media(max-width:900px) { .hero { grid-template-columns:1fr; padding:6rem 1.5rem 3rem; min-height:auto; } .hero-right { display:none; } .float-left,.float-right { display:none; } }
+.dash-mobile-stats { display:none; }
+@media(max-width:900px) {
+  .hero { grid-template-columns:1fr; padding:6rem 1.5rem 3rem; min-height:auto; }
+  .float-left,.float-right { display:none; }
+  .hero-right { margin-top:2rem; }
+  .dash-mobile-stats { display:flex; gap:0.6rem; margin-bottom:1.2rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+  .dms-item { flex:1; text-align:center; }
+  .dms-label { display:block; font-size:0.58rem; color:var(--muted); font-family:var(--mono); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.2rem; }
+  .dms-val { font-family:var(--mono); font-weight:700; font-size:1.05rem; }
+  .dms-divider { width:1px; background:var(--border); }
+  .dash-row { flex-wrap:wrap; row-gap:0.4rem; }
+  .dash-row-left { min-width:0; flex-basis:100%; }
+  .dash-val { margin-right:auto; }
+}
 
 /* ── STATS BAR ── */
 .stats-bar {
@@ -861,6 +874,17 @@ _initHamburger();
       <div class="dash-header">
         <div class="dash-title">Live signals — <span id="dashTitleDate">4 Apr 2026</span></div>
         <div class="dash-live"><span class="pulse"></span>Live</div>
+      </div>
+      <div class="dash-mobile-stats">
+        <div class="dms-item">
+          <span class="dms-label">Cycle score</span>
+          <span class="dms-val" style="color:#d97706;"><span data-signal="cycleScore">73/100</span></span>
+        </div>
+        <div class="dms-divider"></div>
+        <div class="dms-item">
+          <span class="dms-label">Recession</span>
+          <span class="dms-val" style="color:#dc2626;"><span data-signal="recessionProb">55%</span></span>
+        </div>
       </div>
       <div class="dash-rows" id="heroDashRows">
         <div class="dash-row" data-dashid="brent">
