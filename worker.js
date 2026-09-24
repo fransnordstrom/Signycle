@@ -51,6 +51,90 @@ const THRESHOLDS = {
   wfe:     { buy: 80,    warnSell: 120, sell: 140,   unit: 'index'  },
 };
 
+// Display name + dedicated signal page for each id that can actually appear
+// in an alert (i.e. every key getLivePrices() can produce - the 8 Yahoo-priced
+// tickers plus the derived spread). wti and spread have no dedicated page of
+// their own, so both link to the page that covers them together.
+const SIGNAL_INFO = {
+  brent:   { name: 'Brent Crude',    page: 'signal-brent-crude.html' },
+  wti:     { name: 'WTI Crude',      page: 'compare-wti-brent.html' },
+  copper:  { name: 'LME Copper',     page: 'signal-lme-copper.html' },
+  alum:    { name: 'LME Aluminium',  page: 'signal-aluminium-price.html' },
+  gold:    { name: 'Gold Price',     page: 'signal-gold-price.html' },
+  steel:   { name: 'US HRC Steel',   page: 'signal-us-hrc-steel.html' },
+  ironore: { name: 'Iron Ore',       page: 'signal-iron-ore-price.html' },
+  lithium: { name: 'Lithium Carbonate', page: 'signal-lithium-carbonate.html' },
+  spread:  { name: 'Brent-WTI Spread', page: 'compare-wti-brent.html' },
+};
+
+const ZONE_STYLE = {
+  buy:     { label: 'BUY',       bg: '#e6f5f1', color: '#00956e' },
+  neutral: { label: 'NEUTRAL',   bg: '#f0f4f2', color: '#475569' },
+  warn:    { label: 'NEAR SELL', bg: '#fffbeb', color: '#d97706' },
+  sell:    { label: 'SELL',      bg: '#fef2f2', color: '#dc2626' },
+};
+
+// Builds the HTML body for an alert email. unsubUrl is only passed for the
+// public subscriber send (sendPublicAlertEmails) - the personal ALERT_EMAIL
+// send has no subscription to cancel, so it's omitted there.
+function buildAlertEmailHtml(crossings, unsubUrl) {
+  const siteUrl = 'https://signycle.com';
+  const cards = crossings.map(function(c) {
+    const info = SIGNAL_INFO[c.id] || { name: c.id.toUpperCase(), page: 'live-signals.html' };
+    const toStyle = ZONE_STYLE[c.to] || ZONE_STYLE.neutral;
+    const fromLabel = (ZONE_STYLE[c.from] || {}).label || c.from.toUpperCase();
+    return '' +
+      '<tr><td style="padding:0 0 12px;">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8faf9;border:1px solid #e2e8e5;border-radius:10px;">' +
+          '<tr><td style="padding:16px 18px;">' +
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>' +
+              '<td style="font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#0c1c2e;">' + info.name + '</td>' +
+              '<td align="right"><span style="display:inline-block;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.04em;padding:3px 10px;border-radius:12px;background:' + toStyle.bg + ';color:' + toStyle.color + ';">' + toStyle.label + '</span></td>' +
+            '</tr></table>' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#6b7f78;margin-top:6px;">Crossed from <strong>' + fromLabel + '</strong> zone</div>' +
+            '<div style="font-family:\'Courier New\',monospace;font-size:22px;font-weight:700;color:#0c1c2e;margin-top:10px;">' + c.value + ' <span style="font-size:14px;font-weight:400;color:#94a3b8;">' + c.unit + '</span></div>' +
+            '<a href="' + siteUrl + '/' + info.page + '" style="display:inline-block;margin-top:10px;font-family:Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;color:#00956e;text-decoration:none;">View ' + info.name + ' signal &rarr;</a>' +
+          '</td></tr>' +
+        '</table>' +
+      '</td></tr>';
+  }).join('');
+
+  const unsubRow = unsubUrl
+    ? '<a href="' + unsubUrl + '" style="color:#94a3b8;text-decoration:underline;">Unsubscribe</a> &middot; '
+    : '';
+
+  return '' +
+    '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
+    '<body style="margin:0;padding:24px 16px;background:#f0f4f2;">' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:14px;overflow:hidden;">' +
+          '<tr><td style="background:#0c1c2e;padding:22px 24px;">' +
+            '<table role="presentation" cellpadding="0" cellspacing="0"><tr>' +
+              '<td style="padding-right:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#00956e;"></div></td>' +
+              '<td style="font-family:Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;color:#ffffff;">Signycle</td>' +
+            '</tr></table>' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Signal Alert</div>' +
+          '</td></tr>' +
+          '<tr><td style="padding:24px;">' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#334155;margin-bottom:16px;">' +
+              (crossings.length === 1 ? 'A signal just crossed a threshold:' : crossings.length + ' signals just crossed a threshold:') +
+            '</div>' +
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' + cards + '</table>' +
+            '<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:8px;"><tr><td style="border-radius:8px;background:#00956e;">' +
+              '<a href="' + siteUrl + '/live-signals.html" style="display:inline-block;padding:12px 22px;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">View All Live Signals &rarr;</a>' +
+            '</td></tr></table>' +
+          '</td></tr>' +
+          '<tr><td style="background:#f8faf9;border-top:1px solid #e2e8e5;padding:16px 24px;">' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#94a3b8;line-height:1.6;">' +
+              unsubRow + 'For informational purposes only. Not financial advice.<br>' +
+              '<a href="' + siteUrl + '" style="color:#94a3b8;">signycle.com</a>' +
+            '</div>' +
+          '</td></tr>' +
+        '</table>' +
+      '</td></tr></table>' +
+    '</body></html>';
+}
+
 function calcZone(id, value) {
   var t = THRESHOLDS[id];
   if (!t) return 'neutral';
@@ -403,7 +487,8 @@ async function sendAlertEmail(env, crossings) {
         from: env.ALERT_FROM,
         to: env.ALERT_EMAIL,
         subject: subject,
-        text: lines.join('\n')
+        text: lines.join('\n'),
+        html: buildAlertEmailHtml(crossings)
       })
     });
     const bodyText = await res.text();
@@ -437,7 +522,8 @@ async function sendPublicAlertEmails(env, crossings) {
         from: env.ALERT_FROM,
         to: s.email,
         subject: subject,
-        text: lines + '\n\nUnsubscribe: ' + unsubUrl
+        text: lines + '\n\nUnsubscribe: ' + unsubUrl,
+        html: buildAlertEmailHtml(crossings, unsubUrl)
       };
     });
     try {
