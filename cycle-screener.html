@@ -510,6 +510,35 @@ var STOCKS = [{"ticker": "FRONT", "name": "Frontline", "exchange": "Oslo Børs",
 var activeZone = 'all';
 var activeSector = 'all';
 
+// Every stock's zone/note above is a hardcoded snapshot from whenever this
+// page was written (e.g. every Brent-driven stock frozen at "Brent $93 -
+// HOLD"). Overlay the live value + zone from signals-loader.js
+// (window.SignycleData) via signalId, so the BUY/NEUTRAL/SELL bucket and
+// note text reflect today's price. Falls back to the hardcoded snapshot
+// if live data isn't ready yet. This screener only has 3 buckets, so the
+// canonical "warn" (near-sell) zone folds into neutral rather than sell —
+// it hasn't actually crossed the sell threshold — though the note text
+// still calls it out as "NEAR SELL" for anyone reading the card.
+var ZONE_BUCKET_MAP = { buy: 'buy', neutral: 'neutral', warn: 'neutral', sell: 'sell' };
+var ZONE_NOTE_LABEL = { buy: 'BUY zone', neutral: 'neutral zone', warn: 'NEAR SELL zone', sell: 'SELL zone' };
+
+function fmtLiveVal(v) {
+  var n = parseFloat(v);
+  if (isNaN(n)) return v;
+  if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  if (n >= 100)  return n.toFixed(0);
+  return n.toFixed(1);
+}
+
+function withLiveZone(s) {
+  var d = window.SignycleData;
+  var sig = d && d.signals && d.signals[s.signalId];
+  if (!sig || sig.value == null || isNaN(parseFloat(sig.value))) return s;
+  var zone = ZONE_BUCKET_MAP[sig.zone] || s.zone;
+  var note = s.signal + ' ' + fmtLiveVal(sig.value) + ' ' + (sig.unit || '') + ' — ' + (ZONE_NOTE_LABEL[sig.zone] || s.zone + ' zone');
+  return Object.assign({}, s, { zone: zone, note: note });
+}
+
 function buildCard(s) {
   var link = s.url ? 'href="'+s.url+'"' : '';
   var tag = s.url ? 'a' : 'div';
@@ -528,7 +557,8 @@ function buildCard(s) {
 }
 
 function render() {
-  var filtered = STOCKS.filter(function(s) {
+  var live = STOCKS.map(withLiveZone);
+  var filtered = live.filter(function(s) {
     var zoneOk = activeZone === 'all' || s.zone === activeZone;
     var secOk = activeSector === 'all' || s.sector.toLowerCase() === activeSector;
     return zoneOk && secOk;
@@ -569,6 +599,7 @@ function filter(sector, btn) {
 }
 
 render();
+document.addEventListener('signalsLoaded', render);
 </script>
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-box">
