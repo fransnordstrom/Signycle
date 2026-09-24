@@ -1,5 +1,5 @@
 /**
- * Signycle Signals Worker v3.2
+ * Signycle Signals Worker v3.3
  * - Live prices from Yahoo Finance (Brent, WTI, Copper, Alum, Gold, Steel, Iron Ore, Lithium)
  * - Spread derived from live Brent/WTI, not entered manually
  * - Auto-calculates zone (buy/neutral/warn/sell) from thresholds
@@ -10,6 +10,9 @@
  *   real, growing price history to eventually replace the illustrative chart
  *   data currently baked into the site's HTML. Inert (no-op, no errors)
  *   until HISTORY_DB is bound to this Worker in the dashboard.
+ * - v3.3: alert emails (personal + public batch) are now styled HTML with
+ *   branding, per-signal zone badges and links, and a CTA button - see
+ *   buildAlertEmailHtml() - instead of a single plain-text sentence.
  */
 
 const CORS = {
