@@ -672,7 +672,7 @@ _initHamburger();
 <div class="hero-strip">
   <div>
     <div class="hero-title">Macro Cycle <span>Dashboard</span></div>
-    <div class="hero-meta">12 signals · Updated 8 Apr 2026 · <span id="liveTs"></span></div>
+    <div class="hero-meta">12 signals · Updated <span id="dashUpdatedDate">8 Apr 2026</span></div>
   </div>
   <div class="cycle-badge">
     <div class="cycle-score-num" id="cycleScoreNum">73/100</div>
@@ -773,11 +773,15 @@ function syncFromLoader() {
     brent: 'brent', copper: 'copper', gold: 'gold', bdi: 'bdi',
     vlcc: 'vlcc', lng: 'lng', salmon: 'salmon', silver: 'silver'
   };
+  // This page's status vocabulary predates the live API's: it has no
+  // separate "warn" zone, only buy/sell/approaching-sell(=near sell)/neutral.
+  var ZONE_MAP = { warn: 'approaching-sell' };
   SIGNALS.forEach(function(sig) {
     var key = map[sig.id];
     if (key && sd.signals[key] && sd.signals[key].value) {
       sig.val = sd.signals[key].value;
-      sig.status = sd.signals[key].zone || sig.status;
+      var zone = sd.signals[key].zone;
+      if (zone) sig.status = ZONE_MAP[zone] || zone;
     }
   });
   if (sd.cycleScore != null) {
@@ -790,12 +794,25 @@ function syncFromLoader() {
     var probEl = document.getElementById('recessionProb');
     if (probEl) probEl.textContent = RECESSION_PROB + '%';
   }
+  if (sd.updated) {
+    var dateEl = document.getElementById('dashUpdatedDate');
+    var m = String(sd.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (dateEl) {
+      if (m) {
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        dateEl.textContent = parseInt(m[3],10) + ' ' + months[parseInt(m[2],10)-1] + ' ' + m[1];
+      } else {
+        dateEl.textContent = sd.updated;
+      }
+    }
+  }
   buildGauges();
   buildHeatmap();
   buildSummary(); /* re-render with live values */
 }
-/* Try syncing after loader has had time to run */
+/* Try syncing after loader has had time to run, and again whenever it refreshes */
 setTimeout(syncFromLoader, 1500);
+document.addEventListener('signalsLoaded', syncFromLoader);
 var CYCLE_SCORE = 73;
 var RECESSION_PROB = 55;
 
