@@ -837,6 +837,21 @@ var SIGNAL_HIST = {
 var COL_MAP = {sell:'#e03e3e','approaching-sell':'#d97706',neutral:'#4a9070','approaching-buy':'#059669',buy:'#00956e'};
 var LABEL_MAP = {sell:'SELL','approaching-sell':'NEAR SELL',neutral:'NEUTRAL','approaching-buy':'NEAR BUY',buy:'BUY'};
 
+// Every stock's sig/sigNow/status below is a hardcoded snapshot from whenever
+// this page was written. Overlay the live value + zone from signals-loader.js
+// (window.SignycleData) where that signal is tracked, so the comparison
+// reflects today's price instead of freezing at build time. Falls back to
+// the hardcoded value if the loader hasn't populated data yet, or the stock's
+// sigId isn't one of the 21 tracked signals.
+var ZONE_STATUS_MAP = { buy: 'buy', neutral: 'neutral', warn: 'approaching-sell', sell: 'sell' };
+function withLiveSignal(s) {
+  var d = window.SignycleData;
+  var sig = d && d.signals && d.signals[s.sigId];
+  if (!sig || sig.value == null || isNaN(parseFloat(sig.value))) return s;
+  var status = ZONE_STATUS_MAP[sig.zone] || s.status;
+  return Object.assign({}, s, { sigNow: parseFloat(sig.value), status: status });
+}
+
 var selectedA = null, selectedB = null;
 
 // ── SEARCH ────────────────────────────────────────────────────────────────────
@@ -849,7 +864,7 @@ function setupSearch(inputId, dropdownId, slot) {
     if (!q) { drop.classList.remove('open'); return; }
     var matches = STOCKS.filter(function(s) {
       return s.ticker.toLowerCase().includes(q) || s.name.toLowerCase().includes(q) || s.exchange.toLowerCase().includes(q);
-    }).slice(0, 12);
+    }).slice(0, 12).map(withLiveSignal);
     drop.innerHTML = '';
     if (!matches.length) { drop.classList.remove('open'); return; }
     matches.forEach(function(s) {
