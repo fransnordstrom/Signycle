@@ -845,6 +845,34 @@ function sigZone(s){
   if(s.sv<=s.sb)return"buy";
   return"hold";
 }
+
+// Every stock's sv (signal value) is a hardcoded snapshot from whenever this
+// page was written, so sigZone() above always judged the SELL/BUY badge
+// against a frozen number. Overlay the live value from signals-loader.js
+// (window.SignycleData) by matching this page's free-text "sig" name to a
+// tracked signal id — this data has no sigId field, unlike stock-comparison
+// and cycle-screener, so the match is by name. A few signals here (coking
+// coal, thermal coal, LNG price, LPG freight) aren't tracked at all and
+// simply keep their hardcoded value.
+var SIG_ID_MAP = {
+  'BDI': 'bdi', 'Brent': 'brent', 'Global PMI': 'pmi', 'Iron ore': 'ironore',
+  'LME Copper': 'copper', 'LNG freight': 'lng', 'PCTC rate': 'pctc',
+  'Salmon spot': 'salmon', 'US HRC steel': 'steel', 'Urea': 'urea', 'VLCC rate': 'vlcc'
+};
+// These three freight-rate signals are tracked live in raw $/day, but this
+// page displays and thresholds them in k$/day (sb/ss like 30/100, not
+// 30000/100000) — divide by 1000 so the live value lands on the same scale
+// as this page's own sb/ss, instead of always reading "way past SELL".
+var KILO_PER_DAY = { vlcc: 1, pctc: 1, lng: 1 };
+function withLiveSv(s){
+  var d=window.SignycleData;
+  var id=SIG_ID_MAP[s.sig];
+  var sig=id&&d&&d.signals&&d.signals[id];
+  if(!sig||sig.value==null||isNaN(parseFloat(sig.value)))return s;
+  var v=parseFloat(sig.value);
+  if(KILO_PER_DAY[id]) v=v/1000;
+  return Object.assign({},s,{sv:v});
+}
 function fmt(v){
   if(typeof v==="number"&&v>999)return v.toLocaleString();
   return v;
@@ -886,7 +914,7 @@ function renderCard(s){
 var currentSector="all", currentZone="all";
 
 function render(){
-  var list=STOCKS.filter(function(s){
+  var list=STOCKS.map(withLiveSv).filter(function(s){
     if(currentSector!=="all"&&s.sec!==currentSector)return false;
     if(currentZone!=="all"&&zone(s)!==currentZone)return false;
     return true;
@@ -954,6 +982,7 @@ document.addEventListener("DOMContentLoaded",function(){
   updateChips();
   render();
 });
+document.addEventListener("signalsLoaded",render);
 </script>
 <script src="/signals-loader.js"></script>
 <script>
