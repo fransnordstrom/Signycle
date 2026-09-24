@@ -1,5 +1,5 @@
 /**
- * Signycle Signals Worker v3.3
+ * Signycle Signals Worker v3.4
  * - Live prices from Yahoo Finance (Brent, WTI, Copper, Alum, Gold, Steel, Iron Ore, Lithium)
  * - Spread derived from live Brent/WTI, not entered manually
  * - Auto-calculates zone (buy/neutral/warn/sell) from thresholds
@@ -13,6 +13,9 @@
  * - v3.3: alert emails (personal + public batch) are now styled HTML with
  *   branding, per-signal zone badges and links, and a CTA button - see
  *   buildAlertEmailHtml() - instead of a single plain-text sentence.
+ * - v3.4: eur10y is now live too, sourced from the ECB's own Statistical
+ *   Data Warehouse (free, no key, daily) instead of a manual KV value that
+ *   had drifted 5 months stale. See fetchEurYield().
  */
 
 const CORS = {
@@ -56,8 +59,9 @@ const THRESHOLDS = {
 
 // Display name + dedicated signal page for each id that can actually appear
 // in an alert (i.e. every key getLivePrices() can produce - the 8 Yahoo-priced
-// tickers plus the derived spread). wti and spread have no dedicated page of
-// their own, so both link to the page that covers them together.
+// tickers, the ECB-sourced eur10y, plus the derived spread). wti and spread
+// have no dedicated page of their own, so both link to the page that covers
+// them together.
 const SIGNAL_INFO = {
   brent:   { name: 'Brent Crude',    page: 'signal-brent-crude.html' },
   wti:     { name: 'WTI Crude',      page: 'compare-wti-brent.html' },
@@ -68,6 +72,7 @@ const SIGNAL_INFO = {
   ironore: { name: 'Iron Ore',       page: 'signal-iron-ore-price.html' },
   lithium: { name: 'Lithium Carbonate', page: 'signal-lithium-carbonate.html' },
   spread:  { name: 'Brent-WTI Spread', page: 'compare-wti-brent.html' },
+  eur10y:  { name: 'EUR 10Y Yield',  page: 'signal-eur-10y-rate.html' },
 };
 
 const ZONE_STYLE = {
@@ -173,16 +178,41 @@ async function fetchYahoo(ticker) {
   } catch (e) { return null; }
 }
 
+// Euro area 10Y government bond spot yield (AAA-rated), from the ECB's own
+// Statistical Data Warehouse — free, no API key, updated daily. Replaces the
+// manual eur10y entry, which drifted to 5 months stale before this existed.
+async function fetchEurYield() {
+  try {
+    const res = await fetch(
+      'https://data-api.ecb.europa.eu/service/data/YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y?lastNObservations=1&format=jsondata',
+      { headers: { 'Accept': 'application/json' } }
+    );
+    const data = await res.json();
+    const series = data?.dataSets?.[0]?.series;
+    const firstSeries = series && Object.values(series)[0];
+    const observations = firstSeries?.observations;
+    const firstObs = observations && Object.values(observations)[0];
+    const value = firstObs?.[0];
+    return typeof value === 'number' ? value : null;
+  } catch (e) { return null; }
+}
+
 async function getLivePrices() {
   const results = {};
-  await Promise.all(
-    Object.entries(LIVE_TICKERS).map(async ([id, cfg]) => {
+  await Promise.all([
+    ...Object.entries(LIVE_TICKERS).map(async ([id, cfg]) => {
       const raw = await fetchYahoo(cfg.ticker);
       if (raw !== null) {
         results[id] = Math.round(raw * cfg.multiply);
       }
-    })
-  );
+    }),
+    (async () => {
+      const yield10y = await fetchEurYield();
+      if (yield10y !== null) {
+        results.eur10y = Math.round(yield10y * 100) / 100;
+      }
+    })(),
+  ]);
   // Derive spread from the two live legs instead of trusting a separately
   // entered manual value, which could otherwise silently disagree with them.
   if (results.brent != null && results.wti != null) {

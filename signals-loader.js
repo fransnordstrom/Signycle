@@ -18,16 +18,18 @@
  * other and were sometimes visibly wrong (e.g. sellZoneCount=5 when 7 signals
  * were actually in sell zone). recessionProb stays manual — it's a macro
  * model output, not something derivable from signal zone counts.
+ * v3.6: eur10y added to LIVE_IDS — the Worker now sources it live from the
+ * ECB's own daily yield-curve data instead of manual entry (worker.js v3.4).
  */
 (function() {
   var WORKER_URL = 'https://signycle-signals.fransbgn.workers.dev';
   var WORKER_SOURCE = WORKER_URL + '/api/signals';
   var FALLBACK_SOURCE = '/signals-data.json';
-  // Must match worker.js's LIVE_TICKERS keys — the only signals the Worker
-  // actually prices live from Yahoo Finance. Everything else in its KV is
-  // just a stale mirror of a past manual publish, never more current than
-  // signals-data.json.
-  var LIVE_IDS = { brent:1, wti:1, spread:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1 };
+  // Must match worker.js's LIVE_TICKERS keys plus eur10y (sourced from the
+  // ECB, not Yahoo) — the only signals the Worker actually prices live.
+  // Everything else in its KV is just a stale mirror of a past manual
+  // publish, never more current than signals-data.json.
+  var LIVE_IDS = { brent:1, wti:1, spread:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1, eur10y:1 };
 
   // Inject a subtle loading placeholder for any [data-signal] element that
   // hasn't been filled yet, so an empty span never reads as a rendering bug
@@ -65,6 +67,18 @@
     if (!total) return null;
     var score = Math.round(sum / total);
     return { cycleScore: score, cyclePhase: phaseForScore(score), sellZoneCount: sellCount };
+  }
+
+  // Manual (non-live) signals are only as fresh as whoever last typed them
+  // into admin.html. Past this many days, flag it visibly rather than let
+  // it silently read as current data.
+  var STALE_THRESHOLD_DAYS = 45;
+  function daysStale(dateStr) {
+    if (!dateStr) return null;
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return null; // e.g. "Live" — not a real date, don't guess
+    var days = Math.floor((Date.now() - d.getTime()) / 86400000);
+    return days >= 0 ? days : null;
   }
 
   function fmt(value, decimals) {
@@ -111,6 +125,13 @@
           el.setAttribute('title', 'Live from Yahoo Finance');
           var badge = el.parentElement && el.parentElement.querySelector('.live-dot');
           if (badge) badge.style.display = 'inline';
+        } else {
+          var staleDays = daysStale(sig.date);
+          if (staleDays !== null && staleDays > STALE_THRESHOLD_DAYS) {
+            el.setAttribute('title', 'Not live — data as of ' + sig.date + ' (' + staleDays + ' days old)');
+            el.style.borderBottom = '1px dotted #d97706';
+            if (format === 'date') el.style.color = '#d97706';
+          }
         }
       }
     });
@@ -165,7 +186,7 @@
           }
           if (workerData.signals) {
             for (var wk in workerData.signals) {
-              if (!LIVE_IDS[wk]) continue; // not a Yahoo-priced signal — KV is a stale mirror, ignore it
+              if (!LIVE_IDS[wk]) continue; // not a live-priced signal — KV is a stale mirror, ignore it
               var workerSig = workerData.signals[wk];
               var manualSig = merged.signals[wk] || {};
               // Treat 0, null, undefined, NaN as missing — fall back to manual value
