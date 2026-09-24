@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Commodity Signals — Brent, BDI, Copper | Signycle</title>
-<meta name="description" content="Real-time tracking of 21 macro signals across commodities, shipping, and metals — see current BUY/SELL zones for Brent, copper, gold and more instantly.">
-<link rel="canonical" href="https://signycle.com/live-signals">
-<meta property="og:title" content="Live Commodity Signals — Brent, BDI, Copper | Signycle">
-<meta property="og:description" content="Real-time tracking of 21 macro signals across commodities, shipping, and metals — see current BUY/SELL zones for Brent, copper, gold and more instantly.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/live-signals.html">
-<meta property="og:image" content="https://signycle.com/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCFI Container Freight Signal — Buy &amp; Sell Thresholds | Signycle</title>
+<meta name="description" content="The Shanghai Containerized Freight Index tracks spot rates for shipping a container out of Shanghai to major world ports — the closest real-time read on global trade volume and container-shi">
+<link rel="canonical" href="https://signycle.com/signal-scfi-container">
+<meta property="og:title" content="SCFI Container Freight Signal | Signycle">
+<meta property="og:description" content="The Shanghai Containerized Freight Index tracks spot rates for shipping a container out of Shanghai to major world ports — the closest real-time read on global trade volume and container-shi">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signycle.com/signal-scfi-container.html">
+<meta property="og:site_name" content="Signycle">
+<meta property="og:image" content="https://signycle.com/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "SCFI\u0020Container\u0020Freight \u2014 Signycle Signal", "description": "The Shanghai Containerized Freight Index tracks spot rates for shipping a container out of Shanghai to major world ports — the closest real-time read on global trade volume and container-shi", "url": "https://signycle.com/signal-scfi-container.html"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
 <style>/* ── NAV ── */
@@ -64,140 +66,68 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .hamburger{display:flex;}
 }
 :root{
+  --bg:#ffffff;--surface:#f8faf9;--border:#e2e8e5;--border2:#d1dbd7;
   --green:#00956e;--green-dark:#007a5a;--green-light:#e6f5f1;--green-border:#b3e8d8;
-  --sell:#e03e3e;--sell-light:#fef2f2;--sell-border:#fecaca;
-  --gold:#d97706;--gold-light:#fffbeb;--gold-border:#fed7aa;
-  --border:#e2e8e5;--surface:#f8faf9;--text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--ink:#0c1c2e;
-  --mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;
+  --buy:#00956e;--sell:#e03e3e;--gold:#d97706;
+  --text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--bright:#1a2e25;--white:#1a2e25;
+  --void:#ffffff;--deep:#f8faf9;--tide:#00956e;--crest:#007a5a;--surface2:#f0f4f2;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{max-width:100%;overflow-x:hidden;}
-body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
+body{background:#ffffff;color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.75;overflow-x:hidden;}
 
-
-.logo{font-family:var(--sans);font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo{font-family:"DM Sans",sans-serif;font-size:1.25rem;font-weight:700;color:#0c1c2e;text-decoration:none;display:flex;align-items:center;gap:8px;}
 .logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
 
 
 .nav-link:hover,
-.nav-cta{background:var(--green);color:#fff;font-family:var(--sans);font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;}
+.nav-cta{background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;transition:background 0.15s;}
+.nav-cta:hover{background:var(--green-dark);}
 
 
-.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:99;}
+.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#ffffff;border-bottom:1px solid var(--border);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
 
 .mobile-menu 
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}}
-
-/* HERO */
-.hero{padding:6.5rem 1.5rem 2.5rem;background:#f0f4f2;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
-.hero-left h1{font-family:var(--sans);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.3rem;}
-.hero-left p{font-size:0.88rem;color:var(--dim);}
-.hero-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-.live-badge{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;color:var(--green);font-family:var(--mono);}
-.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.updated-ts{font-size:0.72rem;color:var(--muted);font-family:var(--mono);}
-
-/* SUMMARY BAR */
-.alert-signup{background:var(--green-light);border-bottom:1px solid var(--green-border);padding:0.9rem 1.5rem;}
-.alert-signup-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;}
-.alert-signup-label{font-size:0.82rem;font-weight:600;color:var(--ink);flex:1;min-width:220px;}
-.alert-signup-label span{display:block;font-size:0.72rem;font-weight:400;color:var(--dim);margin-top:0.15rem;}
-.alert-signup-form{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.alert-signup-form input{padding:0.55rem 0.8rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.82rem;font-family:var(--sans);min-width:220px;}
-.alert-signup-form input:focus{outline:none;border-color:var(--green);}
-.alert-signup-form button{padding:0.55rem 1.1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);}
-.alert-signup-form button:disabled{opacity:0.6;cursor:not-allowed;}
-.alert-signup-msg{font-size:0.76rem;margin-top:0.4rem;width:100%;}
-.alert-signup-msg.ok{color:var(--green-dark);}
-.alert-signup-msg.err{color:var(--sell);}
-.summary-bar{background:#fff;border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;}
-.summary-inner{max-width:1100px;margin:0 auto;display:flex;gap:2rem;flex-wrap:wrap;align-items:center;}
-.sum-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;}
-.sum-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-.sum-dot.buy{background:var(--green);}
-.sum-dot.neutral{background:var(--gold);}
-.sum-dot.sell{background:var(--sell);}
-.sum-label{color:var(--dim);}
-.sum-count{font-weight:700;color:var(--ink);font-family:var(--mono);}
-
-/* MAIN */
-.main{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
-
-/* FILTER TABS */
-.filter-row{display:flex;gap:0.5rem;flex-wrap:nowrap;overflow-x:auto;margin-bottom:2rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.filter-row::-webkit-scrollbar{display:none;}
-.ftab{font-size:0.75rem;font-weight:600;padding:0.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);color:var(--dim);cursor:pointer;transition:all 0.15s;background:#fff;white-space:nowrap;flex-shrink:0;}
-.ftab.active,.ftab:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
-
-/* SIGNAL GRID */
-.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;}
-.signals-section-title{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:1rem;display:flex;align-items:baseline;gap:0.6rem;flex-wrap:wrap;}
-.signals-section-title span{font-size:0.76rem;font-weight:400;color:var(--dim);}
-
-/* SIGNAL CARD */
-.sig-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow 0.15s;}
-.sig-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
-.sig-card.buy{border-color:rgba(0,149,110,0.3);background:linear-gradient(135deg,rgba(0,149,110,0.03) 0%,#fff 60%);}
-.sig-card.sell{border-color:rgba(224,62,62,0.3);background:linear-gradient(135deg,rgba(224,62,62,0.03) 0%,#fff 60%);}
-.sig-card.neutral{border-color:rgba(217,119,6,0.25);}
-
-.sig-status-bar{position:absolute;top:0;left:0;right:0;height:3px;}
-.sig-card.buy .sig-status-bar{background:linear-gradient(90deg,var(--green),#00c48a);}
-.sig-card.sell .sig-status-bar{background:linear-gradient(90deg,var(--sell),#c0392b);}
-.sig-card.neutral .sig-status-bar{background:linear-gradient(90deg,var(--gold),#f59e0b);}
-
-.sig-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
-.sig-name{font-size:0.95rem;font-weight:700;color:var(--ink);}
-.sig-badge{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;font-family:var(--mono);padding:0.3rem 0.9rem;border-radius:20px;}
-.sig-badge.buy{background:#f0fdf4;color:#166534;border:1px solid #86efac;}
-.sig-badge.sell{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
-.sig-badge.neutral{background:#f1f5f4;color:#64748b;border:1px solid #cbd5d1;}
-.sig-badge.warn{background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border);}
-
-.sig-value{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--ink);line-height:1;margin-bottom:0.3rem;}
-.sig-value.loading{color:var(--muted);font-size:1.2rem;}
-.sig-unit{font-size:0.72rem;color:var(--muted);margin-bottom:1rem;font-family:var(--mono);}
-
-/* THRESHOLD BAR */
-.thresh-wrap{margin:0.8rem 0;}
-.thresh-label-row{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);font-family:var(--mono);margin-bottom:0.3rem;}
-.thresh-bar-bg{height:6px;background:#f0f4f2;border-radius:3px;position:relative;overflow:visible;}
-.thresh-bar-fill{height:100%;border-radius:3px;transition:width 0.6s ease;}
-.thresh-marker{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);transform:translateX(-50%);transition:left 0.6s ease;}
-
-.thresh-zones{display:flex;height:4px;border-radius:2px;overflow:hidden;margin-top:4px;}
-.zone-buy{background:rgba(0,149,110,0.25);flex-shrink:0;}
-.zone-neutral{background:rgba(217,119,6,0.2);}
-.zone-sell{background:rgba(224,62,62,0.2);flex-shrink:0;}
-
-.sig-thresholds{display:flex;gap:0.5rem;margin-top:0.8rem;}
-.thresh-pill{font-size:0.65rem;font-family:var(--mono);padding:0.2rem 0.6rem;border-radius:4px;display:flex;align-items:center;gap:0.3rem;}
-.thresh-pill.buy{background:rgba(0,149,110,0.08);color:var(--green);border:1px solid rgba(0,149,110,0.2);}
-.thresh-pill.sell{background:rgba(224,62,62,0.08);color:var(--sell);border:1px solid rgba(224,62,62,0.2);}
-
-.sig-stocks{margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border);}
-.sig-stocks-label{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
-.stock-chips{display:flex;flex-wrap:wrap;gap:0.3rem;}
-.stock-chip{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#f0f4f2;border:1px solid #e2e8e5;border-radius:4px;color:var(--dim);text-decoration:none;}
-.stock-chip:hover{border-color:var(--green);color:var(--green);}
-.stock-chip-more{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#fff;border:1px dashed #cbd5d1;border-radius:4px;color:var(--dim);cursor:pointer;}
-.stock-chip-more:hover{border-color:var(--green);color:var(--green);}
-
-.sig-source{font-size:0.62rem;color:var(--muted);margin-top:0.6rem;display:flex;align-items:center;gap:0.3rem;}
-.sig-source.live::before{content:'●';color:var(--green);font-size:0.5rem;}
-.sig-source.manual::before{content:'○';color:var(--muted);font-size:0.5rem;}
-
-/* CTA BOX */
-.cta-box{background:linear-gradient(135deg,var(--green-light),#f0faf6);border:1px solid var(--green-border);border-radius:12px;padding:1.5rem 2rem;margin-top:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.cta-text h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem;}
-.cta-text p{font-size:0.82rem;color:var(--dim);}
-.cta-btn{background:var(--green);color:#fff;font-family:var(--sans);font-size:0.88rem;font-weight:700;padding:0.7rem 1.5rem;border-radius:8px;text-decoration:none;white-space:nowrap;}
-
-footer{background:#f0f4f2;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);}
-.footer-logo{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--ink);}
-@media(max-width:640px){.main{padding:2rem 1rem 3rem;}.signals-grid{grid-template-columns:1fr;}.cta-box{flex-direction:column;}footer{padding:1.5rem;flex-direction:column;}}
+.mobile-menu .nav-cta{width:fit-content;margin-top:0.5rem;}
+@media(max-width:768px){nav{padding:1rem 1.25rem;}.logo{font-size:1.1rem;}.nav-links,.nav-cta{display:none;}}
+.hero{padding:7rem 1.5rem 3.5rem;background:#f8faf9;border-bottom:1px solid var(--border);}
+.hero-inner{max-width:760px;margin:0 auto;}
+.eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+.eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--green);border-radius:1px;}
+h1{font-family:"DM Sans",sans-serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;color:#0c1c2e;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem;}
+h1 em{font-style:italic;color:var(--green);}
+.hero-meta{font-size:0.78rem;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap;}
+.article{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 6rem;}
+h2{font-family:"DM Sans",sans-serif;font-size:1.45rem;font-weight:700;color:#0c1c2e;margin:2.5rem 0 1rem;letter-spacing:-0.02em;}
+h3{font-family:"DM Sans",sans-serif;font-size:1.1rem;font-weight:700;color:#1a2e25;margin:2rem 0 0.8rem;}
+p{font-size:0.95rem;color:var(--text);margin-bottom:1.25rem;line-height:1.85;}
+.lead{font-size:1.05rem;color:#1a2e25;line-height:1.8;margin-bottom:2rem;border-left:3px solid var(--green);padding-left:1.2rem;background:var(--green-light);padding:1rem 1.2rem;border-radius:0 8px 8px 0;}
+.signal-box{background:#f8faf9;border:1px solid var(--border2);border-radius:10px;padding:1.5rem;margin:2rem 0;}
+.signal-box-title{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;}
+.signal-row{display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;font-size:0.88rem;}
+.signal-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;margin-top:2px;}
+.signal-icon.buy{background:rgba(0,149,110,0.12);color:var(--buy);border:1px solid rgba(0,149,110,0.3);}
+.signal-icon.sell{background:rgba(224,62,62,0.1);color:var(--sell);border:1px solid rgba(224,62,62,0.3);}
+.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
+.data-table th{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.65rem 1rem;text-align:left;border-bottom:2px solid var(--border);background:#f8faf9;}
+.data-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table td:first-child{color:#0c1c2e;font-weight:600;}
+.data-table tr:hover td{background:#f8faf9;}
+.highlight{color:var(--buy);font-weight:600;}
+.cta-box{background:linear-gradient(135deg,var(--green-light),#f0faf6);border:1px solid var(--green-border);border-radius:10px;padding:2rem;margin:3rem 0;text-align:center;}
+.cta-box h3{color:#0c1c2e;margin:0 0 0.8rem;font-size:1.1rem;}
+.cta-box p{font-size:0.88rem;color:var(--text);margin-bottom:1.5rem;}
+.cta-btn{display:inline-block;background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.88rem;font-weight:700;padding:0.75rem 2rem;border-radius:8px;text-decoration:none;transition:background 0.15s;}
+.cta-btn:hover{background:var(--green-dark);}
+.related{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+.related-title{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
+.related-links{display:flex;flex-direction:column;gap:0.6rem;}
+.related-link{font-size:0.88rem;color:var(--green);text-decoration:none;font-weight:500;}
+.related-link:hover{color:var(--green-dark);text-decoration:underline;}
+footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);}
+.footer-logo{font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;color:#0c1c2e;}
+@media(max-width:600px){.article{padding:2rem 1.1rem 4rem;}.signal-row{flex-direction:column;gap:0.4rem;}.hero{padding:6rem 1.1rem 2.5rem;}.data-table{font-size:0.78rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
 
 
 
@@ -282,12 +212,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
+
+.sig-hero{margin-top:58px;background:#0c1c2e;padding:4.5rem 1.5rem 2rem;}
+.sig-hero-inner{max-width:760px;margin:0 auto;}
+.sig-eyebrow{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.5rem;}
+.sig-h1{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;color:#fff;letter-spacing:-0.02em;margin:0 0 0.5rem;}
+.sig-source{font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:0.3rem;}
+.sig-current-val{font-family:'IBM Plex Mono',monospace;font-size:2.8rem;font-weight:800;margin:1.2rem 0 0.3rem;}
+.sig-bar-wrap{background:rgba(255,255,255,0.08);border-radius:6px;height:8px;margin:0.8rem 0;overflow:hidden;}
+.sig-bar-fill{height:100%;border-radius:6px;transition:width 0.6s;}
+.sig-thresh-labels{display:flex;justify-content:space-between;font-size:0.65rem;font-family:'IBM Plex Mono',monospace;color:rgba(255,255,255,0.4);}
+.sig-status-badge{display:inline-block;padding:0.25rem 0.8rem;border-radius:20px;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;}
+.sig-card{background:#fff;border:1px solid #e2e8e5;border-radius:12px;padding:1.2rem;margin:1rem 1rem;}
+.sig-card-title{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:0.8rem;}
+.sig-table{width:100%;border-collapse:collapse;}
+.sig-table tr{border-bottom:1px solid #f0f4f2;}
+.sig-table tr:last-child{border-bottom:none;}
+.stocks-grid{display:flex;flex-direction:column;gap:0.5rem;}
+.back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;font-weight:600;color:#00956e;text-decoration:none;margin:1rem 1rem 0;}
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
-     crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"Live Macro Signal Dashboard","description":"Track 21 live macro signals across global commodity and economic indicators. Updated weekly. Used to time entries and exits in cyclical stocks across 22 global exchanges.","url":"https://signycle.com/live-signals.html","publisher":{"@type":"Organization","name":"Signycle","url":"https://signycle.com"},"about":{"@type":"Thing","name":"Cyclical stock signals"},"audience":{"@type":"Audience","audienceType":"Investors"}}
-</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav>
@@ -410,7 +354,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
     <button class="hamburger" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button></div>
   </div>
 </nav>
-
 
 <div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner">
   <a href="index.html" class="nav-link"> Home</a>
@@ -724,588 +667,127 @@ function _initHamburger() {
 _initHamburger();
 </script>
 
+<a href="live-signals.html" class="back-link">&larr; All signals</a>
 
+<div class="sig-hero">
+  <div class="sig-hero-inner">
+    <div class="sig-eyebrow">Signycle &middot; Signal</div>
+    <h1 class="sig-h1">SCFI Container Freight</h1>
+    <div class="sig-source">Source: Shanghai Shipping Exchange</div>
 
+    <div class="sig-current-val"><span data-signal="scfi" data-format="valueOnly">&middot;&middot;&middot;</span> <span style="font-size:1.1rem;font-weight:400;color:rgba(255,255,255,0.5);">index</span></div>
+    <div class="sig-status-badge" data-zone-badge="scfi" style="background:#94a3b822;color:#94a3b8;border:1px solid #94a3b844;">&middot;&middot;&middot;</div>
 
-
-
-
-
-<!-- NEWS TICKER -->
-<div id="newsTicker" style="background:#0c1c2e;color:#a0b0ab;padding:0.6rem 1.5rem;font-size:0.75rem;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;gap:1rem;overflow:hidden;">
-  <span style="color:#00956e;font-weight:700;white-space:nowrap;">LIVE NEWS</span>
-  <div id="tickerContent" style="overflow:hidden;white-space:nowrap;flex:1;">Loading latest news...</div>
-  <a href="news.html" style="color:#00956e;font-weight:700;white-space:nowrap;text-decoration:none;font-size:0.72rem;">All news →</a>
-</div>
-<script>
-(function(){
-  const rssUrl = 'https://news.google.com/rss/search?q=Brent+crude+oil+VLCC+tanker+BDI+copper+LNG&hl=en&gl=US&ceid=US:en';
-  const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl) + '&count=10';
-  fetch(apiUrl, {signal: AbortSignal.timeout(6000)})
-    .then(r => r.json())
-    .then(data => {
-      if (data.status !== 'ok' || !data.items?.length) return;
-      const headlines = data.items
-        .map(i => i.title?.replace(/\s*-\s*[A-Z][^-]{2,40}$/, '').trim())
-        .filter(Boolean);
-      if (!headlines.length) return;
-      const ticker = document.getElementById('tickerContent');
-      ticker.innerHTML = headlines.map(h => `<span style="margin-right:4rem">${h}</span>`).join('');
-      let pos = 0;
-      setInterval(() => {
-        pos = (pos + 1) % (ticker.scrollWidth || 1000);
-        ticker.style.transform = `translateX(-${pos}px)`;
-      }, 35);
-    })
-    .catch(() => {
-      const ticker = document.getElementById('tickerContent');
-      if (ticker) ticker.textContent = 'Brent $99.75 · VLCC rates elevated (Hormuz 95% closed) · BDI 2,066 · Copper $12,138 — signycle.com/news.html';
-    });
-})();
-</script>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-left">
-      <h1>Live Signal Dashboard</h1>
-      <p>21 macro signals · 250+ stocks · 42+ global exchanges</p>
+    <div class="sig-bar-wrap" style="margin-top:1rem;">
+      <div class="sig-bar-fill" style="width:50%;background:#94a3b8;"></div>
     </div>
-    <div class="hero-meta">
-      <div class="live-badge"><div class="live-dot"></div>Brent · Copper · Aluminium live</div>
-      <div class="updated-ts" id="updateTs">Loading…</div>
+    <div class="sig-thresh-labels">
+      <span>BUY &lt;800</span>
+      <span>SELL &gt;3,500</span>
+    </div>
+
+    <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;line-height:1.6;margin-top:1.2rem;">The Shanghai Containerized Freight Index tracks spot rates for shipping a container out of Shanghai to major world ports — the closest real-time read on global trade volume and container-ship capacity. It is one of the most volatile signals tracked here, capable of multiplying several-fold within a year.</p>
+  </div>
+</div>
+
+<div style="max-width:760px;margin:0 auto;">
+
+  <div class="sig-card">
+    <div class="sig-card-title">Signal Thresholds</div>
+    <div class="signal-box" style="margin:0;">
+      <div class="signal-row"><div class="signal-icon buy">&#9650;</div><div><strong>BUY:</strong> SCFI Container Freight falls below 800 index &mdash; exposed stocks at cyclical trough, contrarian BUY zone</div></div>
+      <div class="signal-row"><div class="signal-icon sell">&#9660;</div><div><strong>SELL:</strong> SCFI Container Freight rises above 3,500 index &mdash; exposed stocks priced for continued strength, reduce exposure</div></div>
     </div>
   </div>
-</div>
 
-<div class="alert-signup">
-  <div class="alert-signup-inner">
-    <div class="alert-signup-label">
-      Get emailed when a signal crosses a zone
-      <span>Brent, copper, gold and more — sent the moment it happens, both ways.</span>
+  <div class="sig-card">
+    <div class="sig-card-title">How to Read SCFI Container Freight as a Cycle Signal</div>
+    <div style="font-size:0.9rem;line-height:1.7;color:#334155;">
+      <h2 style="font-size:1.15rem;color:#0c1c2e;margin:1.2rem 0 0.6rem;">Global trade's most direct price signal</h2>
+      <p>Roughly 80% of world trade by volume moves by sea, and container shipping carries the finished and intermediate goods that make up the bulk of that trade. When consumer demand or restocking accelerates faster than ships can carry cargo, spot rates spike almost immediately — there is no inventory of "ship capacity" to draw down the way there is with a physical commodity.</p>
+
+      <h2 style="font-size:1.15rem;color:#0c1c2e;margin:1.2rem 0 0.6rem;">Boom-bust ordering cycles</h2>
+      <p>Container lines respond to strong rates by ordering new ships, which take two to four years to arrive. That lag means a rate spike is often followed, several years later, by a wave of newbuild deliveries landing into a market that has already normalized — the same overshoot-in-both-directions dynamic seen in LNG and VLCC freight, just on a larger and more famous scale (SCFI multiplied roughly tenfold during 2020-2021 before collapsing).</p>
+
+      <h2 style="font-size:1.15rem;color:#0c1c2e;margin:1.2rem 0 0.6rem;">Reading the signal</h2>
+      <p>Rates near the buy threshold reflect a demand air-pocket or fleet oversupply — the point at which container-line earnings and share prices are typically at their most depressed. Rates in the sell zone reflect a genuine capacity crunch, historically the point at which pricing power for shipping lines peaks before new capacity and demand normalization bring rates back down.</p>
+
     </div>
-    <form class="alert-signup-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
-      <input type="email" id="alertSignupEmail" placeholder="you@example.com" required>
-      <button type="submit" id="alertSignupBtn">Get alerts</button>
-      <div class="alert-signup-msg" id="alertSignupMsg"></div>
-    </form>
-  </div>
-</div>
-
-<script>
-function submitAlertSignup(e, emailId, btnId, msgId) {
-  e.preventDefault();
-  var btn = document.getElementById(btnId);
-  var msg = document.getElementById(msgId);
-  var emailEl = document.getElementById(emailId);
-  var email = emailEl.value.trim();
-  btn.disabled = true;
-  msg.textContent = '';
-  msg.className = 'alert-signup-msg';
-  fetch('https://signycle-signals.fransbgn.workers.dev/api/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
-  })
-    .then(function(r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
-    .then(function(res) {
-      btn.disabled = false;
-      if (res.status === 200) {
-        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'You’re subscribed!';
-        msg.className = 'alert-signup-msg ok';
-        emailEl.value = '';
-      } else {
-        msg.textContent = res.data.error || 'Something went wrong — please try again.';
-        msg.className = 'alert-signup-msg err';
-      }
-    })
-    .catch(function() {
-      btn.disabled = false;
-      msg.textContent = 'Network error — please try again.';
-      msg.className = 'alert-signup-msg err';
-    });
-  return false;
-}
-</script>
-
-<div class="summary-bar">
-  <div class="summary-inner">
-    <div class="sum-item"><div class="sum-dot buy"></div><span class="sum-count" id="countBuy">–</span><span class="sum-label">&nbsp;BUY zone</span></div>
-    <div class="sum-item"><div class="sum-dot neutral"></div><span class="sum-count" id="countNeutral">–</span><span class="sum-label">&nbsp;Neutral</span></div>
-    <div class="sum-item"><div class="sum-dot sell"></div><span class="sum-count" id="countSell">–</span><span class="sum-label">&nbsp;SELL zone</span></div>
-  </div>
-</div>
-
-<div class="main">
-  <div class="filter-row">
-    <div class="ftab active" onclick="filterCards('all',this)">All signals</div>
-    <div class="ftab" onclick="filterCards('buy',this)">BUY zone</div>
-    <div class="ftab" onclick="filterCards('neutral',this)">Neutral</div>
-    <div class="ftab" onclick="filterCards('sell',this)">SELL zone</div>
-    <div class="ftab" onclick="filterCards('live',this)">Live only</div>
   </div>
 
-  <h2 class="signals-section-title">Live signals <span>Updated every few minutes from Yahoo Finance</span></h2>
-  <div class="signals-grid" id="signalsGridLive"></div>
+  <div class="sig-card">
+    <div class="sig-card-title">Key Stocks &mdash; this signal</div>
+    <div class="stocks-grid">
+      <a href="blog-hmm-shipping-cycle.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.65rem 0.75rem;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;text-decoration:none;color:#0c1c2e;font-weight:600;font-size:0.85rem;transition:border-color 0.15s;" onmouseover="this.style.borderColor='#00956e'" onmouseout="this.style.borderColor='#e2e8e5'">
+        <span style="color:#00956e;">&rarr;</span>
+        <span>HMM</span>
+        <span style="margin-left:auto;font-size:0.7rem;color:#94a3b8;">KRX Korea</span>
+      </a>
+      <a href="blog-maersk-container-shipping.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.65rem 0.75rem;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;text-decoration:none;color:#0c1c2e;font-weight:600;font-size:0.85rem;transition:border-color 0.15s;" onmouseover="this.style.borderColor='#00956e'" onmouseout="this.style.borderColor='#e2e8e5'">
+        <span style="color:#00956e;">&rarr;</span>
+        <span>Maersk</span>
+        <span style="margin-left:auto;font-size:0.7rem;color:#94a3b8;">Nasdaq Copenhagen</span>
+      </a>
+    </div>
+  </div>
 
-  <h2 class="signals-section-title" style="margin-top:2.5rem;">Weekly-updated signals <span>Hand-researched, updated manually — see each card's date</span></h2>
-  <div class="signals-grid" id="signalsGridManual"></div>
+  <div class="sig-card" style="background:#f0fdf4;border-color:#86efac;">
+    <div class="sig-card-title" style="color:#15803d;">Track this signal live</div>
+    <p style="font-size:0.85rem;color:#475569;margin:0 0 0.8rem;">Signycle alerts you the moment SCFI Container Freight crosses BUY or SELL thresholds.</p>
+    <a href="live-signals.html" style="display:inline-block;background:#00956e;color:#fff;padding:0.6rem 1.4rem;border-radius:8px;font-weight:700;font-size:0.85rem;text-decoration:none;">View live signals &rarr;</a>
+    &nbsp;&nbsp;<a href="live-signals.html" style="font-size:0.82rem;color:#00956e;font-weight:600;text-decoration:none;">View all signals &rarr;</a>
+  </div>
 
 </div>
 
-
-  <div style="background:#f8faf9;border:1px solid #e2e8e5;border-radius:12px;padding:1.2rem 1.4rem;margin:2rem 0;">
-    <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#6b7f78;margin-bottom:0.8rem;">What to buy when signals trigger</div>
-    <a href="blog-shell-oil-cycle.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>When Brent hits SELL → Shell, Equinor, BP analysis</a>
-<a href="blog-freeport-copper-cycle.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>When Copper hits SELL → Freeport, Boliden, KGHM</a>
-<a href="blog-newmont-gold-cycle.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>When Gold hits SELL → Newmont, Barrick, AngloGold</a>
-<a href="blog-golden-ocean-bdi-cycle.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>When BDI turns NEUTRAL → Golden Ocean, Star Bulk</a>
-<a href="blog-albemarle-lithium-cycle.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>When Lithium nears BUY → Albemarle, SQM, Pilbara</a>
-<a href="blog-cyclical-vs-defensive-stocks.html" style="display:block;padding:0.5rem 0;text-decoration:none;color:#0c1c2e;font-size:0.85rem;font-weight:600;border-bottom:1px solid #f0f4f2;" onmouseover="this.style.color='#00956e'" onmouseout="this.style.color='#0c1c2e'"><span style="color:#00956e;margin-right:0.4rem;">→</span>How to allocate when signals are in SELL</a>
-  </div>
 <footer>
   <div class="footer-logo">Signycle</div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a> · <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy Policy</a>
+  <div>© 2025 Signycle. For informational purposes only. Not financial advice.</div>
+
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a>
+    <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
     <a href="disclaimer.html" style="color:#a0b0ab;text-decoration:none;">Disclaimer</a>
-    <a href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener" style="color:#a0b0ab;text-decoration:none;">LinkedIn</a>
-    <a href="about.html" style="color:#a0b0ab;text-decoration:none;">About</a>
-    <a href="contact.html" style="color:#a0b0ab;text-decoration:none;">Contact</a>
   </div>
-  <div>© 2026 Signycle. Not financial advice.</div>
 </footer>
-
+<script src="/signals-loader.js"></script>
 <script>
-// ── SIGNAL DEFINITIONS ────────────────────────────────────────────────────
-const SIGNALS = [
-  {
-    id:'defense',signalPage:'signal-nato-defence.html', name:'NATO Defence Spending', category:'Defence',
-    ticker:null, live:false,
-    manualValue:2.4, manualDate:'8 Apr 2026',
-    unit:'% of GDP avg', buyThresh:2.0, sellThresh:3.5, decimals:1,
-    min:1.0, max:5.0,
-    stocks:[
-      {t:'RHM',u:'blog-rheinmetall-defense-cycle.html'},
-      {t:'BAES',u:'blog-baesystems-defense-cycle.html'},
-      {t:'SAAB',u:'blog-saab-defense-cycle.html'},
-      {t:'LDO',u:'blog-leonardo-defense-cycle.html'},
-      {t:'HO',u:'blog-thales-defense-cycle.html'},
-    ]
-  },
-  {
-    id:'brent',signalPage:'signal-brent-crude.html', name:'Brent Crude Oil', category:'Energy',
-    ticker:'brent', live:true,
-    manualValue:108.7, manualDate:'10 Sep 2026',
-    unit:'USD/bbl', buyThresh:50, sellThresh:105, decimals:1,
-    min:20, max:150,
-    stocks:[
-      {t:'EQNR',u:'blog-equinor-brent-cycle.html'},
-      {t:'SUBC',u:'blog-subsea7-brent-cycle.html'},
-      {t:'OMV',u:'blog-omv-oil-cycle.html'},
-      {t:'GALP',u:'blog-galp-oil-cycle.html'},
-      {t:'ENI',u:'blog-eni-oil-cycle.html'},
-      {t:'SHEL',u:'blog-shell-oil-cycle.html'},
-      {t:'TTE',u:'blog-totalenergies-oil-cycle.html'},
-    ]
-  },
-  {
-    id:'copper',signalPage:'signal-lme-copper.html', name:'LME Copper', category:'Metals',
-    ticker:'copper', live:true,
-    manualValue:12138, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:5000, sellThresh:9000, decimals:0,
-    min:3000, max:12000,
-    stocks:[
-      {t:'KGHM',u:'blog-kghm-copper-cycle.html'},
-      {t:'GLEN',u:'blog-glencore-commodities-cycle.html'},
-      {t:'ANTO',u:'blog-antofagasta-copper-cycle.html'},
-      {t:'AAL',u:'blog-angloamerican-copper-cycle.html'},
-      {t:'UMI',u:'blog-umicore-copper-cycle.html'},
-    ]
-  },
-  {
-    id:'alum',signalPage:'signal-aluminium-price.html', name:'LME Aluminium', category:'Metals',
-    ticker:'alum', live:true,
-    manualValue:3478, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:1600, sellThresh:3200, decimals:0,
-    min:1000, max:4000,
-    stocks:[
-      {t:'NHY',u:'blog-norsk-hydro-alum-cycle.html'},
-      {t:'ELK',u:'blog-elkem-silicon-cycle.html'},
-      {t:'MYTIL',u:'blog-mytilineos-alum-cycle.html'},
-    ]
-  },
-  {
-    id:'lng',signalPage:'signal-lng-freight-rate.html', name:'LNG Spot Charter Rate', category:'Shipping',
-    ticker:null, live:false,
-    manualValue:55000, manualDate:'17 Apr 2026',
-    unit:'USD/day', buyThresh:10000, sellThresh:80000, decimals:0,
-    min:0, max:200000,
-    stocks:[
-      {t:'ALNG',u:'blog-awilco-lng-cycle.html'},
-      {t:'GLNG',u:'blog-golar-lng-cycle.html'},
-    ]
-  },
-  {
-    id:'bdi',signalPage:'signal-baltic-dry-index.html', name:'Baltic Dry Index', category:'Shipping',
-    ticker:null, live:false,
-    manualValue:2095, manualDate:'12 Apr 2026',
-    unit:'points', buyThresh:900, sellThresh:3000, decimals:0,
-    min:0, max:5000,
-    stocks:[
-      {t:'SBLK',u:'blog-star-bulk-bdi-cycle.html'},
-      {t:'2020',u:'blog-2020-bulkers-bdi.html'},
-      {t:'HAUTO',u:'blog-hoegh-autoliners-pctc-cycle.html'},
-    ]
-  },
-  {
-    id:'vlcc',signalPage:'signal-vlcc-rate.html', name:'VLCC Spot Rate', category:'Shipping',
-    ticker:null, live:false,
-    manualValue:120000, manualDate:'17 Apr 2026',
-    unit:'USD/day', buyThresh:15000, sellThresh:75000, decimals:0,
-    min:0, max:120000,
-    stocks:[
-      {t:'FRO',u:'blog-frontline-vlcc-cycle.html'},
-      {t:'HAFNI',u:'blog-hafnia-vlcc-cycle.html'},
-    ]
-  },
-  {
-    id:'pmi',signalPage:'signal-global-pmi.html', name:'Global Manufacturing PMI', category:'Industrial',
-    ticker:null, live:false,
-    manualValue:51.4, manualDate:'Feb 2026',
-    unit:'index', buyThresh:48, sellThresh:60, decimals:1,
-    min:40, max:60,
-    stocks:[
-      {t:'BMW',u:'blog-bmw-volkswagen-cycle.html'},
-      {t:'STLA',u:'blog-stellantis-auto-cycle.html'},
-      {t:'CRH',u:'blog-crh-pmi-cycle.html'},
-      {t:'KGS',u:'blog-kingspan-pmi-cycle.html'},
-      {t:'SGO',u:'blog-saintgobain-pmi-cycle.html'},
-    ]
-  },
-  {
-    id:'eur10y',signalPage:'signal-eur-10y-rate.html', name:'EUR 10-Year Rate', category:'Rates',
-    ticker:'EURIBOR=', live:false,
-    manualValue:2.93, manualDate:'8 Apr 2026',
-    unit:'% yield', buyThresh:1.5, sellThresh:3.5, decimals:2,
-    min:0, max:5,
-    stocks:[
-      {t:'VER',u:'blog-verbund-rate-cycle.html'},
-      {t:'EDP',u:'blog-edp-rate-cycle.html'},
-      {t:'ELI',u:'blog-elia-rate-cycle.html'},
-      {t:'ENEL',u:'blog-enel-rate-cycle.html'},
-      {t:'IBE',u:'blog-iberdrola-wind-cycle.html'},
-    ]
-  },
-  {
-    id:'salmon',signalPage:'signal-salmon-price.html', name:'Norwegian Salmon Price', category:'Seafood',
-    ticker:null, live:false,
-    manualValue:91,  manualDate:'8 Apr 2026',
-    unit:'NOK/kg', buyThresh:42, sellThresh:82, decimals:0,
-    min:20, max:120,
-    stocks:[
-      {t:'MOWI',u:'blog-mowi-salmon-cycle.html'},
-    ]
-  },
-  {
-    id:'steel',signalPage:'signal-us-hrc-steel.html', name:'Steel HRC Price', category:'Metals',
-    ticker:'steel', live:true,
-    manualValue:1322, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:700, sellThresh:1450, decimals:0,
-    min:200, max:2000,
-    stocks:[
-      {t:'MT',u:'blog-arcelormittal-steel-cycle.html'},
-      {t:'SSAB',u:'blog-ssab-steel-analysis.html'},
-      {t:'TKA',u:'blog-thyssenkrupp-steel-cycle.html'},
-      {t:'VOE',u:'blog-voestalpine-steel-cycle.html'},
-      {t:'BEKB',u:'blog-bekaert-steel-cycle.html'},
-      {t:'JSW',u:'blog-jsw-steel-cycle.html'},
-    ]
-  },
-  {
-    id:'ironore',signalPage:'signal-iron-ore-price.html', name:'Iron Ore (62% Fe)', category:'Metals',
-    ticker:'ironore', live:true,
-    manualValue:96, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:60, sellThresh:100, decimals:0,
-    min:50, max:200,
-    stocks:[
-      {t:'RIO',u:'blog-rio-tinto-analysis.html'},
-      {t:'GLEN',u:'blog-glencore-commodities-cycle.html'},
-      {t:'AAL',u:'blog-angloamerican-copper-cycle.html'},
-    ]
-  },
-  {
-    id:'nbsk',signalPage:'signal-nbsk-pulp-price.html', name:'NBSK Pulp Price', category:'Forest',
-    ticker:null, live:false,
-    manualValue:920, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:750, sellThresh:1300, decimals:0,
-    min:500, max:1800,
-    stocks:[
-      {t:'STERV',u:'blog-stora-enso-upm-cycle.html'},
-      {t:'UPM',u:'blog-upm-pulp-cycle.html'},
-      {t:'NVG',u:'blog-navigator-pulp-cycle.html'},
-    ]
-  },
-  {
-    id:'urea',signalPage:'signal-urea-price.html', name:'Urea Price', category:'Agriculture',
-    ticker:null, live:false,
-    manualValue:530, manualDate:'8 Apr 2026',
-    unit:'USD/t', buyThresh:230, sellThresh:620, decimals:0,
-    min:150, max:800,
-    stocks:[
-      {t:'YAR',u:'blog-fertilizer-cycle-yara.html'},
-    ]
-  },
-  {
-    id:'scfi',signalPage:'signal-scfi-container.html', name:'SCFI Container Freight', category:'Shipping',
-    ticker:null, live:false,
-    manualValue:1850, manualDate:'8 Apr 2026',
-    unit:'points', buyThresh:800, sellThresh:3500, decimals:0,
-    min:400, max:5000,
-    stocks:[
-      {t:'MAERSK',u:'blog-maersk-container-shipping.html'},
-      {t:'DSV',u:'blog-dsv-logistics-pmi-cycle.html'},
-    ]
-  },
-  {
-    id:'pctc',signalPage:'signal-pctc-car-carrier.html', name:'PCTC Daily Rate', category:'Shipping',
-    ticker:null, live:false,
-    manualValue:28000, manualDate:'8 Apr 2026',
-    unit:'USD/day', buyThresh:8000, sellThresh:45000, decimals:0,
-    min:5000, max:60000,
-    stocks:[
-      {t:'HAUTO',u:'blog-hoegh-autoliners-pctc-cycle.html'},
-    ]
-  },
-  {
-    id:'rig',signalPage:'signal-rig-utilization.html', name:'Offshore Rig Utilisation', category:'Energy',
-    ticker:null, live:false,
-    manualValue:82, manualDate:'8 Apr 2026',
-    unit:'% utilised', buyThresh:70, sellThresh:92, decimals:0,
-    min:40, max:100,
-    stocks:[
-      {t:'AKA',u:'blog-akastor-rig-cycle.html'},
-      {t:'SUBC',u:'blog-subsea7-brent-cycle.html'},
-    ]
-  },
-  {
-    id:'flying', name:'Wide-Body Flying Hours', category:'Aviation',
-    ticker:null, live:false,
-    manualValue:104, manualDate:'8 Apr 2026',
-    unit:'% of 2019', buyThresh:85, sellThresh:130, decimals:0,
-    min:0, max:130,
-    stocks:[
-      {t:'RR',u:'blog-rolls-royce-aerospace-cycle.html'},
-      {t:'IAG',u:'blog-iag-aviation-cycle.html'},
-      {t:'AIR',u:'blog-airbus-aerospace-cycle.html'},
-    ]
-  },
-  {
-    id:'wfe', name:'Wafer Fab Equipment Spend', category:'Technology',
-    ticker:null, live:false,
-    manualValue:102, manualDate:'2025 est.',
-    unit:'USD bn/yr', buyThresh:80, sellThresh:140, decimals:0,
-    min:30, max:140,
-    stocks:[
-      {t:'ASML',u:'blog-asml-semiconductor-cycle.html'},
-      {t:'KNEBV',u:'blog-kone-elevator-cycle.html'},
-    ]
-  },
-  {
-    id:'gold', name:'Gold Price', category:'Precious Metals',
-    ticker:'gold', live:true,
-    manualValue:4743, manualDate:'12 Apr 2026',
-    unit:'$/oz', buyThresh:1200, sellThresh:2800, decimals:0,
-    min:1000, max:5000,
-    signalPage:'signal-gold-price.html',
-    stocks:[
-      {t:'NEM',u:'blog-newmont-gold-cycle.html'},
-      {t:'AU',u:'blog-anglogold-gold-cycle.html'},
-    ]
-  },
-  {id:'lithium', name:'Lithium Carbonate', category:'Battery Materials',
-    ticker:'lithium', live:true,
-    manualValue:17000, manualDate:'8 Apr 2026',
-    unit:'$/t', buyThresh:12000, sellThresh:40000, decimals:0,
-    min:5000, max:85000,
-    signalPage:'signal-lithium-carbonate.html',
-    stocks:[
-      {t:'ALB',u:'blog-albemarle-lithium-cycle.html'},
-      {t:'SQM',u:'blog-sqm-lithium-cycle.html'},
-      {t:'PLS',u:'blog-pilbara-lithium-cycle.html'},
-    ]
-  }];
-
-// ── HELPERS ───────────────────────────────────────────────────────────────
-function getStatus(val, buy, sell) {
-  if (val <= buy) return 'buy';
-  if (val >= sell) return 'sell';
-  return 'neutral';
+function toggleRegion(id) {
+  var sub = document.getElementById(id + '-sub');
+  var chev = document.getElementById(id + '-chev');
+  if (!sub) return;
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(90deg)';
 }
-
-function getPct(val, min, max) {
-  return Math.min(100, Math.max(0, ((val - min) / (max - min)) * 100));
+function toggleSGX(el) {
+  var sub = el.nextElementSibling;
+  var chev = el.querySelector('.sgx-chev');
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(180deg)';
 }
-
-function getBarColor(status) {
-  if (status === 'buy') return 'var(--green)';
-  if (status === 'sell') return 'var(--sell)';
-  if (status === 'warn') return 'var(--gold)';
-  return 'var(--muted)';
-}
-
-function fmtVal(val, decimals, unit) {
-  let s;
-  if (val >= 100000) s = (val/1000).toFixed(0) + 'k';
-  else if (val >= 10000) s = val.toLocaleString('en', {maximumFractionDigits:0});
-  else s = val.toFixed(decimals);
-  return s;
-}
-
-// ── RENDER CARD ───────────────────────────────────────────────────────────
-function renderCard(sig, val, loading, forceStatus) {
-  const status = loading ? 'neutral' : (forceStatus || getStatus(val, sig.buyThresh, sig.sellThresh));
-  const pct = loading ? 50 : getPct(val, sig.min, sig.max);
-  const buyPct = getPct(sig.buyThresh, sig.min, sig.max);
-  const sellPct = getPct(sig.sellThresh, sig.min, sig.max);
-
-  const allStocks = sig.stocks || [];
-  const visibleStocks = allStocks.slice(0, 3);
-  const hiddenStocks = allStocks.slice(3);
-  const stockChips = visibleStocks.map(s =>
-    `<a href="${s.u}" class="stock-chip">${s.t}</a>`
-  ).join('');
-  const hiddenChips = hiddenStocks.map(s =>
-    `<a href="${s.u}" class="stock-chip">${s.t}</a>`
-  ).join('');
-  const moreToggle = hiddenStocks.length
-    ? `<button type="button" class="stock-chip-more" onclick="this.style.display='none';this.nextElementSibling.style.display='contents';">+${hiddenStocks.length} more</button><span style="display:none;">${hiddenChips}</span>`
-    : '';
-
-  const badgeText = loading ? '…' : status.toUpperCase();
-  const valDisplay = loading
-    ? '<span class="sig-value loading">Loading…</span>'
-    : `<div class="sig-value">${fmtVal(val, sig.decimals, sig.unit)}</div>`;
-
-  return `
-<div class="sig-card ${status}" data-status="${status}" data-live="${sig.live}" data-id="${sig.id}">
-  <div class="sig-status-bar"></div>
-  <div class="sig-header">
-    ${sig.signalPage ? '<a href="'+sig.signalPage+'" class="sig-name" style="text-decoration:none;color:inherit;">'+sig.name+' ↗</a>' : '<div class="sig-name">'+sig.name+'</div>'}
-    <div class="sig-badge ${status}">${badgeText}</div>
-  </div>
-  ${valDisplay}
-  <div class="sig-unit">${sig.unit}</div>
-
-  <div class="thresh-wrap">
-    <div class="thresh-label-row">
-      <span>Buy ≤${fmtVal(sig.buyThresh, sig.decimals, sig.unit)}</span>
-      <span>Sell ≥${fmtVal(sig.sellThresh, sig.decimals, sig.unit)}</span>
-    </div>
-    <div class="thresh-bar-bg">
-      <div class="thresh-bar-fill" style="width:${pct}%;background:${getBarColor(status)}"></div>
-      <div class="thresh-marker" style="left:${pct}%;background:${getBarColor(status)}"></div>
-    </div>
-    <div class="thresh-zones">
-      <div class="zone-buy" style="width:${buyPct}%"></div>
-      <div class="zone-neutral" style="flex:1"></div>
-      <div class="zone-sell" style="width:${100-sellPct}%"></div>
-    </div>
-  </div>
-
-  ${allStocks.length ? `
-  <div class="sig-stocks">
-    <div class="sig-stocks-label">Affected stocks</div>
-    <div class="stock-chips">${stockChips}${moreToggle}</div>
-  </div>` : ''}
-
-  <div class="sig-source ${sig.live ? 'live' : 'manual'}">
-    ${sig.live ? 'Live · Yahoo Finance' : `Manual · updated ${sig.manualDate}`}
-  </div>
-</div>`;
-}
-
-// ── LIVE DATA ─────────────────────────────────────────────────────────────
-// Sourced entirely from signycle-signals.fransbgn.workers.dev via
-// signals-loader.js's `signalsLoaded` event — the same data every other page
-// on the site uses. Two earlier, independent fetch attempts used to live
-// here (a direct browser->Yahoo Finance call, blocked by Yahoo's CORS policy,
-// and a call to a `/api/price` route that was never implemented) — both
-// failed silently on every load, which is why this page never actually
-// updated despite the "live" badge and ticking timestamp.
-const VALUES = {};
-
-function applyLiveSignals(d) {
-  if (!d || !d.signals) return;
-  var liveCount = 0;
-  SIGNALS.forEach(function(sig) {
-    var match = d.signals[sig.id];
-    if (!match || match.value == null || isNaN(parseFloat(match.value))) return;
-    var val = parseFloat(match.value);
-    VALUES[sig.id] = val;
-    sig.live = !!match.live;
-    if (match.date) sig.manualDate = match.date;
-    if (sig.live) liveCount++;
-    var card = document.querySelector('[data-id="' + sig.id + '"]');
-    if (card) {
-      var newCard = document.createElement('div');
-      newCard.innerHTML = renderCard(sig, val, false, match.zone);
-      card.replaceWith(newCard.firstElementChild);
-    }
+// iOS Safari: attach touch+click handlers via addEventListener
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.mob-region-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
   });
-  updateCounts();
-
-  var badge = document.querySelector('.live-badge');
-  if (badge) {
-    badge.innerHTML = '<div class="live-dot"></div>' + liveCount + ' signals live · Yahoo Finance';
-  }
-  var tsEl = document.getElementById('updateTs');
-  if (tsEl) {
-    var now = new Date();
-    tsEl.textContent = 'Updated ' + now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' UTC';
-  }
-}
-document.addEventListener('signalsLoaded', function(e) { applyLiveSignals(e.detail); });
-
-// ── INIT ──────────────────────────────────────────────────────────────────
-async function init() {
-  const liveGrid = document.getElementById('signalsGridLive');
-  const manualGrid = document.getElementById('signalsGridManual');
-
-  // Render all cards with loading state first, split by live vs. manual
-  liveGrid.innerHTML = SIGNALS.filter(s => s.live).map(s => renderCard(s, s.manualValue, false)).join('');
-  manualGrid.innerHTML = SIGNALS.filter(s => !s.live).map(s => renderCard(s, s.manualValue, false)).join('');
-
-  updateCounts();
-
-  document.getElementById('updateTs').textContent = 'Loading live data…';
-}
-
-function updateCounts() {
-  const cards = document.querySelectorAll('.sig-card');
-  let buy=0, neutral=0, sell=0;
-  cards.forEach(c => {
-    const s = c.dataset.status;
-    if(s==='buy') buy++;
-    else if(s==='sell') sell++;
-    else neutral++;
+  document.querySelectorAll('.mob-sgx-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) { toggleSGX(el); });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleSGX(el);
+    });
   });
-  document.getElementById('countBuy').textContent = buy;
-  document.getElementById('countNeutral').textContent = neutral;
-  document.getElementById('countSell').textContent = sell;
-}
-
-function filterCards(type, btn) {
-  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.sig-card').forEach(c => {
-    let show = type === 'all' ? true
-      : type === 'live' ? c.dataset.live === 'true'
-      : c.dataset.status === type;
-    c.style.display = show ? '' : 'none';
-  });
-}
-
-document.addEventListener("DOMContentLoaded", init);
-
+});
 </script>
 <script>
 (function(){
@@ -1452,44 +934,4 @@ document.addEventListener("DOMContentLoaded", init);
     </div>
   </div>
 </div>
-<script src="/signals-loader.js"></script>
-<script>
-function toggleRegion(id) {
-  var sub = document.getElementById(id + '-sub');
-  var chev = document.getElementById(id + '-chev');
-  if (!sub) return;
-  var open = sub.style.display === 'block';
-  sub.style.display = open ? 'none' : 'block';
-  chev.style.transform = open ? '' : 'rotate(90deg)';
-}
-function toggleSGX(el) {
-  var sub = el.nextElementSibling;
-  var chev = el.querySelector('.sgx-chev');
-  var open = sub.style.display === 'block';
-  sub.style.display = open ? 'none' : 'block';
-  chev.style.transform = open ? '' : 'rotate(180deg)';
-}
-// iOS Safari: attach touch+click handlers via addEventListener
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.mob-region-toggle').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      var id = el.getAttribute('data-region');
-      if (id) toggleRegion(id);
-    });
-    el.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      var id = el.getAttribute('data-region');
-      if (id) toggleRegion(id);
-    });
-  });
-  document.querySelectorAll('.mob-sgx-toggle').forEach(function(el) {
-    el.addEventListener('click', function(e) { toggleSGX(el); });
-    el.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      toggleSGX(el);
-    });
-  });
-});
-</script>
-</body>
-</html>
+</body></html>
