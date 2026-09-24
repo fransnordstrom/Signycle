@@ -11,6 +11,13 @@
  * (BDI, VLCC, PMI, etc.) from whatever was last POSTed via admin.html — that
  * snapshot goes stale independently of signals-data.json and was overriding
  * fresher git-committed values with old ones (wrong value AND wrong zone).
+ * v3.5: cycleScore/cyclePhase/sellZoneCount are now computed from the actual
+ * merged per-signal zones instead of trusting the hand-typed numbers in
+ * signals-data.json (admin.html's meta_cycleScore/meta_sellZoneCount inputs),
+ * which had no mechanism keeping them in sync with live prices or with each
+ * other and were sometimes visibly wrong (e.g. sellZoneCount=5 when 7 signals
+ * were actually in sell zone). recessionProb stays manual — it's a macro
+ * model output, not something derivable from signal zone counts.
  */
 (function() {
   var WORKER_URL = 'https://signycle-signals.fransbgn.workers.dev';
@@ -29,6 +36,36 @@
   var style = document.createElement('style');
   style.textContent = '[data-signal]:empty::after{content:"···";opacity:.35;}';
   document.head.appendChild(style);
+
+  // Turns the merged per-signal zones into a live cycleScore/cyclePhase/
+  // sellZoneCount, replacing whatever was hand-typed into signals-data.json.
+  // Each zone maps to a representative point on the 0-100 BUY->SELL scale
+  // used sitewide (see how-it-works.html's bands); the score is their average.
+  var ZONE_POINTS = { buy: 15, neutral: 50, warn: 72, sell: 90 };
+  var PHASE_BANDS = [
+    [25, 'Deep BUY'], [45, 'Early Expansion'], [65, 'Mid Cycle'],
+    [80, 'Late Expansion'], [101, 'Distribution']
+  ];
+  function phaseForScore(score) {
+    for (var i = 0; i < PHASE_BANDS.length; i++) {
+      if (score < PHASE_BANDS[i][0]) return PHASE_BANDS[i][1];
+    }
+    return PHASE_BANDS[PHASE_BANDS.length - 1][1];
+  }
+  function computeCycleStats(signals) {
+    var sellCount = 0, total = 0, sum = 0;
+    for (var id in signals) {
+      if (id === 'spread') continue; // derived value, not an independently tracked signal
+      var zone = signals[id] && signals[id].zone;
+      if (!ZONE_POINTS.hasOwnProperty(zone)) continue;
+      total++;
+      sum += ZONE_POINTS[zone];
+      if (zone === 'sell') sellCount++;
+    }
+    if (!total) return null;
+    var score = Math.round(sum / total);
+    return { cycleScore: score, cyclePhase: phaseForScore(score), sellZoneCount: sellCount };
+  }
 
   function fmt(value, decimals) {
     var n = parseFloat(value);
@@ -131,9 +168,21 @@
               };
             }
           }
+          var stats = computeCycleStats(merged.signals);
+          if (stats) {
+            merged.cycleScore = stats.cycleScore;
+            merged.cyclePhase = stats.cyclePhase;
+            merged.sellZoneCount = stats.sellZoneCount;
+          }
           applyData(merged);
         })
         .catch(function() {
+          var stats = computeCycleStats(manualData.signals || {});
+          if (stats) {
+            manualData.cycleScore = stats.cycleScore;
+            manualData.cyclePhase = stats.cyclePhase;
+            manualData.sellZoneCount = stats.sellZoneCount;
+          }
           applyData(manualData);
         });
     })
