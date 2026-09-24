@@ -417,7 +417,7 @@ _initHamburger();
   <div class="cs-hero-inner">
     <div class="cs-eyebrow">Signycle · Tool</div>
     <h1 class="cs-h1">Cycle Screener</h1>
-    <p class="cs-sub">54 cyclical stocks screened by current signal zone · Updated 8 Apr 2026</p>
+    <p class="cs-sub">54 cyclical stocks screened by current signal zone · Updated <span class="live-updated-date">8 Apr 2026</span></p>
     <div class="cs-stats">
       <div class="cs-stat">
         <div class="cs-stat-num" style="color:#00956e;" id="statBuy">0</div>
@@ -753,6 +753,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+</script>
+
+<script>
+(function(){
+  function render(){
+    var d = window.SignycleData;
+    if(!d || !d.updated) return;
+    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    var pretty = d.updated;
+    if(m){
+      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+    }
+    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
+  }
+  render();
+  document.addEventListener('signalsLoaded', render);
+})();
 </script>
 </body>
 </html>

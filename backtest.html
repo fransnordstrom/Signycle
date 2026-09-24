@@ -985,6 +985,7 @@ function buildCards(trades) {
 
 function buildTable() {
   var tbody = document.getElementById('sigTableBody');
+  tbody.innerHTML = '';
   SIGNAL_SUMMARY.forEach(function(s) {
     var tr = document.createElement('tr');
     tr.innerHTML =

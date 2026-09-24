@@ -652,7 +652,7 @@ _initHamburger();
 
 <div class="hero">
   <div class="hero-inner">
-    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0891b2;margin-bottom:0.4rem;">Global Liquidity Cycle · Updated Mar 2026</div>
+    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0891b2;margin-bottom:0.4rem;">Global Liquidity Cycle · Updated <span class="live-updated-date">Mar 2026</span></div>
     <h1 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.6rem;">Global Liquidity Cycle Dashboard</h1>
     <p style="font-size:0.9rem;color:var(--dim);max-width:560px;margin-bottom:1.5rem;">Track central bank balance sheets, M2 money supply and global liquidity conditions — the macro driver that moves all asset markets. Rising liquidity = tailwind for equities. Falling liquidity = headwind.</p>
     <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
@@ -1059,6 +1059,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+</script>
+
+<script>
+(function(){
+  function render(){
+    var d = window.SignycleData;
+    if(!d || !d.updated) return;
+    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    var pretty = d.updated;
+    if(m){
+      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+    }
+    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
+  }
+  render();
+  document.addEventListener('signalsLoaded', render);
+})();
 </script>
 </body>
 </html>
