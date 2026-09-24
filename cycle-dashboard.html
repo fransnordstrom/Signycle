@@ -790,7 +790,9 @@ function syncFromLoader() {
     var probEl = document.getElementById('recessionProb');
     if (probEl) probEl.textContent = RECESSION_PROB + '%';
   }
-  render(); /* re-render with live values */
+  buildGauges();
+  buildHeatmap();
+  buildSummary(); /* re-render with live values */
 }
 /* Try syncing after loader has had time to run */
 setTimeout(syncFromLoader, 1500);
@@ -808,7 +810,7 @@ function setTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.tab===tab); });
   document.querySelectorAll('.tab-section').forEach(function(s){ s.style.display = s.dataset.section===tab ? '' : 'none'; });
   if(tab==='history') renderHistory();
-  if(tab==='gauges') renderGauges();
+  if(tab==='gauges') buildGauges();
   if(tab==='stocks') renderStocks();
 }
 
@@ -1001,6 +1003,7 @@ function renderStocks() {
 // ── SUMMARY TABLE ──────────────────────────────────────────────────────────────
 function buildSummary() {
   var tbody = document.getElementById('summaryBody');
+  tbody.innerHTML = '';
   SIGNALS.forEach(function(sig) {
     var tr = document.createElement('tr');
     var badge = sig.status==='sell'?'<span class="badge-sell">SELL</span>':
