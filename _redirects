@@ -873,7 +873,8 @@
 /dubai-dfm.html /dubai-dfm 301
 /egypt-egx.html /egypt-egx 301
 /euronext-amsterdam.html /euronext-amsterdam 301
-/euronext-brussel.html /euronext-brussel 301
+/euronext-brussel.html /euronext-brussels 301
+/euronext-brussel /euronext-brussels 301
 /euronext-brussels.html /euronext-brussels 301
 /euronext-dublin.html /euronext-dublin 301
 /euronext-lisboa.html /euronext-lisboa 301
@@ -1002,4 +1003,5 @@
 /what-is-vlcc-rate.html /what-is-vlcc-rate 301
 /where-are-we-in-the-cycle.html /where-are-we-in-the-cycle 301
 /wiener-boerse.html /wiener-boerse 301
-/wiener-borse.html /wiener-borse 301
+/wiener-borse.html /wiener-boerse 301
+/wiener-borse /wiener-boerse 301

@@ -1327,12 +1327,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/euronext-brussel</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/euronext-dublin</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -1640,12 +1634,6 @@
   </url>
   <url>
     <loc>https://signycle.com/six-swiss-exchange</loc>
-    <lastmod>2026-03-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/wiener-borse</loc>
     <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
