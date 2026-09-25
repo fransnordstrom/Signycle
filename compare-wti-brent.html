@@ -6,7 +6,7 @@
 <meta name="description" content="WTI vs Brent crude oil price difference explained. Current spread, historical cycles, which oil price signal matters for your stocks. Updated weekly.">
 <link rel="canonical" href="https://signycle.com/compare-wti-brent">
 <meta property="og:title" content="WTI vs Brent Crude Oil Price — What's the Difference? | Signycle">
-<meta property="og:description" content="Brent $92.0 vs WTI $87.5 Spread $4.5 — Hormuz risk premium still elevated but compressing. Which benchmark matters for European vs US energy stocks?">
+<meta property="og:description" content="Live Brent and WTI prices and the spread between them, tracked against Signycle's BUY/SELL thresholds. Which benchmark matters for European vs US energy stocks?">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://signycle.com/og-image.png">
 <script type="application/ld+json">
@@ -668,7 +668,7 @@ _initHamburger();
 
 <div class="hero">
   <div class="hero-inner">
-    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;">🔄 Updated weekly · Last update: 1 Jun 2026</div>
+    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;">🔄 Updated live &nbsp;·&nbsp; Last update: <span class="live-updated-date">1 Jun 2026</span></div>
     <h1>WTI vs Brent Crude Oil — Price, Spread & Cycle Signals</h1>
     <p style="font-size:1rem;color:var(--dim);max-width:620px;">Two benchmarks, one cycle. WTI and Brent move together — but the spread between them reveals geopolitical risk, logistics constraints and which energy stocks to watch.</p>
   </div>
@@ -681,17 +681,17 @@ _initHamburger();
 <div class="price-box">
   <div class="price-card brent">
     <div class="price-label">🌍 Brent Crude — Global benchmark</div>
-    <div class="price-value">$92.0</div>
+    <div class="price-value">$<span data-signal="brent" data-format="valueOnly">92.0</span></div>
     <div class="price-unit">per barrel · ICE London</div>
-    <div class="price-badge">⚠️ WARN — Hormuz premium unwinding</div>
-    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">BUY below $50 · SELL above $90</div>
+    <div class="price-badge" data-zone-badge="brent">···</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">BUY below $50 · SELL above $105</div>
   </div>
   <div class="price-card wti">
     <div class="price-label">&#127482;&#127480; WTI Crude — US benchmark</div>
-    <div class="price-value">$87.5</div>
+    <div class="price-value">$<span data-signal="wti" data-format="valueOnly">87.5</span></div>
     <div class="price-unit">per barrel · NYMEX New York</div>
-    <div class="price-badge">⚠️ WARN — falling on deal progress</div>
-    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">BUY below $45 · SELL above $85</div>
+    <div class="price-badge" data-zone-badge="wti">···</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">BUY below $45 · SELL above $95</div>
   </div>
 </div>
 
@@ -699,13 +699,13 @@ _initHamburger();
 <div class="spread-box">
   <div>
     <div class="spread-label">Brent / WTI Spread</div>
-    <div class="spread-value">+$4.5/bbl</div>
-    <div class="spread-status">Brent premium · compressed from $14 peak — deal in progress · de-escalation signals</div>
+    <div class="spread-value"><span id="spreadSign">+</span>$<span data-signal="spread" data-format="valueOnly">4.5</span>/bbl</div>
+    <div class="spread-status">Live — see the Brent/WTI/spread cards above for the current reading and zone.</div>
   </div>
   <div style="text-align:right;">
     <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#4a7060;margin-bottom:0.3rem;">Spread signal</div>
-    <div style="font-size:1rem;font-weight:700;color:#d97706;">🔴 WARN — deal in progress, narrowing</div>
-    <div style="font-size:0.72rem;color:#4a7060;">Narrowed from peak $14/bbl toward $3 threshold</div>
+    <div class="sig-badge" data-zone-badge="spread" style="font-size:1rem;font-weight:700;padding:0;background:transparent;">···</div>
+    <div style="font-size:0.72rem;color:#4a7060;">Normal range: $2-5/bbl · elevated above $8 · wide above $12</div>
   </div>
 </div>
 
@@ -718,7 +718,7 @@ _initHamburger();
     <tr><td><strong>API gravity</strong></td><td class="col-brent">38° — Light</td><td class="col-wti">39.6° — Very light, sweet</td></tr>
     <tr><td><strong>Sulphur</strong></td><td class="col-brent">0.37% — Sweet</td><td class="col-wti">0.24% — Very sweet</td></tr>
     <tr><td><strong>Market share</strong></td><td class="col-brent">~75% of global oil priced on Brent</td><td class="col-wti">US domestic + some exports</td></tr>
-    <tr><td><strong>Signycle signal</strong></td><td class="col-brent">⚠️ NEAR SELL — $92.0/bbl</td><td class="col-wti">⚠️ NEAR SELL — $89/bbl</td></tr>
+    <tr><td><strong>Signycle signal</strong></td><td class="col-brent"><span data-zone-badge="brent" class="sig-badge">···</span> — $<span data-signal="brent" data-format="valueOnly">92.0</span>/bbl</td><td class="col-wti"><span data-zone-badge="wti" class="sig-badge">···</span> — $<span data-signal="wti" data-format="valueOnly">89</span>/bbl</td></tr>
     <tr><td><strong>BUY threshold</strong></td><td class="col-brent">Below $50/bbl</td><td class="col-wti">Below $45/bbl</td></tr>
     <tr><td><strong>Relevant stocks</strong></td><td class="col-brent">Shell, BP, Equinor, TotalEnergies, Petrobras</td><td class="col-wti">ConocoPhillips, EOG, Pioneer, Diamondback</td></tr>
   </tbody>
@@ -735,7 +735,7 @@ _initHamburger();
   <div class="hist-row"><div class="hist-yr">2022</div><div class="hist-bar-bg"><div class="hist-fill" style="width:100%;background:#dc2626;">$100+ 🔴 SELL — Russia/Ukraine</div></div></div>
   <div class="hist-row"><div class="hist-yr">2023</div><div class="hist-bar-bg"><div class="hist-fill" style="width:80%;background:#d97706;">$80 — Elevated</div></div></div>
   <div class="hist-row"><div class="hist-yr">2024</div><div class="hist-bar-bg"><div class="hist-fill" style="width:84%;background:#d97706;">$84 — Near SELL</div></div></div>
-  <div class="hist-row"><div class="hist-yr" style="font-weight:700;color:var(--ink);">NOW</div><div class="hist-bar-bg" style="border:2px solid #dc2626;"><div class="hist-fill" style="width:95%;background:#d97706;">$92.0 ⚠️ NEAR SELL — Hormuz de-escalating</div></div></div>
+  <div class="hist-row"><div class="hist-yr" style="font-weight:700;color:var(--ink);">NOW</div><div class="hist-bar-bg" style="border:2px solid #dc2626;"><div class="hist-fill" id="brentNowBar" style="width:95%;background:#d97706;">$<span data-signal="brent" data-format="valueOnly">92.0</span></div></div></div>
   <div style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem;">SELL threshold: $100/bbl · BUY threshold: $50/bbl</div>
 </div>
 
@@ -759,8 +759,8 @@ _initHamburger();
 <h2>The Brent–WTI Spread as a Signal</h2>
 <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2rem;font-size:0.88rem;color:var(--text);line-height:1.8;">
   <p style="margin-bottom:1rem;">Normally the Brent/WTI spread is $2–5 per barrel, reflecting the cost of shipping US crude to global markets and minor quality differences. When the spread widens significantly, it tells a story.</p>
-  <p style="margin-bottom:1rem;"><strong>Wide spread (Brent $8–15 above WTI)</strong> — Geopolitical risk premium in Middle East or North Sea supply disruption. Seen during the 2011 Libya crisis ($26 spread), 2019 Saudi Aramco attacks ($10 spread) and early Hormuz escalations. This is a buy signal for US energy producers (WTI-priced) relative to global ones.</p>
-  <p><strong>Narrow or negative spread (WTI at premium)</strong> — US export constraints or Cushing inventory bottlenecks. Seen in 2011-2012 when Keystone pipeline delays caused US glut. Current spread of $4.5 remains elevated — Hormuz is still 95% closed and war-risk insurance has not returned, even as Trump postponed strikes.</p>
+  <p style="margin-bottom:1rem;"><strong>Wide spread (Brent $8–15 above WTI)</strong> — Geopolitical risk premium in Middle East or North Sea supply disruption. Seen during the 2011 Libya crisis ($26 spread) and the 2019 Saudi Aramco attacks ($10 spread). This is a buy signal for US energy producers (WTI-priced) relative to global ones.</p>
+  <p><strong>Narrow or negative spread (WTI at premium)</strong> — US export constraints or Cushing inventory bottlenecks. Seen in 2011-2012 when Keystone pipeline delays caused US glut. See the live spread reading above for where things stand right now.</p>
 </div>
 
 <h2>FAQ — WTI vs Brent</h2>
@@ -771,7 +771,7 @@ _initHamburger();
   </div>
   <div class="faq-item">
     <div class="faq-q">Is now a good time to buy oil stocks?</div>
-    <div class="faq-a">Based on the Signycle Brent cycle signal, not yet — but the picture is shifting. Brent fell from $112 to $92.0 in five days as Hormuz de-escalation signals emerged. At $92.0, Brent is just below the NEAR SELL threshold of $105. The best historical entry points are below $50. Watch the Brent/WTI spread — when it falls below $5, geopolitical premium has fully unwound and oil stocks reprice lower.</div>
+    <div class="faq-a">Based on the Signycle Brent cycle signal, see the live zone in the price card above — Brent's SELL threshold is $105/bbl. The best historical entry points are below $50. Watch the Brent/WTI spread — when it falls below $5, geopolitical premium has largely unwound and oil stocks tend to reprice lower.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">What is COMEX and how does it differ from NYMEX WTI?</div>
@@ -779,7 +779,7 @@ _initHamburger();
   </div>
   <div class="faq-item">
     <div class="faq-q">How does the Hormuz crisis affect the Brent–WTI spread?</div>
-    <div class="faq-a">The Strait of Hormuz carries approximately 20% of global oil supply. Disruption risk adds a geopolitical premium to Brent (which reflects Middle East supply risk) more than WTI (which reflects US domestic production). At peak Hormuz uncertainty, the spread widened to $14/barrel (highest since 2011 Libya crisis). As of 25 March 2026 the spread is $4.5 — compressing but still elevated. Markets are pricing partial de-escalation, not full resolution.</div>
+    <div class="faq-a">The Strait of Hormuz carries approximately 20% of global oil supply. Disruption risk adds a geopolitical premium to Brent (which reflects Middle East supply risk) more than WTI (which reflects US domestic production). At peak Hormuz uncertainty, the spread widened to $14/barrel (highest since the 2011 Libya crisis). See the live spread reading above for the current level.</div>
   </div>
 </div>
 
@@ -800,10 +800,10 @@ _initHamburger();
   <div class="sidebar-section" style="background:#fff8f0;border-color:#fed7aa;">
     <div class="sidebar-title" style="color:#c2410c;">🛢️ Oil Prices Now</div>
     <div style="font-size:0.82rem;color:var(--text);line-height:2;">
-      <div style="display:flex;justify-content:space-between;"><span>Brent</span><span style="font-family:monospace;font-weight:700;color:#d97706;">$92.0 ⚠️</span></div>
-      <div style="display:flex;justify-content:space-between;"><span>WTI</span><span style="font-family:monospace;font-weight:700;color:#d97706;">$87.5 ⚠️</span></div>
-      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:0.4rem;margin-top:0.4rem;"><span>Spread</span><span style="font-family:monospace;font-weight:700;">+$4.5</span></div>
-      <div style="font-size:0.7rem;color:var(--muted);margin-top:0.4rem;">Updated 30 Mar 2026</div>
+      <div style="display:flex;justify-content:space-between;"><span>Brent</span><span style="font-family:monospace;font-weight:700;">$<span data-signal="brent" data-format="valueOnly">92.0</span></span></div>
+      <div style="display:flex;justify-content:space-between;"><span>WTI</span><span style="font-family:monospace;font-weight:700;">$<span data-signal="wti" data-format="valueOnly">87.5</span></span></div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:0.4rem;margin-top:0.4rem;"><span>Spread</span><span style="font-family:monospace;font-weight:700;"><span id="spreadSignSidebar">+</span>$<span data-signal="spread" data-format="valueOnly">4.5</span></span></div>
+      <div style="font-size:0.7rem;color:var(--muted);margin-top:0.4rem;">Updated <span class="live-updated-date">30 Mar 2026</span></div>
     </div>
   </div>
   <div class="sidebar-section">
@@ -1022,6 +1022,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+</script>
+
+<script>
+(function(){
+  var BRENT = { buy: 50, sell: 105 };
+  var ZONE_COLOR = { buy: '#00956e', neutral: '#6b7f78', warn: '#d97706', sell: '#dc2626' };
+
+  function render(){
+    var d = window.SignycleData;
+    if(!d) return;
+
+    if (d.updated) {
+      var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      var pretty = d.updated;
+      if(m){
+        var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+      }
+      document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
+    }
+
+    var brent = d.signals && d.signals.brent;
+    var bar = document.getElementById('brentNowBar');
+    if (bar && brent && brent.value != null) {
+      var v = parseFloat(brent.value);
+      var pct = Math.max(0, Math.min(100, (v - BRENT.buy) / (BRENT.sell - BRENT.buy) * 100));
+      bar.style.width = pct + '%';
+      bar.style.background = ZONE_COLOR[brent.zone] || ZONE_COLOR.neutral;
+    }
+
+    // The spread's raw value already carries its own minus sign when WTI
+    // trades at a premium — only prepend "+" when it's actually positive,
+    // otherwise a hardcoded "+" in front of a negative number reads as "+-".
+    var spread = d.signals && d.signals.spread;
+    if (spread && spread.value != null) {
+      var isNeg = parseFloat(spread.value) < 0;
+      ['spreadSign', 'spreadSignSidebar'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (el) el.textContent = isNeg ? '' : '+';
+      });
+    }
+  }
+  render();
+  document.addEventListener('signalsLoaded', render);
+})();
 </script>
 </body>
 </html>
