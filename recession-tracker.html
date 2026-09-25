@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Are We In A Recession? Live Recession Tracker 2026 | Signycle</title>
-<meta name="description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators. Updated...">
+<meta name="description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
 <link rel="canonical" href="https://signycle.com/recession-tracker">
 <meta property="og:title" content="Are We In A Recession? Live Recession Tracker 2026 | Signycle">
-<meta property="og:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators. Updated...">
+<meta property="og:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/recession-tracker.html">
 <meta property="og:site_name" content="Signycle">
@@ -17,11 +17,11 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"Are we in a recession in 2026?","acceptedAnswer":{"@type":"Answer","text":"Based on 6 key economic indicators as of March 2026, the recession probability is 42%. The economy is in late-cycle territory. The PMI is at 51.4, the LEI is declining, and an oil price shock from the Hormuz crisis is adding pressure. However, the yield curve remains positive and credit spreads are not yet at distress levels."}},
+    {"@type":"Question","name":"Are we in a recession in 2026?","acceptedAnswer":{"@type":"Answer","text":"Signycle tracks recession risk using 6 weighted indicators — the yield curve, PMI, high-yield credit spreads, unemployment trend, the leading economic index, and oil price shocks. The current recession probability, phase, and per-indicator scores are shown live at the top of this page and update as the underlying data changes."}},
     {"@type":"Question","name":"What is recession probability?","acceptedAnswer":{"@type":"Answer","text":"Recession probability is a weighted score based on key leading economic indicators: the yield curve (10Y-2Y spread), PMI, high yield credit spreads, unemployment trend, leading economic index and oil price shocks. A score above 70% historically precedes recessions within 12 months."}},
     {"@type":"Question","name":"What does the yield curve say about recession risk?","acceptedAnswer":{"@type":"Answer","text":"The 10-year minus 2-year yield spread (yield curve) is one of the most reliable recession predictors. When the curve inverts (goes negative), a recession typically follows within 12-18 months. Currently the curve is at +0.4%, which is positive but flattening."}},
     {"@type":"Question","name":"What is the PMI recession indicator?","acceptedAnswer":{"@type":"Answer","text":"The Purchasing Managers Index (PMI) measures manufacturing and services activity. A PMI below 50 indicates contraction. The current Global PMI of 51.4 — just below the 50 threshold, signalling mild economic weakness."}},
-    {"@type":"Question","name":"Is a recession coming in 2026?","acceptedAnswer":{"@type":"Answer","text":"As of March 2026, recession probability is 54% — elevated but not yet in high-risk territory. The Hormuz oil price shock is the biggest near-term risk. If oil stays above $100 and PMI falls further below 48, recession risk could escalate to 60%+."}}
+    {"@type":"Question","name":"Is a recession coming in 2026?","acceptedAnswer":{"@type":"Answer","text":"See the live recession probability at the top of this page for the current reading. The biggest near-term risk being tracked is an oil price shock — if oil stays above $100/bbl and PMI falls further below 48, recession risk would escalate further."}}
   ]
 }
 </script>
@@ -259,7 +259,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@signycle">
 <meta name="twitter:title" content="Are We In A Recession? Live Recession Tracker 2026 | Signycle">
-<meta name="twitter:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators. Updated...">
+<meta name="twitter:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
 <meta name="twitter:image" content="https://signycle.com/og-image.png">
 </head>
 <body>
@@ -712,7 +712,7 @@ _initHamburger();
 
     <!-- BIG ANSWER -->
     <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ea580c;margin-bottom:0.5rem;">Recession Tracker · Updated <span class="live-updated-date">1 Jun 2026</span></div>
-    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;margin-top:0.5rem;clear:both;">🔄 Updated weekly &nbsp;·&nbsp; Last update: 1 Jun 2026</div>
+    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;margin-top:0.5rem;clear:both;">🔄 Updated live &nbsp;·&nbsp; Last update: <span class="live-updated-date">1 Jun 2026</span></div>
 
     <div class="prob-display">
       <!-- Animated circle -->
@@ -720,30 +720,30 @@ _initHamburger();
         <svg width="180" height="180" viewBox="0 0 180 180">
           <circle cx="90" cy="90" r="78" fill="none" stroke="#fee2e2" stroke-width="14"/>
           <circle cx="90" cy="90" r="78" fill="none" stroke="#ea580c" stroke-width="14"
-            stroke-dasharray="490" stroke-dashoffset="289"
+            stroke-dasharray="490" stroke-dashoffset="289" id="probCircleFill"
             stroke-linecap="round"/>
         </svg>
         <div class="prob-circle-label">
-          <div class="prob-pct"><span data-signal="recessionProb">48%</span></div>
-          <div class="prob-word">Moderate</div>
+          <div class="prob-pct"><span data-signal="recessionProb">55%</span></div>
+          <div class="prob-word" id="probWord">Moderate</div>
         </div>
       </div>
 
       <div class="prob-meta">
         <h1>Are We In A Recession?</h1>
-        <p>Not yet — but risk is elevated. 3 of 6 indicators are flashing warning signs — oil shock intensifying — US Navy blockade of Hormuz. The yield curve remains positive and labour markets are holding.</p>
-        <div class="phase-badge">⚠️ Economic phase: Mid-late cycle — ceasefire relief</div>
-        <div class="updated">Signycle Recession Score · 6 indicators · Manually updated weekly</div>
+        <p>Not yet — but risk is elevated. Several of the 6 tracked indicators are flashing warning signs. The yield curve remains positive and labour markets are holding.</p>
+        <div class="phase-badge" id="phaseBadge">⚠️ Economic phase: Mid-late cycle</div>
+        <div class="updated">Signycle Recession Score · 6 indicators · yield curve, PMI &amp; oil are live; others updated manually</div>
       </div>
     </div>
 
     <!-- PHASE TIMELINE -->
-    <div class="phase-timeline">
-      <div class="phase-step" style="background:#e6f5f1;color:#00956e;">Early Cycle<br><span style="font-weight:400;font-size:0.58rem">Expansion begins</span></div>
-      <div class="phase-step" style="background:#d1fae5;color:#059669;">Mid Cycle<br><span style="font-weight:400;font-size:0.58rem">Peak growth</span></div>
-      <div class="phase-step active" style="background:#fff7ed;color:#ea580c;">Late Cycle ◀<br><span style="font-weight:400;font-size:0.58rem">Growth slowing</span></div>
-      <div class="phase-step" style="background:#fef2f2;color:#dc2626;">Recession<br><span style="font-weight:400;font-size:0.58rem">Contraction</span></div>
-      <div class="phase-step" style="background:#f8faf9;color:#6b7f78;">Recovery<br><span style="font-weight:400;font-size:0.58rem">Trough & rebound</span></div>
+    <div class="phase-timeline" id="phaseStepsRow">
+      <div class="phase-step" data-phase="Early Cycle" style="background:#e6f5f1;color:#00956e;"><span class="phase-step-name">Early Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Expansion begins</span></div>
+      <div class="phase-step" data-phase="Mid Cycle" style="background:#d1fae5;color:#059669;"><span class="phase-step-name">Mid Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Peak growth</span></div>
+      <div class="phase-step" data-phase="Late Cycle" style="background:#fff7ed;color:#ea580c;"><span class="phase-step-name">Late Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Growth slowing</span></div>
+      <div class="phase-step" data-phase="Recession" style="background:#fef2f2;color:#dc2626;"><span class="phase-step-name">Recession</span><br><span style="font-weight:400;font-size:0.58rem">Contraction</span></div>
+      <div class="phase-step" data-phase="Recovery" style="background:#f8faf9;color:#6b7f78;"><span class="phase-step-name">Recovery</span><br><span style="font-weight:400;font-size:0.58rem">Trough &amp; rebound</span></div>
     </div>
 
   </div>
@@ -833,7 +833,7 @@ _initHamburger();
       </div>
       <div class="hist-row">
         <div class="hist-label" style="color:var(--ink);font-weight:700;">NOW</div>
-        <div class="hist-bar-bg" style="border:2px solid #ea580c;"><div class="hist-bar-fill" style="width:45%;background:#ea580c;">52% Hormuz shock</div></div>
+        <div class="hist-bar-bg" style="border:2px solid #ea580c;"><div class="hist-bar-fill" id="histNowBar" style="width:52%;background:#ea580c;"><span data-signal="recessionProb">52%</span> current</div></div>
       </div>
     </div>
 
@@ -869,7 +869,7 @@ _initHamburger();
     <!-- SO WHAT BOX -->
     <div style="background:#0c1c2e;border-radius:14px;padding:2rem;margin-bottom:2.5rem;">
       <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5a8070;margin-bottom:0.6rem;">The SO WHAT</div>
-      <h2 style="font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1rem;">What does a 54% recession probability mean for your portfolio?</h2>
+      <h2 style="font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1rem;">What does a <span data-signal="recessionProb">54%</span> recession probability mean for your portfolio?</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
         <div>
           <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#e03e3e;margin-bottom:0.5rem;">🔴 Reduce exposure</div>
@@ -888,7 +888,7 @@ _initHamburger();
     <div class="faq-section">
       <div class="faq-item open">
         <div class="faq-q">Are we in a recession in 2026?</div>
-        <div class="faq-a">Not yet — but risk is elevated at 54%. The economy is in late-cycle territory. The Hormuz crisis oil shock ($115.0/bbl) is the biggest near-term risk. PMI has fallen below 50 and the leading economic index is declining. However, the yield curve remains positive (+0.4%) and unemployment is stable, which are the two most reliable recession indicators — both currently point away from imminent recession.</div>
+        <div class="faq-a">Not yet — but risk is elevated at <span data-signal="recessionProb">54%</span>. The economy is in late-cycle territory. An oil price shock above $100/bbl is the biggest near-term risk. PMI has fallen below 50 and the leading economic index is declining. However, the yield curve remains positive (+0.4%) and unemployment is stable, which are the two most reliable recession indicators — both currently point away from imminent recession.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What is the most reliable recession indicator?</div>
@@ -896,7 +896,7 @@ _initHamburger();
       </div>
       <div class="faq-item">
         <div class="faq-q">Is a recession coming in 2026?</div>
-        <div class="faq-a">The recession probability of 54% means there is roughly a 1-in-2 chance of recession beginning within the next 12 months under current conditions. The key swing factor is the Hormuz crisis — if oil stays above $100 and the crisis persists for 6+ months, European growth could turn negative. If Hormuz resolves, oil falls back to $70-80 and recession probability would drop to 25-30%.</div>
+        <div class="faq-a">The recession probability of <span data-signal="recessionProb">54%</span> reflects a weighted blend of 6 leading indicators — see the live score at the top of this page. The key swing factor being tracked is oil price shocks — if oil stays above $100/bbl for an extended period, recession risk would climb further; if it falls back toward $70-80, risk would ease.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What does PMI below 50 mean?</div>
@@ -914,8 +914,8 @@ _initHamburger();
   <div>
     <div class="sidebar-section" style="background:#fff8f8;border-color:#fca5a5;">
       <div class="sidebar-title" style="color:#dc2626;">Recession Score</div>
-      <div style="font-family:var(--mono);font-size:2.5rem;font-weight:700;color:#ea580c;margin-bottom:0.3rem;">54%</div>
-      <div style="font-size:0.75rem;color:#ea580c;font-weight:600;margin-bottom:1rem;">⚠️ Elevated — Late Cycle</div>
+      <div style="font-family:var(--mono);font-size:2.5rem;font-weight:700;color:#ea580c;margin-bottom:0.3rem;"><span data-signal="recessionProb">54%</span></div>
+      <div style="font-size:0.75rem;color:#ea580c;font-weight:600;margin-bottom:1rem;" id="sidebarLabel">⚠️ Elevated — Late Cycle</div>
       <div style="font-size:0.75rem;color:var(--text);line-height:1.6;">
         <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
           <span>Yield Curve</span><span style="font-family:var(--mono);color:#d97706;">55%</span>
@@ -1184,16 +1184,90 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 (function(){
+  // This page's own 5-stage vocabulary (Early/Mid/Late Cycle, Recession, Recovery)
+  // differs from the sitewide cyclePhase computed in signals-loader.js — map
+  // one onto the other rather than pass it through untranslated.
+  var PHASE_MAP = {
+    'Deep BUY':        'Recovery',
+    'Early Expansion': 'Early Cycle',
+    'Mid Cycle':        'Mid Cycle',
+    'Late Expansion':  'Late Cycle',
+    'Distribution':     'Recession'
+  };
+  var CIRCUMFERENCE = 490;
+
+  function bandFor(p){
+    if (p >= 70) return { word: 'High',     color: '#dc2626', emoji: '🔴' };
+    if (p >= 50) return { word: 'Elevated', color: '#ea580c', emoji: '⚠️' };
+    if (p >= 30) return { word: 'Moderate', color: '#d97706', emoji: '⚪' };
+    return             { word: 'Low',      color: '#00956e', emoji: '🟢' };
+  }
+
+  function updatePhase(mapped){
+    if (!mapped) return;
+    var badge = document.getElementById('phaseBadge');
+    if (badge) badge.textContent = '⚠️ Economic phase: ' + mapped;
+    var row = document.getElementById('phaseStepsRow');
+    if (!row) return;
+    row.querySelectorAll('.phase-step').forEach(function(step){
+      var isActive = step.getAttribute('data-phase') === mapped;
+      step.classList.toggle('active', isActive);
+      var marker = step.querySelector('.phase-step-marker');
+      if (marker) marker.remove();
+      if (isActive) {
+        var nameEl = step.querySelector('.phase-step-name');
+        if (nameEl) {
+          var span = document.createElement('span');
+          span.className = 'phase-step-marker';
+          span.textContent = ' ◀';
+          nameEl.appendChild(span);
+        }
+      }
+    });
+  }
+
+  function updateProb(d, mapped){
+    var p = parseFloat(d.recessionProb);
+    if (isNaN(p)) return;
+    var clamped = Math.max(0, Math.min(100, p));
+    var band = bandFor(p);
+
+    var circle = document.getElementById('probCircleFill');
+    if (circle) circle.setAttribute('stroke-dashoffset', CIRCUMFERENCE * (1 - clamped / 100));
+
+    var word = document.getElementById('probWord');
+    if (word) word.textContent = band.word;
+
+    var sidebarLabel = document.getElementById('sidebarLabel');
+    if (sidebarLabel) {
+      sidebarLabel.textContent = band.emoji + ' ' + band.word + (mapped ? ' — ' + mapped : '');
+      sidebarLabel.style.color = band.color;
+    }
+
+    var histBar = document.getElementById('histNowBar');
+    if (histBar) {
+      histBar.style.width = clamped + '%';
+      histBar.style.background = band.color;
+    }
+  }
+
   function render(){
     var d = window.SignycleData;
-    if(!d || !d.updated) return;
-    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    var pretty = d.updated;
-    if(m){
-      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+    if(!d) return;
+
+    if (d.updated) {
+      var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      var pretty = d.updated;
+      if(m){
+        var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+      }
+      document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
     }
-    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
+
+    var mapped = PHASE_MAP[d.cyclePhase];
+    if (mapped) updatePhase(mapped);
+    if (d.recessionProb != null) updateProb(d, mapped);
   }
   render();
   document.addEventListener('signalsLoaded', render);
