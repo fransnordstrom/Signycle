@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Signal Calendar — Upcoming Market Events That Move | Signycle</title>
-<meta name="description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals...">
+<title>Signal Calendar — Upcoming Market Events That Move Signals | Signycle</title>
+<meta name="description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
 <link rel="canonical" href="https://signycle.com/signal-calendar">
-<meta property="og:title" content="Signal Calendar — Upcoming Market Events That Move | Signycle">
-<meta property="og:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals...">
+<meta property="og:title" content="Signal Calendar — Upcoming Market Events That Move Signals | Signycle">
+<meta property="og:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/signal-calendar.html">
 <meta property="og:site_name" content="Signycle">
@@ -163,8 +163,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 </style>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@signycle">
-<meta name="twitter:title" content="Signal Calendar — Upcoming Market Events That Move | Signycle">
-<meta name="twitter:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals...">
+<meta name="twitter:title" content="Signal Calendar — Upcoming Market Events That Move Signals | Signycle">
+<meta name="twitter:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
 <meta name="twitter:image" content="https://signycle.com/og-image.png">
 </head>
 <body>
@@ -656,7 +656,7 @@ _initHamburger();
 </footer>
 
 <script>
-var TODAY = new Date('2026-03-20');
+var TODAY = new Date();
 
 var EVENTS = [
   // MARCH 2026
@@ -814,6 +814,7 @@ var TAG_LABEL = {
 
 var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var TODAY_STR = TODAY.getFullYear() + '-' + String(TODAY.getMonth()+1).padStart(2,'0') + '-' + String(TODAY.getDate()).padStart(2,'0');
 
 function buildCal(filter) {
   var wrap = document.getElementById('calWrap');
@@ -851,7 +852,7 @@ function buildCal(filter) {
 
     m.events.forEach(function(e) {
       var d = new Date(e.date);
-      var isToday = e.date === '2026-03-20';
+      var isToday = e.date === TODAY_STR;
       var isPast = d < TODAY && !isToday;
       var row = document.createElement('div');
       row.className = 'event-row ' + e.impact + (isToday ? ' today' : '');
