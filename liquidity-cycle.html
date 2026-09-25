@@ -11,15 +11,12 @@
 <meta property="og:url" content="https://signycle.com/liquidity-cycle.html">
 <meta property="og:site_name" content="Signycle">
 <meta property="og:image" content="https://signycle.com/og-image.png">
-<meta property="og:title" content="Global Liquidity Cycle Dashboard — Central Bank Money | Signycle">
-<meta property="og:description" content="Track central bank liquidity, M2 money supply and global liquidity index. Updated monthly.">
-<meta property="og:type" content="website">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is the global liquidity cycle?","acceptedAnswer":{"@type":"Answer","text":"The global liquidity cycle refers to the expansion and contraction of money supply and credit in the global financial system, driven primarily by central bank policy. When central banks expand their balance sheets (quantitative easing, rate cuts), liquidity rises and risk assets including stocks tend to appreciate. When they contract (quantitative tightening, rate hikes), liquidity falls and risk assets decline."}},
 {"@type":"Question","name":"How does central bank liquidity affect stocks?","acceptedAnswer":{"@type":"Answer","text":"Central bank liquidity directly impacts stock markets through the 'portfolio rebalancing effect' — when central banks buy bonds, investors shift to riskier assets like stocks. Historically, rising global M2 money supply has been one of the most reliable leading indicators for global equity performance, typically leading stock markets by 6-12 months."}},
 {"@type":"Question","name":"What is the global liquidity index?","acceptedAnswer":{"@type":"Answer","text":"The global liquidity index aggregates central bank balance sheets and M2 money supply across major economies (Fed, ECB, BOJ, PBOC). When combined, these represent the total amount of money in the global financial system. CrossBorderCapital's Global Liquidity Index is the most cited, but similar measures can be constructed from public central bank data."}},
-{"@type":"Question","name":"Is global liquidity rising or falling in 2026?","acceptedAnswer":{"@type":"Answer","text":"As of March 2026, global liquidity conditions are mixed. The ECB has been cutting rates since late 2023, which is supportive. The Fed has paused cuts. The PBOC has been providing targeted stimulus. The Hormuz crisis is creating a negative liquidity shock through higher oil prices — energy price shocks historically reduce purchasing power and tighten financial conditions, acting as a de facto liquidity drain."}}
+{"@type":"Question","name":"Is global liquidity rising or falling in 2026?","acceptedAnswer":{"@type":"Answer","text":"Global liquidity conditions shift with G4 central bank policy — see the current read (by region and overall) in the Liquidity Score table on this page, which we update manually as ECB, Fed, PBOC and BOJ policy changes."}}
 ]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -655,7 +652,7 @@ _initHamburger();
 
 <div class="hero">
   <div class="hero-inner">
-    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0891b2;margin-bottom:0.4rem;">Global Liquidity Cycle · Updated <span class="live-updated-date">Mar 2026</span></div>
+    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0891b2;margin-bottom:0.4rem;">Global Liquidity Cycle · Manually reviewed monthly</div>
     <h1 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.6rem;">Global Liquidity Cycle Dashboard</h1>
     <p style="font-size:0.9rem;color:var(--dim);max-width:560px;margin-bottom:1.5rem;">Track central bank balance sheets, M2 money supply and global liquidity conditions — the macro driver that moves all asset markets. Rising liquidity = tailwind for equities. Falling liquidity = headwind.</p>
     <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
@@ -744,10 +741,10 @@ _initHamburger();
     <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2.5rem;font-size:0.88rem;color:var(--text);line-height:1.75;">
       <p style="margin-bottom:1rem;">Global liquidity is the tide that lifts or sinks all boats. When the G4 central banks collectively expand their balance sheets, the excess money flows into risk assets — equities, commodities and credit. European cyclical stocks are particularly sensitive because they are leveraged to commodity prices (which rise with liquidity) and industrial demand (which accelerates with credit growth).</p>
       <p style="margin-bottom:1rem;">The most powerful combination is when Signycle's commodity signals (Brent, copper, BDI) are at BUY levels <em>and</em> global liquidity is rising. This was the setup in March 2020 — commodity prices had crashed, central banks unleashed the largest liquidity injection in history, and European cyclicals delivered 200-400% returns over the next 2 years.</p>
-      <p>Currently (March 2026): commodity signals are at SELL levels and liquidity is mixed/neutral. The Hormuz oil shock is acting as a de facto liquidity drain by raising energy costs. This is not an ideal combination for new cyclical positions.</p>
+      <p>Right now: commodity signals (see the live cycle score above) are at SELL levels while liquidity sits mixed/neutral in our manual read above. A negative oil price shock acts as a de facto liquidity drain by raising energy costs — that combination is not ideal for new cyclical positions. Check the indicator table above for the current commodity/liquidity mix rather than relying on a specific month's snapshot.</p>
       <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap;">
         <a href="compare-brent.html" style="font-size:0.8rem;font-weight:600;color:var(--green);text-decoration:none;">→ Brent SELL zone stocks</a>
-        <a href="recession-tracker.html" style="font-size:0.8rem;font-weight:600;color:var(--green);text-decoration:none;">→ Recession probability: 54%</a>
+        <a href="recession-tracker.html" style="font-size:0.8rem;font-weight:600;color:var(--green);text-decoration:none;">→ Recession probability: <span data-signal="recessionProb">54%</span></a>
         <a href="best-stocks-rate-cuts.html" style="font-size:0.8rem;font-weight:600;color:var(--green);text-decoration:none;">→ Best stocks when ECB cuts</a>
       </div>
     </div>
@@ -777,7 +774,7 @@ _initHamburger();
     <div class="sidebar-section">
       <div class="sidebar-title">Liquidity Conditions</div>
       <div style="font-family:var(--mono);font-size:1.6rem;font-weight:700;color:#d97706;margin-bottom:0.3rem;">Neutral</div>
-      <div style="font-size:0.75rem;color:#d97706;font-weight:600;margin-bottom:1rem;">Mixed signals · Mar 2026</div>
+      <div style="font-size:0.75rem;color:#d97706;font-weight:600;margin-bottom:1rem;">Mixed signals · reviewed monthly</div>
       <div style="font-size:0.78rem;color:var(--text);line-height:1.8;">
         ECB: Cutting ✅<br>Fed: On hold ⚠️<br>PBOC: Easing ✅<br>BOJ: Tapering ⚠️<br>Oil shock: Negative 🔴
       </div>
@@ -786,7 +783,7 @@ _initHamburger();
       <div class="sidebar-title">Key signals</div>
       <a href="compare-eur10y.html" class="rel-link">→ EUR 10Y rate cycle</a>
       <a href="guide-credit-spread-signal.html" class="rel-link">→ Credit spread guide</a>
-      <a href="recession-tracker.html" class="rel-link">→ Recession tracker: 45%</a>
+      <a href="recession-tracker.html" class="rel-link">→ Recession tracker: <span data-signal="recessionProb">45%</span></a>
       <a href="best-stocks-rate-cuts.html" class="rel-link">→ Best stocks: ECB cuts</a>
       <a href="live-signals.html" class="rel-link">→ All 21 live signals</a>
     </div>
@@ -1062,24 +1059,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-</script>
-
-<script>
-(function(){
-  function render(){
-    var d = window.SignycleData;
-    if(!d || !d.updated) return;
-    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    var pretty = d.updated;
-    if(m){
-      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
-    }
-    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
-  }
-  render();
-  document.addEventListener('signalsLoaded', render);
-})();
 </script>
 </body>
 </html>
