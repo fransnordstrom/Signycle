@@ -20,16 +20,21 @@
  * model output, not something derivable from signal zone counts.
  * v3.6: eur10y added to LIVE_IDS — the Worker now sources it live from the
  * ECB's own daily yield-curve data instead of manual entry (worker.js v3.4).
+ * v3.7: yieldCurve added to LIVE_IDS — worker.js v3.7 sources the US 10Y-2Y
+ * Treasury spread live from FRED. Missing this list means the Worker fetches
+ * it live but the client silently ignores that and keeps showing the manual
+ * signals-data.json snapshot forever, which is exactly the bug this list
+ * exists to prevent.
  */
 (function() {
   var WORKER_URL = 'https://signycle-signals.fransbgn.workers.dev';
   var WORKER_SOURCE = WORKER_URL + '/api/signals';
   var FALLBACK_SOURCE = '/signals-data.json';
-  // Must match worker.js's LIVE_TICKERS keys plus eur10y (sourced from the
-  // ECB, not Yahoo) — the only signals the Worker actually prices live.
-  // Everything else in its KV is just a stale mirror of a past manual
-  // publish, never more current than signals-data.json.
-  var LIVE_IDS = { brent:1, wti:1, spread:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1, eur10y:1 };
+  // Must match worker.js's LIVE_TICKERS keys plus eur10y (ECB) and yieldCurve
+  // (FRED) — the only signals the Worker actually prices live. Everything
+  // else in its KV is just a stale mirror of a past manual publish, never
+  // more current than signals-data.json.
+  var LIVE_IDS = { brent:1, wti:1, spread:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1, eur10y:1, yieldCurve:1 };
 
   // Inject a subtle loading placeholder for any [data-signal] element that
   // hasn't been filled yet, so an empty span never reads as a rendering bug
