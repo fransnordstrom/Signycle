@@ -110,6 +110,12 @@ h1{font-family:"DM Sans",sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight
 .card-title{font-size:0.82rem;color:#0c1c2e;line-height:1.5;margin-bottom:0.8rem;font-family:"DM Sans",sans-serif;}
 .card-desc{font-size:0.65rem;color:var(--dim);line-height:1.7;margin-bottom:1rem;}
 .card-read{font-size:0.57rem;color:var(--dim);}
+/* .card-excerpt/.blog-meta: same role as .card-desc/.card-read above but used
+   by a later batch of cards under a different class name that was never
+   given CSS — rendered as unstyled <p>/<div>, inheriting the browser's
+   default link color and size instead of the site's muted card text style. */
+.card-excerpt{font-size:0.65rem;color:var(--dim);line-height:1.7;margin:0 0 1rem;}
+.blog-meta{font-size:0.57rem;color:var(--dim);}
 
 /* Empty state */
 .empty{text-align:center;padding:4rem 2rem;color:var(--dim);font-size:0.75rem;display:none;}
