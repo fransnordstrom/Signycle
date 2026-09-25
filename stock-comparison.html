@@ -887,6 +887,7 @@ function setupSearch(inputId, dropdownId, slot) {
 }
 
 function selectStock(s, slot, inp, drop) {
+  s = withLiveSignal(s);
   inp.value = s.ticker + ' — ' + s.name;
   drop.classList.remove('open');
   if (slot === 'A') selectedA = s;
@@ -894,6 +895,17 @@ function selectStock(s, slot, inp, drop) {
   renderSelectedStock(s, slot);
   document.getElementById('compareBtn').disabled = !(selectedA && selectedB);
 }
+
+// signals-loader.js re-polls every 2 minutes and may resolve after a stock
+// was already selected (e.g. picked within ~1.5s of page load, before its
+// first fetch completes) — refresh the preview card in place. Deliberately
+// does NOT re-run a comparison already on screen: runComparison() scrolls to
+// the results, and re-triggering that every 2 minutes while someone is
+// reading it would be disruptive.
+document.addEventListener('signalsLoaded', function() {
+  if (selectedA) { selectedA = withLiveSignal(selectedA); renderSelectedStock(selectedA, 'A'); }
+  if (selectedB) { selectedB = withLiveSignal(selectedB); renderSelectedStock(selectedB, 'B'); }
+});
 
 function renderSelectedStock(s, slot) {
   var el = document.getElementById('selected' + slot);
