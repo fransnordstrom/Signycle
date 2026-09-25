@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Signal Calendar — Upcoming Market Events That Move Signals | Signycle</title>
-<meta name="description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
+<meta name="description" content="Upcoming Fed and ECB rate decisions and PMI release dates, sourced from official calendars. Know when the signals that drive Signycle's cycle score are due to shift.">
 <link rel="canonical" href="https://signycle.com/signal-calendar">
 <meta property="og:title" content="Signal Calendar — Upcoming Market Events That Move Signals | Signycle">
-<meta property="og:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
+<meta property="og:description" content="Upcoming Fed and ECB rate decisions and PMI release dates, sourced from official calendars. Know when the signals that drive Signycle's cycle score are due to shift.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/signal-calendar.html">
 <meta property="og:site_name" content="Signycle">
@@ -164,7 +164,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@signycle">
 <meta name="twitter:title" content="Signal Calendar — Upcoming Market Events That Move Signals | Signycle">
-<meta name="twitter:description" content="Upcoming macro events that move Signycle signals — OPEC meetings, PMI releases, Fed decisions, salmon auctions, BDI weekly updates. Know when signals are due to shift.">
+<meta name="twitter:description" content="Upcoming Fed and ECB rate decisions and PMI release dates, sourced from official calendars. Know when the signals that drive Signycle's cycle score are due to shift.">
 <meta name="twitter:image" content="https://signycle.com/og-image.png">
 </head>
 <body>
@@ -617,7 +617,7 @@ _initHamburger();
   <div class="hero-inner">
     <div style="font-family:var(--mono);font-size:0.62rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.5rem;">Updated <span class="live-updated-date">30 Mar 2026</span></div>
     <h1><span class="material-symbols-outlined" style="font-size:32px;color:inherit;line-height:1;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24">calendar_month</span> <span>Signal</span> Calendar</h1>
-    <p>Upcoming macro events that can move Signycle's 21 signals — OPEC meetings, PMI releases, Fed decisions, BDI weekly prints, salmon auctions and more.</p>
+    <p>Upcoming scheduled macro events that can move Signycle's signals — confirmed Fed and ECB rate decisions and PMI release dates, sourced from official calendars. We only list dates we can verify, so this covers rates and PMI for now rather than every signal category.</p>
   </div>
 </div>
 
@@ -659,145 +659,31 @@ _initHamburger();
 var TODAY = new Date();
 
 var EVENTS = [
-  // MARCH 2026
-  {date:'2026-03-18', title:'BDI Weekly Print', cat:'shipping', impact:'medium',
-   signals:['bdi'], freq:'Weekly',
-   desc:'Baltic Exchange publishes weekly dry bulk freight rate index. BDI currently at 2,014 pts — neutral zone.',
-   link:'live-signals.html'},
-  {date:'2026-03-19', title:'VLCC Weekly Rate Survey', cat:'shipping', impact:'medium',
-   signals:['vlcc'], freq:'Weekly',
-   desc:'Clarksons/Platts weekly VLCC tanker rate survey. Currently $280k+/day — approaching $75k SELL threshold.',
-   link:'live-signals.html'},
-  {date:'2026-03-20', title:'Norwegian Salmon Weekly Auction (Nasdaq Seafood)', cat:'seafood', impact:'high',
-   signals:['salmon'], freq:'Weekly',
-   desc:'Weekly salmon spot price auction. Salmon at NOK 95/kg — above SELL threshold of NOK 82/kg.',
-   link:'oslo-bors.html'},
-  {date:'2026-03-20', title:'Flash PMI — Europe & US', cat:'macro', impact:'high',
+  // OCTOBER 2026
+  {date:'2026-10-23', title:'Flash PMI — Europe & US', cat:'macro', impact:'high',
    signals:['pmi'], freq:'Monthly',
-   desc:'S&P Global flash PMI for Eurozone and US manufacturing. Currently 53.3 — below 50 expansion threshold. A move below 48 would raise recession risk significantly.',
+   desc:'S&P Global flash PMI for Eurozone and US manufacturing and services. A reading below 50 signals contraction — watch how it feeds into the recession probability read.',
    link:'recession-tracker.html'},
-  {date:'2026-03-19', title:'Fed FOMC Decision', cat:'rates', impact:'high',
+  {date:'2026-10-27', title:'US Federal Reserve FOMC Meeting', cat:'rates', impact:'high',
    signals:['eur10y'], freq:'8x/year',
-   desc:'Federal Reserve interest rate decision. Markets expect hold at 4.25-4.50%. Any hawkish signal on Hormuz inflation could push EUR 10Y higher.',
+   desc:'Two-day Federal Reserve policy meeting. The rate decision is announced at 2:00pm ET on the second day (Oct 28), followed by the Chair\'s press conference.',
    link:'liquidity-cycle.html'},
-  {date:'2026-03-21', title:'LME Copper Weekly Settlement', cat:'metals', impact:'medium',
-   signals:['copper'], freq:'Weekly',
-   desc:'LME copper Friday cash settlement. Currently $12,043/t — 41% above SELL threshold. Watch for any demand signal from China PMI.',
-   link:'best-copper-stocks.html'},
-  {date:'2026-03-24', title:'IEA Oil Market Report', cat:'oil', impact:'high',
-   signals:['brent'], freq:'Monthly',
-   desc:'International Energy Agency monthly oil market report. Key for Hormuz supply disruption assessment and demand outlook. Brent at $104.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-03-25', title:'US EIA Weekly Crude Inventory', cat:'oil', impact:'medium',
-   signals:['brent'], freq:'Weekly',
-   desc:'EIA weekly US crude oil inventory report. A large build (>3m barrels) can temporarily dampen Brent; a draw supports prices.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-03-27', title:'BDI Weekly Print', cat:'shipping', impact:'medium',
-   signals:['bdi'], freq:'Weekly',
-   desc:'Second weekly BDI print of the month.',
-   link:'live-signals.html'},
-  {date:'2026-03-31', title:'Eurozone CPI (March Flash)', cat:'rates', impact:'high',
-   signals:['eur10y'], freq:'Monthly',
-   desc:'Eurozone inflation flash estimate. Oil shock from Hormuz could push CPI higher, delaying ECB rate cuts and keeping EUR 10Y elevated.',
+  {date:'2026-10-29', title:'ECB Governing Council Rate Decision', cat:'rates', impact:'high',
+   signals:['eur10y'], freq:'8x/year',
+   desc:'European Central Bank policy decision, announced 2:15pm CET with a press conference at 2:45pm CET — one of the ECB\'s eight scheduled meetings this year.',
    link:'liquidity-cycle.html'},
 
-  // APRIL 2026
-  {date:'2026-04-01', title:'Global Manufacturing PMI Final (March)', cat:'macro', impact:'high',
+  // NOVEMBER 2026
+  {date:'2026-11-23', title:'Flash PMI — Europe & US', cat:'macro', impact:'high',
    signals:['pmi'], freq:'Monthly',
-   desc:'Final S&P Global Manufacturing PMI for all major economies. Currently 53.3 — below 50. A fall below 48 would be a major negative macro signal.',
+   desc:'S&P Global flash PMI for Eurozone and US manufacturing and services.',
    link:'recession-tracker.html'},
-  {date:'2026-04-02', title:'OPEC+ Monthly Output Decision', cat:'oil', impact:'high',
-   signals:['brent'], freq:'Monthly',
-   desc:'OPEC+ production committee meeting. With Brent at $104, producers face pressure to increase output. Any supply increase would weigh on Brent.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-04-03', title:'US Non-Farm Payrolls (March)', cat:'macro', impact:'high',
-   signals:['pmi'], freq:'Monthly',
-   desc:'US jobs report. Labour market resilience vs. manufacturing weakness is the key recession indicator tension. A sharp miss (<100k) would push recession probability above 60%.',
-   link:'recession-tracker.html'},
-  {date:'2026-04-07', title:'Norwegian Salmon Auction', cat:'seafood', impact:'medium',
-   signals:['salmon'], freq:'Weekly',
-   desc:'Weekly salmon spot price. Watch for seasonal spring softening — could start approaching SELL ceiling.',
-   link:'oslo-bors.html'},
-  {date:'2026-04-09', title:'ECB Interest Rate Decision', cat:'rates', impact:'high',
-   signals:['eur10y'], freq:'~8x/year',
-   desc:'ECB governing council rate decision. Oil shock complicates rate path — Lagarde comments on Hormuz inflation will be closely watched.',
-   link:'liquidity-cycle.html'},
-  {date:'2026-04-10', title:'US CPI (March)', cat:'rates', impact:'high',
-   signals:['eur10y','pmi'], freq:'Monthly',
-   desc:'US consumer price inflation. Brent above $100 is feeding through to transport and energy components. An upside surprise would further delay Fed cuts.',
-   link:'recession-tracker.html'},
-  {date:'2026-04-14', title:'China Q1 GDP', cat:'macro', impact:'high',
-   signals:['bdi','copper'], freq:'Quarterly',
-   desc:'Chinese Q1 GDP and industrial production. Most important macro release for BDI and copper signals — China drives 58% of global copper demand and most iron ore imports.',
-   link:'best-copper-stocks.html'},
-  {date:'2026-04-15', title:'Urea Weekly Price Assessment (Argus/ICIS)', cat:'seafood', impact:'low',
-   signals:['urea'], freq:'Weekly',
-   desc:'Weekly urea spot price assessment. Currently $310/t — neutral. Watch for any Middle East supply disruption from Hormuz impacting urea trade flows.',
-   link:'live-signals.html'},
-  {date:'2026-04-16', title:'IEA Oil Market Report (April)', cat:'oil', impact:'high',
-   signals:['brent'], freq:'Monthly',
-   desc:'Monthly IEA report — first full post-Hormuz-escalation assessment of global oil balance.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-04-22', title:'NATO Defence Ministers Meeting', cat:'macro', impact:'medium',
-   signals:['defence'], freq:'~Quarterly',
-   desc:'NATO defence ministers review spending commitments. Any new 3% GDP spending pledge would extend the structural defence stock BUY signal.',
-   link:'nyse-cyclical-stocks.html'},
-  {date:'2026-04-23', title:'Flash PMI April — Europe & US', cat:'macro', impact:'high',
-   signals:['pmi'], freq:'Monthly',
-   desc:'Key leading indicator. If PMI falls below 48 for the first time, recession probability will spike significantly above current 52%.',
-   link:'recession-tracker.html'},
-  {date:'2026-04-28', title:'LME Copper — China Caixin PMI', cat:'metals', impact:'high',
-   signals:['copper'], freq:'Monthly',
-   desc:'China Caixin Manufacturing PMI — the most direct copper demand indicator. A fall below 49 would be bearish for copper price.',
-   link:'best-copper-stocks.html'},
-  {date:'2026-04-29', title:'US Federal Reserve FOMC Meeting', cat:'rates', impact:'high',
-   signals:['eur10y'], freq:'8x/year',
-   desc:'Fed rate decision. Markets watching for any signal of rate cuts being delayed further due to Hormuz oil inflation.',
-   link:'liquidity-cycle.html'},
 
-  // MAY 2026
-  {date:'2026-05-05', title:'Salmon Season Opening — Norwegian Spring', cat:'seafood', impact:'medium',
-   signals:['salmon'], freq:'Annual',
-   desc:'Peak spring harvest season begins. Historically puts downward pressure on salmon prices June-August. Current NOK 88/kg could correct toward neutral.',
-   link:'oslo-bors.html'},
-  {date:'2026-05-07', title:'OPEC+ Full Ministerial Meeting', cat:'oil', impact:'high',
-   signals:['brent'], freq:'Biannual',
-   desc:'Full OPEC+ ministerial meeting — production quotas for H2 2026 decided. Most important oil event of Q2.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-05-12', title:'US CPI (April)', cat:'rates', impact:'high',
-   signals:['eur10y'], freq:'Monthly',
-   desc:'Will the Brent oil spike show up in core CPI? Energy components typically lag 6-8 weeks.',
-   link:'recession-tracker.html'},
-  {date:'2026-05-19', title:'LME Annual Metals Week — London', cat:'metals', impact:'high',
-   signals:['copper','alum'], freq:'Annual',
-   desc:'Annual LME Metals Week — major copper and aluminium industry event. Price discovery for Q3 contracts. Key indicator for Boliden, Glencore, FCX outlook.',
-   link:'best-copper-stocks.html'},
-  {date:'2026-05-22', title:'Flash PMI May', cat:'macro', impact:'high',
-   signals:['pmi'], freq:'Monthly',
-   desc:'Third consecutive month of flash PMI under watch. If consistently below 48, recession signal escalates.',
-   link:'recession-tracker.html'},
-  {date:'2026-05-28', title:'MSCI Rebalancing — Q2 2026', cat:'macro', impact:'medium',
-   signals:[], freq:'Quarterly',
-   desc:'MSCI quarterly index rebalancing. Can affect weighting of cyclical energy and materials stocks in European indices.',
-   link:'exchanges.html'},
-
-  // JUNE 2026
-  {date:'2026-06-04', title:'OPEC+ Production Review', cat:'oil', impact:'high',
-   signals:['brent'], freq:'Monthly',
-   desc:'Monthly OPEC+ technical committee — first major oil supply decision of summer.',
-   link:'compare-wti-brent.html'},
-  {date:'2026-06-11', title:'ECB Rate Decision', cat:'rates', impact:'high',
-   signals:['eur10y'], freq:'~8x/year',
-   desc:'ECB summer meeting. If inflation moderates by June, first rate cut window opens. Would be bullish for EUR 10Y rate signal.',
-   link:'liquidity-cycle.html'},
-  {date:'2026-06-18', title:'US Federal Reserve FOMC', cat:'rates', impact:'high',
+  // DECEMBER 2026
+  {date:'2026-12-17', title:'ECB Governing Council Rate Decision', cat:'rates', impact:'high',
    signals:['eur10y'], freq:'8x/year',
-   desc:'Summer Fed meeting — most likely window for first cut if inflation cooperates. A cut would be bullish for rate-sensitive cyclicals (renewables, industrials).',
+   desc:'European Central Bank policy decision, accompanied by updated staff macroeconomic projections (published at the March, June, September and December meetings).',
    link:'liquidity-cycle.html'},
-  {date:'2026-06-25', title:'Baltic Dry — Summer Grain Season Begins', cat:'shipping', impact:'medium',
-   signals:['bdi'], freq:'Annual',
-   desc:'Northern hemisphere grain harvest season ramps up Panamax demand from July. Historically supportive for BDI through July-September.',
-   link:'live-signals.html'},
 ];
 
 // Tag colors map
