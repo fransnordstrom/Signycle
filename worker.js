@@ -22,10 +22,12 @@
  *   calls at a flat ~96/day regardless of traffic.
  * - v3.6: /api/subscribe is now double opt-in — it creates a pending entry
  *   and emails a confirm link (buildConfirmEmailHtml/sendConfirmationEmail)
- *   instead of adding the address immediately. sendPublicAlertEmails only
- *   ever mails confirmed subscribers. New GET /api/confirm-subscription
- *   completes it. Previously anyone could enrol any email address with no
- *   verification.
+ *   instead of adding the address immediately. sendPublicAlertEmails skips
+ *   anyone explicitly confirmed:false; pre-existing subscribers (no
+ *   `confirmed` field at all, since it didn't exist before) are treated as
+ *   already consented and keep receiving alerts. New GET
+ *   /api/confirm-subscription completes a pending signup. Previously anyone
+ *   could enrol any email address with no verification.
  */
 
 const CORS = {
@@ -687,8 +689,11 @@ async function sendConfirmationEmail(env, email, confirmUrl) {
 async function sendPublicAlertEmails(env, crossings) {
   // Only ever send to addresses that clicked the confirmation link — a
   // pending signup someone else entered by mistake (or maliciously) must
-  // never actually receive mail.
-  const subs = (await env.SIGNALS_KV.get('subscribers', 'json') || []).filter(function(s) { return s.confirmed; });
+  // never actually receive mail. Subscribers from before double opt-in
+  // existed have no `confirmed` field at all (never `false`) — they already
+  // consented under the old flow, so they're grandfathered in rather than
+  // silently dropped from alerts by this change.
+  const subs = (await env.SIGNALS_KV.get('subscribers', 'json') || []).filter(function(s) { return s.confirmed !== false; });
   if (!subs.length) return { subscriberCount: 0 };
 
   const lines = crossings.map(function(c) {
