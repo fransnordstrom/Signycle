@@ -95,6 +95,18 @@ body{background:#fff;color:var(--text);font-family:var(--sans);}
 
 /* Key questions */
 .questions{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.q-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:1rem;}
+.q-label{font-family:var(--mono);font-size:0.72rem;font-weight:700;margin-bottom:0.3rem;}
+.q-val{font-size:0.85rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;}
+.q-desc{font-size:0.78rem;color:var(--dim);line-height:1.6;}
+/* .stock-pill is an <a> — unstyled it inherited the browser's default blue
+   underlined link look and stacked one item per line instead of a grid. */
+.stocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.6rem;}
+.stock-pill{display:block;background:#fff;border:1px solid var(--border);border-radius:8px;padding:0.6rem 0.8rem;text-decoration:none;transition:border-color 0.15s;}
+.stock-pill:hover{border-color:var(--green);}
+.sp-ticker{font-family:var(--mono);font-size:0.82rem;font-weight:700;color:var(--ink);}
+.sp-name{font-size:0.68rem;color:var(--dim);margin-bottom:0.3rem;}
+.sp-status{font-size:0.68rem;font-weight:600;}
 
 .hamburger span{display:block;width:22px;height:2px;background:#0c1c2e;border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:#fff;border-bottom:1px solid #e2e8e5;z-index:199;}
