@@ -1036,8 +1036,7 @@ _initHamburger();
       <div class="sc-name">Brent Crude</div>
       <div class="sc-val" style="color:#d97706;">$<span data-signal="brent" data-format="valueOnly"></span></div>
       <div class="sc-unit">per barrel</div>
-      <div class="sc-change" style="color:#dc2626;">▲ +4% — deal stalled · June escalation</div>
-      <div class="sc-badge warn">NEAR SELL</div>
+      <div class="sc-badge warn" data-zone-badge="brent">···</div>
       <div class="sc-thresh"><span style="color:var(--green);">BUY $50</span><span style="color:var(--red);">SELL $105</span></div>
     </div>
 
@@ -1045,44 +1044,39 @@ _initHamburger();
       <div class="sc-name">WTI Crude</div>
       <div class="sc-val" style="color:#d97706;">$<span data-signal="wti" data-format="valueOnly"></span></div>
       <div class="sc-unit">per barrel</div>
-      <div class="sc-change" style="color:#dc2626;">▲ +4% — escalation continues</div>
-      <div class="sc-badge warn">NEAR SELL</div>
-      <div class="sc-thresh"><span style="color:var(--green);">BUY $45</span><span style="color:var(--red);">SELL $103</span></div>
+      <div class="sc-badge warn" data-zone-badge="wti">···</div>
+      <div class="sc-thresh"><span style="color:var(--green);">BUY $45</span><span style="color:var(--red);">SELL $95</span></div>
     </div>
 
     <div class="sig-card warn">
       <div class="sc-name">Brent/WTI Spread</div>
-      <div class="sc-val" style="color:#d97706;">$8.90</div>
+      <div class="sc-val" style="color:#d97706;">$<span data-signal="spread" data-format="valueOnly">8.90</span></div>
       <div class="sc-unit">geopolitical premium</div>
-      <div class="sc-change" style="color:#d97706;">▲ widening · ship attacks re-pricing risk premium</div>
-      <div class="sc-badge warn">ELEVATED</div>
+      <div class="sc-badge warn" data-zone-badge="spread">···</div>
       <div class="sc-thresh"><span style="color:var(--green);">Normal $2–5</span><span style="color:var(--red);">Peak $14</span></div>
     </div>
 
     <div class="sig-card sell">
       <div class="sc-name">VLCC Rate</div>
-      <div class="sc-val" style="color:#dc2626;">$495k</div>
+      <div class="sc-val" style="color:#dc2626;">$320k</div>
       <div class="sc-unit">per day</div>
-      <div class="sc-change" style="color:#dc2626;">Ship attacks · war-risk insurance spiking</div>
       <div class="sc-badge sell">SELL ZONE</div>
       <div class="sc-thresh"><span style="color:var(--green);">BUY $15k</span><span style="color:var(--red);">SELL $75k</span></div>
     </div>
 
     <div class="sig-card warn">
       <div class="sc-name">LNG Rate</div>
-      <div class="sc-val" style="color:#d97706;">$55k</div>
+      <div class="sc-val" style="color:#d97706;">$75k</div>
       <div class="sc-unit">per day</div>
-      <div class="sc-change" style="color:#d97706;">▲ blockade escalation · LNG rerouting</div>
       <div class="sc-badge warn">NEAR SELL</div>
-      <div class="sc-thresh"><span style="color:var(--green);">BUY $30k</span><span style="color:var(--red);">SELL $120k</span></div>
+      <div class="sc-thresh"><span style="color:var(--green);">BUY $10k</span><span style="color:var(--red);">SELL $80k</span></div>
     </div>
 
-    <div class="sig-card sell">
+    <div class="sig-card neutral">
       <div class="sc-name">Urea / Fertilizer</div>
-      <div class="sc-val" style="color:#dc2626;">$530</div>
+      <div class="sc-val" style="color:#6b7f78;">$530</div>
       <div class="sc-unit">per tonne</div>
-      <div class="sc-change" style="color:#dc2626;">↑ from $310 · Hormuz supply cut</div>
-      <div class="sc-badge warn">NEAR SELL</div>
+      <div class="sc-badge neutral">NEUTRAL</div>
       <div class="sc-thresh"><span style="color:var(--green);">BUY $230</span><span style="color:var(--red);">SELL $620</span></div>
     </div>
 
@@ -1094,7 +1088,7 @@ _initHamburger();
     <div class="spread-header">
       <span class="spread-title">Brent/WTI Spread — Key Episodes</span>
       <div>
-        <div class="spread-current">$6.00 today</div>
+        <div class="spread-current">$<span data-signal="spread" data-format="valueOnly">6.00</span> today</div>
         <div class="spread-context">Normal range: $2–5/bbl</div>
       </div>
     </div>
@@ -1116,11 +1110,11 @@ _initHamburger();
       </div>
       <div class="spread-row">
         <div class="spread-yr" style="font-weight:700;color:#0c1c2e;">NOW</div>
-        <div class="spread-track" style="border:2px solid #dc2626;"><div class="spread-fill" style="width:23%;background:#d97706;">Hormuz Apr 2026 — Compressed</div></div>
-        <div class="spread-val" style="color:#d97706;font-weight:700;">$6.00</div>
+        <div class="spread-track" style="border:2px solid #dc2626;"><div class="spread-fill" style="width:23%;background:#d97706;">Hormuz risk premium</div></div>
+        <div class="spread-val" style="color:#d97706;font-weight:700;">$<span data-signal="spread" data-format="valueOnly">6.00</span></div>
       </div>
     </div>
-    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.8rem;">Spread at $8.90 widening after Iran attacked 3 ships in Hormuz on Apr 22, hours after Trump extended the ceasefire "indefinitely". Still below the $14 peak but above the $2–5 normal range. Watch for a break above $10 if attacks continue, or compression below $5 if US-Iran talks restart.</div>
+    <div style="font-size:0.72rem;color:var(--muted);margin-top:0.8rem;">The spread widens when Middle East supply risk is priced into Brent but not WTI, and compresses as that risk fades. Still below the $14 historical peak but above the $2–5 normal range — see the live reading above for where it stands right now.</div>
   </div>
 
   <!-- Key questions -->
@@ -1128,23 +1122,23 @@ _initHamburger();
   <div class="questions">
     <div class="q-card">
       <div class="q-label" style="color:#dc2626;">If spread widens above $10</div>
-      <div class="q-val">Blockade standoff entrenched</div>
-      <div class="q-desc">With ceasefire extended indefinitely but Iran attacking ships in Hormuz (Apr 22), a spread above $10 would confirm the risk premium is re-pricing. VLCC rates stay at $495k and war-risk insurance stays elevated. Watch for Brent breaking $110.</div>
+      <div class="q-val">Risk premium re-pricing</div>
+      <div class="q-desc">A spread above $10 would confirm Middle East supply risk is being priced back into Brent relative to WTI. Watch VLCC rates and war-risk insurance costs for tankers — they tend to move alongside the spread when this happens.</div>
     </div>
     <div class="q-card">
       <div class="q-label" style="color:#15803d;">If spread falls below $5</div>
       <div class="q-val">De-escalation confirmed</div>
-      <div class="q-desc">Risk premium unwinding in oil. But VLCC rates will lag oil prices by weeks — physical tanker traffic only returns once Iran lifts Hormuz restrictions AND the US lifts its port blockade. War-risk insurance needs to normalise too.</div>
+      <div class="q-desc">Risk premium unwinding in oil. But VLCC rates typically lag oil prices by weeks — physical tanker traffic only normalises once transit restrictions genuinely ease and war-risk insurance follows suit.</div>
     </div>
     <div class="q-card">
       <div class="q-label" style="color:#d97706;">BDI next print</div>
       <div class="q-val">Watch for below 1,500</div>
-      <div class="q-desc">BDI currently 2,567 — neutral. A fall below 1,500 would confirm the oil shock is feeding into real demand weakness and not just a supply-driven spike.</div>
+      <div class="q-desc">BDI is currently <span data-signal="bdi" data-format="valueOnly">3,180</span> pts. A fall below 1,500 would confirm a supply-shock story is feeding into real demand weakness, not just a supply-driven spike.</div>
     </div>
     <div class="q-card">
-      <div class="q-label" style="color:#dc2626;">Iran ship attacks escalation</div>
-      <div class="q-val">Insurance premium driver</div>
-      <div class="q-desc">Iran attacked 3 ships in Hormuz on Apr 22 hours after Trump extended the ceasefire "indefinitely". Each attack raises war-risk insurance for tankers. If attacks continue daily, VLCC spot rates stay elevated regardless of the formal ceasefire status. Watch for US Navy response.</div>
+      <div class="q-label" style="color:#dc2626;">Tanker war-risk insurance</div>
+      <div class="q-val">VLCC rate driver</div>
+      <div class="q-desc">War-risk insurance premiums for tankers transiting the Strait move with the perceived threat level. Elevated premiums keep VLCC spot rates high even when the headline oil price is calmer — watch VLCC alongside Brent, not instead of it.</div>
     </div>
   </div>
 
@@ -1154,27 +1148,27 @@ _initHamburger();
     <a href="oslo-bors.html" class="stock-pill">
       <div class="sp-ticker">EQNR</div>
       <div class="sp-name">Equinor · Oslo</div>
-      <div class="sp-status" style="color:#d97706;">Brent $102 · Attacks on shipping</div>
+      <div class="sp-status" style="color:#d97706;">Brent $<span data-signal="brent" data-format="valueOnly">102</span></div>
     </a>
     <a href="oslo-bors.html" class="stock-pill">
       <div class="sp-ticker">AKRBP</div>
       <div class="sp-name">Aker BP · Oslo</div>
-      <div class="sp-status" style="color:#d97706;">Brent $92</div>
+      <div class="sp-status" style="color:#d97706;">Brent $<span data-signal="brent" data-format="valueOnly">92</span></div>
     </a>
     <a href="oslo-bors.html" class="stock-pill">
       <div class="sp-ticker">FRONT</div>
       <div class="sp-name">Frontline · Oslo</div>
-      <div class="sp-status" style="color:#dc2626;">VLCC $495k · SELL</div>
+      <div class="sp-status" style="color:#dc2626;">VLCC $320k · SELL</div>
     </a>
     <a href="asx-australia.html" class="stock-pill">
       <div class="sp-ticker">WDS</div>
       <div class="sp-name">Woodside · ASX</div>
-      <div class="sp-status" style="color:#dc2626;">LNG $85k · SELL</div>
+      <div class="sp-status" style="color:#dc2626;">LNG $75k · NEAR SELL</div>
     </a>
     <a href="nyse-cyclical-stocks.html" class="stock-pill">
       <div class="sp-ticker">COP</div>
       <div class="sp-name">ConocoPhillips · NYSE</div>
-      <div class="sp-status" style="color:#d97706;">Brent $92</div>
+      <div class="sp-status" style="color:#d97706;">Brent $<span data-signal="brent" data-format="valueOnly">92</span></div>
     </a>
     <a href="nyse-cyclical-stocks.html" class="stock-pill">
       <div class="sp-ticker">MOS</div>
@@ -1189,7 +1183,7 @@ _initHamburger();
     <a href="tsx-cyclical-stocks.html" class="stock-pill">
       <div class="sp-ticker">CNQ</div>
       <div class="sp-name">Canadian Natural · TSX</div>
-      <div class="sp-status" style="color:#d97706;">Brent $92</div>
+      <div class="sp-status" style="color:#d97706;">Brent $<span data-signal="brent" data-format="valueOnly">92</span></div>
     </a>
   </div>
 
@@ -1210,7 +1204,7 @@ _initHamburger();
 
 <footer style="background:var(--surface);border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);">
   <div style="font-weight:700;color:var(--ink);">Signycle</div>
-  <div>Updated 22 Apr 2026 · Not financial advice</div>
+  <div>Updated <span class="live-updated-date">22 Apr 2026</span> · Not financial advice</div>
   <div>© 2026 Signycle</div>
 
   <div style="display:flex;gap:1rem;flex-wrap:wrap;">
@@ -1404,6 +1398,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+</script>
+
+<script>
+(function(){
+  function render(){
+    var d = window.SignycleData;
+    if(!d || !d.updated) return;
+    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    var pretty = d.updated;
+    if(m){
+      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
+    }
+    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
+  }
+  render();
+  document.addEventListener('signalsLoaded', render);
+})();
 </script>
 </body>
 
