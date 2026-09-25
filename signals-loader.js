@@ -58,6 +58,7 @@
     var sellCount = 0, total = 0, sum = 0;
     for (var id in signals) {
       if (id === 'spread') continue; // derived value, not an independently tracked signal
+      if (id === 'yieldCurve') continue; // recession-only indicator; not part of the commodity buy/sell cycle
       var zone = signals[id] && signals[id].zone;
       if (!ZONE_POINTS.hasOwnProperty(zone)) continue;
       total++;

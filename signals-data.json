@@ -85,6 +85,12 @@
       "date": "22 Apr 2026",
       "zone": "neutral"
     },
+    "yieldCurve": {
+      "value": 0.31,
+      "unit": "%",
+      "date": "24 Sep 2026",
+      "zone": "neutral"
+    },
     "defense": {
       "value": 2.4,
       "unit": "% GDP",

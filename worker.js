@@ -28,6 +28,13 @@
  *   already consented and keep receiving alerts. New GET
  *   /api/confirm-subscription completes a pending signup. Previously anyone
  *   could enrol any email address with no verification.
+ * - v3.7: yieldCurve (US Treasury 10Y-2Y spread) is now live too, sourced
+ *   from FRED's public CSV export (free, no key) instead of the hand-typed
+ *   "+0.4%" that sat on recession-tracker.html with no way to update itself.
+ *   Deliberately has no THRESHOLDS buy/sell entry — unlike commodities,
+ *   lower/negative is worse here, not higher, so it's excluded from the
+ *   commodity zone/sellZoneCount system; recession-tracker.html computes
+ *   its own risk read from the raw value client-side.
  */
 
 const CORS = {
@@ -54,6 +61,13 @@ const THRESHOLDS = {
   steel:   { buy: 700,   warnSell: 1150, sell: 1450,  unit: '$/t'    },
   ironore: { buy: 60,    warnSell: 85,  sell: 100,   unit: '$/t'    },
   eur10y:  { buy: 1.5,   warnSell: 3.0, sell: 3.5,   unit: '%'      },
+  // Recession-only indicator, deliberately no buy/warn/sell: unlike every
+  // other signal here, a LOWER (or negative) value is worse, not higher.
+  // calcZone() always treats <=buy as good and >=sell as bad, which is
+  // backwards for this one, so it's left with just a unit and always
+  // resolves to 'neutral' — recession-tracker.html reads the raw value
+  // itself and applies its own (clearly-labelled, non-official) risk read.
+  yieldCurve: { unit: '%' },
   defense: { buy: 2.0,   warnSell: 3.0, sell: 3.5,   unit: '% GDP'  },
   lithium: { buy: 12000, warnSell: 30000, sell: 40000, unit: '$/t'  },
   spread:  { buy: 0,     warnSell: 8,   sell: 12,    unit: '$/bbl'  },
@@ -252,6 +266,25 @@ async function fetchEurYield() {
   } catch (e) { return null; }
 }
 
+// US Treasury 10Y-2Y yield curve spread, from FRED's public CSV export —
+// free, no API key, updated daily. The classic recession-inversion signal:
+// negative means the curve is inverted, which has historically preceded
+// recessions by roughly 12-18 months. FRED marks missing days as "." —
+// walk backwards from the latest row to find the last real observation.
+async function fetchYieldCurve() {
+  try {
+    const res = await fetch('https://fred.stlouisfed.org/graph/fredgraph.csv?id=T10Y2Y');
+    const csv = await res.text();
+    const lines = csv.trim().split('\n');
+    for (let i = lines.length - 1; i > 0; i--) {
+      const parts = lines[i].split(',');
+      const val = parts[1];
+      if (val && val !== '.') return parseFloat(val);
+    }
+    return null;
+  } catch (e) { return null; }
+}
+
 async function getLivePrices() {
   const results = {};
   await Promise.all([
@@ -265,6 +298,12 @@ async function getLivePrices() {
       const yield10y = await fetchEurYield();
       if (yield10y !== null) {
         results.eur10y = Math.round(yield10y * 100) / 100;
+      }
+    })(),
+    (async () => {
+      const spread10y2y = await fetchYieldCurve();
+      if (spread10y2y !== null) {
+        results.yieldCurve = Math.round(spread10y2y * 100) / 100;
       }
     })(),
   ]);
@@ -295,8 +334,8 @@ async function refreshLiveCache(env) {
 }
 
 // What GET /api/signals actually calls: reads the cron-refreshed KV cache
-// instead of calling Yahoo/ECB directly on every page view. Previously every
-// single request re-fetched all 10 live signals itself — fine at low
+// instead of calling Yahoo/ECB/FRED directly on every page view. Previously
+// every single request re-fetched all 11 live signals itself — fine at low
 // traffic, but it meant page-load latency and Yahoo/ECB rate-limit exposure
 // scaled with visitor count instead of staying flat.
 async function getCachedLivePrices(env) {

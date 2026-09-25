@@ -19,7 +19,7 @@
   "mainEntity": [
     {"@type":"Question","name":"Are we in a recession in 2026?","acceptedAnswer":{"@type":"Answer","text":"Signycle tracks recession risk using 6 weighted indicators — the yield curve, PMI, high-yield credit spreads, unemployment trend, the leading economic index, and oil price shocks. The current recession probability, phase, and per-indicator scores are shown live at the top of this page and update as the underlying data changes."}},
     {"@type":"Question","name":"What is recession probability?","acceptedAnswer":{"@type":"Answer","text":"Recession probability is a weighted score based on key leading economic indicators: the yield curve (10Y-2Y spread), PMI, high yield credit spreads, unemployment trend, leading economic index and oil price shocks. A score above 70% historically precedes recessions within 12 months."}},
-    {"@type":"Question","name":"What does the yield curve say about recession risk?","acceptedAnswer":{"@type":"Answer","text":"The 10-year minus 2-year yield spread (yield curve) is one of the most reliable recession predictors. When the curve inverts (goes negative), a recession typically follows within 12-18 months. Currently the curve is at +0.4%, which is positive but flattening."}},
+    {"@type":"Question","name":"What does the yield curve say about recession risk?","acceptedAnswer":{"@type":"Answer","text":"The 10-year minus 2-year yield spread (yield curve) is one of the most reliable recession predictors. When the curve inverts (goes negative), a recession typically follows within 12-18 months. The current spread, pulled live from FRED, is shown in the indicator table on this page."}},
     {"@type":"Question","name":"What is the PMI recession indicator?","acceptedAnswer":{"@type":"Answer","text":"The Purchasing Managers Index (PMI) measures manufacturing and services activity. A PMI below 50 indicates contraction. The current Global PMI of 51.4 — just below the 50 threshold, signalling mild economic weakness."}},
     {"@type":"Question","name":"Is a recession coming in 2026?","acceptedAnswer":{"@type":"Answer","text":"See the live recession probability at the top of this page for the current reading. The biggest near-term risk being tracked is an oil price shock — if oil stays above $100/bbl and PMI falls further below 48, recession risk would escalate further."}}
   ]
@@ -733,7 +733,7 @@ _initHamburger();
         <h1>Are We In A Recession?</h1>
         <p>Not yet — but risk is elevated. Several of the 6 tracked indicators are flashing warning signs. The yield curve remains positive and labour markets are holding.</p>
         <div class="phase-badge" id="phaseBadge">⚠️ Economic phase: Mid-late cycle</div>
-        <div class="updated">Signycle Recession Score · 6 indicators · yield curve, PMI &amp; oil are live; others updated manually</div>
+        <div class="updated">Signycle Recession Score · 6 indicators, editorially weighted by us — not a black-box model. The yield curve is pulled live from FRED; the other 5 are updated manually as new data is published.</div>
       </div>
     </div>
 
@@ -764,10 +764,10 @@ _initHamburger();
       <tbody>
 
         <tr>
-          <td><div class="ind-name">🔄 Yield Curve (10Y–2Y)</div><div class="ind-sub">Negative = recession warning · Weight: 25%</div></td>
-          <td><span class="ind-val">+0.4%</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:55%;background:#d97706;"></div></div><span style="font-size:0.68rem;color:#d97706;font-family:var(--mono);margin-top:2px;display:block;">55 / 100</span></div></td>
-          <td><span class="ind-badge badge-mod">⚠️ Flattening</span></td>
+          <td><div class="ind-name">🔄 Yield Curve (10Y–2Y)</div><div class="ind-sub">Live from FRED · Negative = recession warning · Weight: 25%</div></td>
+          <td><span class="ind-val yc-value-live" id="ycValue">+0.4%</span></td>
+          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" id="ycBarFill" style="width:55%;background:#d97706;"></div></div><span id="ycBarScore" style="font-size:0.68rem;color:#d97706;font-family:var(--mono);margin-top:2px;display:block;">55 / 100</span></div></td>
+          <td><span class="ind-badge badge-mod" id="ycBadge">⚠️ Flattening</span></td>
         </tr>
 
         <tr>
@@ -888,11 +888,11 @@ _initHamburger();
     <div class="faq-section">
       <div class="faq-item open">
         <div class="faq-q">Are we in a recession in 2026?</div>
-        <div class="faq-a">Not yet — but risk is elevated at <span data-signal="recessionProb">54%</span>. The economy is in late-cycle territory. An oil price shock above $100/bbl is the biggest near-term risk. PMI has fallen below 50 and the leading economic index is declining. However, the yield curve remains positive (+0.4%) and unemployment is stable, which are the two most reliable recession indicators — both currently point away from imminent recession.</div>
+        <div class="faq-a">Not yet — but risk is elevated at <span data-signal="recessionProb">54%</span>. The economy is in late-cycle territory. An oil price shock above $100/bbl is the biggest near-term risk. PMI has fallen below 50 and the leading economic index is declining. However, the yield curve remains positive (<span class="yc-value-live">+0.4%</span>) and unemployment is stable, which are the two most reliable recession indicators — both currently point away from imminent recession.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">What is the most reliable recession indicator?</div>
-        <div class="faq-a">The yield curve (10Y–2Y Treasury spread) has preceded every US recession since 1950 with only two false positives. When the 10-year yield falls below the 2-year yield (inversion), a recession typically follows within 12–18 months. Currently the curve is at +0.4% — positive but flattening from the inversion seen in 2022–2023.</div>
+        <div class="faq-a">The yield curve (10Y–2Y Treasury spread) has preceded every US recession since 1950 with only two false positives. When the 10-year yield falls below the 2-year yield (inversion), a recession typically follows within 12–18 months. Currently the curve is at <span class="yc-value-live">+0.4%</span> — positive but flattening from the inversion seen in 2022–2023.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Is a recession coming in 2026?</div>
@@ -918,7 +918,7 @@ _initHamburger();
       <div style="font-size:0.75rem;color:#ea580c;font-weight:600;margin-bottom:1rem;" id="sidebarLabel">⚠️ Elevated — Late Cycle</div>
       <div style="font-size:0.75rem;color:var(--text);line-height:1.6;">
         <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>Yield Curve</span><span style="font-family:var(--mono);color:#d97706;">55%</span>
+          <span>Yield Curve</span><span style="font-family:var(--mono);color:#d97706;" id="sidebarYC">55%</span>
         </div>
         <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
           <span>PMI</span><span style="font-family:var(--mono);color:#d97706;">55%</span>
@@ -1251,6 +1251,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Yield-curve risk read below is Signycle's own simplified heuristic for
+  // display purposes only — not an official recession-probability model.
+  // Positive/steep = low risk, flattening toward zero = moderate, inverted
+  // (negative) = high, scaled smoothly so the bar/badge don't jump sharply
+  // at the zero line.
+  function ycRisk(spread){
+    if (spread >= 0.5) return { score: 15, tier: 'low',  color: '#00956e', label: '✅ Positive / healthy' };
+    if (spread >= 0)   return { score: Math.round(30 + (0.5 - spread) * 50), tier: 'mod',  color: '#d97706', label: '⚠️ Flattening' };
+    return                    { score: Math.min(95, Math.round(60 + Math.abs(spread) * 40)), tier: 'high', color: '#dc2626', label: '🔴 Inverted' };
+  }
+  var YC_BADGE_CLASS = { low: 'badge-low', mod: 'badge-mod', high: 'badge-high' };
+
+  function updateYieldCurve(d){
+    var sig = d.signals && d.signals.yieldCurve;
+    if (!sig || sig.value == null) return;
+    var v = parseFloat(sig.value);
+    if (isNaN(v)) return;
+    var formatted = (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
+    document.querySelectorAll('.yc-value-live').forEach(function(el){ el.textContent = formatted; });
+
+    var risk = ycRisk(v);
+    var barFill = document.getElementById('ycBarFill');
+    if (barFill) { barFill.style.width = risk.score + '%'; barFill.style.background = risk.color; }
+    var barScore = document.getElementById('ycBarScore');
+    if (barScore) { barScore.textContent = risk.score + ' / 100'; barScore.style.color = risk.color; }
+    var badge = document.getElementById('ycBadge');
+    if (badge) { badge.textContent = risk.label; badge.className = 'ind-badge ' + (YC_BADGE_CLASS[risk.tier] || 'badge-mod'); }
+    var sidebarYC = document.getElementById('sidebarYC');
+    if (sidebarYC) { sidebarYC.textContent = risk.score + '%'; sidebarYC.style.color = risk.color; }
+  }
+
   function render(){
     var d = window.SignycleData;
     if(!d) return;
@@ -1268,6 +1299,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var mapped = PHASE_MAP[d.cyclePhase];
     if (mapped) updatePhase(mapped);
     if (d.recessionProb != null) updateProb(d, mapped);
+    updateYieldCurve(d);
   }
   render();
   document.addEventListener('signalsLoaded', render);
