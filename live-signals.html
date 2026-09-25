@@ -813,7 +813,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     .then(function(res) {
       btn.disabled = false;
       if (res.status === 200) {
-        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'You’re subscribed!';
+        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'Check your email to confirm your subscription.';
         msg.className = 'alert-signup-msg ok';
         emailEl.value = '';
       } else {

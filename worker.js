@@ -16,6 +16,16 @@
  * - v3.4: eur10y is now live too, sourced from the ECB's own Statistical
  *   Data Warehouse (free, no key, daily) instead of a manual KV value that
  *   had drifted 5 months stale. See fetchEurYield().
+ * - v3.5: GET /api/signals now reads live prices from a KV cache refreshed
+ *   only by the Cron Trigger (see refreshLiveCache/getCachedLivePrices),
+ *   instead of calling Yahoo/ECB on every single page view. Caps external
+ *   calls at a flat ~96/day regardless of traffic.
+ * - v3.6: /api/subscribe is now double opt-in — it creates a pending entry
+ *   and emails a confirm link (buildConfirmEmailHtml/sendConfirmationEmail)
+ *   instead of adding the address immediately. sendPublicAlertEmails only
+ *   ever mails confirmed subscribers. New GET /api/confirm-subscription
+ *   completes it. Previously anyone could enrol any email address with no
+ *   verification.
  */
 
 const CORS = {
@@ -143,6 +153,49 @@ function buildAlertEmailHtml(crossings, unsubUrl) {
     '</body></html>';
 }
 
+// Small plain-HTML message page shared by the confirm and unsubscribe links
+// clicked from emails — no login, just a one-line outcome.
+function renderMessagePage(msg) {
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+    '<title>Signycle</title><style>body{font-family:-apple-system,sans-serif;max-width:480px;margin:4rem auto;padding:0 1rem;text-align:center;color:#0c1c2e;}</style>' +
+    '</head><body><h2>Signycle</h2><p>' + msg + '</p></body></html>';
+}
+
+// Builds the "confirm your subscription" email — same header branding as the
+// alert email, just a single CTA instead of signal cards.
+function buildConfirmEmailHtml(confirmUrl) {
+  const siteUrl = 'https://signycle.com';
+  return '' +
+    '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
+    '<body style="margin:0;padding:24px 16px;background:#f0f4f2;">' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:14px;overflow:hidden;">' +
+          '<tr><td style="background:#0c1c2e;padding:22px 24px;">' +
+            '<table role="presentation" cellpadding="0" cellspacing="0"><tr>' +
+              '<td style="padding-right:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#00956e;"></div></td>' +
+              '<td style="font-family:Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;color:#ffffff;">Signycle</td>' +
+            '</tr></table>' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Confirm your subscription</div>' +
+          '</td></tr>' +
+          '<tr><td style="padding:24px;">' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;color:#334155;margin-bottom:18px;">' +
+              'One more step — confirm this address to get an email whenever a Signycle signal crosses a threshold.' +
+            '</div>' +
+            '<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:8px;background:#00956e;">' +
+              '<a href="' + confirmUrl + '" style="display:inline-block;padding:12px 22px;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;color:#ffffff;text-decoration:none;">Confirm Subscription &rarr;</a>' +
+            '</td></tr></table>' +
+          '</td></tr>' +
+          '<tr><td style="background:#f8faf9;border-top:1px solid #e2e8e5;padding:16px 24px;">' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#94a3b8;line-height:1.6;">' +
+              'Didn\'t request this? Just ignore this email — you won\'t be subscribed unless you click the link above.<br>' +
+              '<a href="' + siteUrl + '" style="color:#94a3b8;">signycle.com</a>' +
+            '</div>' +
+          '</td></tr>' +
+        '</table>' +
+      '</td></tr></table>' +
+    '</body></html>';
+}
+
 function calcZone(id, value) {
   var t = THRESHOLDS[id];
   if (!t) return 'neutral';
@@ -221,6 +274,40 @@ async function getLivePrices() {
   return results;
 }
 
+// Twice the 15-min Cron Trigger interval — if the cached prices are older
+// than this, the cron has missed a run (or isn't configured), so a direct
+// fetch is safer than serving stale data labeled "Live".
+const LIVE_CACHE_MAX_AGE_MS = 30 * 60 * 1000;
+
+// Runs the real Yahoo/ECB fetch and stores the result in KV, so GET
+// /api/signals can serve it to every visitor without hitting those APIs
+// itself. Called by the Cron Trigger every ~15 min (via checkAlerts), and
+// as a self-healing fallback if that cache goes missing or stale.
+async function refreshLiveCache(env) {
+  const results = await getLivePrices();
+  await env.SIGNALS_KV.put('liveSignalsCache', JSON.stringify({
+    signals: results,
+    fetchedAt: new Date().toISOString()
+  }));
+  return results;
+}
+
+// What GET /api/signals actually calls: reads the cron-refreshed KV cache
+// instead of calling Yahoo/ECB directly on every page view. Previously every
+// single request re-fetched all 10 live signals itself — fine at low
+// traffic, but it meant page-load latency and Yahoo/ECB rate-limit exposure
+// scaled with visitor count instead of staying flat.
+async function getCachedLivePrices(env) {
+  const cached = await env.SIGNALS_KV.get('liveSignalsCache', 'json');
+  if (cached && cached.signals && cached.fetchedAt) {
+    const age = Date.now() - new Date(cached.fetchedAt).getTime();
+    if (age < LIVE_CACHE_MAX_AGE_MS) {
+      return cached.signals;
+    }
+  }
+  return await refreshLiveCache(env);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -234,8 +321,9 @@ export default {
       // Load manual data from KV
       const manual = await env.SIGNALS_KV.get('signals', 'json') || { signals: {} };
 
-      // Fetch live prices
-      const live = await getLivePrices();
+      // Read cron-refreshed live prices from KV (see getCachedLivePrices) —
+      // does not call Yahoo/ECB itself except as a cold-start/self-heal fallback.
+      const live = await getCachedLivePrices(env);
 
       // Merge: live prices override manual, zones calculated from thresholds
       const data = JSON.parse(JSON.stringify(manual)); // deep clone
@@ -312,7 +400,12 @@ export default {
     }
 
     // ── POST /api/subscribe ──────────────────────────────────────────────────
-    // Public — anyone can add their email to the alert subscriber list.
+    // Public — anyone can request to be added to the alert subscriber list.
+    // Double opt-in: this only creates a *pending* entry and emails a
+    // confirmation link. Nobody actually receives alert emails (see
+    // sendPublicAlertEmails' confirmed-only filter) until that link is
+    // clicked — otherwise a stranger could enrol someone else's address with
+    // no way for them to consent or even know it happened.
     if (request.method === 'POST' && url.pathname === '/api/subscribe') {
       try {
         const body = await request.json();
@@ -323,14 +416,26 @@ export default {
           });
         }
         const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
-        if (subs.some(function(s) { return s.email === email; })) {
+        let entry = subs.find(function(s) { return s.email === email; });
+        if (entry && entry.confirmed) {
           return new Response(JSON.stringify({ ok: true, message: 'Already subscribed' }), {
             headers: { ...CORS, 'Content-Type': 'application/json' }
           });
         }
-        subs.push({ email: email, token: crypto.randomUUID(), subscribedAt: new Date().toISOString() });
-        await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
-        return new Response(JSON.stringify({ ok: true }), {
+        if (!entry) {
+          entry = { email: email, token: crypto.randomUUID(), subscribedAt: new Date().toISOString(), confirmed: false };
+          subs.push(entry);
+          await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
+        }
+        // Re-sends on a repeat signup for an unconfirmed address too — covers
+        // someone who missed or lost the first email.
+        let emailResult = null;
+        if (env.RESEND_API_KEY && env.ALERT_FROM) {
+          const confirmUrl = 'https://signycle-signals.fransbgn.workers.dev/api/confirm-subscription?email=' +
+            encodeURIComponent(entry.email) + '&token=' + entry.token;
+          emailResult = await sendConfirmationEmail(env, entry.email, confirmUrl);
+        }
+        return new Response(JSON.stringify({ ok: true, message: 'Check your email to confirm your subscription', emailSent: !!(emailResult && emailResult.ok) }), {
           headers: { ...CORS, 'Content-Type': 'application/json' }
         });
       } catch (e) {
@@ -338,6 +443,28 @@ export default {
           status: 400, headers: { ...CORS, 'Content-Type': 'application/json' }
         });
       }
+    }
+
+    // ── GET /api/confirm-subscription ────────────────────────────────────────
+    // Public, token-protected — clicked from the confirmation email. Flips a
+    // pending signup to confirmed so it's actually included in future alert
+    // sends. Idempotent: confirming an already-confirmed link just re-shows
+    // the success page instead of erroring.
+    if (request.method === 'GET' && url.pathname === '/api/confirm-subscription') {
+      const email = (url.searchParams.get('email') || '').trim().toLowerCase();
+      const token = url.searchParams.get('token') || '';
+      const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+      const idx = subs.findIndex(function(s) { return s.email === email && s.token === token; });
+      if (idx === -1) {
+        return new Response(renderMessagePage('This confirmation link is invalid or has expired.'), {
+          headers: { ...CORS, 'Content-Type': 'text/html' }
+        });
+      }
+      subs[idx].confirmed = true;
+      await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
+      return new Response(renderMessagePage('You’re subscribed — you’ll get an email whenever a signal crosses a threshold.'), {
+        headers: { ...CORS, 'Content-Type': 'text/html' }
+      });
     }
 
     // ── GET /api/unsubscribe ─────────────────────────────────────────────────
@@ -349,19 +476,14 @@ export default {
       const token = url.searchParams.get('token') || '';
       const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
       const idx = subs.findIndex(function(s) { return s.email === email && s.token === token; });
-      const page = function(msg) {
-        return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">' +
-          '<title>Signycle</title><style>body{font-family:-apple-system,sans-serif;max-width:480px;margin:4rem auto;padding:0 1rem;text-align:center;color:#0c1c2e;}</style>' +
-          '</head><body><h2>Signycle</h2><p>' + msg + '</p></body></html>';
-      };
       if (idx === -1) {
-        return new Response(page('This link is invalid or you’re already unsubscribed.'), {
+        return new Response(renderMessagePage('This link is invalid or you’re already unsubscribed.'), {
           headers: { ...CORS, 'Content-Type': 'text/html' }
         });
       }
       subs.splice(idx, 1);
       await env.SIGNALS_KV.put('subscribers', JSON.stringify(subs));
-      return new Response(page('You’ve been unsubscribed from Signycle alerts.'), {
+      return new Response(renderMessagePage('You’ve been unsubscribed from Signycle alerts.'), {
         headers: { ...CORS, 'Content-Type': 'text/html' }
       });
     }
@@ -432,7 +554,9 @@ export default {
 // diagnostic object so both the Cron Trigger and the debug endpoint can see
 // exactly what happened, instead of failures disappearing silently.
 async function checkAlerts(env) {
-  const live = await getLivePrices();
+  // Refreshes the KV cache that GET /api/signals reads from — this is the
+  // only place that should call Yahoo/ECB on the normal 15-min cron cadence.
+  const live = await refreshLiveCache(env);
   const zones = {};
   for (const [id, price] of Object.entries(live)) {
     zones[id] = calcZone(id, price);
@@ -531,13 +655,40 @@ async function sendAlertEmail(env, crossings) {
   }
 }
 
+// Sends the "click to confirm" email for a new/repeat pending signup.
+async function sendConfirmationEmail(env, email, confirmUrl) {
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + env.RESEND_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: env.ALERT_FROM,
+        to: email,
+        subject: 'Confirm your Signycle subscription',
+        text: 'Confirm your Signycle alert subscription: ' + confirmUrl,
+        html: buildConfirmEmailHtml(confirmUrl)
+      })
+    });
+    const bodyText = await res.text();
+    return { status: res.status, ok: res.ok, body: bodyText };
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+
 // Blasts the public subscriber list via Resend's batch endpoint. This can't
 // use a single bcc'd email like sendAlertEmail does, because each recipient
 // needs their OWN unsubscribe link (with their own token) embedded in the
 // body — the batch endpoint supports different content per recipient in one
 // API call, up to 100 emails per request, so we chunk into groups of 100.
 async function sendPublicAlertEmails(env, crossings) {
-  const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+  // Only ever send to addresses that clicked the confirmation link — a
+  // pending signup someone else entered by mistake (or maliciously) must
+  // never actually receive mail.
+  const subs = (await env.SIGNALS_KV.get('subscribers', 'json') || []).filter(function(s) { return s.confirmed; });
   if (!subs.length) return { subscriberCount: 0 };
 
   const lines = crossings.map(function(c) {
