@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
+    <url>
     <loc>https://signycle.com/about</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -1507,12 +1507,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/signal-analysis</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/signal-calendar</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -1996,60 +1990,6 @@
     <loc>https://signycle.com/blog-sabic-petrochemicals-cycle</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-ryanair-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-airfranceklm-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-delta-airlines-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-united-airlines-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-finnair-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-turkish-airlines-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-cathay-pacific-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-qantas-cycle</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/bmv-mexico</loc>
-    <lastmod>2026-03-27</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
@@ -4790,4 +4730,5 @@
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
+
 </urlset>
