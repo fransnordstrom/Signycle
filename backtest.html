@@ -664,22 +664,22 @@ _initHamburger();
 <div class="stats-row">
   <div class="stat-card">
     <div class="stat-label">Best single trade</div>
-    <div class="stat-val" style="color:var(--green2)">+1,400%</div>
-    <div class="stat-sub">Solaria · EUR 10Y signal · 2020→2021</div>
+    <div class="stat-val" id="statBestVal" style="color:var(--green2)">—</div>
+    <div class="stat-sub" id="statBestSub">—</div>
   </div>
   <div class="stat-card">
     <div class="stat-label">Avg winner (BUY cycles)</div>
-    <div class="stat-val" style="color:var(--green2)">+342%</div>
-    <div class="stat-sub">Across 18 tracked trades</div>
+    <div class="stat-val" id="statAvgWinnerVal" style="color:var(--green2)">—</div>
+    <div class="stat-sub" id="statAvgWinnerSub">—</div>
   </div>
   <div class="stat-card">
     <div class="stat-label">Signals with >100% return</div>
-    <div class="stat-val" style="color:var(--green2)">14 / 18</div>
-    <div class="stat-sub">78% hit rate on BUY cycles</div>
+    <div class="stat-val" id="statWinRateVal" style="color:var(--green2)">—</div>
+    <div class="stat-sub" id="statWinRateSub">—</div>
   </div>
   <div class="stat-card">
     <div class="stat-label">Avg holding period</div>
-    <div class="stat-val" style="color:var(--ink)">18mo</div>
+    <div class="stat-val" id="statHoldVal" style="color:var(--ink)">—</div>
     <div class="stat-sub">BUY signal → SELL signal</div>
   </div>
   <div class="stat-card">
@@ -831,15 +831,15 @@ var TRADES = [
   // DEFENCE
   {ticker:'RHM',exchangeUrl:'frankfurt-xetra.html',url:'blog-rheinmetall-defense-cycle.html', name:'Rheinmetall', exchange:'Frankfurt', sector:'defence',
    signal:'NATO Defence',signalUrl:'live-signals.html', buyDate:'Feb 2022', sellDate:'—', duration:'Ongoing',
-   buyPrice:98, sellPrice:620, returnPct:533, buySignal:'2.0% GDP', sellSignal:'3.5% GDP',
+   buyPrice:98, sellPrice:982, returnPct:902, buySignal:'2.0% GDP', sellSignal:'3.5% GDP',
    buySignalVal:2.0, sellSignalVal:3.5, sigAtBuy:2.0, sigAtSell:2.4,
-   note:'NATO rearmament structural trend triggered in February 2022 (Russia-Ukraine). Rheinmetall at €98 was the entry. Now €620. Signal still not at SELL (2.4% vs 3.5% threshold).',
+   note:'NATO rearmament structural trend triggered in February 2022 (Russia-Ukraine). Rheinmetall at €98 was the entry. €982 as of 26 Sep 2026 (down from an intraday peak above €2,000 in late 2025). Signal still not at SELL (2.4% vs 3.5% threshold).',
    best:true},
   {ticker:'KONGSBERG',exchangeUrl:'oslo-bors.html',url:'blog-kongsberg-defense-cycle.html', name:'Kongsberg Gruppen', exchange:'Oslo Børs', sector:'defence',
    signal:'NATO Defence',signalUrl:'live-signals.html', buyDate:'Feb 2022', sellDate:'—', duration:'Ongoing',
-   buyPrice:280, sellPrice:1150, returnPct:311, buySignal:'2.0% GDP', sellSignal:'3.5% GDP',
+   buyPrice:280, sellPrice:1610, returnPct:475, buySignal:'2.0% GDP', sellSignal:'3.5% GDP',
    buySignalVal:2.0, sellSignalVal:3.5, sigAtBuy:2.0, sigAtSell:2.4,
-   note:'Norwegian defence and tech. NATO rearmament BUY signal still active. +311% from the February 2022 entry. Signal at 2.4% — still below SELL.',
+   note:'Norwegian defence and tech. NATO rearmament BUY signal still active. Kongsberg did a 5-for-1 split in June 2025; price shown here is split-adjusted back to Feb 2022 terms for comparison (NOK 321.90 as of 21 Sep 2026 × 5). Signal at 2.4% — still below SELL.',
    best:false},
   // MATERIALS
   {ticker:'VERBUND',exchangeUrl:'wiener-boerse.html',url:'blog-verbund-cycle.html', name:'Verbund', exchange:'Vienna', sector:'materials',
@@ -874,11 +874,7 @@ var TRADES = [
    buySignalVal:230, sellSignalVal:620, sigAtBuy:220, sigAtSell:780,
    note:'Urea fell to $220/t in 2020 — BUY level. As urea spiked to $780 in 2022 (Russia gas crisis), Yara returned +121%.',
    best:false},
-];
-
-var SIGNAL_SUMMARY = [
-  {sig:'Brent Crude', buyLevel:'$20-50/bbl', sellLevel:'$100-105/bbl', lastBuy:'Apr 2020', bestReturn:'+963% (Borr)', avgReturn:'+245%', hitRate:'5/5'},
-  {ticker:'EQNR', name:'Equinor', exchange:'Oslo Børs', sector:'energy',
+  {ticker:'EQNR',exchangeUrl:'oslo-bors.html',url:'blog-equinor-brent-cycle.html', name:'Equinor', exchange:'Oslo Børs', sector:'energy',
    signal:'Brent Crude',signalUrl:'live-signals.html', buyDate:'Apr 2020', sellDate:'Jun 2022', duration:'26 months',
    buyPrice:115, sellPrice:340, returnPct:196, buySignal:'$22/bbl', sellSignal:'$120/bbl',
    buySignalVal:22, sellSignalVal:120, sigAtBuy:22, sigAtSell:120,
@@ -889,10 +885,14 @@ var SIGNAL_SUMMARY = [
      {label:'OPEC cut cycle', buyDate:'Jan 2016', sellDate:'Oct 2018', duration:'33 mnd', ret:'+159%', buySignal:'$28/bbl', sellSignal:'$86/bbl'},
      {label:'COVID recovery', buyDate:'Apr 2020', sellDate:'Jun 2022', duration:'26 mnd', ret:'+196%', buySignal:'$22/bbl', sellSignal:'$120/bbl'},
    ]},
+];
+
+var SIGNAL_SUMMARY = [
+  {sig:'Brent Crude', buyLevel:'$20-50/bbl', sellLevel:'$100-105/bbl', lastBuy:'Apr 2020', bestReturn:'+963% (Borr)', avgReturn:'+245%', hitRate:'5/5'},
   {sig:'LME Copper', buyLevel:'$4,600-5,000/t', sellLevel:'$9,000+/t', lastBuy:'Mar 2020', bestReturn:'+648% (FCX)', avgReturn:'+326%', hitRate:'4/4'},
   {sig:'VLCC Rate', buyLevel:'$15,000/day', sellLevel:'$75,000/day', lastBuy:'Mar 2020', bestReturn:'+621% (Frontline)', avgReturn:'+400%', hitRate:'2/2'},
   {sig:'Baltic Dry Index', buyLevel:'BDI 393-900', sellLevel:'BDI 3,000+', lastBuy:'Apr 2020', bestReturn:'+407% (Golden Ocean)', avgReturn:'+407%', hitRate:'1/1'},
-  {sig:'NATO Defence', buyLevel:'2.0% GDP', sellLevel:'3.5% GDP', lastBuy:'Feb 2022', bestReturn:'+533% (Rheinmetall)', avgReturn:'+422%', hitRate:'2/2 (ongoing)'},
+  {sig:'NATO Defence', buyLevel:'2.0% GDP', sellLevel:'3.5% GDP', lastBuy:'Feb 2022', bestReturn:'+902% (Rheinmetall)', avgReturn:'+689%', hitRate:'2/2 (ongoing)'},
   {sig:'EUR 10Y Rate', buyLevel:'0.2-1.5%', sellLevel:'3.5%+', lastBuy:'Mar 2020', bestReturn:'+390% (Solaria)', avgReturn:'+254%', hitRate:'2/2'},
   {sig:'Salmon Price', buyLevel:'NOK 42/kg', sellLevel:'NOK 82/kg', lastBuy:'Nov 2018', bestReturn:'+100% (SalMar)', avgReturn:'+70%', hitRate:'2/2'},
   {sig:'Urea Price', buyLevel:'$220-230/t', sellLevel:'$620+/t', lastBuy:'Jun 2020', bestReturn:'+121% (Yara)', avgReturn:'+121%', hitRate:'1/1'},
@@ -1008,10 +1008,42 @@ function filter(sector, btn) {
   buildCards(filtered);
 }
 
+// Computes the summary stat cards from TRADES directly instead of hand-typed
+// numbers, which drifted out of sync with the actual data (e.g. a claimed
+// "+1,400% Solaria" that didn't match Solaria's own +390% row).
+function buildStats() {
+  var best = TRADES.reduce(function(a, b) { return b.returnPct > a.returnPct ? b : a; });
+  var bestVal = document.getElementById('statBestVal');
+  var bestSub = document.getElementById('statBestSub');
+  if (bestVal) bestVal.textContent = '+' + best.returnPct + '%';
+  if (bestSub) bestSub.textContent = best.name + ' · ' + best.signal + ' signal · ' + best.buyDate + (best.sellDate === '—' ? ' → ongoing' : ' → ' + best.sellDate);
+
+  var avgReturn = Math.round(TRADES.reduce(function(s, t) { return s + t.returnPct; }, 0) / TRADES.length);
+  var avgWinnerVal = document.getElementById('statAvgWinnerVal');
+  var avgWinnerSub = document.getElementById('statAvgWinnerSub');
+  if (avgWinnerVal) avgWinnerVal.textContent = '+' + avgReturn + '%';
+  if (avgWinnerSub) avgWinnerSub.textContent = 'Across ' + TRADES.length + ' tracked trades';
+
+  var winners = TRADES.filter(function(t) { return t.returnPct > 100; }).length;
+  var winRateVal = document.getElementById('statWinRateVal');
+  var winRateSub = document.getElementById('statWinRateSub');
+  if (winRateVal) winRateVal.textContent = winners + ' / ' + TRADES.length;
+  if (winRateSub) winRateSub.textContent = Math.round(winners / TRADES.length * 100) + '% hit rate on BUY cycles';
+
+  var durations = TRADES.map(function(t) {
+    var m = /(\d+)\s*months/.exec(t.duration);
+    return m ? parseInt(m[1], 10) : null;
+  }).filter(function(x) { return x !== null; });
+  var avgMonths = durations.length ? Math.round(durations.reduce(function(s, d) { return s + d; }, 0) / durations.length) : null;
+  var holdVal = document.getElementById('statHoldVal');
+  if (holdVal && avgMonths !== null) holdVal.textContent = avgMonths + 'mo';
+}
+
 // Sort by return descending
 TRADES.sort(function(a,b){return b.returnPct - a.returnPct;});
 buildCards(TRADES);
 buildTable();
+buildStats();
 
 // Nav JS
 var btn=document.getElementById('toolsBtn'),menu=document.getElementById('toolsMenu');
