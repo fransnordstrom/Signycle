@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Signal Backtest — Historical BUY/SELL Returns | Signycle</title>
-<meta name="description" content="23 documented cycle trades. Average +342% return. Track record for every Signycle signal since 2008.">
+<meta name="description" content="Illustrative examples of 23 cycle trades based on approximate historical price levels. Average +342% return. Not independently verified against exact market data.">
 <link rel="canonical" href="https://signycle.com/backtest">
 <meta property="og:title" content="Signal Backtest — Historical BUY/SELL Returns | Signycle">
-<meta property="og:description" content="23 documented cycle trades. Average +342% return. Track record for every Signycle signal since 2008.">
+<meta property="og:description" content="Illustrative examples of 23 cycle trades based on approximate historical price levels. Average +342% return. Not independently verified against exact market data.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/backtest.html">
 <meta property="og:site_name" content="Signycle">
@@ -655,7 +655,7 @@ _initHamburger();
   <div class="hero-inner">
     <div class="hero-eyebrow">Signal Backtest · Historical Returns</div>
     <h1>What if you had<br>followed the <span>signals?</span></h1>
-    <p class="hero-sub">Every BUY and SELL signal Signycle tracks has a historical record. Here are the actual returns from buying at BUY signal levels and selling at SELL signal levels — based on real commodity prices and real stock prices.</p>
+    <p class="hero-sub">Every BUY and SELL signal Signycle tracks has a historical record. These are illustrative examples of buying at BUY signal levels and selling at SELL signal levels, based on approximate historical price levels for each signal — the specific buy/sell prices and dates have not been independently verified against exact market data.</p>
     <div class="disclaimer">⚠️ Past performance does not guarantee future results. These are historical observations, not financial advice. Real trading involves friction, timing differences and taxes not reflected here.</div>
   </div>
 </div>
@@ -750,7 +750,7 @@ _initHamburger();
 // ── BACKTEST DATA ─────────────────────────────────────────────────────────────
 var TRADES = [
   // SHIPPING — BDI / VLCC
-  {ticker:'FRONT',exchangeUrl:'oslo-bors.html',url:'blog-frontline-vlcc-cycle.html', name:'Frontline', exchange:'Oslo Børs', sector:'shipping',
+  {ticker:'FRO',exchangeUrl:'oslo-bors.html',url:'blog-frontline-vlcc-cycle.html', name:'Frontline', exchange:'Oslo Børs', sector:'shipping',
    signal:'VLCC Rate',signalUrl:'live-signals.html', buyDate:'Mar 2020', sellDate:'Nov 2021', duration:'20 months',
    buyPrice:3.8,  sellPrice:27.3, returnPct:621, buySignal:'$15k/day', sellSignal:'$75k/day',
    buySignalVal:15000, sellSignalVal:75000, sigAtBuy:15000, sigAtSell:75000,
@@ -914,7 +914,7 @@ function buildCycles(t, idx) {
 
   return "<div class='tc-cycles'>" +
     "<div class='tc-cycles-toggle' onclick='toggleCycles(this)'>" +
-      "<span>&#x21BB; " + t.cycles.length + " documented cycles</span>" +
+      "<span>&#x21BB; " + t.cycles.length + " earlier cycles</span>" +
       "<span class='tc-cycles-chevron'>&#9660;</span>" +
     "</div>" +
     "<div class='tc-cycles-table'>" +
