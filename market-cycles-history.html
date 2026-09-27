@@ -685,7 +685,7 @@ _initHamburger();
 <article class="article">
 
 <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:1rem 1.2rem;margin-bottom:2rem;font-size:0.82rem;color:#166534;">
-  <strong>Current cycle position:</strong> Cycle score 81/100 — late cycle. Brent $108 (SELL), copper $12,043/t (DEEP SELL), recession probability 54%. 
+  <strong>Current cycle position:</strong> Cycle score <span data-signal="cycleScore"></span> — late cycle. Brent <span data-signal="brent" data-format="withUnit"></span> (SELL), copper <span data-signal="copper" data-format="withUnit"></span>/t (DEEP SELL), recession probability <span data-signal="recessionProb"></span>. 
   <a href="where-are-we-in-the-cycle.html" style="color:#166534;font-weight:700;">See live signals →</a>
 </div>
 
@@ -833,7 +833,7 @@ _initHamburger();
   <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a0b0ab;margin-bottom:0.7rem;">Macro Cycle Intelligence</div>
   <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
     <a href="where-are-we-in-the-cycle.html" style="background:#0c1c2e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;"> Where are we in the cycle?</a>
-    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: 54%</a>
+    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: <span data-signal="recessionProb"></span></a>
     <a href="market-cycles-history.html" style="background:#e6f5f1;color:#00956e;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #b3e8d8;">📈 Market cycle indicator history</a>
   </div>
 </div>

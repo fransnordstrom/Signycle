@@ -702,7 +702,7 @@ _initHamburger();
 <p>The three Signycle-tracked Paris stocks represent different cycle expressions: TotalEnergies follows the Brent crude cycle, Airbus follows the aviation recovery cycle (Wide-Body Flying Hours), and Michelin follows the Global Manufacturing PMI.</p>
 
 <h2>TotalEnergies: The Brent Cycle</h2>
-<p>TotalEnergies is Europe's largest integrated oil company. The Brent signal (buy <$50/bbl, sell >$108/bbl) has been highly reliable for TTE over the past two cycles. The COVID recovery cycle generated +100% in 27 months (March 2020 to June 2022).</p>
+<p>TotalEnergies is Europe's largest integrated oil company. The Brent signal (buy <$50/bbl, sell ><span data-signal="brent" data-format="withUnit"></span>/bbl) has been highly reliable for TTE over the past two cycles. The COVID recovery cycle generated +100% in 27 months (March 2020 to June 2022).</p>
 
 <h2>Airbus: The Aviation Cycle</h2>
 <p>Airbus is the world's largest commercial aircraft manufacturer. The Wide-Body Flying Hours signal (buy <80% of 2019, sell >108%) captured the full COVID aviation recovery: +96% in 37 months (October 2020 to November 2023).</p>
@@ -752,7 +752,7 @@ _initHamburger();
   <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a0b0ab;margin-bottom:0.7rem;">Macro Cycle Intelligence</div>
   <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
     <a href="where-are-we-in-the-cycle.html" style="background:#0c1c2e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;"> Where are we in the cycle?</a>
-    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: 54%</a>
+    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: <span data-signal="recessionProb"></span></a>
     <a href="market-cycles-history.html" style="background:#e6f5f1;color:#00956e;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #b3e8d8;">📈 Market cycle indicator history</a>
   </div>
 </div>

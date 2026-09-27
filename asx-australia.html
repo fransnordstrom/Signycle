@@ -665,26 +665,26 @@ _initHamburger();
 <table class="stock-table">
   <thead><tr><th>Stock</th><th>Ticker</th><th>Signal Driver</th><th>Signal Value</th><th>Cycle Status</th></tr></thead>
   <tbody>
-    <tr><td colspan="5" class="sector-header">⚓ IRON ORE / MINING — BDI 2,014 pts · Neutral</td></tr>
+    <tr><td colspan="5" class="sector-header">⚓ IRON ORE / MINING — BDI <span data-signal="bdi" data-format="default"></span> · Neutral</td></tr>
     <tr>
       <td><strong>BHP Group</strong><div style="font-size:0.72rem;color:var(--muted);">World's largest mining company — iron ore, copper, coal</div></td>
       <td style="font-family:monospace;">BHP<br><span style="font-size:0.7rem;color:var(--muted);">Also: BHP London/NYSE</span></td>
       <td>Iron ore + Copper</td>
-      <td style="font-family:monospace;color:#dc2626;">$12,043/t Cu · BDI 2,014</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="copper" data-format="withUnit"></span>/t Cu · BDI <span data-signal="bdi" data-format="valueOnly"></span></td>
       <td><span class="sig-badge warn">MIXED</span></td>
     </tr>
     <tr>
       <td><strong>Rio Tinto</strong><div style="font-size:0.72rem;color:var(--muted);">Iron ore (Pilbara), aluminium, copper</div></td>
       <td style="font-family:monospace;">RIO<br><span style="font-size:0.7rem;color:var(--muted);">Also: RIO London/NYSE</span></td>
       <td>Iron ore + Aluminium</td>
-      <td style="font-family:monospace;">BDI 2,014 · Al $2,580</td>
+      <td style="font-family:monospace;">BDI <span data-signal="bdi" data-format="valueOnly"></span> · Al $2,580</td>
       <td><span class="sig-badge neutral">NEUTRAL</span></td>
     </tr>
     <tr>
       <td><strong>Fortescue</strong><div style="font-size:0.72rem;color:var(--muted);">Pure-play iron ore — world's 4th largest producer</div></td>
       <td style="font-family:monospace;">FMG</td>
       <td>Iron ore / BDI</td>
-      <td style="font-family:monospace;">BDI 2,014</td>
+      <td style="font-family:monospace;">BDI <span data-signal="bdi" data-format="valueOnly"></span></td>
       <td><span class="sig-badge neutral">NEUTRAL</span></td>
     </tr>
     <tr>
@@ -699,51 +699,51 @@ _initHamburger();
       <td><strong>Woodside Energy</strong><div style="font-size:0.72rem;color:var(--muted);">Australia's largest oil and gas company</div></td>
       <td style="font-family:monospace;">WDS</td>
       <td>LNG rates + Brent</td>
-      <td style="font-family:monospace;color:#d97706;">$80k/day · $108/bbl</td>
+      <td style="font-family:monospace;color:#d97706;">$80k/day · <span data-signal="brent" data-format="withUnit"></span>/bbl</td>
       <td><span class="sig-badge warn">NEAR SELL</span></td>
     </tr>
     <tr>
       <td><strong>Santos</strong></td>
       <td style="font-family:monospace;">STO</td>
       <td>LNG + Brent</td>
-      <td style="font-family:monospace;color:#d97706;">$80k/day · $108/bbl</td>
+      <td style="font-family:monospace;color:#d97706;">$80k/day · <span data-signal="brent" data-format="withUnit"></span>/bbl</td>
       <td><span class="sig-badge warn">NEAR SELL</span></td>
     </tr>
-    <tr><td colspan="5" class="sector-header">🔩 COPPER — LME Copper $12,043/t · Deep SELL</td></tr>
+    <tr><td colspan="5" class="sector-header">🔩 COPPER — LME Copper <span data-signal="copper" data-format="withUnit"></span>/t · Deep SELL</td></tr>
     <tr>
       <td><strong>OZ Minerals</strong><div style="font-size:0.72rem;color:var(--muted);">Acquired by BHP — pure copper play</div></td>
       <td style="font-family:monospace;">OZL</td>
       <td>LME Copper</td>
-      <td style="font-family:monospace;color:#dc2626;">$12,043/t</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="copper" data-format="withUnit"></span>/t</td>
       <td><span class="sig-badge sell">DEEP SELL</span></td>
     </tr>
     <tr>
       <td><strong>Sandfire Resources</strong></td>
       <td style="font-family:monospace;">SFR</td>
       <td>LME Copper</td>
-      <td style="font-family:monospace;color:#dc2626;">$12,043/t</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="copper" data-format="withUnit"></span>/t</td>
       <td><span class="sig-badge sell">DEEP SELL</span></td>
     </tr>
-    <tr><td colspan="5" class="sector-header">🥇 GOLD — Gold $4,493/oz · SELL zone</td></tr>
+    <tr><td colspan="5" class="sector-header">🥇 GOLD — Gold <span data-signal="gold" data-format="withUnit"></span>/oz · SELL zone</td></tr>
     <tr>
       <td><a href="blog-newmont-gold-cycle.html" style="text-decoration:none;color:inherit;font-weight:600;">Newmont (ASX)</a></td>
       <td style="font-family:monospace;">NEM</td>
       <td>Gold</td>
-      <td style="font-family:monospace;color:#dc2626;">$4,493/oz</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="gold" data-format="withUnit"></span>/oz</td>
       <td><span class="sig-badge sell">SELL</span></td>
     </tr>
     <tr>
       <td><strong>Northern Star Resources</strong></td>
       <td style="font-family:monospace;">NST</td>
       <td>Gold</td>
-      <td style="font-family:monospace;color:#dc2626;">$4,493/oz</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="gold" data-format="withUnit"></span>/oz</td>
       <td><span class="sig-badge sell">SELL</span></td>
     </tr>
     <tr>
       <td><strong>Evolution Mining</strong></td>
       <td style="font-family:monospace;">EVN</td>
       <td>Gold</td>
-      <td style="font-family:monospace;color:#dc2626;">$4,493/oz</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="gold" data-format="withUnit"></span>/oz</td>
       <td><span class="sig-badge sell">SELL</span></td>
     </tr>
     <tr><td colspan="5" class="sector-header">⚡ LITHIUM / ENERGY TRANSITION</td></tr>
@@ -838,9 +838,9 @@ _initHamburger();
   <div class="sidebar-section">
     <div class="sidebar-title">Key signals</div>
     <a href="best-copper-stocks.html" class="rel-link">→ Copper $11,750 🔴</a>
-    <a href="precious-metals-cycle.html" class="rel-link">→ Gold $4,493 🔴</a>
+    <a href="precious-metals-cycle.html" class="rel-link">→ Gold <span data-signal="gold" data-format="withUnit"></span> 🔴</a>
     <a href="live-signals.html" class="rel-link">→ LNG $80k/day ⚠️</a>
-    <a href="live-signals.html" class="rel-link">→ BDI 2,014 🟡</a>
+    <a href="live-signals.html" class="rel-link">→ BDI <span data-signal="bdi" data-format="valueOnly"></span> 🟡</a>
   </div>
 </div>
 </div>

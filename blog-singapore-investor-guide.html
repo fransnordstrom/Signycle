@@ -714,7 +714,7 @@ _initHamburger();
   <p class="hero-sub">BDI, Brent, CPO, Fed rates and PMI — mapped to every major cyclical stock on the Singapore Exchange. Know which signal to watch for each stock you hold.</p>
   <div class="hero-chips">
     <div class="hero-chip">&#127480;&#127468; SGX · 12 stocks tracked</div>
-    <div class="hero-chip sig">BDI 2,014 🟡 NEUTRAL</div>
+    <div class="hero-chip sig">BDI <span data-signal="bdi" data-format="valueOnly"></span> 🟡 NEUTRAL</div>
     <div class="hero-chip sig">Brent $111 🔴 SELL</div>
     <div class="hero-chip sig">CPO ~$900/t 🟡</div>
     <div class="hero-chip sig">Fed 4.25% cutting ↘</div>
@@ -732,7 +732,7 @@ _initHamburger();
   <div class="signal-card">
     <div class="signal-card-header">
       <div class="signal-icon-lg" style="background:#e6f5f1;">⚓</div>
-      <div><div class="signal-name">Baltic Dry Index</div><div class="signal-current" style="color:#d97706;">2,014 pts 🟡 NEUTRAL</div></div>
+      <div><div class="signal-name">Baltic Dry Index</div><div class="signal-current" style="color:#d97706;"><span data-signal="bdi" data-format="default"></span> 🟡 NEUTRAL</div></div>
     </div>
     <div class="signal-stocks">
       <div class="signal-stock-item"><div><div class="signal-stock-name">Yangzijiang Shipbuilding</div><div class="signal-stock-ticker">BS6</div></div><span class="signal-badge badge-hold">HOLD</span></div>
@@ -805,13 +805,13 @@ _initHamburger();
     <th>Stock</th><th>Ticker</th><th>Primary signal</th><th>Signal now</th><th>Best cycle return</th><th>Status</th>
   </tr></thead>
   <tbody>
-    <tr><td class="td-name"><a href="blog-yangzijiang-shipbuilding-cycle.html" style="color:#0c1c2e;text-decoration:none;">Yangzijiang Shipbuilding</a></td><td class="td-ticker">BS6</td><td>BDI + newbuild orders</td><td style="color:#d97706;">BDI 2,014 🟡</td><td class="td-return">+540%</td><td class="td-hold">HOLD</td></tr>
+    <tr><td class="td-name"><a href="blog-yangzijiang-shipbuilding-cycle.html" style="color:#0c1c2e;text-decoration:none;">Yangzijiang Shipbuilding</a></td><td class="td-ticker">BS6</td><td>BDI + newbuild orders</td><td style="color:#d97706;">BDI <span data-signal="bdi" data-format="valueOnly"></span> 🟡</td><td class="td-return">+540%</td><td class="td-hold">HOLD</td></tr>
     <tr><td class="td-name"><a href="blog-sembcorp-industries-cycle.html" style="color:#0c1c2e;text-decoration:none;">Sembcorp Industries</a></td><td class="td-ticker">U96</td><td>Brent crude</td><td style="color:#e03e3e;">$111/bbl 🔴</td><td class="td-return">+280%</td><td class="td-sell">REDUCE</td></tr>
     <tr><td class="td-name"><a href="blog-keppel-corp-cycle.html" style="color:#0c1c2e;text-decoration:none;">Keppel Corporation</a></td><td class="td-ticker">BN4</td><td>Brent + offshore</td><td style="color:#e03e3e;">$111/bbl 🔴</td><td class="td-return">+310%</td><td class="td-sell">REDUCE</td></tr>
     <tr><td class="td-name"><a href="blog-sia-aviation-cycle.html" style="color:#0c1c2e;text-decoration:none;">Singapore Airlines</a></td><td class="td-ticker">C6L</td><td>Flying hours + Brent</td><td style="color:#d97706;">97% recovery 🟡</td><td class="td-return">+195%</td><td class="td-hold">HOLD</td></tr>
     <tr><td class="td-name"><a href="blog-wilmar-sgx-cycle.html" style="color:#0c1c2e;text-decoration:none;">Wilmar International</a></td><td class="td-ticker">F34</td><td>CPO palm oil price</td><td style="color:#d97706;">$900/t 🟡</td><td class="td-return">+180%</td><td class="td-hold">NEUTRAL</td></tr>
     <tr><td class="td-name"><a href="blog-golden-agri-cpo-cycle.html" style="color:#0c1c2e;text-decoration:none;">Golden Agri-Resources</a></td><td class="td-ticker">E5H</td><td>CPO palm oil price</td><td style="color:#d97706;">$900/t 🟡</td><td class="td-return">+220%</td><td class="td-hold">NEUTRAL</td></tr>
-    <tr><td class="td-name"><a href="blog-hutchison-port-sgx-cycle.html" style="color:#0c1c2e;text-decoration:none;">Hutchison Port Holdings</a></td><td class="td-ticker">H07</td><td>BDI + container freight</td><td style="color:#d97706;">BDI 2,014 🟡</td><td class="td-return">+150%</td><td class="td-hold">HOLD</td></tr>
+    <tr><td class="td-name"><a href="blog-hutchison-port-sgx-cycle.html" style="color:#0c1c2e;text-decoration:none;">Hutchison Port Holdings</a></td><td class="td-ticker">H07</td><td>BDI + container freight</td><td style="color:#d97706;">BDI <span data-signal="bdi" data-format="valueOnly"></span> 🟡</td><td class="td-return">+150%</td><td class="td-hold">HOLD</td></tr>
     <tr><td class="td-name"><a href="blog-sats-aviation-cycle.html" style="color:#0c1c2e;text-decoration:none;">SATS</a></td><td class="td-ticker">S58</td><td>Flying hours</td><td style="color:#d97706;">97% recovery 🟡</td><td class="td-return">+160%</td><td class="td-hold">HOLD</td></tr>
     <tr><td class="td-name"><a href="blog-dbs-bank-cycle.html" style="color:#0c1c2e;text-decoration:none;">DBS Bank</a></td><td class="td-ticker">D05</td><td>Fed rates (SIBOR)</td><td style="color:#d97706;">Cutting cycle ↘</td><td class="td-return">+83%</td><td class="td-hold">HOLD</td></tr>
     <tr><td class="td-name"><a href="blog-sgx-reits-cycle.html" style="color:#0c1c2e;text-decoration:none;">S-REITs (Mapletree Logistics)</a></td><td class="td-ticker">M44U</td><td>Fed rates (inverse)</td><td style="color:#00956e;">Rate cuts starting ↘</td><td class="td-return">+50%</td><td class="td-buy">WATCH</td></tr>
@@ -832,7 +832,7 @@ _initHamburger();
 
 <p><strong>Brent $111/bbl (SELL):</strong> Sembcorp and Keppel have had strong runs — reduce exposure. The Hormuz crisis has elevated oil prices beyond fundamental levels.</p>
 
-<p><strong>BDI 2,014 (NEUTRAL):</strong> Yangzijiang and Hutchison Port are mid-cycle. No strong action either way — watch for BDI direction over the next quarter.</p>
+<p><strong>BDI <span data-signal="bdi" data-format="valueOnly"></span> (NEUTRAL):</strong> Yangzijiang and Hutchison Port are mid-cycle. No strong action either way — watch for BDI direction over the next quarter.</p>
 
 <p><strong>Fed cutting cycle starting (WATCH):</strong> This is the most interesting current signal for Singapore investors. DBS's NIM will compress as rates fall — but S-REIT prices should recover as financing costs fall and yield compression drives prices higher. Mapletree Logistics Trust at 7% yield with rate cuts starting is a setup worth monitoring.</p>
 

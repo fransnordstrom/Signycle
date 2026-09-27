@@ -676,34 +676,34 @@ _initHamburger();
 <table class="stock-table">
   <thead><tr><th>Stock</th><th>Ticker</th><th>Signal Driver</th><th>Signal Value</th><th>Cycle Status</th></tr></thead>
   <tbody>
-    <tr><td colspan="5" class="sector-header">⚓ IRON ORE / MINING — BDI 2,014 pts · Neutral</td></tr>
+    <tr><td colspan="5" class="sector-header">⚓ IRON ORE / MINING — BDI <span data-signal="bdi" data-format="default"></span> · Neutral</td></tr>
     <tr>
       <td><strong>Vale</strong><div style="font-size:0.72rem;color:var(--muted);">World's largest iron ore producer</div></td>
       <td style="font-family:monospace;">VALE3<br><span style="font-size:0.7rem;color:var(--muted);">Also: VALE NYSE</span></td>
       <td>Iron ore + BDI</td>
-      <td style="font-family:monospace;">BDI 2,014</td>
+      <td style="font-family:monospace;">BDI <span data-signal="bdi" data-format="valueOnly"></span></td>
       <td><span class="sig-badge neutral">NEUTRAL</span></td>
     </tr>
     <tr>
       <td><strong>CSN Mineração</strong></td>
       <td style="font-family:monospace;">CMIN3</td>
       <td>Iron ore / BDI</td>
-      <td style="font-family:monospace;">BDI 2,014</td>
+      <td style="font-family:monospace;">BDI <span data-signal="bdi" data-format="valueOnly"></span></td>
       <td><span class="sig-badge neutral">NEUTRAL</span></td>
     </tr>
-    <tr><td colspan="5" class="sector-header">🛢️ OIL & GAS — Brent $108/bbl · SELL zone</td></tr>
+    <tr><td colspan="5" class="sector-header">🛢️ OIL & GAS — Brent <span data-signal="brent" data-format="withUnit"></span>/bbl · SELL zone</td></tr>
     <tr>
       <td><strong>Petrobras</strong><div style="font-size:0.72rem;color:var(--muted);">Brazil's national oil company — pre-salt deepwater</div></td>
       <td style="font-family:monospace;">PETR4<br><span style="font-size:0.7rem;color:var(--muted);">Also: PBR NYSE</span></td>
       <td>Brent Crude</td>
-      <td style="font-family:monospace;color:#dc2626;">$108/bbl</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="brent" data-format="withUnit"></span>/bbl</td>
       <td><span class="sig-badge sell">SELL</span></td>
     </tr>
     <tr>
       <td><strong>PetroRio</strong></td>
       <td style="font-family:monospace;">PRIO3</td>
       <td>Brent Crude</td>
-      <td style="font-family:monospace;color:#dc2626;">$108/bbl</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="brent" data-format="withUnit"></span>/bbl</td>
       <td><span class="sig-badge sell">SELL</span></td>
     </tr>
     <tr><td colspan="5" class="sector-header">📄 PULP & PAPER — Global pulp cycle · Neutral</td></tr>
@@ -763,7 +763,7 @@ _initHamburger();
       <td><strong>Paranapanema</strong></td>
       <td style="font-family:monospace;">PMAM3</td>
       <td>LME Copper</td>
-      <td style="font-family:monospace;color:#dc2626;">$12,043/t</td>
+      <td style="font-family:monospace;color:#dc2626;"><span data-signal="copper" data-format="withUnit"></span>/t</td>
       <td><span class="sig-badge sell">DEEP SELL</span></td>
     </tr>
     <tr><td colspan="5" class="sector-header">✈️ AEROSPACE / INDUSTRIALS</td></tr>
@@ -803,7 +803,7 @@ _initHamburger();
   </div>
   <div class="faq-item">
     <div class="faq-q">Is Petrobras a good investment in 2026?</div>
-    <div class="faq-a">Based on the Signycle Brent crude signal, Petrobras is in SELL territory — Brent at $108/bbl is above the historical SELL threshold of $100. Petrobras also carries additional political risk as a state-controlled company where dividend policy can change with government priorities. The best historical entry for Petrobras has been when Brent is below $50 and the company is generating strong free cash flow at low prices — not at the current peak-cycle levels.</div>
+    <div class="faq-a">Based on the Signycle Brent crude signal, Petrobras is in SELL territory — Brent at <span data-signal="brent" data-format="withUnit"></span>/bbl is above the historical SELL threshold of $100. Petrobras also carries additional political risk as a state-controlled company where dividend policy can change with government priorities. The best historical entry for Petrobras has been when Brent is below $50 and the company is generating strong free cash flow at low prices — not at the current peak-cycle levels.</div>
   </div>
   <div class="faq-item">
     <div class="faq-q">What makes Suzano unique as a cyclical stock?</div>
@@ -826,7 +826,7 @@ _initHamburger();
     <div class="sidebar-title" style="color:#15803d;">&#127463;&#127479; B3 Overview</div>
     <div style="font-size:0.8rem;color:var(--text);line-height:1.9;">
       15 stocks tracked<br>
-      🔴 Oil: SELL (Brent $108)<br>
+      🔴 Oil: SELL (Brent <span data-signal="brent" data-format="withUnit"></span>)<br>
       🔴 Copper: Deep SELL<br>
       🟡 Iron ore/BDI: Neutral<br>
       🟡 Steel: Neutral<br>
@@ -843,8 +843,8 @@ _initHamburger();
   </div>
   <div class="sidebar-section">
     <div class="sidebar-title">Key signals</div>
-    <a href="compare-brent.html" class="rel-link">→ Brent $108 🔴 SELL</a>
-    <a href="live-signals.html" class="rel-link">→ BDI 2,014 🟡 Neutral</a>
+    <a href="compare-brent.html" class="rel-link">→ Brent <span data-signal="brent" data-format="withUnit"></span> 🔴 SELL</a>
+    <a href="live-signals.html" class="rel-link">→ BDI <span data-signal="bdi" data-format="valueOnly"></span> 🟡 Neutral</a>
     <a href="best-copper-stocks.html" class="rel-link">→ Copper $11,750 🔴</a>
     <a href="live-signals.html" class="rel-link">→ All 21 live signals</a>
   </div>

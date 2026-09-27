@@ -657,9 +657,9 @@ _initHamburger();
       <p class="lead">Iran mined the Strait of Hormuz on 28 February 2026. Brent crude has surpassed $100 per barrel for the first time in four years. VLCC rates have more than doubled. Tanker traffic is down over 70%. Here is what this means for each of Signycle's key signals.</p>
 
       <div class="signal-box">
-        <div class="signal-row"><span>🛢️ Brent Crude</span><span class="sig-val" style="color:#dc2626;">$108/bbl · 🔴 SELL</span></div>
+        <div class="signal-row"><span>🛢️ Brent Crude</span><span class="sig-val" style="color:#dc2626;"><span data-signal="brent" data-format="withUnit"></span>/bbl · 🔴 SELL</span></div>
         <div class="signal-row"><span>🚢 VLCC Rate</span><span class="sig-val" style="color:#d97706;">$280k+/day · ⚠️ Near SELL</span></div>
-        <div class="signal-row"><span>⚓ Baltic Dry Index</span><span class="sig-val">2,014 pts · 🟡 Neutral</span></div>
+        <div class="signal-row"><span>⚓ Baltic Dry Index</span><span class="sig-val"><span data-signal="bdi" data-format="default"></span> · 🟡 Neutral</span></div>
         <div class="signal-row"><span>📉 Recession Probability</span><span class="sig-val" style="color:#ea580c;">52% · Elevated</span></div>
       </div>
 
@@ -674,7 +674,7 @@ _initHamburger();
       <p>VLCC (Very Large Crude Carrier) spot rates have risen from approximately $28k/day before the crisis to $280k+/day today — a 143% increase. The Signycle SELL threshold for VLCC rates is $75k/day. At $68k we are approaching but not yet there. Stocks like Frontline and Hunter Group have rallied sharply. The cycle signal says: hold but watch for the $75k trigger.</p>
 
       <h2>Baltic Dry Index: surprisingly resilient</h2>
-      <p>The BDI has held steady at 2,028 points despite the crisis. This is because the BDI measures dry bulk shipping (iron ore, coal, grain) rather than oil tankers. Some trade diversion is visible — vessels rerouting around the Cape of Good Hope are adding voyage time — but the overall dry bulk market has not yet been significantly disrupted. BDI remains in neutral territory (900–3,000).</p>
+      <p>The BDI has held steady at <span data-signal="bdi" data-format="valueOnly"></span> points despite the crisis. This is because the BDI measures dry bulk shipping (iron ore, coal, grain) rather than oil tankers. Some trade diversion is visible — vessels rerouting around the Cape of Good Hope are adding voyage time — but the overall dry bulk market has not yet been significantly disrupted. BDI remains in neutral territory (900–3,000).</p>
 
       <h2>Recession probability: rising</h2>
       <p>The Hormuz crisis has pushed the Signycle recession probability from 45% to 52%. Oil price shocks have historically been among the most reliable recession triggers — the 1973 embargo, the 1979 Iranian revolution, and the 1990 Gulf War all preceded recessions within 12 months. The key variable is duration: if Hormuz remains disrupted for 6+ months, European growth could turn negative. If resolved within 2–3 months, recession may be avoided. See the full <a href="recession-tracker.html" style="color:var(--green);font-weight:600;">recession probability tracker</a>.</p>
@@ -722,7 +722,7 @@ _initHamburger();
       <div style="flex:1;min-width:200px;">
         <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#00956e;margin-bottom:0.4rem;">Signal Alert</div>
         <div style="font-size:0.92rem;font-weight:700;color:#0c1c2e;margin-bottom:0.3rem;">Get alerted when Brent or VLCC signals change</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Brent: $108/bbl · VLCC: $280k+/day</div>
+        <div style="font-size:0.78rem;color:#6b7f78;">Brent: <span data-signal="brent" data-format="withUnit"></span>/bbl · VLCC: $280k+/day</div>
       </div>
       <a href="live-signals.html" style="display:inline-flex;align-items:center;gap:0.4rem;background:#00956e;color:#fff;font-weight:700;font-size:0.85rem;padding:0.6rem 1.2rem;border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;">View live signals →</a>
     </div>

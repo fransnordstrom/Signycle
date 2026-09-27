@@ -677,7 +677,7 @@ _initHamburger();
 <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:0.6rem 1rem;font-size:0.75rem;color:#92400e;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;"><span>&#128248;</span><span><strong>Snapshot:</strong> Brent crude at $108/bbl as of 30 Mar 2026 &mdash; SELL territory &mdash; see <a href="live-signals.html" style="color:#92400e;font-weight:700;">live signals</a> for current values.</span></div><p class="lead">Shell plc (LSE/NYSE: SHEL) is one of the world&rsquo;s largest integrated energy companies, with operations spanning upstream oil and gas, liquefied natural gas (LNG), refining, chemicals, and retail fuels. For cyclical investors, Shell is the most liquid European expression of the Brent crude oil cycle &mdash; and its LNG division adds a second cycle layer tied to European gas prices and Asian LNG demand.</p>
 <div class="signal-box"><div class="signal-box-title">Signycle Signal &mdash; Shell Thresholds</div>
   <div class="signal-row"><div class="signal-icon buy">&#9650;</div><div><strong>BUY signal:</strong> Brent crude falls below $50/bbl &mdash; buy Shell. This has occurred three times since 2008: 2008 GFC, 2015 OPEC flood, 2020 COVID.</div></div>
-  <div class="signal-row"><div class="signal-icon sell">&#9660;</div><div><strong>SELL signal:</strong> Brent crude above $90/bbl &mdash; sell Shell. Current Brent at $108/bbl is firmly in SELL territory.</div></div>
+  <div class="signal-row"><div class="signal-icon sell">&#9660;</div><div><strong>SELL signal:</strong> Brent crude above $90/bbl &mdash; sell Shell. Current Brent at <span data-signal="brent" data-format="withUnit"></span>/bbl is firmly in SELL territory.</div></div>
 </div><h2>What Is Shell? Company Overview</h2>
 <p>Shell is headquartered in London and listed on both the London Stock Exchange (primary) and NYSE (ADR as SHEL). It is the largest company in the FTSE 100 by market capitalisation and one of the five global supermajors alongside BP, ExxonMobil, Chevron and TotalEnergies. Shell operates in over 70 countries and produces approximately 2.9 million barrels of oil equivalent per day.</p>
 <p>Shell&rsquo;s distinctive characteristic versus pure upstream producers like Equinor or Aker BP is its integrated structure. The downstream refining and chemicals businesses provide a degree of earnings stability when oil prices are low &mdash; margins on refining often improve when crude is cheap. This makes Shell less volatile than pure-play producers in absolute terms, but also means it captures less upside in sharp oil price recoveries.</p>
@@ -710,7 +710,7 @@ _initHamburger();
 <tr><td>Secondary signal</td><td>European LNG/TTF price</td></tr>
 <tr><td>Production</td><td>~2.9 mboepd</td></tr>
 <tr><td>AISC (upstream)</td><td>~$28/bbl</td></tr>
-<tr><td>Current signal</td><td>SELL &mdash; Brent $108/bbl</td></tr>
+<tr><td>Current signal</td><td>SELL &mdash; Brent <span data-signal="brent" data-format="withUnit"></span>/bbl</td></tr>
 <tr><td>BUY threshold</td><td>Brent below $50/bbl</td></tr>
 <tr><td>Best cycle return</td><td  class="highlight" style="color:#dc2626;">+153% (2009&ndash;2011)</td></tr>
 </tbody></table><div id="broker-box"></div>
@@ -743,7 +743,7 @@ _initHamburger();
   <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a0b0ab;margin-bottom:0.7rem;">Macro Cycle Intelligence</div>
   <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
     <a href="where-are-we-in-the-cycle.html" style="background:#0c1c2e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;"> Where are we in the cycle?</a>
-    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: 54%</a>
+    <a href="recession-tracker.html" style="background:#fef2f2;color:#dc2626;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #fca5a5;">📉 Recession probability: <span data-signal="recessionProb"></span></a>
     <a href="market-cycles-history.html" style="background:#e6f5f1;color:#00956e;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #b3e8d8;">📈 Market cycle indicator history</a>
   </div>
 </div>
