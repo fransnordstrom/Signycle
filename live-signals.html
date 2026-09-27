@@ -760,7 +760,27 @@ _initHamburger();
     })
     .catch(() => {
       const ticker = document.getElementById('tickerContent');
-      if (ticker) ticker.textContent = 'Brent $99.75 · VLCC rates elevated (Hormuz 95% closed) · BDI 2,066 · Copper $12,138 — signycle.com/news.html';
+      if (!ticker) return;
+      function fallbackText(d) {
+        if (!d || !d.signals) return null;
+        var b = d.signals.brent, v = d.signals.vlcc, k = d.signals.bdi, c = d.signals.copper;
+        var parts = [];
+        if (b && b.value != null) parts.push('Brent $' + b.value);
+        if (v && v.value != null) parts.push('VLCC $' + Math.round(v.value / 1000) + 'k/day');
+        if (k && k.value != null) parts.push('BDI ' + k.value);
+        if (c && c.value != null) parts.push('Copper $' + c.value);
+        return parts.length ? parts.join(' · ') + ' — signycle.com/news.html' : null;
+      }
+      var text = fallbackText(window.SignycleData);
+      if (text) {
+        ticker.textContent = text;
+      } else {
+        ticker.textContent = 'Latest signal readings — see the cards below for current values.';
+        document.addEventListener('signalsLoaded', function(e) {
+          var t = fallbackText(e.detail);
+          if (t) ticker.textContent = t;
+        }, { once: true });
+      }
     });
 })();
 </script>
