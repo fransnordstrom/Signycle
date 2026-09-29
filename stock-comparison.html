@@ -735,9 +735,10 @@ _initHamburger();
 <!-- Results -->
 <div class="results" id="results">
   <div class="compare-grid" id="compareCards"></div>
-  <div class="chart-section">
+  <div class="chart-section" id="chartSection">
     <div class="chart-title">Historical Price vs Signal Overlay</div>
     <canvas id="compareChart" height="260"></canvas>
+    <div id="chartFallback" style="display:none;padding:1.5rem;text-align:center;font-size:0.82rem;color:var(--dim);">Historical price chart not available for one or both of these stocks yet — showing the current signal comparison below instead.</div>
   </div>
   <div class="verdict" id="verdictBox">
     <div class="verdict-title"><span class="material-symbols-outlined" style="font-size:16px;line-height:1;vertical-align:middle;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24">bolt</span> Cycle Verdict</div>
@@ -782,7 +783,7 @@ var STOCKS = [
   {ticker:'MOWI',  name:'Mowi',             exchange:'Oslo Børs',   sig:'Salmon Price', sigId:'salmon', buy:42,  sell:82,  sigNow:68,  sigUnit:'NOK/kg',status:'neutral',
    prices:[85,95,145,165,175,145,185,195,160,165,170,175,170],
    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2025H2','2026']},
-  {ticker:'YARA',  name:'Yara International',exchange:'Oslo Børs',  sig:'Urea Price',   sigId:'urea',   buy:230, sell:620, sigNow:310, sigUnit:'$/t',   status:'neutral',
+  {ticker:'YAR',  name:'Yara International',exchange:'Oslo Børs',  sig:'Urea Price',   sigId:'urea',   buy:230, sell:620, sigNow:530, sigUnit:'$/t',   status:'neutral',
    prices:[320,245,280,310,285,220,380,550,350,280,285,300,295],
    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2025H2','2026']},
   // LONDON
@@ -844,9 +845,48 @@ var STOCKS = [
   {ticker:'AMS',   name:'Anglo American Platinum',exchange:'JSE',   sig:'Brent Crude',  sigId:'brent',  buy:50,  sell:105, sigNow:108, sigUnit:'$/bbl', status:'neutral',
    prices:[350,250,420,750,680,600,1800,1200,900,800,750,720,700],
    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2025H2','2026']},
-  {ticker:'GFI',   name:'Gold Fields',      exchange:'JSE',         sig:'Gold Price',   sigId:'gold',   buy:1200,sell:3000,sigNow:5022,sigUnit:'$/oz',  status:'sell',
+  {ticker:'GFI',   name:'Gold Fields',      exchange:'JSE',         sig:'Gold Price',   sigId:'gold',   buy:1200,sell:2800,sigNow:4365,sigUnit:'$/oz',  status:'sell',
    prices:[55,45,48,52,80,120,140,115,120,130,150,160,155],
    years: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2025H2','2026']},
+  // Additional coverage (no verified historical price series yet — the
+  // comparison tool falls back to a signal-only view for these; see
+  // runComparison()'s chart-section guard). Thresholds and current values
+  // match worker.js's THRESHOLDS and signals-data.json.
+  {ticker:'INSW', name:'International Seaways', exchange:'NYSE', sig:'VLCC Rate', sigId:'vlcc', buy:15000, sell:75000, sigNow:320000, sigUnit:'$/day', status:'sell'},
+  {ticker:'EURN', name:'Euronav', exchange:'Euronext Brussels', sig:'VLCC Rate', sigId:'vlcc', buy:15000, sell:75000, sigNow:320000, sigUnit:'$/day', status:'sell'},
+  {ticker:'NORDEN', name:'Norden', exchange:'Nasdaq Copenhagen', sig:'Baltic Dry Index', sigId:'bdi', buy:900, sell:3000, sigNow:3180, sigUnit:'pts', status:'approaching-sell'},
+  {ticker:'SBMO', name:'SBM Offshore', exchange:'Euronext Amsterdam', sig:'Brent Crude', sigId:'brent', buy:50, sell:105, sigNow:108.7, sigUnit:'$/bbl', status:'sell'},
+  {ticker:'2020BG', name:'2020 Bulkers', exchange:'Oslo Børs', sig:'Baltic Dry Index', sigId:'bdi', buy:900, sell:3000, sigNow:3180, sigUnit:'pts', status:'approaching-sell'},
+  {ticker:'HMM', name:'HMM', exchange:'KRX Korea', sig:'SCFI Container', sigId:'scfi', buy:800, sell:3500, sigNow:1850, sigUnit:'index', status:'neutral'},
+  {ticker:'MAERSK', name:'Maersk', exchange:'Nasdaq Copenhagen', sig:'SCFI Container', sigId:'scfi', buy:800, sell:3500, sigNow:1850, sigUnit:'index', status:'neutral'},
+  {ticker:'SUBC', name:'Subsea 7', exchange:'Oslo Børs', sig:'Brent Crude', sigId:'brent', buy:50, sell:105, sigNow:108.7, sigUnit:'$/bbl', status:'sell'},
+  {ticker:'BORR', name:'Borr Drilling', exchange:'Oslo Børs', sig:'Brent Crude', sigId:'brent', buy:50, sell:105, sigNow:108.7, sigUnit:'$/bbl', status:'sell'},
+  {ticker:'KGHM', name:'KGHM', exchange:'Warsaw GPW', sig:'LME Copper', sigId:'copper', buy:5000, sell:9000, sigNow:13200, sigUnit:'$/t', status:'sell'},
+  {ticker:'SOUTHERN', name:'Southern Copper', exchange:'NYSE', sig:'LME Copper', sigId:'copper', buy:5000, sell:9000, sigNow:13200, sigUnit:'$/t', status:'sell'},
+  {ticker:'AAL', name:'Anglo American', exchange:'London', sig:'LME Copper', sigId:'copper', buy:5000, sell:9000, sigNow:13200, sigUnit:'$/t', status:'sell'},
+  {ticker:'KONGSBERG', name:'Kongsberg Gruppen', exchange:'Oslo Børs', sig:'NATO Defence', sigId:'defense', buy:2.0, sell:3.5, sigNow:2.4, sigUnit:'% GDP', status:'neutral'},
+  {ticker:'SAAB', name:'Saab', exchange:'Nasdaq Stockholm', sig:'NATO Defence', sigId:'defense', buy:2.0, sell:3.5, sigNow:2.4, sigUnit:'% GDP', status:'neutral'},
+  {ticker:'BAES', name:'BAE Systems', exchange:'London', sig:'NATO Defence', sigId:'defense', buy:2.0, sell:3.5, sigNow:2.4, sigUnit:'% GDP', status:'neutral'},
+  {ticker:'LDO', name:'Leonardo', exchange:'Borsa Milano', sig:'NATO Defence', sigId:'defense', buy:2.0, sell:3.5, sigNow:2.4, sigUnit:'% GDP', status:'neutral'},
+  {ticker:'HO', name:'Thales', exchange:'Euronext Paris', sig:'NATO Defence', sigId:'defense', buy:2.0, sell:3.5, sigNow:2.4, sigUnit:'% GDP', status:'neutral'},
+  {ticker:'SALM', name:'SalMar', exchange:'Oslo Børs', sig:'Salmon Price', sigId:'salmon', buy:42, sell:82, sigNow:91, sigUnit:'NOK/kg', status:'sell'},
+  {ticker:'LSG', name:'Lerøy Seafood', exchange:'Oslo Børs', sig:'Salmon Price', sigId:'salmon', buy:42, sell:82, sigNow:91, sigUnit:'NOK/kg', status:'sell'},
+  {ticker:'GSF', name:'Grieg Seafood', exchange:'Oslo Børs', sig:'Salmon Price', sigId:'salmon', buy:42, sell:82, sigNow:91, sigUnit:'NOK/kg', status:'sell'},
+  {ticker:'NTR', name:'Nutrien', exchange:'NYSE / TSX', sig:'Urea Price', sigId:'urea', buy:230, sell:620, sigNow:530, sigUnit:'$/t', status:'neutral'},
+  {ticker:'OCI', name:'OCI Global', exchange:'Euronext Amsterdam', sig:'Urea Price', sigId:'urea', buy:230, sell:620, sigNow:530, sigUnit:'$/t', status:'neutral'},
+  {ticker:'POL', name:'Azoty Group', exchange:'Warsaw GPW', sig:'Urea Price', sigId:'urea', buy:230, sell:620, sigNow:530, sigUnit:'$/t', status:'neutral'},
+  {ticker:'NEM', name:'Newmont', exchange:'NYSE', sig:'Gold Price', sigId:'gold', buy:1200, sell:2800, sigNow:4365, sigUnit:'$/oz', status:'sell'},
+  {ticker:'AU', name:'AngloGold Ashanti', exchange:'NYSE', sig:'Gold Price', sigId:'gold', buy:1200, sell:2800, sigNow:4365, sigUnit:'$/oz', status:'sell'},
+  {ticker:'NST', name:'Northern Star', exchange:'ASX Australia', sig:'Gold Price', sigId:'gold', buy:1200, sell:2800, sigNow:4365, sigUnit:'$/oz', status:'sell'},
+  {ticker:'VER', name:'Verbund', exchange:'Wiener Börse', sig:'EUR 10Y Rate', sigId:'eur10y', buy:1.5, sell:3.5, sigNow:2.93, sigUnit:'%', status:'neutral'},
+  {ticker:'SLRIA', name:'Solaria', exchange:'Bolsa Madrid', sig:'EUR 10Y Rate', sigId:'eur10y', buy:1.5, sell:3.5, sigNow:2.93, sigUnit:'%', status:'neutral'},
+  {ticker:'ORSTED', name:'Ørsted', exchange:'Nasdaq Copenhagen', sig:'EUR 10Y Rate', sigId:'eur10y', buy:1.5, sell:3.5, sigNow:2.93, sigUnit:'%', status:'neutral'},
+  {ticker:'RWE', name:'RWE', exchange:'Frankfurt XETRA', sig:'EUR 10Y Rate', sigId:'eur10y', buy:1.5, sell:3.5, sigNow:2.93, sigUnit:'%', status:'neutral'},
+  {ticker:'ALB', name:'Albemarle', exchange:'NYSE', sig:'Lithium Carbonate', sigId:'lithium', buy:12000, sell:40000, sigNow:17000, sigUnit:'$/t', status:'neutral'},
+  {ticker:'SQM', name:'SQM', exchange:'NYSE', sig:'Lithium Carbonate', sigId:'lithium', buy:12000, sell:40000, sigNow:17000, sigUnit:'$/t', status:'neutral'},
+  {ticker:'PLS', name:'Pilbara Minerals', exchange:'ASX Australia', sig:'Lithium Carbonate', sigId:'lithium', buy:12000, sell:40000, sigNow:17000, sigUnit:'$/t', status:'neutral'},
+  {ticker:'1772', name:'Ganfeng Lithium', exchange:'HKEX', sig:'Lithium Carbonate', sigId:'lithium', buy:12000, sell:40000, sigNow:17000, sigUnit:'$/t', status:'neutral'},
+  {ticker:'CATL', name:'CATL', exchange:'SSE Shanghai', sig:'Lithium Carbonate', sigId:'lithium', buy:12000, sell:40000, sigNow:17000, sigUnit:'$/t', status:'neutral'},
 ];
 
 var SIGNAL_HIST = {
@@ -1000,8 +1040,20 @@ function runComparison() {
     cards.appendChild(card);
   });
 
-  // Draw chart
-  drawCompareChart(a, b);
+  // Draw chart — only when both stocks have real historical price data;
+  // several stocks in this database (mostly newer additions) only carry
+  // current signal data, not a verified price history, so show a plain
+  // signal comparison instead of drawing a chart with no data.
+  var canvas = document.getElementById('compareChart');
+  var fallback = document.getElementById('chartFallback');
+  if (a.prices && b.prices && a.years && b.years) {
+    canvas.style.display = '';
+    fallback.style.display = 'none';
+    drawCompareChart(a, b);
+  } else {
+    canvas.style.display = 'none';
+    fallback.style.display = '';
+  }
 
   // Build verdict
   buildVerdict(a, b, winner, pctA, pctB);

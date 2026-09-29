@@ -871,6 +871,130 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   <h2 class="signals-section-title" style="margin-top:2.5rem;">Weekly-updated signals <span>Hand-researched, updated manually — see each card's date</span></h2>
   <div class="signals-grid" id="signalsGridManual"></div>
 
+  <h2 class="signals-section-title" style="margin-top:2.5rem;">What would trigger a signal? <span>Drag to see the live BUY / SELL classification</span></h2>
+  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:12px;padding:1.5rem 1.6rem;">
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:1.3rem;">
+      <select id="explorerSignal" style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;font-weight:600;color:#0c1c2e;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;padding:0.5rem 0.8rem;"></select>
+      <div style="font-size:0.78rem;color:#6b7f78;">Actual current value: <strong id="explorerCurrentVal" style="color:#0c1c2e;">···</strong></div>
+    </div>
+    <input type="range" id="explorerSlider" style="width:100%;accent-color:#00956e;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.9rem;flex-wrap:wrap;gap:0.6rem;">
+      <span id="explorerValueLabel" style="font-family:'IBM Plex Mono',monospace;font-size:1.35rem;font-weight:700;color:#0c1c2e;">—</span>
+      <span id="explorerZoneBadge" style="font-size:0.78rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:20px;">—</span>
+    </div>
+    <div id="explorerThresholdNote" style="margin-top:1rem;font-size:0.78rem;color:#6b7f78;line-height:1.6;"></div>
+  </div>
+  <script>
+  (function() {
+    // Kept in sync by hand with worker.js's THRESHOLDS — if you change one,
+    // change the other. min/max/step here are just slider UX ranges, not
+    // part of the real signal config.
+    var THRESHOLDS = {
+      brent:   { name: 'Brent Crude Oil',        buy: 50,    warnSell: 95,   sell: 105,  unit: '$/bbl',  min: 0,     max: 160,   step: 1 },
+      wti:     { name: 'WTI Crude Oil',          buy: 45,    warnSell: 88,   sell: 95,   unit: '$/bbl',  min: 0,     max: 140,   step: 1 },
+      spread:  { name: 'Brent-WTI Spread',       buy: 0,     warnSell: 8,    sell: 12,   unit: '$/bbl',  min: -15,   max: 25,    step: 0.5 },
+      copper:  { name: 'LME Copper',             buy: 5000,  warnSell: 8500, sell: 9000, unit: '$/t',    min: 0,     max: 14000, step: 100 },
+      alum:    { name: 'LME Aluminium',          buy: 1600,  warnSell: 2800, sell: 3200, unit: '$/t',    min: 0,     max: 4000,  step: 50 },
+      gold:    { name: 'Gold Price',             buy: 1200,  warnSell: 2500, sell: 2800, unit: '$/oz',   min: 500,   max: 5500,  step: 25 },
+      bdi:     { name: 'Baltic Dry Index',       buy: 900,   warnSell: 2500, sell: 3000, unit: 'pts',    min: 0,     max: 4500,  step: 50 },
+      vlcc:    { name: 'VLCC Spot Rate',         buy: 15000, warnSell: 60000, sell: 75000, unit: '$/day', min: 0,    max: 110000, step: 1000 },
+      lng:     { name: 'LNG Spot Charter Rate',  buy: 10000, warnSell: 60000, sell: 80000, unit: '$/day', min: 0,    max: 110000, step: 1000 },
+      salmon:  { name: 'Norwegian Salmon Price', buy: 42,    warnSell: 75,   sell: 82,   unit: 'NOK/kg', min: 0,     max: 110,   step: 1 },
+      urea:    { name: 'Urea Price',             buy: 230,   warnSell: 550,  sell: 620,  unit: '$/t',    min: 0,     max: 850,   step: 10 },
+      steel:   { name: 'Steel HRC Price',        buy: 700,   warnSell: 1150, sell: 1450, unit: '$/t',    min: 0,     max: 2100,  step: 25 },
+      ironore: { name: 'Iron Ore (62% Fe)',      buy: 60,    warnSell: 85,   sell: 100,  unit: '$/t',    min: 0,     max: 160,   step: 2 },
+      lithium: { name: 'Lithium Carbonate',      buy: 12000, warnSell: 30000, sell: 40000, unit: '$/t', min: 0,     max: 55000, step: 500 },
+      eur10y:  { name: 'EUR 10-Year Rate',       buy: 1.5,   warnSell: 3.0,  sell: 3.5,  unit: '%',      min: 0,     max: 6,     step: 0.1 },
+      defense: { name: 'NATO Defence Spending',  buy: 2.0,   warnSell: 3.0,  sell: 3.5,  unit: '% GDP',  min: 0,     max: 5,     step: 0.1 },
+      scfi:    { name: 'SCFI Container Freight', buy: 800,   warnSell: 2500, sell: 3500, unit: 'index',  min: 0,     max: 5000,  step: 50 },
+      pctc:    { name: 'PCTC Daily Rate',        buy: 8000,  warnSell: 35000, sell: 45000, unit: '$/day', min: 0,    max: 60000, step: 500 },
+      rig:     { name: 'Offshore Rig Utilisation', buy: 70,  warnSell: 88,   sell: 92,   unit: '%',      min: 0,     max: 100,   step: 1 },
+      pmi:     { name: 'Global Manufacturing PMI', buy: 48,  warnSell: 55,   sell: 60,   unit: 'index',  min: 30,    max: 70,    step: 0.1 },
+      nbsk:    { name: 'NBSK Pulp Price',        buy: 750,   warnSell: 1100, sell: 1300, unit: '$/t',    min: 0,     max: 1800,  step: 25 },
+      flying:  { name: 'Wide-body Flying Hours', buy: 85,    warnSell: 115,  sell: 130,  unit: 'index',  min: 0,     max: 180,   step: 1 },
+      wfe:     { name: 'Semicon WFE Index',      buy: 80,    warnSell: 120,  sell: 140,  unit: 'index',  min: 0,     max: 200,   step: 1 },
+    };
+    var ORDER = ['brent','wti','spread','copper','alum','gold','bdi','vlcc','lng','salmon','urea','steel','ironore','lithium','eur10y','defense','scfi','pctc','rig','pmi','nbsk','flying','wfe'];
+    var ZONE_STYLE = {
+      buy:     { label: 'BUY',       bg: '#e6f5f1', color: '#00956e' },
+      neutral: { label: 'NEUTRAL',   bg: '#f0f4f2', color: '#475569' },
+      warn:    { label: 'NEAR SELL', bg: '#fffbeb', color: '#d97706' },
+      sell:    { label: 'SELL',      bg: '#fef2f2', color: '#dc2626' },
+    };
+
+    function calcZone(t, v) {
+      if (v <= t.buy) return 'buy';
+      if (v >= t.sell) return 'sell';
+      if (v >= t.warnSell) return 'warn';
+      return 'neutral';
+    }
+
+    function fmtVal(t, v) {
+      var n = Math.round(v / t.step) * t.step;
+      n = Math.round(n * 100) / 100;
+      if (t.unit === '%') return n.toFixed(1) + '%';
+      if (t.unit === '% GDP') return n.toFixed(1) + '% GDP';
+      if (t.unit === 'pts' || t.unit === 'index') return n.toLocaleString('en-US') + ' ' + t.unit;
+      if (t.unit.charAt(0) === '$') return '$' + n.toLocaleString('en-US') + t.unit.slice(1);
+      return n.toLocaleString('en-US') + ' ' + t.unit;
+    }
+
+    var select = document.getElementById('explorerSignal');
+    var slider = document.getElementById('explorerSlider');
+    var valueLabel = document.getElementById('explorerValueLabel');
+    var zoneBadge = document.getElementById('explorerZoneBadge');
+    var thresholdNote = document.getElementById('explorerThresholdNote');
+    var currentValEl = document.getElementById('explorerCurrentVal');
+
+    ORDER.forEach(function(id) {
+      var o = document.createElement('option');
+      o.value = id;
+      o.textContent = THRESHOLDS[id].name;
+      select.appendChild(o);
+    });
+
+    function updateCurrentVal(id) {
+      var t = THRESHOLDS[id];
+      if (window.SignycleData && window.SignycleData.signals && window.SignycleData.signals[id] && window.SignycleData.signals[id].value != null) {
+        currentValEl.textContent = fmtVal(t, parseFloat(window.SignycleData.signals[id].value));
+      } else {
+        currentValEl.textContent = '—';
+      }
+    }
+
+    function update() {
+      var id = select.value;
+      var t = THRESHOLDS[id];
+      var v = parseFloat(slider.value);
+      valueLabel.textContent = fmtVal(t, v);
+      var zone = calcZone(t, v);
+      var z = ZONE_STYLE[zone];
+      zoneBadge.textContent = z.label;
+      zoneBadge.style.background = z.bg;
+      zoneBadge.style.color = z.color;
+      var note = 'BUY at or below ' + fmtVal(t, t.buy) + ' · SELL at or above ' + fmtVal(t, t.sell);
+      if (t.warnSell !== t.sell) note += ' (near-sell from ' + fmtVal(t, t.warnSell) + ')';
+      thresholdNote.textContent = note;
+    }
+
+    function setupSlider(id) {
+      var t = THRESHOLDS[id];
+      slider.min = t.min;
+      slider.max = t.max;
+      slider.step = t.step;
+      slider.value = Math.round(((t.buy + t.sell) / 2) / t.step) * t.step;
+      update();
+      updateCurrentVal(id);
+    }
+
+    select.addEventListener('change', function() { setupSlider(select.value); });
+    slider.addEventListener('input', update);
+    document.addEventListener('signalsLoaded', function() { updateCurrentVal(select.value); });
+
+    setupSlider('brent');
+  })();
+  </script>
+
 </div>
 
 
