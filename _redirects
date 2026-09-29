@@ -1,5 +1,14 @@
 # Signycle redirects — canonical = extensionless. 301 .html -> clean URL.
 # index.html handled by Pages default (/ serves index). Internal/verification pages excluded.
+#
+# The exclusion above was only ever a comment — Cloudflare Pages' own default
+# clean-URL behavior 301/308-redirects EVERY .html file regardless of what's
+# in this list, including ones deliberately left out of it. Google's site
+# ownership verification crawler expects google82ad971988071f3f.html to
+# return 200 at that exact path with no redirect, so it needs an explicit
+# 200-status rule (a rewrite/passthrough, not a redirect) to actually stay
+# unredirected.
+/google82ad971988071f3f.html /google82ad971988071f3f.html 200
 /about.html /about 301
 /asx-australia.html /asx-australia 301
 /athens-stock-exchange.html /athens-stock-exchange 301
