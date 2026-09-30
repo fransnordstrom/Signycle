@@ -607,18 +607,36 @@ async function checkAlerts(env) {
     await recordHistory(env, live, zones);
   }
 
+  // alertZones = last *confirmed* zone per signal (what we've actually
+  // alerted on). pendingZones = the raw zone read on the immediately
+  // previous tick. A crossing only confirms once the new zone has been
+  // seen on two consecutive ticks — a signal sitting right on a threshold
+  // (e.g. Brent-WTI spread bouncing $7/$8 across the warnSell line) would
+  // otherwise flip back and forth every ~15 min and spam an alert each time.
   const prevZones = await env.SIGNALS_KV.get('alertZones', 'json') || {};
+  const pendingZones = await env.SIGNALS_KV.get('pendingZones', 'json') || {};
   const crossings = [];
+  const nextConfirmed = Object.assign({}, prevZones);
+  const nextPending = {};
   for (const [id, zone] of Object.entries(zones)) {
+    nextPending[id] = zone;
     const prevZone = prevZones[id];
-    if (prevZone && prevZone !== zone) {
-      crossings.push({ id: id, from: prevZone, to: zone, value: live[id], unit: THRESHOLDS[id]?.unit || '' });
+    if (!prevZone || zone === prevZone) {
+      nextConfirmed[id] = zone;
+      continue;
     }
+    if (pendingZones[id] === zone) {
+      crossings.push({ id: id, from: prevZone, to: zone, value: live[id], unit: THRESHOLDS[id]?.unit || '' });
+      nextConfirmed[id] = zone;
+    }
+    // else: zone changed but hasn't been confirmed on a second consecutive
+    // tick yet — leave nextConfirmed[id] as prevZone and wait.
   }
 
   // Store the new state regardless of whether we alert, so a failed email
   // send doesn't cause the same crossing to be re-detected next run.
-  await env.SIGNALS_KV.put('alertZones', JSON.stringify(zones));
+  await env.SIGNALS_KV.put('alertZones', JSON.stringify(nextConfirmed));
+  await env.SIGNALS_KV.put('pendingZones', JSON.stringify(nextPending));
 
   const envCheck = {
     RESEND_API_KEY: !!env.RESEND_API_KEY,

@@ -952,6 +952,70 @@ _initHamburger();
 </section>
 </div>
 
+<!-- ALERT SIGNUP -->
+<div class="alert-signup">
+  <div class="alert-signup-inner">
+    <div class="alert-signup-label">
+      Get emailed when a signal crosses a zone
+      <span>Brent, copper, gold and more — sent the moment it happens, both ways.</span>
+    </div>
+    <form class="alert-signup-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
+      <input type="email" id="alertSignupEmail" placeholder="you@example.com" required>
+      <button type="submit" id="alertSignupBtn">Get alerts</button>
+      <div class="alert-signup-msg" id="alertSignupMsg"></div>
+    </form>
+  </div>
+</div>
+<style>
+.alert-signup{background:var(--green-bg);border-bottom:1px solid var(--green-border);padding:0.9rem 1.5rem;}
+.alert-signup-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;}
+.alert-signup-label{font-size:0.82rem;font-weight:600;color:var(--ink);flex:1;min-width:220px;}
+.alert-signup-label span{display:block;font-size:0.72rem;font-weight:400;color:var(--text);margin-top:0.15rem;}
+.alert-signup-form{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.alert-signup-form input{padding:0.55rem 0.8rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.82rem;font-family:var(--sans);min-width:220px;}
+.alert-signup-form input:focus{outline:none;border-color:var(--green);}
+.alert-signup-form button{padding:0.55rem 1.1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);}
+.alert-signup-form button:disabled{opacity:0.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.76rem;margin-top:0.4rem;width:100%;}
+.alert-signup-msg.ok{color:var(--green-dark);}
+.alert-signup-msg.err{color:var(--red);}
+</style>
+<script>
+function submitAlertSignup(e, emailId, btnId, msgId) {
+  e.preventDefault();
+  var btn = document.getElementById(btnId);
+  var msg = document.getElementById(msgId);
+  var emailEl = document.getElementById(emailId);
+  var email = emailEl.value.trim();
+  btn.disabled = true;
+  msg.textContent = '';
+  msg.className = 'alert-signup-msg';
+  fetch('https://signycle-signals.fransbgn.workers.dev/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+    .then(function(r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
+    .then(function(res) {
+      btn.disabled = false;
+      if (res.status === 200) {
+        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'Check your email to confirm your subscription.';
+        msg.className = 'alert-signup-msg ok';
+        emailEl.value = '';
+      } else {
+        msg.textContent = res.data.error || 'Something went wrong — please try again.';
+        msg.className = 'alert-signup-msg err';
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.textContent = 'Network error — please try again.';
+      msg.className = 'alert-signup-msg err';
+    });
+  return false;
+}
+</script>
+
 <script>
 /* Sets the hero dashboard's date from live data (was previously also driven by the cycle heatmap, now removed). */
 (function(){
