@@ -995,6 +995,206 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   })();
   </script>
 
+  <h2 class="signals-section-title" style="margin-top:2.5rem;">Signal history <span>See exactly when each signal crossed a zone, from real recorded prices</span></h2>
+  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:12px;padding:1.5rem 1.6rem;position:relative;">
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:1.1rem;">
+      <select id="histSignal" style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;font-weight:600;color:#0c1c2e;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;padding:0.5rem 0.8rem;"></select>
+      <div style="font-size:0.78rem;color:#6b7f78;" id="histUnit"></div>
+    </div>
+    <canvas id="histLineCanvas" height="200" style="display:block;width:100%;"></canvas>
+    <div id="histZoneLabel" style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:#6b7f78;padding:0.6rem 0 0.3rem;display:none;">Zone over time</div>
+    <div style="position:relative;display:none;" id="histZoneWrap">
+      <canvas id="histZoneCanvas" height="28" style="display:block;width:100%;"></canvas>
+      <div id="histTooltip" style="position:absolute;pointer-events:none;background:#0c1c2e;color:#fff;font-size:0.7rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;transform:translate(-50%,-115%);"></div>
+    </div>
+    <div style="display:none;gap:1rem;flex-wrap:wrap;padding-top:0.9rem;" id="histLegend">
+      <span style="display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:#475569;"><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:#00956e;"></i>Buy</span>
+      <span style="display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:#475569;"><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:#475569;"></i>Neutral</span>
+      <span style="display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:#475569;"><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:#d97706;"></i>Warn</span>
+      <span style="display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:#475569;"><i style="width:9px;height:9px;border-radius:2px;display:inline-block;background:#dc2626;"></i>Sell</span>
+    </div>
+    <div id="histEmpty" style="display:none;padding:2.5rem 1rem;text-align:center;color:#6b7f78;font-size:0.85rem;"></div>
+  </div>
+  <script>
+  (function() {
+    // Only signals the Worker actually prices live and records to D1 have
+    // real history (see worker.js LIVE_TICKERS + fetchEurYield + fetchYieldCurve).
+    // buy/sell here are just for the chart's dashed reference lines — kept in
+    // sync by hand with worker.js's THRESHOLDS, same tradeoff as the explorer
+    // above.
+    var HIST_SIGNALS = [
+      { id: 'brent',      name: 'Brent Crude Oil',   unit: '$/bbl', buy: 50,    sell: 105 },
+      { id: 'wti',        name: 'WTI Crude Oil',     unit: '$/bbl', buy: 45,    sell: 95 },
+      { id: 'spread',     name: 'Brent-WTI Spread',  unit: '$/bbl', buy: 0,     sell: 12 },
+      { id: 'copper',     name: 'LME Copper',        unit: '$/t',   buy: 5000,  sell: 9000 },
+      { id: 'alum',       name: 'LME Aluminium',     unit: '$/t',   buy: 1600,  sell: 3200 },
+      { id: 'gold',       name: 'Gold Price',        unit: '$/oz',  buy: 1200,  sell: 2800 },
+      { id: 'steel',      name: 'Steel HRC Price',   unit: '$/t',   buy: 700,   sell: 1450 },
+      { id: 'ironore',    name: 'Iron Ore (62% Fe)', unit: '$/t',   buy: 60,    sell: 100 },
+      { id: 'lithium',    name: 'Lithium Carbonate', unit: '$/t',   buy: 12000, sell: 40000 },
+      { id: 'eur10y',     name: 'EUR 10-Year Rate',  unit: '%',     buy: 1.5,   sell: 3.5 },
+      { id: 'yieldCurve', name: 'US 10Y-2Y Spread',  unit: '%',     buy: null,  sell: null },
+    ];
+    var ZONE_HEX = { buy: '#00956e', neutral: '#475569', warn: '#d97706', sell: '#dc2626' };
+    var ZONE_NAMES = { buy: 'Buy', neutral: 'Neutral', warn: 'Warn', sell: 'Sell' };
+    var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
+
+    var select = document.getElementById('histSignal');
+    var unitEl = document.getElementById('histUnit');
+    var lineCanvas = document.getElementById('histLineCanvas');
+    var zoneCanvas = document.getElementById('histZoneCanvas');
+    var zoneLabel = document.getElementById('histZoneLabel');
+    var zoneWrap = document.getElementById('histZoneWrap');
+    var legend = document.getElementById('histLegend');
+    var emptyEl = document.getElementById('histEmpty');
+    var tooltip = document.getElementById('histTooltip');
+
+    HIST_SIGNALS.forEach(function(s) {
+      var o = document.createElement('option');
+      o.value = s.id;
+      o.textContent = s.name;
+      select.appendChild(o);
+    });
+
+    function formatLabel(iso) {
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      return String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0');
+    }
+
+    function showEmpty(msg) {
+      lineCanvas.style.display = 'none';
+      zoneLabel.style.display = 'none';
+      zoneWrap.style.display = 'none';
+      legend.style.display = 'none';
+      emptyEl.textContent = msg;
+      emptyEl.style.display = 'block';
+    }
+
+    function drawLine(vals, buyT, sellT, labels) {
+      var dpr = window.devicePixelRatio || 1;
+      var W = lineCanvas.parentElement.clientWidth || 600, H = 200;
+      lineCanvas.width = W * dpr; lineCanvas.height = H * dpr;
+      lineCanvas.style.width = W + 'px'; lineCanvas.style.height = H + 'px';
+      var ctx = lineCanvas.getContext('2d'); ctx.scale(dpr, dpr);
+      var pad = { t: 20, r: 20, b: 30, l: 60 };
+      var cw = W - pad.l - pad.r, ch = H - pad.t - pad.b, n = vals.length;
+      var boundVals = vals.slice();
+      if (buyT != null) boundVals.push(buyT * 0.9);
+      if (sellT != null) boundVals.push(sellT * 1.05);
+      var mn = Math.min.apply(null, boundVals), mx = Math.max.apply(null, boundVals);
+      var rng = (mx - mn) || 1;
+      function xp(i) { return pad.l + (i / (n - 1)) * cw; }
+      function yp(v) { return pad.t + ch - ((v - mn) / rng) * ch; }
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+      for (var gi = 0; gi <= 4; gi++) {
+        var gy = pad.t + (gi / 4) * ch, gv = mx - (gi / 4) * rng;
+        ctx.strokeStyle = '#f0f4f2'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(pad.l, gy); ctx.lineTo(pad.l + cw, gy); ctx.stroke();
+        ctx.fillStyle = '#94a3b8'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'right';
+        ctx.fillText(gv >= 1000 ? (gv / 1000).toFixed(0) + 'k' : gv.toFixed(1), pad.l - 4, gy + 4);
+      }
+      if (buyT != null && sellT != null) {
+        ctx.setLineDash([5, 4]);
+        ctx.strokeStyle = 'rgba(0,149,110,0.4)'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(pad.l, yp(buyT)); ctx.lineTo(pad.l + cw, yp(buyT)); ctx.stroke();
+        ctx.strokeStyle = 'rgba(220,38,38,0.4)';
+        ctx.beginPath(); ctx.moveTo(pad.l, yp(sellT)); ctx.lineTo(pad.l + cw, yp(sellT)); ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      ctx.beginPath(); ctx.strokeStyle = '#00956e'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+      vals.forEach(function(v, i) { i === 0 ? ctx.moveTo(xp(i), yp(v)) : ctx.lineTo(xp(i), yp(v)); });
+      ctx.stroke();
+      if (labels && labels.length) {
+        ctx.fillStyle = '#94a3b8'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'center';
+        var labelCount = Math.min(6, labels.length);
+        for (var li = 0; li < labelCount; li++) {
+          var idx = labelCount === 1 ? 0 : Math.round(li / (labelCount - 1) * (n - 1));
+          ctx.fillText(labels[idx], xp(idx), H - 8);
+        }
+      }
+    }
+
+    function drawZoneStrip(points) {
+      var dpr = window.devicePixelRatio || 1;
+      var W = zoneCanvas.parentElement.clientWidth || 600, H = 28;
+      zoneCanvas.width = W * dpr; zoneCanvas.height = H * dpr;
+      zoneCanvas.style.width = W + 'px'; zoneCanvas.style.height = H + 'px';
+      var ctx = zoneCanvas.getContext('2d'); ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, W, H);
+      var n = points.length;
+      var segments = [];
+      points.forEach(function(p, i) {
+        var zone = p.zone || 'neutral';
+        var last = segments[segments.length - 1];
+        if (last && last.zone === zone) { last.endIdx = i; }
+        else { segments.push({ zone: zone, startIdx: i, endIdx: i }); }
+      });
+      function xForIdx(i) { return (i / n) * W; }
+      segments.forEach(function(seg) {
+        var x0 = xForIdx(seg.startIdx), x1 = xForIdx(seg.endIdx + 1);
+        ctx.fillStyle = ZONE_HEX[seg.zone] || ZONE_HEX.neutral;
+        ctx.fillRect(x0 + 0.5, 0, Math.max(x1 - x0 - 1, 1), H);
+      });
+      zoneCanvas._segments = segments;
+      zoneCanvas._points = points;
+      zoneCanvas._width = W;
+      if (!zoneCanvas._hoverBound) {
+        zoneCanvas._hoverBound = true;
+        zoneCanvas.addEventListener('mousemove', function(e) {
+          var rect = zoneCanvas.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var segs = zoneCanvas._segments, pts = zoneCanvas._points, w = zoneCanvas._width;
+          if (!segs || !pts) return;
+          var idx = Math.min(pts.length - 1, Math.max(0, Math.floor((x / w) * pts.length)));
+          var seg = segs.find(function(s) { return idx >= s.startIdx && idx <= s.endIdx; });
+          if (!seg) return;
+          var fromDate = formatLabel(pts[seg.startIdx].recorded_at);
+          var toDate = formatLabel(pts[seg.endIdx].recorded_at);
+          tooltip.textContent = ZONE_NAMES[seg.zone] + ' · ' + fromDate + (toDate !== fromDate ? '–' + toDate : '');
+          tooltip.style.left = x + 'px';
+          tooltip.style.top = '0px';
+          tooltip.style.opacity = '1';
+        });
+        zoneCanvas.addEventListener('mouseleave', function() { tooltip.style.opacity = '0'; });
+      }
+    }
+
+    function render() {
+      var sig = HIST_SIGNALS.filter(function(s) { return s.id === select.value; })[0];
+      unitEl.textContent = sig.unit;
+      var thisRequest = sig.id;
+      fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=500')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (select.value !== thisRequest) return;
+          var points = (data && data.points) || [];
+          if (points.length < 2) {
+            showEmpty('Real price history for ' + sig.name + ' just started recording and needs a bit more time to build up — check back soon.');
+            return;
+          }
+          lineCanvas.style.display = 'block';
+          zoneLabel.style.display = '';
+          zoneWrap.style.display = '';
+          legend.style.display = 'flex';
+          emptyEl.style.display = 'none';
+          var vals = points.map(function(p) { return p.value; });
+          var labels = points.map(function(p) { return formatLabel(p.recorded_at); });
+          drawLine(vals, sig.buy, sig.sell, labels);
+          drawZoneStrip(points);
+        })
+        .catch(function() {
+          if (select.value !== thisRequest) return;
+          showEmpty('Couldn’t load history for ' + sig.name + ' right now — please try again shortly.');
+        });
+    }
+
+    select.addEventListener('change', render);
+    select.value = 'brent';
+    render();
+  })();
+  </script>
+
 </div>
 
 
