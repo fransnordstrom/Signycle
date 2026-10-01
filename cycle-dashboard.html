@@ -149,6 +149,13 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);overflow-x:hi
 .chart-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);}
 .chart-name{font-size:0.85rem;font-weight:700;color:var(--ink);}
 canvas{display:block;width:100%;}
+.zone-strip-wrap{padding:0 1.2rem 0.6rem;position:relative;}
+.zone-strip-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);padding:0.6rem 1.2rem 0.3rem;}
+.zone-legend{display:flex;gap:1rem;flex-wrap:wrap;padding:0 1.2rem 0.9rem;}
+.zone-legend span{display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:var(--text);}
+.zone-legend i{width:9px;height:9px;border-radius:2px;display:inline-block;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.7rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
 
 /* Stock picker */
 .sig-select-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
@@ -716,6 +723,17 @@ _initHamburger();
       <div class="chart-label" id="histUnit"></div>
     </div>
     <canvas id="histCanvas" height="200"></canvas>
+    <div class="zone-strip-label" id="zoneStripLabel" style="display:none;">Zone over time</div>
+    <div class="zone-strip-wrap" id="zoneStripWrap" style="display:none;">
+      <canvas id="zoneStripCanvas" height="28"></canvas>
+      <div class="chart-tooltip" id="zoneTooltip"></div>
+    </div>
+    <div class="zone-legend" id="zoneLegend" style="display:none;">
+      <span><i style="background:var(--green);"></i>Buy</span>
+      <span><i style="background:var(--text);"></i>Neutral</span>
+      <span><i style="background:var(--orange);"></i>Warn</span>
+      <span><i style="background:var(--red);"></i>Sell</span>
+    </div>
     <div id="histEmpty" style="display:none;padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.85rem;"></div>
   </div>
 </div>
@@ -970,6 +988,9 @@ function formatHistLabel(iso) {
 
 function showHistEmpty(msg) {
   document.getElementById('histCanvas').style.display = 'none';
+  document.getElementById('zoneStripLabel').style.display = 'none';
+  document.getElementById('zoneStripWrap').style.display = 'none';
+  document.getElementById('zoneLegend').style.display = 'none';
   var empty = document.getElementById('histEmpty');
   empty.textContent = msg;
   empty.style.display = 'block';
@@ -1010,11 +1031,79 @@ function renderHistory() {
       var labels = points.map(function(p){ return formatHistLabel(p.recorded_at); });
       var color = sig.status==='sell'?'#dc2626':sig.status==='buy'?'#00956e':'#d97706';
       drawLineChart(canvas, vals, sig.buy, sig.sell, color, labels);
+      document.getElementById('zoneStripLabel').style.display = '';
+      document.getElementById('zoneStripWrap').style.display = '';
+      document.getElementById('zoneLegend').style.display = '';
+      drawZoneStrip(document.getElementById('zoneStripCanvas'), points);
     })
     .catch(function(){
       if (activeSignal.id !== thisRequest) return;
       showHistEmpty('Couldn’t load history for ' + sig.name + ' right now — please try again shortly.');
     });
+}
+
+// ── ZONE TIMELINE STRIP ──────────────────────────────────────────────────
+// Shows which zone (buy/neutral/warn/sell) a signal was actually in at each
+// recorded point, as a state timeline — not just a value line with static
+// threshold reference lines. Merges consecutive same-zone points into one
+// segment so a long stable stretch reads as a single block, not 500 slivers.
+var ZONE_HEX = { buy: '#00956e', neutral: '#475569', warn: '#d97706', sell: '#dc2626' };
+var ZONE_NAMES = { buy: 'Buy', neutral: 'Neutral', warn: 'Warn', sell: 'Sell' };
+
+function drawZoneStrip(canvas, points) {
+  var dpr = window.devicePixelRatio || 1;
+  var W = canvas.parentElement.clientWidth || 600, H = 28;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+  var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+
+  var n = points.length;
+  // Merge consecutive points sharing a zone into segments.
+  var segments = [];
+  points.forEach(function(p, i) {
+    var zone = p.zone || 'neutral';
+    var last = segments[segments.length - 1];
+    if (last && last.zone === zone) { last.endIdx = i; }
+    else { segments.push({ zone: zone, startIdx: i, endIdx: i }); }
+  });
+
+  function xForIdx(i) { return (i / n) * W; }
+
+  segments.forEach(function(seg) {
+    var x0 = xForIdx(seg.startIdx);
+    var x1 = xForIdx(seg.endIdx + 1);
+    ctx.fillStyle = ZONE_HEX[seg.zone] || ZONE_HEX.neutral;
+    // 1px surface gap between adjacent segments so zone changes stay legible.
+    ctx.fillRect(x0 + 0.5, 0, Math.max(x1 - x0 - 1, 1), H);
+  });
+
+  canvas._zoneSegments = segments;
+  canvas._zonePoints = points;
+  canvas._zoneWidth = W;
+
+  if (!canvas._zoneHoverBound) {
+    canvas._zoneHoverBound = true;
+    var tooltip = document.getElementById('zoneTooltip');
+    canvas.addEventListener('mousemove', function(e) {
+      var rect = canvas.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var segs = canvas._zoneSegments, pts = canvas._zonePoints, w = canvas._zoneWidth;
+      if (!segs || !pts) return;
+      var idx = Math.min(pts.length - 1, Math.max(0, Math.floor((x / w) * pts.length)));
+      var seg = segs.find(function(s) { return idx >= s.startIdx && idx <= s.endIdx; });
+      if (!seg) return;
+      var fromDate = formatHistLabel(pts[seg.startIdx].recorded_at);
+      var toDate = formatHistLabel(pts[seg.endIdx].recorded_at);
+      tooltip.textContent = ZONE_NAMES[seg.zone] + ' · ' + fromDate + (toDate !== fromDate ? '–' + toDate : '');
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = '0px';
+      tooltip.classList.add('show');
+    });
+    canvas.addEventListener('mouseleave', function() {
+      tooltip.classList.remove('show');
+    });
+  }
 }
 
 // ── STOCKS GRID ────────────────────────────────────────────────────────────────
