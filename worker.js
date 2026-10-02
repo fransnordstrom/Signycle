@@ -212,6 +212,48 @@ function buildConfirmEmailHtml(confirmUrl) {
     '</body></html>';
 }
 
+// Weekly summary email — just the subscriber count, so you don't have to
+// poll KV by hand to know whether anyone's signed up for alerts.
+function buildWeeklyDigestHtml(stats) {
+  const siteUrl = 'https://signycle.com';
+  return '' +
+    '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
+    '<body style="margin:0;padding:24px 16px;background:#f0f4f2;">' +
+      '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">' +
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:14px;overflow:hidden;">' +
+          '<tr><td style="background:#0c1c2e;padding:22px 24px;">' +
+            '<table role="presentation" cellpadding="0" cellspacing="0"><tr>' +
+              '<td style="padding-right:8px;"><div style="width:10px;height:10px;border-radius:50%;background:#00956e;"></div></td>' +
+              '<td style="font-family:Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;color:#ffffff;">Signycle</td>' +
+            '</tr></table>' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Weekly subscriber digest</div>' +
+          '</td></tr>' +
+          '<tr><td style="padding:24px;">' +
+            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>' +
+              '<td align="center" style="padding:10px;">' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:32px;font-weight:700;color:#0c1c2e;">' + stats.confirmed + '</div>' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Confirmed subscribers</div>' +
+              '</td>' +
+              '<td align="center" style="padding:10px;">' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:32px;font-weight:700;color:#00956e;">+' + stats.newThisWeek + '</div>' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">New this week</div>' +
+              '</td>' +
+              '<td align="center" style="padding:10px;">' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:32px;font-weight:700;color:#d97706;">' + stats.pending + '</div>' +
+                '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#94a3b8;">Awaiting confirmation</div>' +
+              '</td>' +
+            '</tr></table>' +
+          '</td></tr>' +
+          '<tr><td style="background:#f8faf9;border-top:1px solid #e2e8e5;padding:16px 24px;">' +
+            '<div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#94a3b8;line-height:1.6;">' +
+              '<a href="' + siteUrl + '" style="color:#94a3b8;">signycle.com</a>' +
+            '</div>' +
+          '</td></tr>' +
+        '</table>' +
+      '</td></tr></table>' +
+    '</body></html>';
+}
+
 function calcZone(id, value) {
   var t = THRESHOLDS[id];
   if (!t) return 'neutral';
@@ -579,13 +621,41 @@ export default {
       });
     }
 
+    // ── GET /api/send-digest (debug) ────────────────────────────────────────
+    // Manually fires the weekly subscriber-count email on demand, instead of
+    // waiting for Monday 08:00 UTC — same auth as /api/check-alerts since it
+    // also sends a real email.
+    if (request.method === 'GET' && url.pathname === '/api/send-digest') {
+      const auth = request.headers.get('Authorization') || '';
+      const pw = auth.replace('Bearer ', '') || url.searchParams.get('pw') || '';
+      if (pw !== env.ADMIN_PASSWORD) {
+        return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+          status: 401, headers: { ...CORS, 'Content-Type': 'application/json' }
+        });
+      }
+      const result = await sendWeeklyDigest(env);
+      return new Response(JSON.stringify(result, null, 2), {
+        headers: { ...CORS, 'Content-Type': 'application/json' }
+      });
+    }
+
     return new Response('Not found', { status: 404, headers: CORS });
   },
 
   // Cron Trigger (configure in dash.cloudflare.com -> this Worker -> Settings
-  // -> Triggers -> Cron Triggers, e.g. every 15 minutes: */15 * * * *).
+  // -> Triggers -> Cron Triggers). Two separate schedules share this one
+  // scheduled() handler, told apart by event.cron: the frequent one (e.g.
+  // every 15 minutes: */15 * * * *) runs checkAlerts; a second, weekly one
+  // (0 8 * * 1 = Monday 08:00 UTC) must be added in the dashboard for the
+  // subscriber-count digest below — anything that isn't that exact weekly
+  // pattern falls through to the normal alert check, so this stays correct
+  // no matter what cron string the frequent trigger actually uses.
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(checkAlerts(env));
+    if (event.cron === '0 8 * * 1') {
+      ctx.waitUntil(sendWeeklyDigest(env));
+    } else {
+      ctx.waitUntil(checkAlerts(env));
+    }
   }
 };
 
@@ -712,6 +782,50 @@ async function sendAlertEmail(env, crossings) {
   } catch (e) {
     return { error: e.message };
   }
+}
+
+// Counts real alert subscribers from KV and emails env.ALERT_EMAIL a short
+// summary. Fired by the weekly Cron Trigger (see scheduled() above) or
+// on-demand via GET /api/send-digest. "Confirmed" uses the same rule as
+// sendPublicAlertEmails: confirmed !== false, so pre-double-opt-in legacy
+// entries (no `confirmed` field at all) still count.
+async function sendWeeklyDigest(env) {
+  const subs = await env.SIGNALS_KV.get('subscribers', 'json') || [];
+  const confirmed = subs.filter(function(s) { return s.confirmed !== false; });
+  const pending = subs.filter(function(s) { return s.confirmed === false; });
+  const weekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const newThisWeek = confirmed.filter(function(s) {
+    const t = Date.parse(s.subscribedAt);
+    return !isNaN(t) && t >= weekAgo;
+  }).length;
+
+  const stats = { confirmed: confirmed.length, pending: pending.length, newThisWeek: newThisWeek };
+
+  let emailResult = null;
+  if (env.RESEND_API_KEY && env.ALERT_EMAIL && env.ALERT_FROM) {
+    try {
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + env.RESEND_API_KEY,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: env.ALERT_FROM,
+          to: env.ALERT_EMAIL,
+          subject: 'Signycle weekly: ' + stats.confirmed + ' subscribers (+' + stats.newThisWeek + ' this week)',
+          text: stats.confirmed + ' confirmed subscribers, +' + stats.newThisWeek + ' new this week, ' + stats.pending + ' awaiting confirmation.',
+          html: buildWeeklyDigestHtml(stats)
+        })
+      });
+      const bodyText = await res.text();
+      emailResult = { status: res.status, ok: res.ok, body: bodyText };
+    } catch (e) {
+      emailResult = { error: e.message };
+    }
+  }
+
+  return { stats: stats, emailAttempted: !!emailResult, emailResult: emailResult };
 }
 
 // Sends the "click to confirm" email for a new/repeat pending signup.
