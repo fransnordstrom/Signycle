@@ -995,7 +995,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   })();
   </script>
 
-  <h2 class="signals-section-title" style="margin-top:2.5rem;">Signal history <span>See exactly when each signal crossed a zone, from real recorded prices</span></h2>
+  <h2 class="signals-section-title" style="margin-top:2.5rem;">Signal history <span>See exactly when each signal crossed a zone, from real recorded prices &middot; <a href="signal-history.html" style="color:#00956e;font-weight:600;">View the full crossing feed →</a></span></h2>
   <div style="background:#fff;border:1px solid #e2e8e5;border-radius:12px;padding:1.5rem 1.6rem;position:relative;">
     <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:1.1rem;">
       <select id="histSignal" style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;font-weight:600;color:#0c1c2e;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;padding:0.5rem 0.8rem;"></select>
@@ -1115,6 +1115,42 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       }
     }
 
+    // The raw `zone` on each recorded point is undebounced — it's whatever
+    // calcZone() returned at that exact tick, including single-tick noise
+    // from ordinary price jitter near a threshold (see worker.js
+    // checkAlerts, which requires a zone to hold for 2 consecutive ticks
+    // before treating it as a real alertable crossing). Applying that same
+    // confirm-on-second-tick rule here, instead of merging the raw zone
+    // directly, keeps this strip from rendering that noise as a flicker of
+    // slivers.
+    function confirmedSegments(points) {
+      if (!points.length) return { segments: [], total: 0 };
+      var accepted = [{ p: points[0], zone: points[0].zone || 'neutral' }];
+      var confirmedZone = accepted[0].zone;
+      var pendingZone = null, pendingBuf = [];
+      for (var i = 1; i < points.length; i++) {
+        var p = points[i], zone = p.zone || 'neutral';
+        if (zone === confirmedZone) {
+          accepted.push({ p: p, zone: confirmedZone });
+          pendingZone = null; pendingBuf = [];
+        } else if (zone === pendingZone) {
+          pendingBuf.push(p);
+          pendingBuf.forEach(function(pp) { accepted.push({ p: pp, zone: zone }); });
+          confirmedZone = zone;
+          pendingZone = null; pendingBuf = [];
+        } else {
+          pendingZone = zone; pendingBuf = [p];
+        }
+      }
+      var segments = [];
+      accepted.forEach(function(a, idx) {
+        var last = segments[segments.length - 1];
+        if (last && last.zone === a.zone) { last.endIdx = idx; last.points.push(a.p); }
+        else { segments.push({ zone: a.zone, startIdx: idx, endIdx: idx, points: [a.p] }); }
+      });
+      return { segments: segments, total: accepted.length };
+    }
+
     function drawZoneStrip(points) {
       var dpr = window.devicePixelRatio || 1;
       var W = zoneCanvas.parentElement.clientWidth || 600, H = 28;
@@ -1122,14 +1158,8 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       zoneCanvas.style.width = W + 'px'; zoneCanvas.style.height = H + 'px';
       var ctx = zoneCanvas.getContext('2d'); ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, W, H);
-      var n = points.length;
-      var segments = [];
-      points.forEach(function(p, i) {
-        var zone = p.zone || 'neutral';
-        var last = segments[segments.length - 1];
-        if (last && last.zone === zone) { last.endIdx = i; }
-        else { segments.push({ zone: zone, startIdx: i, endIdx: i }); }
-      });
+      var result = confirmedSegments(points);
+      var segments = result.segments, n = result.total || 1;
       function xForIdx(i) { return (i / n) * W; }
       segments.forEach(function(seg) {
         var x0 = xForIdx(seg.startIdx), x1 = xForIdx(seg.endIdx + 1);
@@ -1137,20 +1167,20 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
         ctx.fillRect(x0 + 0.5, 0, Math.max(x1 - x0 - 1, 1), H);
       });
       zoneCanvas._segments = segments;
-      zoneCanvas._points = points;
+      zoneCanvas._total = n;
       zoneCanvas._width = W;
       if (!zoneCanvas._hoverBound) {
         zoneCanvas._hoverBound = true;
         zoneCanvas.addEventListener('mousemove', function(e) {
           var rect = zoneCanvas.getBoundingClientRect();
           var x = e.clientX - rect.left;
-          var segs = zoneCanvas._segments, pts = zoneCanvas._points, w = zoneCanvas._width;
-          if (!segs || !pts) return;
-          var idx = Math.min(pts.length - 1, Math.max(0, Math.floor((x / w) * pts.length)));
+          var segs = zoneCanvas._segments, total = zoneCanvas._total, w = zoneCanvas._width;
+          if (!segs || !total) return;
+          var idx = Math.min(total - 1, Math.max(0, Math.floor((x / w) * total)));
           var seg = segs.find(function(s) { return idx >= s.startIdx && idx <= s.endIdx; });
           if (!seg) return;
-          var fromDate = formatLabel(pts[seg.startIdx].recorded_at);
-          var toDate = formatLabel(pts[seg.endIdx].recorded_at);
+          var fromDate = formatLabel(seg.points[0].recorded_at);
+          var toDate = formatLabel(seg.points[seg.points.length - 1].recorded_at);
           tooltip.textContent = ZONE_NAMES[seg.zone] + ' · ' + fromDate + (toDate !== fromDate ? '–' + toDate : '');
           tooltip.style.left = x + 'px';
           tooltip.style.top = '0px';

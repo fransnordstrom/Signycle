@@ -4341,6 +4341,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://signycle.com/signal-history</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://signycle.com/hkex-stocks-under-5hkd</loc>
     <lastmod>2026-04-17</lastmod>
     <changefreq>weekly</changefreq>
