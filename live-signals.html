@@ -1194,7 +1194,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       var sig = HIST_SIGNALS.filter(function(s) { return s.id === select.value; })[0];
       unitEl.textContent = sig.unit;
       var thisRequest = sig.id;
-      fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=500')
+      fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=20000')
         .then(function(r) { return r.json(); })
         .then(function(data) {
           if (select.value !== thisRequest) return;

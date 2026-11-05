@@ -1016,7 +1016,7 @@ function renderHistory() {
 
   // Waiting on the fetch — keep the previous chart visible rather than
   // flashing empty, but stop rendering into it once a new signal is picked.
-  fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=500')
+  fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=20000')
     .then(function(r){ return r.json(); })
     .then(function(data){
       if (activeSignal.id !== thisRequest) return; // user switched signals while this was in flight

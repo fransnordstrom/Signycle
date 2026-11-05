@@ -590,7 +590,13 @@ export default {
           status: 400, headers: { ...CORS, 'Content-Type': 'application/json' }
         });
       }
-      const limit = Math.min(parseInt(url.searchParams.get('limit') || '500', 10) || 500, 2000);
+      // Default and ceiling raised from 500/2000 to 20000 (~208 days at the
+      // 15-min cron cadence) so every caller gets full history by default
+      // instead of silently being truncated to the last ~3 weeks. Still a
+      // ceiling, not true pagination — if the site is still running and this
+      // stops being "full" history, that's the point to add a cursor param
+      // instead of raising this again.
+      const limit = Math.min(parseInt(url.searchParams.get('limit') || '20000', 10) || 20000, 20000);
       const rows = await env.HISTORY_DB.prepare(
         'SELECT value, zone, recorded_at FROM signal_history WHERE signal_id = ? ORDER BY recorded_at DESC LIMIT ?'
       ).bind(signal, limit).all();

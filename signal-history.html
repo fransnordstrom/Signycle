@@ -886,7 +886,7 @@ _initHamburger();
   filterSelect.addEventListener('change', render);
 
   Promise.all(HIST_SIGNALS.map(function(sig) {
-    return fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=2000')
+    return fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=20000')
       .then(function(r) { return r.json(); })
       .then(function(data) { return eventsFromPoints(sig, (data && data.points) || []); })
       .catch(function() { return []; });
