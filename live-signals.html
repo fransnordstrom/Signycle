@@ -1002,7 +1002,10 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   <div style="background:#fff;border:1px solid #e2e8e5;border-radius:12px;padding:1.5rem 1.6rem;position:relative;">
     <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:1.1rem;">
       <select id="histSignal" style="font-family:'IBM Plex Mono',monospace;font-size:0.85rem;font-weight:600;color:#0c1c2e;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;padding:0.5rem 0.8rem;"></select>
-      <div style="font-size:0.78rem;color:#6b7f78;" id="histUnit"></div>
+      <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
+        <div id="histRangeRow" style="display:flex;gap:0.3rem;"></div>
+        <div style="font-size:0.78rem;color:#6b7f78;" id="histUnit"></div>
+      </div>
     </div>
     <canvas id="histLineCanvas" height="200" style="display:block;width:100%;"></canvas>
     <div id="histZoneLabel" style="font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:#6b7f78;padding:0.6rem 0 0.3rem;display:none;">Zone over time</div>
@@ -1051,6 +1054,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     var legend = document.getElementById('histLegend');
     var emptyEl = document.getElementById('histEmpty');
     var tooltip = document.getElementById('histTooltip');
+    var rangeRow = document.getElementById('histRangeRow');
 
     HIST_SIGNALS.forEach(function(s) {
       var o = document.createElement('option');
@@ -1059,10 +1063,50 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       select.appendChild(o);
     });
 
+    // History can now span months (see worker.js /api/history's raised
+    // limit), so the chart needs a window picker instead of always
+    // plotting everything fetched — otherwise a single day's move is
+    // invisible against months of line. Filtering happens client-side
+    // against the one already-fetched response; no re-fetch per click.
+    var RANGES = [
+      { id: '1d', label: '1D', ms: 24 * 60 * 60 * 1000 },
+      { id: '1w', label: '1W', ms: 7 * 24 * 60 * 60 * 1000 },
+      { id: '1m', label: '1M', ms: 30 * 24 * 60 * 60 * 1000 },
+      { id: 'all', label: 'All', ms: null }
+    ];
+    var activeRange = '1w';
+    var allPoints = [];
+
+    RANGES.forEach(function(rg) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = rg.label;
+      btn.dataset.range = rg.id;
+      btn.style.cssText = 'font-family:"IBM Plex Mono",monospace;font-size:0.72rem;font-weight:700;padding:0.35rem 0.6rem;border-radius:6px;cursor:pointer;border:1px solid #e2e8e5;background:#f8faf9;color:#6b7f78;';
+      btn.addEventListener('click', function() {
+        activeRange = rg.id;
+        updateRangeButtons();
+        drawFromAllPoints();
+      });
+      rangeRow.appendChild(btn);
+    });
+
+    function updateRangeButtons() {
+      Array.prototype.forEach.call(rangeRow.children, function(btn) {
+        var active = btn.dataset.range === activeRange;
+        btn.style.background = active ? '#00956e' : '#f8faf9';
+        btn.style.color = active ? '#fff' : '#6b7f78';
+        btn.style.borderColor = active ? '#00956e' : '#e2e8e5';
+      });
+    }
+    updateRangeButtons();
+
     function formatLabel(iso) {
       var d = new Date(iso);
       if (isNaN(d.getTime())) return '';
-      return String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0');
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return d.getUTCDate() + ' ' + months[d.getUTCMonth()] + ' ' +
+        String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0');
     }
 
     function showEmpty(msg) {
@@ -1193,6 +1237,31 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       }
     }
 
+    var currentSig = null;
+
+    function drawFromAllPoints() {
+      if (!currentSig || allPoints.length < 2) return;
+      var points = allPoints;
+      if (activeRange !== 'all') {
+        var range = RANGES.filter(function(r) { return r.id === activeRange; })[0];
+        var cutoff = new Date(allPoints[allPoints.length - 1].recorded_at).getTime() - range.ms;
+        points = allPoints.filter(function(p) { return new Date(p.recorded_at).getTime() >= cutoff; });
+      }
+      if (points.length < 2) {
+        showEmpty('Not enough recorded history yet for this range for ' + currentSig.name + ' — try a wider window.');
+        return;
+      }
+      lineCanvas.style.display = 'block';
+      zoneLabel.style.display = '';
+      zoneWrap.style.display = '';
+      legend.style.display = 'flex';
+      emptyEl.style.display = 'none';
+      var vals = points.map(function(p) { return p.value; });
+      var labels = points.map(function(p) { return formatLabel(p.recorded_at); });
+      drawLine(vals, currentSig.buy, currentSig.sell, labels);
+      drawZoneStrip(points);
+    }
+
     function render() {
       var sig = HIST_SIGNALS.filter(function(s) { return s.id === select.value; })[0];
       unitEl.textContent = sig.unit;
@@ -1206,15 +1275,9 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
             showEmpty('Real price history for ' + sig.name + ' just started recording and needs a bit more time to build up — check back soon.');
             return;
           }
-          lineCanvas.style.display = 'block';
-          zoneLabel.style.display = '';
-          zoneWrap.style.display = '';
-          legend.style.display = 'flex';
-          emptyEl.style.display = 'none';
-          var vals = points.map(function(p) { return p.value; });
-          var labels = points.map(function(p) { return formatLabel(p.recorded_at); });
-          drawLine(vals, sig.buy, sig.sell, labels);
-          drawZoneStrip(points);
+          currentSig = sig;
+          allPoints = points;
+          drawFromAllPoints();
         })
         .catch(function() {
           if (select.value !== thisRequest) return;

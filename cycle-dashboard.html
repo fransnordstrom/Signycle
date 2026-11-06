@@ -986,7 +986,9 @@ var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
 function formatHistLabel(iso) {
   var d = new Date(iso);
   if (isNaN(d.getTime())) return '';
-  return d.getUTCHours().toString().padStart(2,'0') + ':' + d.getUTCMinutes().toString().padStart(2,'0');
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return d.getUTCDate() + ' ' + months[d.getUTCMonth()] + ' ' +
+    d.getUTCHours().toString().padStart(2,'0') + ':' + d.getUTCMinutes().toString().padStart(2,'0');
 }
 
 function showHistEmpty(msg) {
