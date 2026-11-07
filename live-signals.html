@@ -1022,13 +1022,18 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       vals.forEach(function(v, i) { i === 0 ? ctx.moveTo(xp(i), yp(v)) : ctx.lineTo(xp(i), yp(v)); });
       ctx.stroke();
       if (labels && labels.length) {
-        ctx.fillStyle = '#94a3b8'; ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'center';
+        ctx.fillStyle = '#94a3b8'; ctx.font = '10px IBM Plex Mono,monospace';
         // Labels now carry a date ("24 Sep 18:30"), not just a time, so a
         // fixed 6 overlaps on narrow screens — budget ~90px/label instead.
         var maxLabels = Math.max(2, Math.floor(cw / 90));
         var labelCount = Math.min(maxLabels, 6, labels.length);
         for (var li = 0; li < labelCount; li++) {
           var idx = labelCount === 1 ? 0 : Math.round(li / (labelCount - 1) * (n - 1));
+          // Center-aligning the first/last label at the chart's own edge
+          // overflows half the text off the canvas (it gets silently
+          // clipped by the canvas's own raster, cutting the date short) —
+          // anchor those two inward instead, same as a typical axis.
+          ctx.textAlign = li === 0 ? 'left' : (li === labelCount - 1 ? 'right' : 'center');
           ctx.fillText(labels[idx], xp(idx), H - 8);
         }
       }
@@ -1163,7 +1168,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   })();
   </script>
 
-  <div class="filter-row">
+  <div class="filter-row" style="margin-top:1.8rem;">
     <div class="ftab active" onclick="filterCards('all',this)">All signals</div>
     <div class="ftab" onclick="filterCards('buy',this)">BUY zone</div>
     <div class="ftab" onclick="filterCards('neutral',this)">Neutral</div>
