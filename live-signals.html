@@ -983,7 +983,13 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
 
     function drawLine(vals, buyT, sellT, labels) {
       var dpr = window.devicePixelRatio || 1;
-      var W = lineCanvas.parentElement.clientWidth || 600, H = 200;
+      // The canvas's direct parent is the padded chart box itself (not a
+      // separate header div like cycle-dashboard.html's .chart-wrap), so
+      // clientWidth includes that padding — sizing the canvas to it pushes
+      // the right edge past the content box and overflows on mobile.
+      var parentStyle = window.getComputedStyle(lineCanvas.parentElement);
+      var hPad = (parseFloat(parentStyle.paddingLeft) || 0) + (parseFloat(parentStyle.paddingRight) || 0);
+      var W = (lineCanvas.parentElement.clientWidth - hPad) || 600, H = 200;
       lineCanvas.width = W * dpr; lineCanvas.height = H * dpr;
       lineCanvas.style.width = W + 'px'; lineCanvas.style.height = H + 'px';
       var ctx = lineCanvas.getContext('2d'); ctx.scale(dpr, dpr);
