@@ -29,13 +29,13 @@
       "value": 75000,
       "unit": "$/day",
       "date": "9 Jun 2026",
-      "zone": "sell"
+      "zone": "warn"
     },
     "bdi": {
       "value": 3180,
       "unit": "pts",
       "date": "9 Jun 2026",
-      "zone": "warn"
+      "zone": "sell"
     },
     "copper": {
       "value": 13200,

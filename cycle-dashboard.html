@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Cycle Dashboard — 12 Live Macro Signals | Signycle</title>
-<meta name="description" content="Live macro cycle dashboard with 12 signals, gauges, heatmap and historical charts — Brent, copper, BDI and cycle score, updated as conditions change.">
+<title>Cycle Dashboard — Where Every Macro Signal Sits | Signycle</title>
+<meta name="description" content="See where every tracked commodity, shipping and macro signal sits between its historical BUY and SELL levels, the overall cycle score, and real recorded price history.">
 <link rel="canonical" href="https://signycle.com/cycle-dashboard">
-<meta property="og:title" content="Cycle Dashboard — 12 Live Macro Signals">
-<meta property="og:description" content="Live macro cycle dashboard with 12 signals, gauges, heatmap and historical charts — Brent, copper, BDI and cycle score, updated as conditions change.">
+<meta property="og:title" content="Cycle Dashboard — Where Every Macro Signal Sits">
+<meta property="og:description" content="See where every tracked commodity, shipping and macro signal sits between its historical BUY and SELL levels, the overall cycle score, and real recorded price history.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/cycle-dashboard.html">
 <meta property="og:site_name" content="Signycle">
 <meta property="og:image" content="https://signycle.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
@@ -65,128 +65,157 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 }
 
 :root{
-  --bg:#fff;--surface:#f8faf9;--surface2:#eef4f1;
-  --border:#e2e8e5;--border2:#eef2f0;
-  --green:#00956e;--green2:#00956e;
-  --red:#dc2626;--orange:#d97706;--blue:#3b82f6;--purple:#8b5cf6;
-  --text:#475569;--dim:#6b7f78;--ink:#0c1c2e;--muted:#a0b0ab;
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
   --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--ink);font-family:var(--mono);overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
-.page {padding-top:58px;}
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
-/* Hero strip */
-.hero-strip{background:var(--surface);border-bottom:1.5px solid var(--border);
-  padding:1.2rem 2rem;display:flex;align-items:center;
-  justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-.hero-title{font-size:1.3rem;font-weight:800;color:var(--ink);}
-.hero-title span{color:var(--green);}
-.hero-meta{font-size:0.72rem;color:var(--dim);margin-top:0.2rem;}
-.cycle-badge{text-align:center;}
-.cycle-score-num{font-size:2rem;font-weight:800;color:var(--green);line-height:1;}
-.cycle-score-label{font-size:0.62rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.08em;}
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
-/* Tab bar */
-.tab-bar{display:flex;gap:0.5rem;padding:0.8rem 2rem;border-bottom:1px solid var(--border);
-  overflow-x:auto;background:var(--bg);}
-.tab-btn{font-family:var(--mono);font-size:0.65rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:0.08em;padding:0.3rem 0.85rem;border-radius:20px;
-  border:1.5px solid var(--border);background:#fff;color:var(--dim);cursor:pointer;
-  white-space:nowrap;transition:all 0.15s;}
-.tab-btn.active{background:var(--green);border-color:var(--green);color:#fff;
-  box-shadow:0 2px 6px rgba(0,149,110,0.2);}
-.tab-btn:hover:not(.active){border-color:var(--green);color:var(--green);background:var(--surface);}
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
-/* Sections */
-.section{max-width:1100px;margin:0 auto;padding:2rem;}
-.section-title{font-size:0.6rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:0.12em;color:var(--dim);margin-bottom:1.5rem;}
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
-/* Gauges grid */
-.gauge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;}
-.gauge-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;
-  padding:1rem;cursor:pointer;transition:all 0.15s;text-align:center;}
-.gauge-card:hover{border-color:var(--green);box-shadow:0 2px 8px rgba(0,149,110,0.1);}
-.gauge-card.selected{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,0.15);}
-.gauge-card.sell{border-top:3px solid var(--red);}
-.gauge-card.buy{border-top:3px solid var(--green);}
-.gauge-card.approaching-sell{border-top:3px solid var(--orange);}
-.gauge-card.neutral{border-top:3px solid var(--dim);}
-.gc-name{font-size:0.68rem;font-weight:600;color:var(--dim);text-transform:uppercase;
-  letter-spacing:0.06em;margin-bottom:0.5rem;}
-.gc-canvas{display:block;margin:0 auto 0.4rem;}
-.gc-val{font-size:1.1rem;font-weight:800;color:var(--ink);}
-.gc-unit{font-size:0.6rem;color:var(--dim);margin-bottom:0.3rem;}
-.gc-status{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;
-  padding:0.18rem 0.65rem;border-radius:20px;display:inline-block;border:1.5px solid transparent;}
-.gc-status.sell{background:#fef2f2;color:#dc2626;border-color:#fecaca;}
-.gc-status.buy{background:#f0fdf4;color:#00956e;border-color:#86efac;}
-.gc-status.approaching-sell{background:#fff7ed;color:#d97706;border-color:#fed7aa;}
-.gc-status.neutral{background:#f8fafc;color:#6b7f78;border-color:#e2e8e5;}
-.gc-thresholds{font-size:0.56rem;color:var(--muted);margin-top:0.3rem;}
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-/* Heatmap */
-.heatmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.5rem;}
-.hm-cell{border-radius:8px;padding:0.8rem;text-align:center;cursor:pointer;}
-.hm-cell.sell{background:#fef2f2;border:1px solid #fecaca;}
-.hm-cell.buy{background:#f0fdf4;border:1px solid #86efac;}
-.hm-cell.approaching-sell{background:#fff7ed;border:1px solid #fed7aa;}
-.hm-cell.neutral{background:var(--surface);border:1px solid var(--border);}
-.hm-name{font-size:0.65rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;}
-.hm-val{font-size:0.9rem;font-weight:800;}
-.hm-cell.sell .hm-val{color:var(--red);}
-.hm-cell.buy .hm-val{color:var(--green);}
-.hm-cell.approaching-sell .hm-val{color:var(--orange);}
-.hm-cell.neutral .hm-val{color:var(--dim);}
-.hm-unit{font-size:0.55rem;color:var(--dim);}
-
-/* History chart */
-.chart-wrap{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem;}
-.chart-header{padding:0.8rem 1.2rem;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;}
-.chart-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);}
-.chart-name{font-size:0.85rem;font-weight:700;color:var(--ink);}
-canvas{display:block;width:100%;}
-.zone-strip-wrap{padding:0 1.2rem 0.6rem;position:relative;}
-.zone-strip-label{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);padding:0.6rem 1.2rem 0.3rem;}
-.zone-legend{display:flex;gap:1rem;flex-wrap:wrap;padding:0 1.2rem 0.9rem;}
-.zone-legend span{display:flex;align-items:center;gap:0.35rem;font-size:0.7rem;color:var(--text);}
-.zone-legend i{width:9px;height:9px;border-radius:2px;display:inline-block;}
-.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.7rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
-.chart-tooltip.show{opacity:1;}
-
-/* Stock picker */
-.sig-select-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-.sig-btn{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;
-  letter-spacing:0.06em;padding:0.3rem 0.7rem;border-radius:20px;
-  border:1.5px solid var(--border);background:none;color:var(--dim);cursor:pointer;}
-.sig-btn.active{background:var(--green);border-color:var(--green);color:#fff;}
-
-/* Summary table */
-.summary-table{width:100%;border-collapse:collapse;font-size:0.72rem;}
-.summary-table th{text-align:left;padding:0.5rem 0.8rem;font-size:0.58rem;
-  text-transform:uppercase;letter-spacing:0.08em;color:var(--dim);
-  border-bottom:2px solid var(--border);}
-.summary-table td{padding:0.6rem 0.8rem;border-bottom:1px solid var(--border2);}
-.summary-table tr:hover td{background:var(--surface);}
-.badge-sell{background:#fef2f2;color:var(--red);font-weight:700;font-size:0.6rem;
-  padding:0.15rem 0.5rem;border-radius:10px;}
-.badge-buy{background:#f0fdf4;color:var(--green);font-weight:700;font-size:0.6rem;
-  padding:0.15rem 0.5rem;border-radius:10px;}
-.badge-near{background:#fff7ed;color:var(--orange);font-weight:700;font-size:0.6rem;
-  padding:0.15rem 0.5rem;border-radius:10px;}
-.badge-neutral{background:var(--surface);color:var(--dim);font-weight:700;font-size:0.6rem;
-  padding:0.15rem 0.5rem;border-radius:10px;}
-
-@media(max-width:768px){
-  .hero-strip{padding:1rem;}
-  .section{padding:1rem;}
-  .tab-bar{padding:0.6rem 1rem;}
-  .gauge-grid{grid-template-columns:repeat(2,1fr);}
-  .heatmap-grid{grid-template-columns:repeat(2,1fr);}
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
+
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
+
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -227,8 +256,8 @@ canvas{display:block;width:100%;}
 </style>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@signycle">
-<meta name="twitter:title" content="Cycle Dashboard — 12 Live Macro Signals">
-<meta name="twitter:description" content="Live macro cycle dashboard with 12 signals, gauges, heatmap and historical charts — Brent, copper, BDI and cycle score, updated as conditions change.">
+<meta name="twitter:title" content="Cycle Dashboard — Where Every Macro Signal Sits">
+<meta name="twitter:description" content="See where every tracked commodity, shipping and macro signal sits between its historical BUY and SELL levels, the overall cycle score, and real recorded price history.">
 <meta name="twitter:image" content="https://signycle.com/og-image.png">
 </head>
 <body>
@@ -678,86 +707,144 @@ _initHamburger();
 
 
 <div class="page">
+<div class="wrap">
 
-<!-- Hero -->
-<div class="hero-strip">
-  <div>
-    <div class="hero-title">Macro Cycle <span>Dashboard</span></div>
-    <div class="hero-meta">12 signals · Updated <span id="dashUpdatedDate">8 Apr 2026</span></div>
-  </div>
-  <div class="cycle-badge">
-    <div class="cycle-score-num" id="cycleScoreNum">73/100</div>
-    <div class="cycle-score-label">Cycle Score</div>
-  </div>
-  <div class="cycle-badge">
-    <div class="cycle-score-num" id="recessionProb" style="color:var(--red);">55%</div>
-    <div class="cycle-score-label">Recession Risk</div>
-  </div>
-</div>
+  <div class="dash-eyebrow">Macro cycle dashboard</div>
+  <h1 class="dash-title">Where every signal sits right now</h1>
+  <p class="dash-sub" id="dashSub">Loading signals…</p>
 
-<!-- Tab bar -->
-<div class="tab-bar">
-  <button class="tab-btn active" data-tab="summary" onclick="setTab('summary')">≡ Summary</button>
-  <button class="tab-btn" data-tab="heatmap" onclick="setTab('heatmap')">▦ Heatmap</button>
-  <button class="tab-btn" data-tab="history" onclick="setTab('history')">↗ History</button>
-  <button class="tab-btn" data-tab="stocks" onclick="setTab('stocks')">◯ Stocks</button>
-  <button class="tab-btn" data-tab="gauges" onclick="setTab('gauges')">◉ Gauges</button>
-</div>
-
-<!-- Gauges -->
-<div class="tab-section section" data-section="gauges" style="display:none;">
-  <div class="section-title">Signal Gauges — click any gauge to view history</div>
-  <div class="gauge-grid" id="gaugeGrid"></div>
-</div>
-
-<!-- Heatmap -->
-<div class="tab-section section" data-section="heatmap" style="display:none;">
-  <div class="section-title">Signal Heatmap</div>
-  <div class="heatmap-grid" id="heatmapGrid"></div>
-</div>
-
-<!-- History -->
-<div class="tab-section section" data-section="history" style="display:none;">
-  <div class="section-title">Historical Chart</div>
-  <div class="sig-select-row" id="sigBtnRow"></div>
-  <div class="chart-wrap">
-    <div class="chart-header">
-      <div><div class="chart-label">Signal indicator</div><div class="chart-name" id="histName"></div></div>
-      <div class="chart-label" id="histUnit"></div>
+  <div class="hero-grid">
+    <div class="card">
+      <div class="card-label">Cycle score</div>
+      <div class="score-row">
+        <span class="score-num" id="scoreNum">–</span><span class="score-of">/100</span>
+        <span class="score-phase" id="scorePhase"></span>
+      </div>
+      <div class="card-note" id="scoreNote">The average position of every tracked signal on its own BUY→SELL scale.</div>
+      <div class="meter" aria-hidden="true">
+        <div class="meter-pin" id="meterPin" style="left:0%;"></div>
+        <div class="meter-track">
+          <span style="flex:25;background:#00956e;"></span>
+          <span style="flex:20;background:#8fd1b9;"></span>
+          <span style="flex:20;background:#cfd8d4;"></span>
+          <span style="flex:15;background:#f0b35a;"></span>
+          <span style="flex:20;background:#dc2626;"></span>
+        </div>
+        <div class="meter-labels" id="meterLabels">
+          <span style="flex:25;">Deep buy<br>0–25</span>
+          <span style="flex:20;">Early<br>25–45</span>
+          <span style="flex:20;">Mid cycle<br>45–65</span>
+          <span style="flex:15;">Late<br>65–80</span>
+          <span style="flex:20;text-align:right;">Distribution<br>80–100</span>
+        </div>
+      </div>
     </div>
-    <canvas id="histCanvas" height="200"></canvas>
-    <div class="zone-strip-label" id="zoneStripLabel" style="display:none;">Zone over time</div>
-    <div class="zone-strip-wrap" id="zoneStripWrap" style="display:none;">
-      <canvas id="zoneStripCanvas" height="28"></canvas>
-      <div class="chart-tooltip" id="zoneTooltip"></div>
+
+    <div class="card">
+      <div class="card-label">Zone breakdown</div>
+      <div class="card-title" id="zoneHeadline">–</div>
+      <div class="seg-bar" id="segBar" role="img" aria-label="Signals by zone"></div>
+      <div class="legend">
+        <span><i style="background:var(--buy);"></i>Buy</span>
+        <span><i style="background:var(--neutral);"></i>Neutral</span>
+        <span><i style="background:var(--warn);"></i>Near sell</span>
+        <span><i style="background:var(--sell);"></i>Sell</span>
+      </div>
+      <div class="tiles">
+        <div>
+          <div class="tile-label">Recession probability</div>
+          <div class="tile-value" id="tileRecession">–</div>
+          <div class="tile-sub"><a href="recession-tracker.html" style="color:inherit;">6-indicator model</a></div>
+        </div>
+        <div>
+          <div class="tile-label">US 10Y–2Y curve</div>
+          <div class="tile-value" id="tileCurve">–</div>
+          <div class="tile-sub" id="tileCurveSub">Live · FRED</div>
+        </div>
+        <div>
+          <div class="tile-label">Data freshness</div>
+          <div class="tile-value" id="tileLive">–</div>
+          <div class="tile-sub" id="tileLiveSub"></div>
+        </div>
+      </div>
     </div>
-    <div class="zone-legend" id="zoneLegend" style="display:none;">
-      <span><i style="background:var(--green);"></i>Buy</span>
-      <span><i style="background:var(--text);"></i>Neutral</span>
-      <span><i style="background:var(--orange);"></i>Warn</span>
-      <span><i style="background:var(--red);"></i>Sell</span>
-    </div>
-    <div id="histEmpty" style="display:none;padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.85rem;"></div>
   </div>
-</div>
 
-<!-- Stocks -->
-<div class="tab-section section" data-section="stocks" style="display:none;">
-  <div class="section-title">Stocks by signal</div>
-  <div id="stocksGrid"></div>
-</div>
+  <div class="sec-head">
+    <div>
+      <h2 class="sec-title">Signal positions</h2>
+      <p class="sec-sub">Each bar runs from the signal's BUY level to its SELL level. The dot is today's value; an arrow means it's beyond the scale. Hover or tap a row for exact levels.</p>
+    </div>
+    <div class="toggle" role="group" aria-label="Order">
+      <button type="button" class="on" data-order="sector">By sector</button>
+      <button type="button" data-order="rank">Most stretched</button>
+    </div>
+  </div>
+  <div class="card pos-card">
+    <div class="pos-key">
+      <div class="legend">
+        <span><i style="background:var(--buy-t);"></i>Buy zone</span>
+        <span><i style="background:var(--neutral-t);"></i>Neutral</span>
+        <span><i style="background:var(--warn-t);"></i>Near sell</span>
+        <span><i style="background:var(--sell-t);"></i>Sell zone</span>
+      </div>
+      <span class="k-note">Live rows open their price history ↓</span>
+    </div>
+    <div id="posList"><div class="hist-empty">Loading signals…</div></div>
+  </div>
+  <div class="pos-tip" id="posTip"></div>
 
-<!-- Summary -->
-<div class="tab-section section" data-section="summary">
-  <div class="section-title">All signals summary</div>
-  <table class="summary-table">
-    <thead><tr>
-      <th>Signal</th><th>Current</th><th>Status</th><th>BUY level</th><th>SELL level</th>
-    </tr></thead>
-    <tbody id="summaryBody"></tbody>
-  </table>
-</div>
+  <div class="sec-head" id="historySection">
+    <div>
+      <h2 class="sec-title">Price history</h2>
+      <p class="sec-sub">Real prices recorded every ~15 minutes since late September 2026, for the signals priced live.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="hist-controls">
+      <select id="histSignal" aria-label="Signal"></select>
+      <div class="toggle" role="group" aria-label="Range" id="histRange">
+        <button type="button" data-range="1w">1W</button>
+        <button type="button" data-range="1m">1M</button>
+        <button type="button" data-range="all" class="on">All</button>
+      </div>
+    </div>
+    <div class="hist-head">
+      <div class="hist-now" id="histNow"></div>
+      <div class="hist-chg" id="histChg"></div>
+    </div>
+    <div class="chart-box"><canvas id="histCanvas" height="220"></canvas></div>
+    <div id="histStripWrap" style="display:none;">
+      <div class="strip-label">Zone over time</div>
+      <div class="chart-box">
+        <canvas id="zoneStripCanvas" height="20"></canvas>
+        <div class="chart-tooltip" id="zoneTooltip"></div>
+      </div>
+    </div>
+    <div class="hist-empty" id="histEmpty" style="display:none;"></div>
+  </div>
 
+  <div class="sec-head">
+    <div>
+      <h2 class="sec-title">Stocks exposed to stretched signals</h2>
+      <p class="sec-sub">Signals currently in the SELL or BUY zone, and some of the stocks most tied to them.</p>
+    </div>
+  </div>
+  <div class="stock-grid" id="stockGrid"></div>
+
+  <details class="tbl">
+    <summary>Show all signals as a table</summary>
+    <div class="tbl-scroll">
+      <table class="summary-table">
+        <thead><tr><th>Signal</th><th>Sector</th><th style="text-align:right;">Value</th><th>Zone</th><th style="text-align:right;">BUY at or below</th><th style="text-align:right;">Near sell from</th><th style="text-align:right;">SELL at or above</th><th>Source</th></tr></thead>
+        <tbody id="summaryBody"></tbody>
+      </table>
+    </div>
+  </details>
+
+  <p class="foot-note">Zones come straight from the same engine that sends alert emails. Thresholds are historical reference points, not predictions — see <a href="how-it-works.html">how it works</a>. Manually updated signals show the date they were last updated. Not financial advice.</p>
+
+</div>
 </div><!-- .page -->
 
 <footer style="border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:var(--dim);">
@@ -772,476 +859,563 @@ _initHamburger();
 </footer>
 
 <script>
-
-var SIGNALS = [
-  {id:'brent',   name:'Brent Crude',     val:92.0,  buy:50,    sell:90,    unit:'$/bbl',  status:'warn'},
-  {id:'copper',  name:'LME Copper',      val:13512,  buy:5000,  sell:9000,  unit:'$/t',    status:'sell'},
-  {id:'gold',    name:'Gold',            val:4420,   buy:1200,  sell:2800,  unit:'$/oz',   status:'sell'},
-  {id:'silver',  name:'Silver',          val:37,     buy:14,    sell:30,    unit:'$/oz',   status:'sell'},
-  {id:'bdi',     name:'Baltic Dry',      val:3224,   buy:900,   sell:3500,  unit:'pts',    status:'warn'},
-  {id:'vlcc',    name:'VLCC Rate',       val:320000, buy:15000, sell:75000, unit:'$/day',  status:'sell'},
-  {id:'lng',     name:'LNG Rate',        val:72000,  buy:10000, sell:120000,unit:'$/day',  status:'sell'},
-  {id:'salmon',  name:'Salmon',          val:94,     buy:40,    sell:75,    unit:'NOK/kg', status:'sell'},
-  {id:'urea',    name:'Urea',            val:530,    buy:200,   sell:600,   unit:'$/t',    status:'neutral'},
-  {id:'steel',   name:'Steel HRC',       val:690,    buy:300,   sell:800,   unit:'$/t',    status:'neutral'},
-  {id:'alum',    name:'Aluminium',       val:2420,   buy:1400,  sell:2800,  unit:'$/t',    status:'neutral'},
-  {id:'ironore', name:'Iron Ore',        val:118,    buy:60,    sell:150,   unit:'$/t',    status:'neutral'},
-];
-
-/* Sync with live signals-loader.js data if available */
-function syncFromLoader() {
-  var sd = window.SignycleData;
-  if (!sd || !sd.signals) return;
-  var map = {
-    brent: 'brent', copper: 'copper', gold: 'gold', bdi: 'bdi',
-    vlcc: 'vlcc', lng: 'lng', salmon: 'salmon', silver: 'silver'
+(function() {
+  // Copy of worker.js THRESHOLDS (the engine that assigns zones and sends
+  // alerts). Zones shown here come from the API itself; these numbers only
+  // place the bars and dots, so keep them in sync with worker.js by hand.
+  var THRESHOLDS = {
+    brent:   { buy: 50,    warnSell: 95,    sell: 105   },
+    wti:     { buy: 45,    warnSell: 88,    sell: 95    },
+    spread:  { buy: 0,     warnSell: 8,     sell: 12    },
+    copper:  { buy: 5000,  warnSell: 8500,  sell: 9000  },
+    alum:    { buy: 1600,  warnSell: 2800,  sell: 3200  },
+    gold:    { buy: 1200,  warnSell: 2500,  sell: 2800  },
+    steel:   { buy: 700,   warnSell: 1150,  sell: 1450  },
+    ironore: { buy: 60,    warnSell: 85,    sell: 100   },
+    lithium: { buy: 12000, warnSell: 30000, sell: 40000 },
+    bdi:     { buy: 900,   warnSell: 2500,  sell: 3000  },
+    vlcc:    { buy: 15000, warnSell: 60000, sell: 75000 },
+    lng:     { buy: 10000, warnSell: 60000, sell: 80000 },
+    scfi:    { buy: 800,   warnSell: 2500,  sell: 3500  },
+    pctc:    { buy: 8000,  warnSell: 35000, sell: 45000 },
+    salmon:  { buy: 42,    warnSell: 75,    sell: 82    },
+    urea:    { buy: 230,   warnSell: 550,   sell: 620   },
+    nbsk:    { buy: 750,   warnSell: 1100,  sell: 1300  },
+    eur10y:  { buy: 1.5,   warnSell: 3.0,   sell: 3.5   },
+    pmi:     { buy: 48,    warnSell: 55,    sell: 60    },
+    defense: { buy: 2.0,   warnSell: 3.0,   sell: 3.5   },
+    rig:     { buy: 70,    warnSell: 88,    sell: 92    },
+    flying:  { buy: 85,    warnSell: 115,   sell: 130   },
+    wfe:     { buy: 80,    warnSell: 120,   sell: 140   }
   };
-  // This page's status vocabulary predates the live API's: it has no
-  // separate "warn" zone, only buy/sell/approaching-sell(=near sell)/neutral.
-  var ZONE_MAP = { warn: 'approaching-sell' };
-  SIGNALS.forEach(function(sig) {
-    var key = map[sig.id];
-    if (key && sd.signals[key] && sd.signals[key].value) {
-      sig.val = sd.signals[key].value;
-      var zone = sd.signals[key].zone;
-      if (zone) sig.status = ZONE_MAP[zone] || zone;
-    }
-  });
-  if (sd.cycleScore != null) {
-    CYCLE_SCORE = sd.cycleScore;
-    var scoreEl = document.getElementById('cycleScoreNum');
-    if (scoreEl) scoreEl.textContent = CYCLE_SCORE + '/100';
+  var SECTORS = ['Energy', 'Metals', 'Shipping', 'Agri & materials', 'Macro & industry'];
+  var META = {
+    brent:   { name: 'Brent crude',              sector: 'Energy',           page: 'signal-brent-crude.html' },
+    wti:     { name: 'WTI crude',                sector: 'Energy',           page: 'compare-wti-brent.html' },
+    spread:  { name: 'Brent–WTI spread',         sector: 'Energy',           page: 'compare-wti-brent.html' },
+    copper:  { name: 'LME copper',               sector: 'Metals',           page: 'signal-lme-copper.html' },
+    alum:    { name: 'LME aluminium',            sector: 'Metals',           page: 'signal-aluminium-price.html' },
+    gold:    { name: 'Gold',                     sector: 'Metals',           page: 'signal-gold-price.html' },
+    steel:   { name: 'Steel HRC',                sector: 'Metals',           page: 'signal-us-hrc-steel.html' },
+    ironore: { name: 'Iron ore',                 sector: 'Metals',           page: 'signal-iron-ore-price.html' },
+    lithium: { name: 'Lithium carbonate',        sector: 'Metals',           page: 'signal-lithium-carbonate.html' },
+    bdi:     { name: 'Baltic Dry Index',         sector: 'Shipping',         page: 'signal-baltic-dry-index.html' },
+    vlcc:    { name: 'VLCC tanker rate',         sector: 'Shipping',         page: 'signal-vlcc-rate.html' },
+    lng:     { name: 'LNG carrier rate',         sector: 'Shipping',         page: 'signal-lng-freight-rate.html' },
+    scfi:    { name: 'SCFI container freight',   sector: 'Shipping',         page: 'signal-scfi-container.html' },
+    pctc:    { name: 'PCTC car carrier rate',    sector: 'Shipping',         page: 'signal-pctc-car-carrier.html' },
+    salmon:  { name: 'Norwegian salmon',         sector: 'Agri & materials', page: 'signal-salmon-price.html' },
+    urea:    { name: 'Urea',                     sector: 'Agri & materials', page: 'signal-urea-price.html' },
+    nbsk:    { name: 'NBSK pulp',                sector: 'Agri & materials', page: 'signal-nbsk-pulp-price.html' },
+    eur10y:  { name: 'EUR 10Y rate',             sector: 'Macro & industry', page: 'signal-eur-10y-rate.html' },
+    pmi:     { name: 'Global manufacturing PMI', sector: 'Macro & industry', page: 'signal-global-pmi.html' },
+    defense: { name: 'NATO defence spending',    sector: 'Macro & industry', page: 'signal-nato-defence.html' },
+    rig:     { name: 'Offshore rig utilisation', sector: 'Macro & industry', page: 'signal-rig-utilization.html' },
+    flying:  { name: 'Wide-body flying hours',   sector: 'Macro & industry', page: null },
+    wfe:     { name: 'Semicon equipment (WFE)',  sector: 'Macro & industry', page: null },
+    yieldCurve: { name: 'US 10Y–2Y yield curve', sector: 'Macro & industry', page: 'recession-tracker.html' }
+  };
+  // Must match signals-loader.js LIVE_IDS — the only signals with recorded history.
+  var LIVE_IDS = ['brent', 'wti', 'spread', 'copper', 'alum', 'gold', 'steel', 'ironore', 'lithium', 'eur10y', 'yieldCurve'];
+  var STOCKS_BY_SIGNAL = {
+    brent:   [{t:'EQNR',n:'Equinor'},{t:'SUBC',n:'Subsea 7'},{t:'BP',n:'BP'}],
+    copper:  [{t:'GLEN',n:'Glencore'},{t:'ANTO',n:'Antofagasta'}],
+    gold:    [{t:'NEM',n:'Newmont'},{t:'AEM',n:'Agnico Eagle'}],
+    bdi:     [{t:'SBLK',n:'Star Bulk'},{t:'2020',n:'2020 Bulkers'}],
+    vlcc:    [{t:'FRO',n:'Frontline'},{t:'HAFNI',n:'Hafnia'}],
+    lng:     [{t:'COOL',n:'Cool Company'}],
+    salmon:  [{t:'MOWI',n:'Mowi'},{t:'SALM',n:'SalMar'}],
+    urea:    [{t:'YAR',n:'Yara'}],
+    steel:   [{t:'SSAB',n:'SSAB'},{t:'MT',n:'ArcelorMittal'}],
+    alum:    [{t:'NHY',n:'Norsk Hydro'},{t:'ELK',n:'Elkem'}],
+    ironore: [{t:'RIO',n:'Rio Tinto'},{t:'BHP',n:'BHP'}]
+  };
+  var ZONE_HEX = { buy: '#00956e', neutral: '#64748b', warn: '#d97706', sell: '#dc2626' };
+  var ZONE_LABEL = { buy: 'BUY', neutral: 'NEUTRAL', warn: 'NEAR SELL', sell: 'SELL' };
+  var ZONE_POINTS = { buy: 15, neutral: 50, warn: 72, sell: 90 }; // mirrors signals-loader.js
+  var PHASES = [[25, 'Deep BUY', '#00956e'], [45, 'Early Expansion', '#2f9e7a'], [65, 'Mid Cycle', '#64748b'], [80, 'Late Expansion', '#c26a00'], [101, 'Distribution', '#dc2626']];
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var STALE_DAYS = 45;
+  var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
+
+  var DATA = null;
+  var order = 'sector';
+  var $ = function(id) { return document.getElementById(id); };
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function fmt(v, unit) {
+    v = parseFloat(v);
+    if (isNaN(v)) return '–';
+    if (unit === '%') return (Math.abs(v) < 10 ? v.toFixed(2) : String(Math.round(v * 10) / 10)) + '%';
+    if (unit === '% GDP') return v.toFixed(1) + '%';
+    var a = Math.abs(v), s;
+    if (a >= 100000) s = Math.round(v / 1000) + 'k';
+    else if (a >= 1000) s = Math.round(v).toLocaleString('en-US');
+    else if (a >= 100 || Number.isInteger(v)) s = String(Math.round(v * 10) / 10);
+    else s = v.toFixed(1);
+    if (unit && unit.charAt(0) === '$') return '$' + s;
+    if (unit === 'NOK/kg') return 'NOK ' + s;
+    return s;
   }
-  if (sd.recessionProb != null) {
-    RECESSION_PROB = sd.recessionProb;
-    var probEl = document.getElementById('recessionProb');
-    if (probEl) probEl.textContent = RECESSION_PROB + '%';
+  function unitLabel(unit) {
+    if (unit === '% GDP') return 'of GDP';
+    if (unit === '%') return '';
+    if (unit === 'pts' || unit === 'index') return 'index';
+    return unit || '';
   }
-  if (sd.updated) {
-    var dateEl = document.getElementById('dashUpdatedDate');
-    var m = String(sd.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (dateEl) {
-      if (m) {
-        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        dateEl.textContent = parseInt(m[3],10) + ' ' + months[parseInt(m[2],10)-1] + ' ' + m[1];
-      } else {
-        dateEl.textContent = sd.updated;
-      }
-    }
+  function pctText(p) { return p < 1 ? '<1%' : Math.round(p) + '%'; }
+
+  // Manual dates look like "22 Apr 2026", "Feb 2026" or "2025 est." —
+  // parsed by hand because Safari's Date() rejects the first two.
+  function parseManualDate(s) {
+    var m = String(s || '').match(/(?:(\d{1,2})\s+)?([A-Za-z]{3})[a-z]*\s+(\d{4})/);
+    if (!m) return null;
+    var mi = MONTHS.indexOf(m[2].charAt(0).toUpperCase() + m[2].slice(1, 3).toLowerCase());
+    if (mi < 0) return null;
+    return new Date(Date.UTC(+m[3], mi, m[1] ? +m[1] : 1));
   }
-  buildGauges();
-  buildHeatmap();
-  buildSummary(); /* re-render with live values */
-}
-/* Try syncing after loader has had time to run, and again whenever it refreshes */
-setTimeout(syncFromLoader, 1500);
-document.addEventListener('signalsLoaded', syncFromLoader);
-var CYCLE_SCORE = 73;
-var RECESSION_PROB = 55;
-
-
-// Init
-var activeTab = 'summary';
-var activeSignal = SIGNALS[0];
-
-// Tab switching
-function setTab(tab) {
-  activeTab = tab;
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.tab===tab); });
-  document.querySelectorAll('.tab-section').forEach(function(s){ s.style.display = s.dataset.section===tab ? '' : 'none'; });
-  if(tab==='history') renderHistory();
-  if(tab==='gauges') buildGauges();
-  if(tab==='stocks') renderStocks();
-}
-
-// ── GAUGE ENGINE ──────────────────────────────────────────────────────────────
-function drawGauge(canvas, pct, status) {
-  var W = canvas.width = 120, H = canvas.height = 70;
-  var ctx = canvas.getContext('2d');
-  var cx = W/2, cy = H-8, r = 52;
-  ctx.clearRect(0,0,W,H);
-  // Track
-  ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,0);
-  ctx.strokeStyle='#e2e8e5'; ctx.lineWidth=10; ctx.lineCap='round'; ctx.stroke();
-  // Fill
-  var color = status==='sell'?'#dc2626':status==='buy'?'#00956e':status==='approaching-sell'?'#d97706':'#94a3b8';
-  var angle = Math.PI + pct * Math.PI;
-  ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,angle);
-  ctx.strokeStyle=color; ctx.lineWidth=10; ctx.stroke();
-  // Needle
-  var nx = cx + (r-5)*Math.cos(angle), ny = cy + (r-5)*Math.sin(angle);
-  ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(nx,ny);
-  ctx.strokeStyle=color; ctx.lineWidth=3; ctx.lineCap='round'; ctx.stroke();
-  ctx.beginPath(); ctx.arc(cx,cy,4,0,2*Math.PI);
-  ctx.fillStyle=color; ctx.fill();
-  // Labels
-  ctx.fillStyle='#94a3b8'; ctx.font='bold 8px IBM Plex Mono,monospace'; ctx.textAlign='center';
-  ctx.fillText('BUY',cx-r+8,cy+14); ctx.fillText('SELL',cx+r-8,cy+14);
-}
-
-function fmtVal(v, unit) {
-  if(v>=1000000) return (v/1000000).toFixed(1)+'M';
-  if(v>=1000) return v.toLocaleString();
-  return v;
-}
-
-function statusLabel(s) {
-  if(s==='sell') return 'SELL';
-  if(s==='buy') return 'BUY';
-  if(s==='approaching-sell') return 'NEAR SELL';
-  return 'NEUTRAL';
-}
-
-function buildGauges() {
-  var grid = document.getElementById('gaugeGrid');
-  grid.innerHTML = '';
-  SIGNALS.forEach(function(sig) {
-    var pct = Math.max(0,Math.min(1,(sig.val-sig.buy)/(sig.sell-sig.buy)));
-    var card = document.createElement('div');
-    card.className = 'gauge-card ' + sig.status;
-    card.dataset.id = sig.id;
-    card.innerHTML = '<div class="gc-name">'+sig.name+'</div>'+
-      '<canvas class="gc-canvas" width="120" height="70"></canvas>'+
-      '<div class="gc-val">'+fmtVal(sig.val)+'</div>'+
-      '<div class="gc-unit">'+sig.unit+'</div>'+
-      '<div class="gc-status '+sig.status+'">'+statusLabel(sig.status)+'</div>'+
-      '<div class="gc-thresholds">BUY &lt;'+sig.buy+' · SELL &gt;'+sig.sell+'</div>';
-    card.onclick = function(){ 
-      document.querySelectorAll('.gauge-card').forEach(function(c){c.classList.remove('selected');});
-      card.classList.add('selected');
-      activeSignal = sig; 
-      setTab('history'); 
-    };
-    grid.appendChild(card);
-    drawGauge(card.querySelector('canvas'), pct, sig.status);
-  });
-}
-
-// ── HEATMAP ───────────────────────────────────────────────────────────────────
-function buildHeatmap() {
-  var grid = document.getElementById('heatmapGrid');
-  grid.innerHTML = '';
-  SIGNALS.forEach(function(sig) {
-    var cell = document.createElement('div');
-    cell.className = 'hm-cell ' + sig.status;
-    cell.innerHTML = '<div class="hm-name">'+sig.name+'</div>'+
-      '<div class="hm-val">'+fmtVal(sig.val)+'</div>'+
-      '<div class="hm-unit">'+sig.unit+'</div>'+
-      '<div class="gc-status '+sig.status+'" style="margin-top:0.4rem;">'+statusLabel(sig.status)+'</div>';
-    grid.appendChild(cell);
-  });
-}
-
-// ── HISTORY CHART ──────────────────────────────────────────────────────────────
-function drawLineChart(canvas, vals, buyT, sellT, color, labels) {
-  var dpr = window.devicePixelRatio||1;
-  var W = canvas.parentElement.clientWidth||600, H = 200;
-  canvas.width = W*dpr; canvas.height = H*dpr;
-  canvas.style.width = W+'px'; canvas.style.height = H+'px';
-  var ctx = canvas.getContext('2d'); ctx.scale(dpr,dpr);
-  var pad = {t:20,r:20,b:30,l:60};
-  var cw = W-pad.l-pad.r, ch = H-pad.t-pad.b, n = vals.length;
-  var mn = Math.min.apply(null,vals.concat([buyT*0.9]));
-  var mx = Math.max.apply(null,vals.concat([sellT*1.05]));
-  var rng = mx-mn||1;
-  function xp(i){return pad.l+(i/(n-1))*cw;}
-  function yp(v){return pad.t+ch-((v-mn)/rng)*ch;}
-  // Background
-  ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
-  // Grid
-  for(var gi=0;gi<=4;gi++){
-    var gy=pad.t+(gi/4)*ch, gv=mx-(gi/4)*rng;
-    ctx.strokeStyle='#f0f4f2'; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(pad.l,gy); ctx.lineTo(pad.l+cw,gy); ctx.stroke();
-    ctx.fillStyle='#94a3b8'; ctx.font='10px IBM Plex Mono,monospace'; ctx.textAlign='right';
-    ctx.fillText(gv>=1000?(gv/1000).toFixed(0)+'k':gv.toFixed(0),pad.l-4,gy+4);
-  }
-  // Thresholds
-  ctx.setLineDash([5,4]);
-  ctx.strokeStyle='rgba(0,149,110,0.4)'; ctx.lineWidth=1.5;
-  ctx.beginPath(); ctx.moveTo(pad.l,yp(buyT)); ctx.lineTo(pad.l+cw,yp(buyT)); ctx.stroke();
-  ctx.strokeStyle='rgba(220,38,38,0.4)';
-  ctx.beginPath(); ctx.moveTo(pad.l,yp(sellT)); ctx.lineTo(pad.l+cw,yp(sellT)); ctx.stroke();
-  ctx.setLineDash([]);
-  // Line
-  ctx.beginPath(); ctx.strokeStyle=color||'#00956e'; ctx.lineWidth=2.5; ctx.lineJoin='round';
-  vals.forEach(function(v,i){i===0?ctx.moveTo(xp(i),yp(v)):ctx.lineTo(xp(i),yp(v));});
-  ctx.stroke();
-  // X-axis labels — real recorded timestamps, evenly sampled, not fabricated years
-  if (labels && labels.length) {
-    ctx.fillStyle='#94a3b8'; ctx.font='10px IBM Plex Mono,monospace';
-    // Axis labels are short ("24 Sep"), so ~50px each fits.
-    var maxLabels = Math.max(2, Math.floor(cw / 50));
-    var labelCount = Math.min(maxLabels, 8, labels.length);
-    var lastDrawn = null;
-    for (var li=0; li<labelCount; li++) {
-      var idx = labelCount===1 ? 0 : Math.round(li/(labelCount-1)*(n-1));
-      // x is by point index, not time — skip a repeated date.
-      if (labels[idx] === lastDrawn) continue;
-      lastDrawn = labels[idx];
-      // Center-aligning the first/last label at the chart's own edge
-      // overflows half the text off the canvas (silently clipped by the
-      // canvas's own raster) — anchor those two inward instead.
-      ctx.textAlign = li===0 ? 'left' : (li===labelCount-1 ? 'right' : 'center');
-      ctx.fillText(labels[idx], xp(idx), H-8);
-    }
-  }
-}
-
-// Signals the Worker actually prices live and records to D1 (see worker.js
-// LIVE_TICKERS + fetchEurYield) — real /api/history exists only for these.
-var LIVE_HISTORY_IDS = { brent:1, wti:1, copper:1, alum:1, gold:1, steel:1, ironore:1, lithium:1, spread:1, eur10y:1 };
-var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
-
-function formatHistLabel(iso) {
-  var d = new Date(iso);
-  if (isNaN(d.getTime())) return '';
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return d.getUTCDate() + ' ' + months[d.getUTCMonth()] + ' ' +
-    d.getUTCHours().toString().padStart(2,'0') + ':' + d.getUTCMinutes().toString().padStart(2,'0');
-}
-
-// X-axis only: plain dates. Tooltips keep date + time via formatHistLabel.
-function formatAxisDate(iso) {
-  var d = new Date(iso);
-  if (isNaN(d.getTime())) return '';
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return d.getUTCDate() + ' ' + months[d.getUTCMonth()];
-}
-
-function showHistEmpty(msg) {
-  document.getElementById('histCanvas').style.display = 'none';
-  document.getElementById('zoneStripLabel').style.display = 'none';
-  document.getElementById('zoneStripWrap').style.display = 'none';
-  document.getElementById('zoneLegend').style.display = 'none';
-  var empty = document.getElementById('histEmpty');
-  empty.textContent = msg;
-  empty.style.display = 'block';
-}
-
-function renderHistory() {
-  var sig = activeSignal;
-  document.getElementById('histName').textContent = sig.name;
-  document.getElementById('histUnit').textContent = sig.unit;
-  // Update signal buttons
-  document.querySelectorAll('.sig-btn').forEach(function(b){
-    b.classList.toggle('active', b.dataset.id===sig.id);
-  });
-
-  var canvas = document.getElementById('histCanvas');
-  var empty = document.getElementById('histEmpty');
-  var thisRequest = sig.id;
-
-  if (!LIVE_HISTORY_IDS[sig.id]) {
-    showHistEmpty(sig.name + ' doesn’t have live price tracking yet, so there’s no real history to chart. See live-signals.html for its current manually-updated value.');
-    return;
+  function freshness(sig) {
+    if (sig.live) return { live: true, text: 'Live', stale: false };
+    var d = parseManualDate(sig.date);
+    if (!d) return { live: false, text: 'Manual · ' + (sig.date || 'date unknown'), stale: true, days: null };
+    var days = Math.floor((Date.now() - d.getTime()) / 86400000);
+    return { live: false, text: 'Manual · updated ' + sig.date, stale: days > STALE_DAYS, days: days };
   }
 
-  // Waiting on the fetch — keep the previous chart visible rather than
-  // flashing empty, but stop rendering into it once a new signal is picked.
-  fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=20000')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (activeSignal.id !== thisRequest) return; // user switched signals while this was in flight
-      var points = data && data.points || [];
-      if (points.length < 2) {
-        showHistEmpty('Real price history for ' + sig.name + ' just started recording and needs a bit more time to build up — check back soon.');
-        return;
-      }
-      canvas.style.display = 'block';
-      empty.style.display = 'none';
-      var vals = points.map(function(p){ return p.value; });
-      var labels = points.map(function(p){ return formatAxisDate(p.recorded_at); });
-      var color = sig.status==='sell'?'#dc2626':sig.status==='buy'?'#00956e':'#d97706';
-      drawLineChart(canvas, vals, sig.buy, sig.sell, color, labels);
-      document.getElementById('zoneStripLabel').style.display = '';
-      document.getElementById('zoneStripWrap').style.display = '';
-      document.getElementById('zoneLegend').style.display = '';
-      drawZoneStrip(document.getElementById('zoneStripCanvas'), points);
-    })
-    .catch(function(){
-      if (activeSignal.id !== thisRequest) return;
-      showHistEmpty('Couldn’t load history for ' + sig.name + ' right now — please try again shortly.');
+  function position(id, v) {
+    var t = THRESHOLDS[id];
+    var raw = 18 + 64 * (v - t.buy) / (t.sell - t.buy);
+    return { raw: raw, x: Math.max(2, Math.min(98, raw)), warn: 18 + 64 * (t.warnSell - t.buy) / (t.sell - t.buy) };
+  }
+  function context(id, v, zone) {
+    var t = THRESHOLDS[id];
+    if (zone === 'sell') return pctText((v / t.sell - 1) * 100) + ' above SELL';
+    if (zone === 'warn') return pctText(Math.max(0, (1 - v / t.sell) * 100)) + ' below SELL';
+    if (zone === 'buy') return t.buy ? pctText((1 - v / t.buy) * 100) + ' below BUY' : 'in BUY zone';
+    return unitLabel(DATA.signals[id].unit);
+  }
+
+  function rows() {
+    var out = [];
+    Object.keys(META).forEach(function(id) {
+      var s = DATA.signals[id];
+      if (!s || !THRESHOLDS[id] || s.value == null || isNaN(parseFloat(s.value))) return;
+      var v = parseFloat(s.value), zone = ZONE_HEX[s.zone] ? s.zone : 'neutral';
+      out.push({ id: id, v: v, zone: zone, sig: s, pos: position(id, v), fresh: freshness(s), meta: META[id] });
     });
-}
+    return out;
+  }
 
-// ── ZONE TIMELINE STRIP ──────────────────────────────────────────────────
-// Shows which zone (buy/neutral/warn/sell) a signal was actually in at each
-// recorded point, as a state timeline — not just a value line with static
-// threshold reference lines.
-var ZONE_HEX = { buy: '#00956e', neutral: '#475569', warn: '#d97706', sell: '#dc2626' };
-var ZONE_NAMES = { buy: 'Buy', neutral: 'Neutral', warn: 'Warn', sell: 'Sell' };
+  function rowHtml(r) {
+    var t = THRESHOLDS[r.id], p = r.pos, unit = r.sig.unit;
+    var over = p.raw > 100, under = p.raw < 0;
+    var dot = over || under
+      ? '<span class="track-dot" style="left:' + p.x + '%;background:' + ZONE_HEX[r.zone] + ';clip-path:polygon(' + (over ? '0 0,100% 50%,0 100%' : '100% 0,0 50%,100% 100%') + ');border:0;box-shadow:none;width:13px;height:14px;"></span>'
+      : '<span class="track-dot" style="left:' + p.x + '%;background:' + ZONE_HEX[r.zone] + ';"></span>';
+    var name = r.meta.page ? '<a class="pos-name" href="' + r.meta.page + '" onclick="event.stopPropagation();">' + esc(r.meta.name) + '</a>' : '<span class="pos-name">' + esc(r.meta.name) + '</span>';
+    var metaCls = 'pos-meta' + (r.fresh.stale ? ' stale' : '');
+    var metaTxt = r.fresh.live ? '<span class="dot-live"></span>Live · history ↓' : esc(r.fresh.text.replace('Manual · updated ', 'Manual · ')) + (r.fresh.stale ? ' · stale' : '');
+    var live = LIVE_IDS.indexOf(r.id) > -1;
+    return '<div class="pos-row' + (live ? ' clickable' : '') + '" data-id="' + r.id + '" tabindex="0" role="' + (live ? 'button' : 'group') + '" aria-label="' + esc(r.meta.name + ': ' + fmt(r.v, unit) + ', ' + ZONE_LABEL[r.zone]) + '">' +
+      '<div class="pos-l">' + name + '<div class="' + metaCls + '">' + metaTxt + '</div></div>' +
+      '<div class="track">' +
+        '<div class="track-bar">' +
+          '<span style="width:18%;background:var(--buy-t);"></span>' +
+          '<span style="width:' + (p.warn - 18) + '%;background:var(--neutral-t);"></span>' +
+          '<span style="width:' + (82 - p.warn) + '%;background:var(--warn-t);"></span>' +
+          '<span style="flex:1;background:var(--sell-t);"></span>' +
+        '</div>' +
+        '<span class="track-tick" style="left:18%;">' + fmt(t.buy, unit) + '</span>' +
+        '<span class="track-tick" style="left:82%;">' + fmt(t.sell, unit) + '</span>' +
+        dot +
+      '</div>' +
+      '<div class="pos-val">' + fmt(r.v, unit) + '<span class="badge badge-m ' + r.zone + '">' + ZONE_LABEL[r.zone] + '</span><small>' + context(r.id, r.v, r.zone) + '</small></div>' +
+      '<span class="badge ' + r.zone + '">' + ZONE_LABEL[r.zone] + '</span>' +
+    '</div>';
+  }
 
-// The raw `zone` on each recorded point is undebounced — it's whatever
-// calcZone() returned at that exact tick, including single-tick noise from
-// ordinary price jitter near a threshold (see worker.js checkAlerts, which
-// requires a zone to hold for 2 consecutive ticks before treating it as a
-// real alertable crossing). Applying that same confirm-on-second-tick rule
-// here, instead of merging the raw zone directly, keeps this strip from
-// rendering that noise as a flicker of slivers.
-function confirmedSegments(points) {
-  if (!points.length) return { segments: [], total: 0 };
-  var accepted = [{ p: points[0], zone: points[0].zone || 'neutral' }];
-  var confirmedZone = accepted[0].zone;
-  var pendingZone = null, pendingBuf = [];
-  for (var i = 1; i < points.length; i++) {
-    var p = points[i], zone = p.zone || 'neutral';
-    if (zone === confirmedZone) {
-      accepted.push({ p: p, zone: confirmedZone });
-      pendingZone = null; pendingBuf = [];
-    } else if (zone === pendingZone) {
-      pendingBuf.push(p);
-      pendingBuf.forEach(function(pp) { accepted.push({ p: pp, zone: zone }); });
-      confirmedZone = zone;
-      pendingZone = null; pendingBuf = [];
+  function renderPositions() {
+    var list = rows(), html = '';
+    if (order === 'rank') {
+      list.sort(function(a, b) { return b.pos.raw - a.pos.raw; });
+      html = list.map(rowHtml).join('');
     } else {
-      pendingZone = zone; pendingBuf = [p];
+      SECTORS.forEach(function(sec) {
+        var g = list.filter(function(r) { return r.meta.sector === sec; });
+        if (!g.length) return;
+        g.sort(function(a, b) { return b.pos.raw - a.pos.raw; });
+        html += '<div class="grp-title">' + sec + '</div>' + g.map(rowHtml).join('');
+      });
+    }
+    $('posList').innerHTML = html;
+    markSelectedRow();
+  }
+
+  function renderHero() {
+    var score = DATA.cycleScore, counted = [];
+    Object.keys(DATA.signals).forEach(function(id) {
+      if (id === 'spread' || id === 'yieldCurve') return;
+      var z = DATA.signals[id] && DATA.signals[id].zone;
+      if (ZONE_POINTS.hasOwnProperty(z)) counted.push(z);
+    });
+    if (score != null) {
+      var ph = PHASES.filter(function(p) { return score < p[0]; })[0] || PHASES[PHASES.length - 1];
+      $('scoreNum').textContent = score;
+      $('scorePhase').textContent = ph[1];
+      $('scorePhase').style.color = ph[2];
+      $('meterPin').style.left = Math.max(0, Math.min(100, score)) + '%';
+      var labels = $('meterLabels').children;
+      for (var i = 0; i < labels.length; i++) labels[i].classList.toggle('on', PHASES[i][1] === ph[1]);
+      $('scoreNote').textContent = 'The average position of ' + counted.length + ' signals on their own BUY→SELL scales (buy counts as 15, neutral 50, near sell 72, sell 90).';
+    }
+    var c = { buy: 0, neutral: 0, warn: 0, sell: 0 };
+    counted.forEach(function(z) { c[z]++; });
+    $('zoneHeadline').textContent = c.sell + ' of ' + counted.length + ' signals are in the SELL zone';
+    $('segBar').innerHTML = ['buy', 'neutral', 'warn', 'sell'].filter(function(z) { return c[z]; }).map(function(z) {
+      return '<div style="flex-grow:' + c[z] + ';background:' + ZONE_HEX[z] + ';color:' + (z === 'warn' ? '#2b1a00' : '#fff') + ';" title="' + ZONE_LABEL[z] + ': ' + c[z] + '">' + c[z] + '</div>';
+    }).join('');
+    $('segBar').setAttribute('aria-label', 'Buy ' + c.buy + ', neutral ' + c.neutral + ', near sell ' + c.warn + ', sell ' + c.sell);
+
+    $('tileRecession').textContent = DATA.recessionProb != null ? DATA.recessionProb + '%' : '–';
+    var yc = DATA.signals.yieldCurve;
+    if (yc && yc.value != null) {
+      var y = parseFloat(yc.value);
+      $('tileCurve').textContent = (y > 0 ? '+' : '') + y.toFixed(2) + '%';
+      $('tileCurveSub').textContent = (y < 0 ? 'Inverted · ' : 'Not inverted · ') + (yc.live ? 'live, FRED' : 'manual');
+    }
+    // Counted over every signal shown on the page, yield curve included.
+    var shown = Object.keys(META).filter(function(id) { return DATA.signals[id]; }).map(function(id) { return freshness(DATA.signals[id]); });
+    var live = shown.filter(function(f) { return f.live; }).length;
+    var stale = shown.filter(function(f) { return f.stale; }).length;
+    $('tileLive').textContent = live + ' live';
+    $('tileLiveSub').textContent = (shown.length - live) + ' updated by hand' + (stale ? ', ' + stale + ' over ' + STALE_DAYS + ' days old' : '');
+    $('dashSub').innerHTML = '<b>' + shown.length + ' signals</b> across energy, metals, shipping and macro, each measured against its own historical BUY and SELL levels. ' + live + ' are priced live every ~15 minutes.';
+  }
+
+  function renderStocks() {
+    var list = rows().filter(function(r) { return (r.zone === 'sell' || r.zone === 'buy') && STOCKS_BY_SIGNAL[r.id]; });
+    list.sort(function(a, b) { return b.pos.raw - a.pos.raw; });
+    if (!list.length) { $('stockGrid').innerHTML = '<div class="card card-note">No signals are in the BUY or SELL zone right now.</div>'; return; }
+    $('stockGrid').innerHTML = list.map(function(r) {
+      return '<div class="card stock-card"><div class="stock-head">' +
+        (r.meta.page ? '<a href="' + r.meta.page + '">' + esc(r.meta.name) + '</a>' : '<b>' + esc(r.meta.name) + '</b>') +
+        '<span class="badge ' + r.zone + '">' + ZONE_LABEL[r.zone] + '</span></div>' +
+        '<div class="stock-list">' + STOCKS_BY_SIGNAL[r.id].map(function(s) {
+          return '<span class="stock-chip"><b>' + esc(s.t) + '</b><span>' + esc(s.n) + '</span></span>';
+        }).join('') + '</div></div>';
+    }).join('');
+  }
+
+  function renderTable() {
+    var ids = Object.keys(META).filter(function(id) { return DATA.signals[id]; });
+    $('summaryBody').innerHTML = ids.map(function(id) {
+      var s = DATA.signals[id], t = THRESHOLDS[id], u = s.unit, z = ZONE_HEX[s.zone] ? s.zone : 'neutral', f = freshness(s);
+      return '<tr><td><b>' + esc(META[id].name) + '</b></td><td>' + META[id].sector + '</td>' +
+        '<td class="num">' + fmt(s.value, u) + '</td>' +
+        '<td>' + (t ? '<span class="badge ' + z + '">' + ZONE_LABEL[z] + '</span>' : '<span class="card-note">no BUY/SELL scale</span>') + '</td>' +
+        '<td class="num">' + (t ? fmt(t.buy, u) : '–') + '</td><td class="num">' + (t ? fmt(t.warnSell, u) : '–') + '</td><td class="num">' + (t ? fmt(t.sell, u) : '–') + '</td>' +
+        '<td>' + esc(f.live ? 'Live' : f.text.replace('Manual · ', '')) + '</td></tr>';
+    }).join('');
+  }
+
+  // ── Row tooltip (mouse) ──────────────────────────────────────────────
+  var tip = $('posTip');
+  function showTip(row, e) {
+    var id = row.dataset.id, s = DATA.signals[id], t = THRESHOLDS[id], u = s.unit, f = freshness(s);
+    tip.innerHTML = '<b>' + esc(META[id].name) + '</b> · ' + fmt(s.value, u) + ' ' + esc(u) + '<br>' +
+      'BUY at or below ' + fmt(t.buy, u) + '<br>Near sell from ' + fmt(t.warnSell, u) + '<br>SELL at or above ' + fmt(t.sell, u) + '<br>' +
+      '<span class="t-dim">' + esc(f.live ? 'Live price' : f.text) + (f.days != null && f.stale ? ' (' + f.days + ' days ago)' : '') + '</span>';
+    var x = Math.min(e.clientX + 14, window.innerWidth - 270), y = e.clientY + 14;
+    if (y + 130 > window.innerHeight) y = e.clientY - 130;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    tip.classList.add('show');
+  }
+  var posList = $('posList');
+  posList.addEventListener('mousemove', function(e) {
+    var row = e.target.closest('.pos-row');
+    if (row && window.matchMedia('(hover:hover)').matches) showTip(row, e); else tip.classList.remove('show');
+  });
+  posList.addEventListener('mouseleave', function() { tip.classList.remove('show'); });
+  function openHistory(row) {
+    if (!row || LIVE_IDS.indexOf(row.dataset.id) < 0) return;
+    $('histSignal').value = row.dataset.id;
+    loadHistory();
+    $('historySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  posList.addEventListener('click', function(e) { openHistory(e.target.closest('.pos-row')); });
+  posList.addEventListener('keydown', function(e) { if (e.key === 'Enter') openHistory(e.target.closest('.pos-row')); });
+
+  document.querySelectorAll('[data-order]').forEach(function(b) {
+    b.addEventListener('click', function() {
+      order = b.dataset.order;
+      document.querySelectorAll('[data-order]').forEach(function(x) { x.classList.toggle('on', x === b); });
+      renderPositions();
+    });
+  });
+
+  // ── History chart ────────────────────────────────────────────────────
+  var histRange = 'all', histAll = [], histId = null, chartState = null;
+  var RANGE_MS = { '1w': 7 * 864e5, '1m': 30 * 864e5 };
+  LIVE_IDS.forEach(function(id) {
+    var o = document.createElement('option');
+    o.value = id; o.textContent = META[id].name;
+    $('histSignal').appendChild(o);
+  });
+  $('histSignal').addEventListener('change', loadHistory);
+  document.querySelectorAll('[data-range]').forEach(function(b) {
+    b.addEventListener('click', function() {
+      histRange = b.dataset.range;
+      document.querySelectorAll('[data-range]').forEach(function(x) { x.classList.toggle('on', x === b); });
+      drawHistoryRange();
+    });
+  });
+  function markSelectedRow() {
+    document.querySelectorAll('.pos-row').forEach(function(r) { r.classList.toggle('sel', r.dataset.id === histId); });
+  }
+
+  function axisLabel(iso, spanMs) {
+    var d = new Date(iso);
+    if (spanMs <= 36 * 36e5) return String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0');
+    return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()];
+  }
+  function fullLabel(iso) {
+    var d = new Date(iso);
+    return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()] + ' ' + String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0') + ' UTC';
+  }
+  function histEmpty(msg) {
+    $('histCanvas').style.display = 'none';
+    $('histStripWrap').style.display = 'none';
+    $('histNow').textContent = ''; $('histChg').textContent = '';
+    $('histEmpty').textContent = msg; $('histEmpty').style.display = 'block';
+  }
+
+  function loadHistory() {
+    var id = $('histSignal').value;
+    histId = id; markSelectedRow();
+    fetch(HISTORY_API + '?signal=' + encodeURIComponent(id) + '&limit=20000')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (histId !== id) return;
+        histAll = (d && d.points) || [];
+        if (histAll.length < 2) { histEmpty('Not enough recorded history yet for ' + META[id].name + '.'); return; }
+        drawHistoryRange();
+      })
+      .catch(function() { if (histId === id) histEmpty('Couldn’t load history right now — please try again shortly.'); });
+  }
+
+  function drawHistoryRange() {
+    if (histAll.length < 2) return;
+    var pts = histAll;
+    if (RANGE_MS[histRange]) {
+      var cut = new Date(histAll[histAll.length - 1].recorded_at).getTime() - RANGE_MS[histRange];
+      pts = histAll.filter(function(p) { return new Date(p.recorded_at).getTime() >= cut; });
+    }
+    if (pts.length < 2) { histEmpty('Not enough recorded history for this range — try a wider one.'); return; }
+    $('histEmpty').style.display = 'none';
+    $('histCanvas').style.display = 'block';
+    $('histStripWrap').style.display = '';
+    var unit = (DATA && DATA.signals[histId] && DATA.signals[histId].unit) || '';
+    var first = pts[0].value, last = pts[pts.length - 1].value, zone = pts[pts.length - 1].zone;
+    $('histNow').innerHTML = fmt(last, unit) + '<small>' + esc(unit) + '</small>' + (THRESHOLDS[histId] && ZONE_HEX[zone] ? ' <span class="badge ' + zone + '" style="vertical-align:middle;">' + ZONE_LABEL[zone] + '</span>' : '');
+    var chg = first ? (last / first - 1) * 100 : 0;
+    $('histChg').textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(1) + '% over ' + (histRange === 'all' ? 'all recorded history' : histRange === '1w' ? 'the past week' : 'the past month');
+    $('histChg').style.color = 'var(--text)';
+    chartState = { pts: pts, unit: unit, t: THRESHOLDS[histId] };
+    drawChart(-1);
+    drawZoneStrip($('zoneStripCanvas'), pts);
+  }
+
+  function niceTicks(mn, mx, n) {
+    var step = (mx - mn) / n, mag = Math.pow(10, Math.floor(Math.log10(step))), r = step / mag;
+    step = (r <= 1 ? 1 : r <= 2 ? 2 : r <= 5 ? 5 : 10) * mag;
+    var out = [];
+    for (var v = Math.ceil(mn / step) * step; v <= mx + 1e-9; v += step) out.push(+v.toFixed(6));
+    return out;
+  }
+
+  function drawChart(hover) {
+    var st = chartState; if (!st) return;
+    var canvas = $('histCanvas'), dpr = window.devicePixelRatio || 1;
+    var W = canvas.parentElement.clientWidth || 600, H = 220;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+    var pad = { t: 12, r: 8, b: 26, l: 46 };
+    var cw = W - pad.l - pad.r, ch = H - pad.t - pad.b, pts = st.pts, n = pts.length;
+    var vals = pts.map(function(p) { return p.value; });
+    var mn = Math.min.apply(null, vals), mx = Math.max.apply(null, vals);
+    var span = (mx - mn) || Math.abs(mx) * 0.05 || 1;
+    // Fit the data, and pull a threshold into view only if it's close by —
+    // a BUY level half the chart away would flatten the line to nothing.
+    var t = st.t, lo = mn - span * 0.15, hi = mx + span * 0.15;
+    if (t) {
+      [t.buy, t.warnSell, t.sell].forEach(function(v) {
+        if (v > mx && v - mx < span * 0.6) hi = v + span * 0.1;
+        if (v < mn && mn - v < span * 0.6) lo = v - span * 0.1;
+      });
+    }
+    var rng = hi - lo || 1;
+    function xp(i) { return pad.l + (n === 1 ? 0 : (i / (n - 1)) * cw); }
+    function yp(v) { return pad.t + ch - ((v - lo) / rng) * ch; }
+    ctx.clearRect(0, 0, W, H);
+    // zone bands
+    if (t) {
+      var bands = [[t.sell, Infinity, 'rgba(220,38,38,0.07)'], [t.warnSell, t.sell, 'rgba(217,119,6,0.08)'], [-Infinity, t.buy, 'rgba(0,149,110,0.08)']];
+      bands.forEach(function(b) {
+        var top = Math.max(lo, Math.min(hi, b[1])), bot = Math.max(lo, Math.min(hi, b[0]));
+        if (top > bot) { ctx.fillStyle = b[2]; ctx.fillRect(pad.l, yp(top), cw, yp(bot) - yp(top)); }
+      });
+    }
+    // grid + y ticks
+    ctx.font = '10px IBM Plex Mono,monospace'; ctx.textAlign = 'right'; ctx.fillStyle = '#94a3b8';
+    niceTicks(lo, hi, 4).forEach(function(v) {
+      var y = Math.round(yp(v)) + 0.5;
+      ctx.strokeStyle = '#eef2f0'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + cw, y); ctx.stroke();
+      ctx.fillText(fmt(v, st.unit).replace(/^\$|^NOK /, ''), pad.l - 6, y + 3);
+    });
+    // threshold lines that are in view, labelled at the right
+    if (t) {
+      [[t.sell, 'SELL', '#dc2626'], [t.warnSell, 'NEAR SELL', '#c26a00'], [t.buy, 'BUY', '#00956e']].forEach(function(l) {
+        if (l[0] < lo || l[0] > hi) return;
+        var y = Math.round(yp(l[0])) + 0.5;
+        ctx.strokeStyle = l[2]; ctx.globalAlpha = 0.55; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+        ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + cw, y); ctx.stroke();
+        ctx.setLineDash([]); ctx.globalAlpha = 1;
+        ctx.textAlign = 'right'; ctx.fillStyle = l[2]; ctx.font = 'bold 9px IBM Plex Mono,monospace';
+        ctx.fillText(l[1] + ' ' + fmt(l[0], st.unit), pad.l + cw - 2, y - 4);
+      });
+    }
+    // line
+    ctx.beginPath(); ctx.strokeStyle = '#0c1c2e'; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+    vals.forEach(function(v, i) { i ? ctx.lineTo(xp(i), yp(v)) : ctx.moveTo(xp(i), yp(v)); });
+    ctx.stroke();
+    // x labels: plain dates, first/last anchored inward, no repeats
+    var spanMs = new Date(pts[n - 1].recorded_at) - new Date(pts[0].recorded_at);
+    var count = Math.min(Math.max(2, Math.floor(cw / 60)), 8), lastTxt = null;
+    ctx.font = '10px IBM Plex Mono,monospace'; ctx.fillStyle = '#94a3b8';
+    for (var li = 0; li < count; li++) {
+      var idx = Math.round(li / (count - 1) * (n - 1)), txt = axisLabel(pts[idx].recorded_at, spanMs);
+      if (txt === lastTxt) continue; lastTxt = txt;
+      ctx.textAlign = li === 0 ? 'left' : li === count - 1 ? 'right' : 'center';
+      ctx.fillText(txt, xp(idx), H - 8);
+    }
+    // crosshair
+    if (hover >= 0) {
+      var hx = xp(hover), hy = yp(vals[hover]);
+      ctx.strokeStyle = 'rgba(12,28,46,0.35)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(Math.round(hx) + 0.5, pad.t); ctx.lineTo(Math.round(hx) + 0.5, pad.t + ch); ctx.stroke();
+      ctx.beginPath(); ctx.arc(hx, hy, 4.5, 0, Math.PI * 2); ctx.fillStyle = '#0c1c2e'; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = '#fff'; ctx.stroke();
+    }
+    st.geom = { pad: pad, cw: cw, n: n, xp: xp, yp: yp };
+  }
+
+  var hTip = document.createElement('div');
+  hTip.className = 'chart-tooltip';
+  $('histCanvas').parentElement.appendChild(hTip);
+  function chartHover(clientX) {
+    var st = chartState; if (!st || !st.geom) return;
+    var rect = $('histCanvas').getBoundingClientRect(), g = st.geom;
+    var x = clientX - rect.left;
+    var i = Math.round((x - g.pad.l) / g.cw * (g.n - 1));
+    i = Math.max(0, Math.min(g.n - 1, i));
+    drawChart(i);
+    var p = st.pts[i];
+    hTip.textContent = fullLabel(p.recorded_at) + ' · ' + fmt(p.value, st.unit);
+    hTip.style.left = Math.max(70, Math.min(rect.width - 70, g.xp(i))) + 'px';
+    hTip.style.top = g.yp(p.value) + 'px';
+    hTip.classList.add('show');
+  }
+  $('histCanvas').addEventListener('mousemove', function(e) { chartHover(e.clientX); });
+  $('histCanvas').addEventListener('touchmove', function(e) { if (e.touches[0]) chartHover(e.touches[0].clientX); }, { passive: true });
+  ['mouseleave', 'touchend'].forEach(function(ev) {
+    $('histCanvas').addEventListener(ev, function() { hTip.classList.remove('show'); drawChart(-1); });
+  });
+
+  // Recorded zones are undebounced per-tick values; apply the same
+  // confirm-on-second-tick rule as worker.js checkAlerts so single-tick
+  // noise near a threshold doesn't render as a flicker of slivers.
+  function confirmedSegments(points) {
+    if (!points.length) return { segments: [], total: 0 };
+    var accepted = [{ p: points[0], zone: points[0].zone || 'neutral' }];
+    var confirmedZone = accepted[0].zone, pendingZone = null, pendingBuf = [];
+    for (var i = 1; i < points.length; i++) {
+      var p = points[i], zone = p.zone || 'neutral';
+      if (zone === confirmedZone) { accepted.push({ p: p, zone: zone }); pendingZone = null; pendingBuf = []; }
+      else if (zone === pendingZone) {
+        pendingBuf.push(p);
+        pendingBuf.forEach(function(pp) { accepted.push({ p: pp, zone: zone }); });
+        confirmedZone = zone; pendingZone = null; pendingBuf = [];
+      } else { pendingZone = zone; pendingBuf = [p]; }
+    }
+    var segments = [];
+    accepted.forEach(function(a, idx) {
+      var last = segments[segments.length - 1];
+      if (last && last.zone === a.zone) { last.endIdx = idx; last.points.push(a.p); }
+      else segments.push({ zone: a.zone, startIdx: idx, endIdx: idx, points: [a.p] });
+    });
+    return { segments: segments, total: accepted.length };
+  }
+
+  function drawZoneStrip(canvas, points) {
+    var dpr = window.devicePixelRatio || 1;
+    var W = canvas.parentElement.clientWidth || 600, H = 20, padL = 46, padR = 8;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+    var res = confirmedSegments(points), n = res.total || 1, cw = W - padL - padR;
+    function xf(i) { return padL + (i / n) * cw; }
+    res.segments.forEach(function(seg) {
+      var x0 = xf(seg.startIdx), x1 = xf(seg.endIdx + 1);
+      ctx.fillStyle = ZONE_HEX[seg.zone] || ZONE_HEX.neutral;
+      ctx.fillRect(x0 + 1, 0, Math.max(x1 - x0 - 2, 1), H);
+    });
+    canvas._seg = res.segments; canvas._n = n; canvas._padL = padL; canvas._cw = cw;
+    if (canvas._bound) return;
+    canvas._bound = true;
+    var tt = $('zoneTooltip');
+    canvas.addEventListener('mousemove', function(e) {
+      var rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left;
+      var idx = Math.floor((x - canvas._padL) / canvas._cw * canvas._n);
+      if (idx < 0 || idx >= canvas._n) { tt.classList.remove('show'); return; }
+      var seg = canvas._seg.filter(function(s) { return idx >= s.startIdx && idx <= s.endIdx; })[0];
+      if (!seg) return;
+      var a = fullLabel(seg.points[0].recorded_at), b = fullLabel(seg.points[seg.points.length - 1].recorded_at);
+      tt.textContent = ZONE_LABEL[seg.zone] + ' · ' + a + (a !== b ? ' – ' + b : '');
+      tt.style.left = Math.max(90, Math.min(rect.width - 90, x)) + 'px'; tt.style.top = '0px';
+      tt.classList.add('show');
+    });
+    canvas.addEventListener('mouseleave', function() { tt.classList.remove('show'); });
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() { if (chartState) { drawChart(-1); drawZoneStrip($('zoneStripCanvas'), chartState.pts); } }, 150);
+  });
+
+  // ── Boot ─────────────────────────────────────────────────────────────
+  var historyStarted = false;
+  function render(d) {
+    if (!d || !d.signals) return;
+    DATA = d;
+    renderHero();
+    renderPositions();
+    renderStocks();
+    renderTable();
+    if (!historyStarted) {
+      historyStarted = true;
+      var urlSig = (location.hash || '').replace('#', '');
+      $('histSignal').value = LIVE_IDS.indexOf(urlSig) > -1 ? urlSig : 'brent';
+      loadHistory();
     }
   }
-  var segments = [];
-  accepted.forEach(function(a, idx) {
-    var last = segments[segments.length - 1];
-    if (last && last.zone === a.zone) { last.endIdx = idx; last.points.push(a.p); }
-    else { segments.push({ zone: a.zone, startIdx: idx, endIdx: idx, points: [a.p] }); }
-  });
-  return { segments: segments, total: accepted.length };
-}
-
-function drawZoneStrip(canvas, points) {
-  var dpr = window.devicePixelRatio || 1;
-  var W = canvas.parentElement.clientWidth || 600, H = 28;
-  canvas.width = W * dpr; canvas.height = H * dpr;
-  canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-  var ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr);
-  ctx.clearRect(0, 0, W, H);
-
-  var result = confirmedSegments(points);
-  var segments = result.segments, n = result.total || 1;
-
-  function xForIdx(i) { return (i / n) * W; }
-
-  segments.forEach(function(seg) {
-    var x0 = xForIdx(seg.startIdx);
-    var x1 = xForIdx(seg.endIdx + 1);
-    ctx.fillStyle = ZONE_HEX[seg.zone] || ZONE_HEX.neutral;
-    // 1px surface gap between adjacent segments so zone changes stay legible.
-    ctx.fillRect(x0 + 0.5, 0, Math.max(x1 - x0 - 1, 1), H);
-  });
-
-  canvas._zoneSegments = segments;
-  canvas._zoneTotal = n;
-  canvas._zoneWidth = W;
-
-  if (!canvas._zoneHoverBound) {
-    canvas._zoneHoverBound = true;
-    var tooltip = document.getElementById('zoneTooltip');
-    canvas.addEventListener('mousemove', function(e) {
-      var rect = canvas.getBoundingClientRect();
-      var x = e.clientX - rect.left;
-      var segs = canvas._zoneSegments, total = canvas._zoneTotal, w = canvas._zoneWidth;
-      if (!segs || !total) return;
-      var idx = Math.min(total - 1, Math.max(0, Math.floor((x / w) * total)));
-      var seg = segs.find(function(s) { return idx >= s.startIdx && idx <= s.endIdx; });
-      if (!seg) return;
-      var fromDate = formatHistLabel(seg.points[0].recorded_at);
-      var toDate = formatHistLabel(seg.points[seg.points.length - 1].recorded_at);
-      tooltip.textContent = ZONE_NAMES[seg.zone] + ' · ' + fromDate + (toDate !== fromDate ? '–' + toDate : '');
-      tooltip.style.left = x + 'px';
-      tooltip.style.top = '0px';
-      tooltip.classList.add('show');
-    });
-    canvas.addEventListener('mouseleave', function() {
-      tooltip.classList.remove('show');
-    });
-  }
-}
-
-// ── STOCKS GRID ────────────────────────────────────────────────────────────────
-var STOCKS_BY_SIGNAL = {
-  brent:  [{t:'EQNR',n:'Equinor',ex:'OSL'},{t:'SUBC',n:'Subsea 7',ex:'OSL'},{t:'BP',n:'BP',ex:'LSE'}],
-  copper: [{t:'GLEN',n:'Glencore',ex:'LSE'},{t:'ANTO',n:'Antofagasta',ex:'LSE'}],
-  gold:   [{t:'NEM',n:'Newmont',ex:'NYSE'},{t:'AEM',n:'Agnico Eagle',ex:'NYSE'}],
-  silver: [{t:'WPM',n:'Wheaton PM',ex:'NYSE'}],
-  bdi:    [{t:'SBLK',n:'Star Bulk',ex:'NASDAQ'},{t:'2020',n:'2020 Bulkers',ex:'OSL'}],
-  vlcc:   [{t:'FRO',n:'Frontline',ex:'OSL'},{t:'HAFNI',n:'Hafnia',ex:'OSL'}],
-  lng:    [{t:'COOL',n:'Celsius Shipping',ex:'OSL'}],
-  salmon: [{t:'MOWI',n:'Mowi',ex:'OSL'},{t:'SALM',n:'SalMar',ex:'OSL'}],
-  urea:   [{t:'YAR',n:'Yara',ex:'OSL'}],
-  steel:  [{t:'SSAB',n:'SSAB',ex:'STO'},{t:'MT',n:'ArcelorMittal',ex:'AMS'}],
-  alum:   [{t:'NHY',n:'Norsk Hydro',ex:'OSL'},{t:'ELK',n:'Elkem',ex:'OSL'}],
-  iron:   [{t:'RIO',n:'Rio Tinto',ex:'LSE'}],
-};
-
-function renderStocks() {
-  var grid = document.getElementById('stocksGrid');
-  grid.innerHTML = '';
-  SIGNALS.forEach(function(sig) {
-    var stocks = STOCKS_BY_SIGNAL[sig.id] || [];
-    if(!stocks.length) return;
-    var section = document.createElement('div');
-    section.style.marginBottom = '1.5rem';
-    var label = document.createElement('div');
-    label.style.cssText = 'font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--dim);margin-bottom:0.6rem;';
-    label.textContent = sig.name + ' — ' + statusLabel(sig.status);
-    section.appendChild(label);
-    var row = document.createElement('div');
-    row.style.cssText = 'display:flex;gap:0.5rem;flex-wrap:wrap;';
-    stocks.forEach(function(s){
-      var card = document.createElement('div');
-      card.style.cssText = 'background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:0.6rem 0.9rem;min-width:100px;';
-      card.innerHTML = '<div style="font-weight:800;font-size:0.85rem;color:var(--ink);">'+s.t+'</div>'+
-        '<div style="font-size:0.62rem;color:var(--dim);">'+s.n+'</div>'+
-        '<div style="font-size:0.58rem;background:var(--surface);color:var(--dim);border-radius:4px;padding:1px 5px;display:inline-block;margin-top:2px;">'+s.ex+'</div>';
-      row.appendChild(card);
-    });
-    section.appendChild(row);
-    grid.appendChild(section);
-  });
-}
-
-// ── SUMMARY TABLE ──────────────────────────────────────────────────────────────
-function buildSummary() {
-  var tbody = document.getElementById('summaryBody');
-  tbody.innerHTML = '';
-  SIGNALS.forEach(function(sig) {
-    var tr = document.createElement('tr');
-    var badge = sig.status==='sell'?'<span class="badge-sell">SELL</span>':
-                sig.status==='buy'?'<span class="badge-buy">BUY</span>':
-                sig.status==='approaching-sell'?'<span class="badge-near">NEAR SELL</span>':
-                '<span class="badge-neutral">NEUTRAL</span>';
-    tr.innerHTML = '<td style="font-weight:700;">'+sig.name+'</td>'+
-      '<td>'+fmtVal(sig.val)+' '+sig.unit+'</td>'+
-      '<td>'+badge+'</td>'+
-      '<td style="color:var(--green);">'+sig.buy+'</td>'+
-      '<td style="color:var(--red);">'+sig.sell+'</td>';
-    tbody.appendChild(tr);
-  });
-}
-
-// ── SIGNAL BUTTONS FOR HISTORY ────────────────────────────────────────────────
-function buildSigButtons() {
-  var row = document.getElementById('sigBtnRow');
-  SIGNALS.forEach(function(sig) {
-    var b = document.createElement('button');
-    b.className = 'sig-btn' + (sig.id===activeSignal.id?' active':'');
-    b.dataset.id = sig.id;
-    b.textContent = sig.name;
-    b.onclick = function(){ activeSignal=sig; renderHistory(); };
-    row.appendChild(b);
-  });
-}
-
-// ── CYCLE SCORE ───────────────────────────────────────────────────────────────
-document.getElementById('cycleScoreNum').textContent = CYCLE_SCORE + '/100';
-document.getElementById('recessionProb').textContent = RECESSION_PROB + '%';
-
-// ── INIT ──────────────────────────────────────────────────────────────────────
-buildGauges();
-buildHeatmap();
-buildSummary();
-buildSigButtons();
-setTab('gauges');
-
+  document.addEventListener('signalsLoaded', function(e) { render(e.detail || window.SignycleData); });
+  if (window.SignycleData && window.SignycleData.signals) render(window.SignycleData);
+})();
 </script>
 <script>
 (function(){
