@@ -691,7 +691,7 @@ _initHamburger();
     <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Exchanges covered</div>
   </div>
   <div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:12px;padding:1.2rem;text-align:center;">
-    <div style="font-size:2rem;font-weight:800;color:#dc2626;">82</div>
+    <div style="font-size:2rem;font-weight:800;color:#dc2626;"><span data-signal="cycleScore">73/100</span></div>
     <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Cycle score now</div>
   </div>
 </div>
@@ -718,19 +718,15 @@ _initHamburger();
 </div>
 
 <h2>Where our data comes from</h2>
-<p>All signals are sourced from established financial and commodity data providers. Data is cross-checked across multiple sources before being updated:</p>
+<p>11 of the 21 signals update automatically, roughly every 15 minutes, pulled directly by our server from two free sources: <strong>Yahoo Finance</strong> (Brent, WTI, LME copper, LME aluminium, gold, steel HRC, iron ore and lithium carbonate — the Brent-WTI spread is then derived from the two live oil legs, not a separate feed) and two government statistical APIs, the <strong>ECB's Statistical Data Warehouse</strong> (EUR 10-year rate) and the <strong>St. Louis Fed's FRED</strong> (US 10Y–2Y Treasury yield curve).</p>
+<p>The remaining 10 signals — Baltic Dry Index, VLCC and LNG charter rates, Norwegian salmon price, urea, global PMI, NATO defence spending and others — don't have a free, automatable live feed we've found yet, so they're updated by hand from public reporting instead, typically weekly to quarterly depending on how often the underlying number actually moves. Every signal card shows its own last-updated date, so which ones are live and which are manual is always visible, not just asserted here.</p>
 
 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.6rem;margin:1.2rem 0 2rem;">
 
-<div class="source-card"><div class="sc-name">London Metal Exchange</div><div class="sc-what">Copper, aluminium, nickel</div><div class="sc-freq">Daily · London</div></div>
-  <div class="source-card"><div class="sc-name">LBMA</div><div class="sc-what">Gold, silver, platinum, palladium</div><div class="sc-freq">Daily · London AM/PM fix</div></div>
-  <div class="source-card"><div class="sc-name">ICE / Platts</div><div class="sc-what">Brent crude, WTI crude</div><div class="sc-freq">Daily · London</div></div>
-  <div class="source-card"><div class="sc-name">Nasdaq Seafood</div><div class="sc-what">Norwegian salmon spot price</div><div class="sc-freq">Weekly · Oslo</div></div>
-  <div class="source-card"><div class="sc-name">S&P Global</div><div class="sc-what">Manufacturing PMI</div><div class="sc-freq">Monthly flash + final</div></div>
-  <div class="source-card"><div class="sc-name">ECB / Bloomberg</div><div class="sc-what">EUR 10Y government bond rate</div><div class="sc-freq">Daily</div></div>
-  <div class="source-card"><div class="sc-name">Argus / ICIS</div><div class="sc-what">Urea, fertilizer spot prices</div><div class="sc-freq">Weekly</div></div>
-  <div class="source-card"><div class="sc-name">NATO / SIPRI</div><div class="sc-what">Defence spending as % of GDP</div><div class="sc-freq">Annual, updated on release</div></div>
-  <div class="source-card"><div class="sc-name">Yahoo Finance</div><div class="sc-what">Stock prices, 250+ equities</div><div class="sc-freq">Daily</div></div>
+<div class="source-card"><div class="sc-name">Yahoo Finance</div><div class="sc-what">Brent, WTI, LME copper &amp; aluminium, gold, steel HRC, iron ore, lithium</div><div class="sc-freq">Live &middot; ~15 min</div></div>
+  <div class="source-card"><div class="sc-name">ECB Statistical Data Warehouse</div><div class="sc-what">EUR 10-year government bond rate</div><div class="sc-freq">Live &middot; daily</div></div>
+  <div class="source-card"><div class="sc-name">FRED (St. Louis Fed)</div><div class="sc-what">US 10Y&ndash;2Y Treasury yield curve</div><div class="sc-freq">Live &middot; daily</div></div>
+  <div class="source-card"><div class="sc-name">Hand-updated from public reporting</div><div class="sc-what">Baltic Dry Index, VLCC &amp; LNG rates, salmon, urea, PMI, defence spending and others</div><div class="sc-freq">Weekly to quarterly</div></div>
 </div>
 
 <!-- How thresholds are set -->
@@ -769,7 +765,7 @@ _initHamburger();
 </div>
 <div class="faq-item">
   <div class="faq-q">How often are signals updated?</div>
-  <div class="faq-a">Daily signals (gold, copper, Brent, EUR 10Y) are updated every weekday. Weekly signals (BDI, VLCC, salmon, urea) are updated on their natural publication schedule. Monthly signals (PMI, CAPE) are updated on release. The signal page shows the last update date for each.</div>
+  <div class="faq-a">11 of the 21 signals (Brent, WTI, LME copper &amp; aluminium, gold, steel HRC, iron ore, lithium, the Brent-WTI spread, the EUR 10Y rate and the US yield curve) update automatically roughly every 15 minutes from Yahoo Finance, the ECB and FRED. The remaining 10 — Baltic Dry Index, VLCC and LNG rates, salmon, urea, PMI, defence spending and others — are updated by hand from public reporting, typically weekly to quarterly. Each signal's own card shows its last-updated date.</div>
 </div>
 <div class="faq-item">
   <div class="faq-q">Why do you focus on cyclical stocks?</div>
