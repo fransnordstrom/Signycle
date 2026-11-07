@@ -970,12 +970,15 @@ function drawLineChart(canvas, vals, buyT, sellT, color, labels) {
   // X-axis labels — real recorded timestamps, evenly sampled, not fabricated years
   if (labels && labels.length) {
     ctx.fillStyle='#94a3b8'; ctx.font='10px IBM Plex Mono,monospace';
-    // Labels now carry a date ("24 Sep 18:30"), not just a time, so a
-    // fixed 6 overlaps on narrow screens — budget ~90px/label instead.
-    var maxLabels = Math.max(2, Math.floor(cw / 90));
-    var labelCount = Math.min(maxLabels, 6, labels.length);
+    // Axis labels are short ("24 Sep"), so ~50px each fits.
+    var maxLabels = Math.max(2, Math.floor(cw / 50));
+    var labelCount = Math.min(maxLabels, 8, labels.length);
+    var lastDrawn = null;
     for (var li=0; li<labelCount; li++) {
       var idx = labelCount===1 ? 0 : Math.round(li/(labelCount-1)*(n-1));
+      // x is by point index, not time — skip a repeated date.
+      if (labels[idx] === lastDrawn) continue;
+      lastDrawn = labels[idx];
       // Center-aligning the first/last label at the chart's own edge
       // overflows half the text off the canvas (silently clipped by the
       // canvas's own raster) — anchor those two inward instead.
@@ -996,6 +999,14 @@ function formatHistLabel(iso) {
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   return d.getUTCDate() + ' ' + months[d.getUTCMonth()] + ' ' +
     d.getUTCHours().toString().padStart(2,'0') + ':' + d.getUTCMinutes().toString().padStart(2,'0');
+}
+
+// X-axis only: plain dates. Tooltips keep date + time via formatHistLabel.
+function formatAxisDate(iso) {
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return d.getUTCDate() + ' ' + months[d.getUTCMonth()];
 }
 
 function showHistEmpty(msg) {
@@ -1040,7 +1051,7 @@ function renderHistory() {
       canvas.style.display = 'block';
       empty.style.display = 'none';
       var vals = points.map(function(p){ return p.value; });
-      var labels = points.map(function(p){ return formatHistLabel(p.recorded_at); });
+      var labels = points.map(function(p){ return formatAxisDate(p.recorded_at); });
       var color = sig.status==='sell'?'#dc2626':sig.status==='buy'?'#00956e':'#d97706';
       drawLineChart(canvas, vals, sig.buy, sig.sell, color, labels);
       document.getElementById('zoneStripLabel').style.display = '';

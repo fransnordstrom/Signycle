@@ -964,6 +964,19 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     }
     updateRangeButtons();
 
+    // X-axis only: plain dates ("24 Sep") for multi-day views. A 1D view
+    // would just repeat the same date, so it shows the time instead.
+    // Tooltips keep the full date + time via formatLabel below.
+    function formatAxisLabel(iso, spanMs) {
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) return '';
+      if (spanMs <= 36 * 60 * 60 * 1000) {
+        return String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0');
+      }
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return d.getUTCDate() + ' ' + months[d.getUTCMonth()];
+    }
+
     function formatLabel(iso) {
       var d = new Date(iso);
       if (isNaN(d.getTime())) return '';
@@ -1023,12 +1036,16 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       ctx.stroke();
       if (labels && labels.length) {
         ctx.fillStyle = '#94a3b8'; ctx.font = '10px IBM Plex Mono,monospace';
-        // Labels now carry a date ("24 Sep 18:30"), not just a time, so a
-        // fixed 6 overlaps on narrow screens — budget ~90px/label instead.
-        var maxLabels = Math.max(2, Math.floor(cw / 90));
-        var labelCount = Math.min(maxLabels, 6, labels.length);
+        // Axis labels are short ("24 Sep" or "14:00"), so ~50px each fits.
+        var maxLabels = Math.max(2, Math.floor(cw / 50));
+        var labelCount = Math.min(maxLabels, 8, labels.length);
+        var lastDrawn = null;
         for (var li = 0; li < labelCount; li++) {
           var idx = labelCount === 1 ? 0 : Math.round(li / (labelCount - 1) * (n - 1));
+          // x is by point index, not time, so two samples can land on the
+          // same day — don't print the same date twice in a row.
+          if (labels[idx] === lastDrawn) continue;
+          lastDrawn = labels[idx];
           // Center-aligning the first/last label at the chart's own edge
           // overflows half the text off the canvas (it gets silently
           // clipped by the canvas's own raster, cutting the date short) —
@@ -1134,7 +1151,8 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
       legend.style.display = 'flex';
       emptyEl.style.display = 'none';
       var vals = points.map(function(p) { return p.value; });
-      var labels = points.map(function(p) { return formatLabel(p.recorded_at); });
+      var spanMs = new Date(points[points.length - 1].recorded_at).getTime() - new Date(points[0].recorded_at).getTime();
+      var labels = points.map(function(p) { return formatAxisLabel(p.recorded_at, spanMs); });
       drawLine(vals, currentSig.buy, currentSig.sell, labels);
       drawZoneStrip(points);
     }
