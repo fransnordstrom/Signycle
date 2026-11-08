@@ -13,7 +13,6 @@
 /asx-australia.html /asx-australia 301
 /athens-stock-exchange.html /athens-stock-exchange 301
 /b3-brazil.html /b3-brazil 301
-/backtest.html /backtest 301
 /best-copper-stocks.html /best-copper-stocks 301
 /best-stocks-during-inflation.html /best-stocks-during-inflation 301
 /best-stocks-oil-above-100.html /best-stocks-oil-above-100 301
@@ -803,7 +802,6 @@
 /jse-south-africa.html /jse-south-africa 301
 /krx-korea.html /krx-korea 301
 /landingsside.html / 301
-/liquidity-cycle.html /liquidity-cycle 301
 /live-signals.html /live-signals 301
 /london-stock-exchange.html /london-stock-exchange 301
 /lse-aviation-sector.html /lse-aviation-sector 301
@@ -1143,3 +1141,8 @@
 # Retired duplicate pages (step 5, Nov 2026)
 /compare-dbs-vs-ocbc.html /blog-dbs-ocbc-uob-singapore-banks-cycle 301
 /compare-dbs-vs-ocbc /blog-dbs-ocbc-uob-singapore-banks-cycle 301
+# Retired duplicate pages (step 5, Nov 2026)
+/backtest.html /signal-history 301
+/backtest /signal-history 301
+/liquidity-cycle.html /where-are-we-in-the-cycle 301
+/liquidity-cycle /where-are-we-in-the-cycle 301

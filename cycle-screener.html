@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cycle Screener — Stocks by Signal Zone | Signycle</title>
-<meta name="description" content="Screen 50+ cyclical stocks by current signal zone — BUY, NEUTRAL or SELL. Filter by sector, exchange and signal. Updated weekly.">
-<link rel="canonical" href="https://signycle.com/cycle-screener">
-<meta property="og:title" content="Cycle Screener | Signycle">
-<meta property="og:description" content="Screen 50+ cyclical stocks by current signal zone — BUY, NEUTRAL or SELL.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/cycle-screener.html">
-<meta property="og:site_name" content="Signycle">
-<meta property="og:image" content="https://signycle.com/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
-<style>/* ── NAV ── */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycle Screener: Cyclical Stocks by Live Signal Zone | Signycle</title>
+<meta name="description" content="Screen 224 cyclical stocks on 26 exchanges by the live BUY, neutral or SELL zone of the commodity, freight or macro signal that drives each one.">
+<meta property="og:title" content="Cycle Screener: Cyclical Stocks by Live Signal Zone | Signycle">
+<meta property="og:description" content="Screen 224 cyclical stocks on 26 exchanges by the live BUY, neutral or SELL zone of the commodity, freight or macro signal that drives each one.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signycle.com/cycle-screener">
+<meta property="og:site_name" content="Signycle">
+<meta property="og:image" content="https://signycle.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://signycle.com/cycle-screener">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://signycle.com/"}, {"@type": "ListItem", "position": 2, "name": "Cycle screener", "item": "https://signycle.com/cycle-screener"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does a stock&rsquo;s zone mean here?", "acceptedAnswer": {"@type": "Answer", "text": "It is the zone of the signal the stock is linked to, not a rating of the stock. If Aker BP shows SELL, that means Brent crude is above its historical SELL level today. The share price, valuation and the company’s own finances are not part of it."}}, {"@type": "Question", "name": "How are stocks linked to signals?", "acceptedAnswer": {"@type": "Answer", "text": "Each company is linked to the one commodity, freight rate or macro series that Signycle considers its main earnings driver, for example tanker owners to VLCC rates and copper miners to copper. Many companies are exposed to more than one driver, so a single link is a simplification."}}, {"@type": "Question", "name": "How current are the zones?", "acceptedAnswer": {"@type": "Answer", "text": "Live-priced signals such as Brent, copper and gold refresh about every 15 minutes. Hand-updated signals, such as freight indices and salmon, show the date they were last entered under the signal name; anything older than 45 days is marked as possibly out of date."}}, {"@type": "Question", "name": "Is this a buy or sell list?", "acceptedAnswer": {"@type": "Answer", "text": "No. It groups stocks by where their main driver sits against its history. BUY and SELL levels are historical reference points, not forecasts, and nothing on Signycle is financial advice."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ── NAV ── */
 /* ── DROPDOWN NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -52,111 +55,171 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .hamburger span{display:block;width:22px;height:2px;background:#0c1c2e;border-radius:2px;}
 @media(max-width:960px){.nav-links{display:none;}.nav-top-right{display:none;}.hamburger{display:flex;}}
 /* ── END DROPDOWN NAV ── */
+.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;background:#fff;border-bottom:1px solid #e2e8e5;z-index:199;}
+.mobile-menu.open{display:block;height:calc(100vh - 58px);}
+.mobile-menu-inner{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.4rem;}
+.mobile-menu .nav-link{font-size:0.88rem;color:#0c1c2e;padding:0.45rem 0;border-bottom:1px solid #f0f4f2;text-decoration:none;display:block;}
+.mobile-menu .nav-link:hover{color:#00956e;}
+.mobile-menu .nav-cta{background:#00956e;color:#fff;font-weight:700;font-size:0.88rem;padding:0.55rem 1rem;border-radius:8px;text-decoration:none;display:block;text-align:center;margin-top:0.6rem;}
 .mob-section-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#a0b0ab;padding:0.6rem 0 0.1rem;}
 @media(max-width:1080px){
   .nav-top{border-bottom:none;padding:0.85rem 1.25rem;}
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
+
 :root{
-  --bg:#ffffff;--surface:#f8faf9;--border:#e2e8e5;--border2:#d1dbd7;
-  --green:#00956e;--green-dark:#007a5a;--green-light:#e6f5f1;--green-border:#b3e8d8;
-  --buy:#00956e;--sell:#e03e3e;--gold:#d97706;
-  --text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--bright:#1a2e25;--white:#1a2e25;
-  --void:#ffffff;--deep:#f8faf9;--tide:#00956e;--crest:#007a5a;--surface2:#f0f4f2;
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{max-width:100%;overflow-x:hidden;}
-body{background:#ffffff;color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.75;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
-.logo{font-family:"DM Sans",sans-serif;font-size:1.25rem;font-weight:700;color:#0c1c2e;text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
-.nav-link:hover,
-.nav-cta{background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;transition:background 0.15s;}
-.nav-cta:hover{background:var(--green-dark);}
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.logo{font-size:1.1rem;}.nav-links,.nav-cta{display:none;}}
-.hero{padding:7rem 1.5rem 3.5rem;background:#f8faf9;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:760px;margin:0 auto;}
-.eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
-.eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--green);border-radius:1px;}
-h1{font-family:"DM Sans",sans-serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;color:#0c1c2e;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem;}
-h1 em{font-style:italic;color:var(--green);}
-.hero-meta{font-size:0.78rem;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap;}
-.article{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 6rem;}
-h2{font-family:"DM Sans",sans-serif;font-size:1.45rem;font-weight:700;color:#0c1c2e;margin:2.5rem 0 1rem;letter-spacing:-0.02em;}
-h3{font-family:"DM Sans",sans-serif;font-size:1.1rem;font-weight:700;color:#1a2e25;margin:2rem 0 0.8rem;}
-p{font-size:0.95rem;color:var(--text);margin-bottom:1.25rem;line-height:1.85;}
-.lead{font-size:1.05rem;color:#1a2e25;line-height:1.8;margin-bottom:2rem;border-left:3px solid var(--green);padding-left:1.2rem;background:var(--green-light);padding:1rem 1.2rem;border-radius:0 8px 8px 0;}
-.signal-box{background:#f8faf9;border:1px solid var(--border2);border-radius:10px;padding:1.5rem;margin:2rem 0;}
-.signal-box-title{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;}
-.signal-row{display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;font-size:0.88rem;}
-.signal-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;margin-top:2px;}
-.signal-icon.buy{background:rgba(0,149,110,0.12);color:var(--buy);border:1px solid rgba(0,149,110,0.3);}
-.signal-icon.sell{background:rgba(224,62,62,0.1);color:var(--sell);border:1px solid rgba(224,62,62,0.3);}
-.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
-.data-table th{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.65rem 1rem;text-align:left;border-bottom:2px solid var(--border);background:#f8faf9;}
-.data-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
-.data-table tr:last-child td{border-bottom:none;}
-.data-table td:first-child{color:#0c1c2e;font-weight:600;}
-.data-table tr:hover td{background:#f8faf9;}
-.highlight{color:var(--buy);font-weight:600;}
-.cta-box{background:linear-gradient(135deg,var(--green-light),#f0faf6);border:1px solid var(--green-border);border-radius:10px;padding:2rem;margin:3rem 0;text-align:center;}
-.cta-box h3{color:#0c1c2e;margin:0 0 0.8rem;font-size:1.1rem;}
-.cta-box p{font-size:0.88rem;color:var(--text);margin-bottom:1.5rem;}
-.cta-btn{display:inline-block;background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.88rem;font-weight:700;padding:0.75rem 2rem;border-radius:8px;text-decoration:none;transition:background 0.15s;}
-.cta-btn:hover{background:var(--green-dark);}
-.related{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
-.related-title{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
-.related-links{display:flex;flex-direction:column;gap:0.6rem;}
-.related-link{font-size:0.88rem;color:var(--green);text-decoration:none;font-weight:500;}
-.related-link:hover{color:var(--green-dark);text-decoration:underline;}
-footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);}
-.footer-logo{font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;color:#0c1c2e;}
-@media(max-width:600px){.article{padding:2rem 1.1rem 4rem;}.signal-row{flex-direction:column;gap:0.4rem;}.hero{padding:6rem 1.1rem 2.5rem;}.data-table{font-size:0.78rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-.nav-cta:hover{background:#007a5a;}
-
-/* Mega row */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-
-/* Mobile */
-
-
-.mob-link:hover{color:var(--green);}
-.mob-link.crisis{color:#dc2626;}
-
-
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
-  
-}
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
+
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -195,77 +258,235 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
 
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
 
-/* ── Cycle Screener ────────────────────────────────────── */
-.cs-hero{background:#0c1c2e;padding:4.5rem 1.2rem 1.8rem;}
-.cs-hero-inner{max-width:900px;margin:0 auto;}
-.cs-eyebrow{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.5rem;}
-.cs-h1{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800;color:#fff;letter-spacing:-0.02em;margin:0 0 0.4rem;}
-.cs-sub{color:rgba(255,255,255,0.5);font-size:0.85rem;margin:0 0 1.2rem;}
-.cs-stats{display:flex;gap:1rem;flex-wrap:wrap;}
-.cs-stat{background:rgba(255,255,255,0.06);border-radius:8px;padding:0.5rem 1rem;text-align:center;}
-.cs-stat-num{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:800;}
-.cs-stat-lbl{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
 
-.cs-controls{background:#fff;border-bottom:1px solid #e2e8e5;padding:0.8rem 1.2rem;position:sticky;top:58px;z-index:20;}
-.cs-controls-inner{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:0.5rem;}
-.cs-zone-tabs{display:flex;gap:0.4rem;}
-.cs-zone-tab{padding:0.3rem 0.9rem;border-radius:20px;font-size:0.72rem;font-weight:700;border:1.5px solid #e2e8e5;background:#fff;cursor:pointer;transition:all 0.15s;color:#475569;}
-.cs-zone-tab.active.buy{background:#e6f5f1;border-color:#00956e;color:#00956e;}
-.cs-zone-tab.active.neutral{background:#fffbeb;border-color:#d97706;color:#d97706;}
-.cs-zone-tab.active.sell{background:#fef2f2;border-color:#dc2626;color:#dc2626;}
-.cs-zone-tab.active.all{background:#0c1c2e;border-color:#0c1c2e;color:#fff;}
-.cs-sector-row{display:flex;gap:0.35rem;flex-wrap:wrap;}
-.cs-btn{padding:0.22rem 0.7rem;border-radius:20px;font-size:0.68rem;font-weight:600;border:1px solid #e2e8e5;background:#fff;cursor:pointer;color:#475569;transition:all 0.15s;}
-.cs-btn.active{background:#0c1c2e;border-color:#0c1c2e;color:#fff;}
-.cs-count{font-size:0.7rem;color:#94a3b8;margin-left:auto;align-self:center;white-space:nowrap;}
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
 
-.cs-main{max-width:900px;margin:0 auto;padding:1rem 1.2rem 4rem;}
-.cs-section{margin-bottom:2rem;}
-.cs-section-hdr{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:2px solid;}
-.cs-section-hdr.buy{border-color:#00956e;}
-.cs-section-hdr.neutral{border-color:#d97706;}
-.cs-section-hdr.sell{border-color:#dc2626;}
-.cs-section-title{font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;}
-.cs-section-title.buy{color:#00956e;}
-.cs-section-title.neutral{color:#d97706;}
-.cs-section-title.sell{color:#dc2626;}
-.cs-section-count{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#94a3b8;}
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
 
-.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.6rem;}
-@media(max-width:600px){.cs-grid{grid-template-columns:1fr;}}
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
 
-.cs-card{background:#fff;border:1.5px solid #e2e8e5;border-radius:10px;padding:0.8rem 1rem;transition:border-color 0.15s,transform 0.15s;cursor:pointer;}
-.cs-card:hover{transform:translateY(-1px);}
-.cs-card.buy{border-left:3px solid #00956e;}
-.cs-card.neutral{border-left:3px solid #d97706;}
-.cs-card.sell{border-left:3px solid #dc2626;}
-.cs-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;}
-.cs-ticker{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;font-weight:700;color:#0c1c2e;}
-.cs-return{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:700;}
-.cs-return.buy{color:#00956e;}
-.cs-return.neutral{color:#d97706;}
-.cs-return.sell{color:#dc2626;}
-.cs-name{font-size:0.82rem;font-weight:600;color:#0c1c2e;margin-bottom:0.35rem;}
-.cs-meta{display:flex;gap:0.3rem;flex-wrap:wrap;margin-top:0.4rem;}
-.cs-pill{font-size:0.6rem;padding:0.12rem 0.45rem;border-radius:10px;font-weight:600;}
-.cs-pill.exch{background:#f0f4f2;color:#475569;}
-.cs-pill.sig{background:#e6f5f1;color:#00956e;}
-.cs-note{font-size:0.68rem;color:#94a3b8;margin-top:0.35rem;line-height:1.4;}
-.cs-empty{text-align:center;padding:2rem;color:#94a3b8;font-size:0.85rem;}
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
 
-/* Mobile menu */
-.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;bottom:0;background:#fff;border-bottom:1px solid #e2e8f0;z-index:199;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.mobile-menu.open{display:block;}
-.mobile-menu-inner{padding:1rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
-.mobile-menu .nav-link{font-size:0.88rem;color:#0c1c2e;padding:0.45rem 0;border-bottom:1px solid #f0f4f2;text-decoration:none;display:block;}
-.mobile-menu .nav-link:hover,.mobile-menu .nav-link:active{color:#00956e;}
-.mobile-menu .nav-cta{background:#00956e;color:#fff;font-weight:700;font-size:0.88rem;padding:0.55rem 1rem;border-radius:8px;text-decoration:none;display:block;text-align:center;margin-top:0.6rem;}
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
+
+/* ── Tool pages ── */
+.tool-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.tool-hero .wrap{padding-top:2.4rem;padding-bottom:2rem;}
+.tool-h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);}
+.tool-h1 em{font-style:normal;color:var(--green);}
+.tool-lede{font-size:1rem;line-height:1.65;color:var(--text);margin-top:0.8rem;max-width:720px;}
+.tool-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:720px;}
+.prose-card{font-size:0.92rem;line-height:1.7;color:var(--text);}
+.prose-card p + p{margin-top:0.7rem;}
+.prose-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.1rem 0 0.3rem;}
+.prose-card h3:first-child{margin-top:0;}
+.prose-card ul{margin:0.5rem 0 0 1.2rem;}
+.prose-card li{margin-bottom:0.4rem;}
+.prose-card a{color:var(--green);}
+.prose-card b{color:var(--ink);}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;}
+.faq details + details{margin-top:0.5rem;}
+.faq summary{cursor:pointer;font-size:0.95rem;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--green);font-weight:700;}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:0.6rem;}
+.faq details p a{color:var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.kpi{background:#fff;border:1px solid var(--border);border-top:3px solid var(--kc);border-radius:10px;padding:0.6rem 0.8rem;}
+.kpi b{display:block;font-size:1.4rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.kpi span{font-size:0.72rem;color:var(--dim);}
+
+.flt{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-top:1.6rem;}
+.flt input,.flt select{font-family:var(--sans);font-size:0.86rem;padding:0.55rem 0.75rem;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--ink);min-width:0;}
+.flt input{flex:1 1 220px;}
+.flt select{flex:0 1 auto;max-width:100%;}
+.flt input:focus,.flt select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.7rem;}
+.chip{font-family:var(--sans);font-size:0.8rem;font-weight:600;padding:0.4rem 0.8rem;border-radius:20px;border:1px solid var(--border);background:#fff;color:var(--text);cursor:pointer;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:0.35rem;vertical-align:1px;}
+.res-meta{display:flex;justify-content:space-between;gap:0.6rem;flex-wrap:wrap;font-size:0.78rem;color:var(--dim);margin:1rem 0 0.5rem;}
+.res-meta button{font-family:var(--sans);font-size:0.78rem;color:var(--green);background:none;border:0;cursor:pointer;font-weight:600;padding:0;}
+.st{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.st-row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.1fr) minmax(0,1.2fr) 90px 100px;gap:0.8rem;align-items:center;padding:0.65rem 1rem;border-top:1px solid var(--hair);}
+.st-row:first-child{border-top:0;}
+.st-h{background:var(--surface);font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--dim);}
+.st-name a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.st-name a:hover{color:var(--green);}
+.st-tk{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-left:0.4rem;}
+.st-ex{font-size:0.8rem;color:var(--text);}
+.st-ex small{display:block;font-size:0.7rem;color:var(--muted);}
+.st-sig a{font-size:0.82rem;font-weight:600;color:var(--ink);text-decoration:none;}
+.st-sig a:hover{color:var(--green);}
+.st-sig small{display:block;font-size:0.68rem;color:var(--muted);}
+.st-sig small.stale{color:#a35a00;}
+.st-val{font-size:0.86rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);}
+.st-z{text-align:right;}
+.st-empty{padding:2rem 1rem;text-align:center;color:var(--muted);font-size:0.86rem;}
+.st-more{display:block;width:100%;font-family:var(--sans);font-size:0.86rem;font-weight:700;color:var(--green);background:#fff;border:0;border-top:1px solid var(--hair);padding:0.8rem;cursor:pointer;}
+@media(max-width:760px){
+  .st-h{display:none;}
+  .st-row{grid-template-columns:minmax(0,1fr) auto;gap:0.15rem 0.8rem;}
+  .st-name{grid-column:1;}
+  .st-z{grid-column:2;grid-row:1;}
+  .st-ex{grid-column:1/-1;}
+  .st-sig{grid-column:1;}
+  .st-val{grid-column:2;grid-row:3;align-self:start;}
+}
+
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
+     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo"><div class="logo-dot"></div>Signycle</a>
@@ -288,11 +509,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
         <div class="nav-drop">
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
-          <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
           <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
           <a href="signal-history.html"><b>Signal History</b><span>Real zone crossings, dated</span></a>
           <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
-          <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
         </div>
@@ -388,6 +607,292 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
     <button class="hamburger" id="hambBtn" aria-label="Menu"><span></span><span></span><span></span></button></div>
   </div>
 </nav>
+
+
+<div class="mobile-menu" id="mobileMenu"><div class="mobile-menu-inner">
+  <a href="index.html" class="nav-link"> Home</a>
+  <a href="where-are-we-in-the-cycle.html" class="nav-link"> Where are we in the cycle?</a>
+  <a href="live-signals.html" class="nav-link"> Live Signals</a>
+  <a href="how-it-works.html" class="nav-link"> How it works</a>
+  <a href="coming-soon.html" class="nav-link" style="font-weight:600;color:#00956e;"> Coming Soon</a>
+  <div class="mob-section-label">Cycle Tools</div>
+  <a href="cycle-screener.html" class="nav-link" style="padding-left:0.5rem;font-weight:700;color:#00956e;">Cycle Screener</a>
+  <a href="cycle-dashboard.html" class="nav-link" style="padding-left:0.5rem;">Cycle Dashboard</a>
+  <a href="live-signals.html" class="nav-link" style="padding-left:0.5rem;">Live Signals</a>
+  <a href="signal-history.html" class="nav-link" style="padding-left:0.5rem;">Signal History</a>
+  <a href="recession-tracker.html" class="nav-link" style="padding-left:0.5rem;">Recession Tracker</a>
+  <a href="hormuz-dashboard.html" class="nav-link" style="padding-left:0.5rem;color:#dc2626;font-weight:600;">Hormuz Dashboard</a>
+  <div class="mob-section-label">Stock Tools</div>
+  <a href="cyclical-dividend-scanner.html" class="nav-link" style="padding-left:0.5rem;">Dividend Scanner</a>
+  <a href="stock-comparison.html" class="nav-link" style="padding-left:0.5rem;">Stock Comparison</a>
+  <a href="precious-metals-cycle.html" class="nav-link" style="padding-left:0.5rem;">Precious Metals</a>
+  <a href="compare-wti-brent.html" class="nav-link" style="padding-left:0.5rem;">WTI vs Brent</a>
+  <div class="mob-section-label">Exchanges</div>
+  <div class="mob-region-toggle" data-region="na" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>North America</span>
+    <span id="na-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="na-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127482;&#127480; NYSE</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #3b82f6;margin-left:0.3rem;">
+      <a href="nyse-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">NYSE Cycle Hub</a>
+      <a href="blog-nyse-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="nyse-cyclical-stocks.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All NYSE Stocks</a>
+      <a href="nyse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-sp500-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">S&amp;P 500 Signal</a>
+      <a href="nyse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="nyse-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="nyse-industrials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Industrials</a>
+      <a href="nyse-transport-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Airlines</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tsx-cyclical-stocks.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127462; TSX Canada</a>
+      <a href="blog-tsx-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bmv-mexico.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127474;&#127485; BMV Mexico</a>
+      <a href="blog-bmv-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="sa" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>South America</span>
+    <span id="sa-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="sa-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="b3-brazil.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127463;&#127479; B3 Brazil</a>
+      <a href="blog-b3-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-buenos-aires.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127479; Buenos Aires</a>
+      <a href="bolsa-buenos-aires.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-santiago.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127473; Santiago</a>
+      <a href="bolsa-santiago.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-lima.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127466; Lima</a>
+      <a href="bolsa-lima.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-colombia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127476; Colombia</a>
+      <a href="bolsa-colombia.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="eu" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Europe</span>
+    <span id="eu-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="eu-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" data-oslo="1" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127475;&#127476; Oslo Bors</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #86efac;margin-left:0.3rem;">
+      <a href="oslo-bors-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Oslo Bors Hub</a>
+      <a href="blog-oslo-bors-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="oslo-bors.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All 25 Stocks</a>
+      <a href="oslo-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-obx-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">OBX Signal</a>
+      <a href="oslo-bors-monitor.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Signal Monitor</a>
+      <a href="oslo-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="oslo-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="oslo-seafood-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Seafood</a>
+      <a href="oslo-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="blog-equinor-vs-aker-bp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Equinor vs Aker BP</a>
+      <a href="blog-mowi-vs-salmar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Mowi vs SalMar</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127468;&#127463; London LSE</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #c026d3;margin-left:0.3rem;">
+      <a href="lse-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">LSE Cycle Hub</a>
+      <a href="london-stock-exchange.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="london-stock-exchange.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All LSE Stocks</a>
+      <a href="lse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-ftse100-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">FTSE 100 Signal</a>
+      <a href="lse-mining-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Mining</a>
+      <a href="lse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="lse-defence-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Defence</a>
+      <a href="lse-aviation-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Aviation</a>
+      <a href="compare-shell-vs-bp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shell vs BP</a>
+      <a href="compare-rio-vs-bhp.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Rio vs BHP</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127465;&#127466; Frankfurt</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #f59e0b;margin-left:0.3rem;">
+      <a href="frankfurt-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Frankfurt Hub</a>
+      <a href="blog-frankfurt-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="frankfurt-xetra.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All Frankfurt Stocks</a>
+      <a href="signal-dax-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">DAX 40 Signal</a>
+      <a href="frankfurt-defence-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Defence</a>
+      <a href="frankfurt-industrials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Industrials</a>
+      <a href="frankfurt-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="frankfurt-aviation-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Aviation</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-paris.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127467;&#127479; Euronext Paris</a>
+      <a href="euronext-paris.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-amsterdam.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127475;&#127473; Amsterdam</a>
+      <a href="blog-amsterdam-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-brussels.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127463;&#127466; Brussels</a>
+      <a href="blog-brussels-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="bolsa-madrid.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127466;&#127480; Madrid</a>
+      <a href="bolsa-madrid.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="borsa-italiana-milano.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127470;&#127481; Milano</a>
+      <a href="borsa-italiana-milano.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="six-swiss-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127469; Swiss SIX</a>
+      <a href="blog-swiss-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="warsaw-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127473; Warsaw</a>
+      <a href="blog-warsaw-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="athens-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127468;&#127479; Athens</a>
+      <a href="blog-athens-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="istanbul-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127481;&#127479; Istanbul</a>
+      <a href="blog-istanbul-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="euronext-lisboa.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127477;&#127481; Lisboa</a>
+      <a href="euronext-lisboa.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="me" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Africa &amp; Middle East</span>
+    <span id="me-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="me-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tadawul-saudi-arabia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127480;&#127462; Tadawul Saudi</a>
+      <a href="blog-tadawul-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="dubai-dfm.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127466; Dubai DFM</a>
+      <a href="dubai-dfm.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="jse-south-africa.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127480;&#127462; JSE South Africa</a>
+      <a href="jse-south-africa.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="egypt-egx.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127466; Egypt EGX</a>
+      <a href="egypt-egx.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <div class="mob-region-toggle" data-region="ap" style="padding:0.5rem 0.5rem 0.5rem 0.8rem;font-size:0.8rem;font-weight:700;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.07em;">
+    <span>Asia Pacific</span>
+    <span id="ap-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9654;</span>
+  </div>
+  <div id="ap-sub" style="display:none;padding-left:0.6rem;border-left:2px solid #f0f4f2;margin-left:0.5rem;margin-bottom:0.2rem;">
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.85rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+      <span>&#127480;&#127468; Singapore SGX</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #86efac;margin-left:0.3rem;">
+      <a href="sgx-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">SGX Cycle Hub</a>
+      <a href="blog-singapore-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Investor Guide</a>
+      <a href="singapore-exchange.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">All 25 Stocks</a>
+      <a href="sgx-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Earnings Calendar</a>
+      <a href="signal-sti-singapore.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">STI Signal</a>
+      <a href="sgx-banking-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Banking</a>
+      <a href="sgx-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Shipping</a>
+      <a href="sgx-reit-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">REITs</a>
+      <a href="sgx-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Energy</a>
+      <a href="sgx-stocks-under-2.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">Stocks Under $2</a>
+      <a href="blog-dbs-ocbc-uob-singapore-banks-cycle.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.8rem;">DBS vs OCBC</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127469;&#127472; HKEX / China</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #e53e3e;margin-left:0.3rem;">
+      <a href="china-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">China Cycle Hub</a>
+      <a href="hkex-hong-kong.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">HKEX Stocks</a>
+      <a href="blog-hkex-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="china-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-hscei-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">HSCEI Signal</a>
+      <a href="china-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy</a>
+      <a href="china-materials-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Materials</a>
+      <a href="china-shipping-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Shipping</a>
+      <a href="china-ev-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">EV &amp; Battery</a>
+      <a href="compare-byd-vs-catl.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">BYD vs CATL</a>
+      <a href="hkex-stocks-under-5hkd.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Stocks Under HKD 5</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="sse-shanghai.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127475; SSE Shanghai</a>
+      <a href="blog-sse-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="szse-shenzhen.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127464;&#127475; SZSE Shenzhen</a>
+      <a href="blog-szse-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="tokyo-stock-exchange.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127471;&#127477; Tokyo TSE</a>
+      <a href="tokyo-stock-exchange.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+    <div class="mob-sgx-toggle" style="padding:0.4rem 0.3rem;font-size:0.83rem;font-weight:600;color:#0c1c2e;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;">
+      <span>&#127470;&#127475; NSE India</span>
+      <span class="sgx-chev" style="font-size:0.65rem;color:#94a3b8;transition:transform 0.2s;">&#9660;</span>
+    </div>
+    <div class="mob-sgx-sub" style="display:none;padding-left:0.7rem;border-left:2px solid #f97316;margin-left:0.3rem;">
+      <a href="nse-india-hub.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">NSE Cycle Hub</a>
+      <a href="nse-india.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">All NSE Stocks</a>
+      <a href="blog-nse-investor-guide.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Investor Guide</a>
+      <a href="nse-earnings-calendar.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Earnings Calendar</a>
+      <a href="signal-nifty50-index.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Nifty 50 Signal</a>
+      <a href="nse-metals-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Metals &amp; Mining</a>
+      <a href="nse-energy-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Energy &amp; Refining</a>
+      <a href="nse-it-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">IT Services</a>
+      <a href="nse-banking-sector.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Banking</a>
+      <a href="compare-tata-vs-jsw-steel.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Tata vs JSW Steel</a>
+      <a href="compare-reliance-vs-ongc.html" class="nav-link" style="padding:0.3rem 0.3rem;font-size:0.79rem;">Reliance vs ONGC</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0f4f2;padding:0.1rem 0;">
+      <a href="asx-australia.html" class="nav-link" style="padding:0.35rem 0.3rem;font-size:0.83rem;flex:1;">&#127462;&#127482; ASX Australia</a>
+      <a href="blog-asx-investor-guide.html" style="font-size:0.68rem;font-weight:700;color:#00956e;text-decoration:none;padding:0.35rem 0.4rem;white-space:nowrap;">Guide</a>
+    </div>
+  </div>
+  <a href="exchanges.html" class="nav-link" style="padding:0.45rem 0.5rem;font-size:0.82rem;color:#00956e;font-weight:700;">All 34+ Exchanges</a>
+
+  <div class="mob-section-label">Cycle Scenarios</div>
+  <a href="market-cycles-history.html" class="nav-link" style="padding-left:0.5rem;"> All Scenarios</a>
+  <a href="blog-gfc-2008-commodity-cycle.html" class="nav-link" style="padding-left:0.5rem;"> 2008 GFC — All Signals Fire</a>
+  <a href="blog-covid-2020-cycle.html" class="nav-link" style="padding-left:0.5rem;"> 2020 COVID — Fastest Recovery</a>
+  <a href="blog-sector-rotation-commodity-cycle.html" class="nav-link" style="padding-left:0.5rem;"> Sector Rotation Guide</a>
+  <a href="blog-recession-cyclical-stocks.html" class="nav-link" style="padding-left:0.5rem;"> Recession Playbook</a>
+  <div class="mob-section-label">Signycle Research</div>
+  <a href="blog.html" class="nav-link" style="padding-left:0.5rem;font-weight:600;"> Signycle Research</a>
+  <a href="investor-guides.html" class="nav-link" style="padding-left:0.5rem;font-weight:600;color:#00956e;"> &#127758; Investor Guides</a>
+  <a href="podcasts.html" class="nav-link" style="padding-left:0.5rem;"> Podcasts</a>
+  <a href="watch.html" class="nav-link" style="padding-left:0.5rem;"> Watch</a>
+  <a href="how-it-works.html" class="nav-link" style="padding-left:0.5rem;"> How it works</a>
+  <a href="faq.html" class="nav-link" style="padding-left:0.5rem;">FAQ</a>
+  <a href="about.html" class="nav-link" style="padding-left:0.5rem;">About</a>
+  <a href="live-signals.html" class="nav-cta">Live Signals →</a>
+</div></div>
+
+
 <script>
 /* hamburger v3 — 2apr2026 */
 function _initHamburger() {
@@ -416,85 +921,69 @@ function _initHamburger() {
 _initHamburger();
 </script>
 
-<div class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-eyebrow">Signycle · Tool</div>
-    <h1 class="cs-h1">Cycle Screener</h1>
-    <p class="cs-sub">54 cyclical stocks screened by current signal zone · Updated <span class="live-updated-date">8 Apr 2026</span></p>
-    <div class="cs-stats">
-      <div class="cs-stat">
-        <div class="cs-stat-num" style="color:#00956e;" id="statBuy">0</div>
-        <div class="cs-stat-lbl">BUY zone</div>
-      </div>
-      <div class="cs-stat">
-        <div class="cs-stat-num" style="color:#d97706;" id="statNeutral">35</div>
-        <div class="cs-stat-lbl">Neutral</div>
-      </div>
-      <div class="cs-stat">
-        <div class="cs-stat-num" style="color:#dc2626;" id="statSell">19</div>
-        <div class="cs-stat-lbl">SELL zone</div>
-      </div>
-      <div class="cs-stat">
-        <div class="cs-stat-num" style="color:rgba(255,255,255,0.7);">54</div>
-        <div class="cs-stat-lbl">Total stocks</div>
-      </div>
-    </div>
+<div class="page">
+
+<section class="tool-hero">
+<div class="wrap">
+  <div class="dash-eyebrow">Cycle screener &middot; live zones</div>
+  <h1 class="tool-h1">Cycle <em>screener</em></h1>
+  <p class="tool-lede">224 cyclical stocks on 26 exchanges, each linked to the commodity, freight or macro signal that drives its earnings and sorted by where that signal sits today. Filter by zone, signal or exchange.</p>
+  <div class="kpis" id="kpis">
+    <div class="kpi" style="--kc:var(--sell);"><b id="kSell">–</b><span>stocks, signal in SELL</span></div>
+    <div class="kpi" style="--kc:var(--warn);"><b id="kWarn">–</b><span>near sell</span></div>
+    <div class="kpi" style="--kc:var(--neutral);"><b id="kNeu">–</b><span>neutral</span></div>
+    <div class="kpi" style="--kc:var(--buy);"><b id="kBuy">–</b><span>signal in BUY</span></div>
   </div>
 </div>
+</section>
 
-<div class="cs-controls">
-  <div class="cs-controls-inner">
-    <div style="display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap;">
-      <div class="cs-zone-tabs">
-        <button class="cs-zone-tab active all" onclick="filterZone('all',this)">All zones</button>
-        <button class="cs-zone-tab buy" onclick="filterZone('buy',this)">BUY</button>
-        <button class="cs-zone-tab neutral" onclick="filterZone('neutral',this)">Neutral</button>
-        <button class="cs-zone-tab sell" onclick="filterZone('sell',this)">SELL</button>
-      </div>
-      <span class="cs-count" id="countLabel">Showing 54 stocks</span>
-    </div>
-    <div class="cs-sector-row">
-      <button class="cs-btn active" data-filter="all" onclick="filter('all',this)">All</button>
-<button class="cs-btn" data-filter="copper" onclick="filter('copper',this)">Copper</button>
-<button class="cs-btn" data-filter="defence" onclick="filter('defence',this)">Defence</button>
-<button class="cs-btn" data-filter="energy" onclick="filter('energy',this)">Energy</button>
-<button class="cs-btn" data-filter="fertilizer" onclick="filter('fertilizer',this)">Fertilizer</button>
-<button class="cs-btn" data-filter="gold" onclick="filter('gold',this)">Gold</button>
-<button class="cs-btn" data-filter="lithium" onclick="filter('lithium',this)">Lithium</button>
-<button class="cs-btn" data-filter="renewables" onclick="filter('renewables',this)">Renewables</button>
-<button class="cs-btn" data-filter="seafood" onclick="filter('seafood',this)">Seafood</button>
-<button class="cs-btn" data-filter="shipping" onclick="filter('shipping',this)">Shipping</button>
-
-    </div>
+<div class="wrap">
+  <div class="flt">
+    <input type="search" id="q" placeholder="Search a stock or ticker" aria-label="Search a stock or ticker">
+    <select id="fSig" aria-label="Signal"><option value="">All signals</option></select>
+    <select id="fEx" aria-label="Exchange"><option value="">All exchanges</option></select>
+    <select id="fSort" aria-label="Sort">
+      <option value="zone">Sort: most stretched first</option>
+      <option value="name">Sort: name</option>
+      <option value="ex">Sort: exchange</option>
+    </select>
   </div>
+  <div class="chips" id="chips">
+    <button class="chip on" data-z="">All zones</button>
+    <button class="chip" data-z="sell"><i style="background:var(--sell);"></i>SELL</button>
+    <button class="chip" data-z="warn"><i style="background:var(--warn);"></i>Near sell</button>
+    <button class="chip" data-z="neutral"><i style="background:var(--neutral);"></i>Neutral</button>
+    <button class="chip" data-z="buy"><i style="background:var(--buy);"></i>BUY</button>
+  </div>
+  <div class="res-meta"><span id="resCount">Loading live zones…</span><button type="button" id="reset" hidden>Clear filters</button></div>
+  <div class="st" id="st"><div class="st-empty">Loading live zones…</div></div>
+
+  <p class="foot-note" style="margin-top:0.8rem;">A stock&rsquo;s zone is its signal&rsquo;s zone, not a valuation of the stock. Stocks come from Signycle&rsquo;s <a href="exchanges.html">exchange pages</a>.</p>
+
+  <div class="card alert-card">
+    <div class="alert-copy">
+      <div class="card-title">Get an email when a signal changes zone</div>
+      <div class="card-note">Free. Sent when a live-priced signal crosses into or out of BUY, near sell or SELL, so you know when the stocks tied to it move zone too.</div>
+    </div>
+    <form class="alert-form" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
+      <input type="email" id="alertSignupEmail" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit" id="alertSignupBtn">Get alerts</button>
+      <div class="alert-signup-msg" id="alertSignupMsg" role="status"></div>
+    </form>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Questions</h2></div></div>
+  <div class="faq">
+    <details><summary>What does a stock&rsquo;s zone mean here?</summary><p>It is the zone of the signal the stock is linked to, not a rating of the stock. If Aker BP shows SELL, that means Brent crude is above its historical SELL level today. The share price, valuation and the company&rsquo;s own finances are not part of it.</p></details>
+    <details><summary>How are stocks linked to signals?</summary><p>Each company is linked to the one commodity, freight rate or macro series that Signycle considers its main earnings driver, for example tanker owners to VLCC rates and copper miners to copper. Many companies are exposed to more than one driver, so a single link is a simplification.</p></details>
+    <details><summary>How current are the zones?</summary><p>Live-priced signals such as Brent, copper and gold refresh about every 15 minutes. Hand-updated signals, such as freight indices and salmon, show the date they were last entered under the signal name; anything older than 45 days is marked as possibly out of date.</p></details>
+    <details><summary>Is this a buy or sell list?</summary><p>No. It groups stocks by where their main driver sits against its history. BUY and SELL levels are historical reference points, not forecasts, and nothing on Signycle is financial advice.</p></details>
+  </div>
+
+  <p class="foot-note">For information only, not financial advice. See the <a href="disclaimer.html">disclaimer</a>.</p>
 </div>
 
-<div class="cs-main" id="csMain">
-  <div id="buySection" class="cs-section">
-    <div class="cs-section-hdr buy">
-      <span class="cs-section-title buy">BUY Zone</span>
-      <span class="cs-section-count" id="buyCount"></span>
-    </div>
-    <div class="cs-grid" id="buyGrid"></div>
-    <div class="cs-empty" id="buyEmpty" style="display:none;">No stocks in BUY zone with current filters.</div>
-  </div>
-  <div id="neutralSection" class="cs-section">
-    <div class="cs-section-hdr neutral">
-      <span class="cs-section-title neutral">Neutral Zone</span>
-      <span class="cs-section-count" id="neutralCount"></span>
-    </div>
-    <div class="cs-grid" id="neutralGrid"></div>
-    <div class="cs-empty" id="neutralEmpty" style="display:none;">No stocks in neutral zone with current filters.</div>
-  </div>
-  <div id="sellSection" class="cs-section">
-    <div class="cs-section-hdr sell">
-      <span class="cs-section-title sell">SELL Zone</span>
-      <span class="cs-section-count" id="sellCount"></span>
-    </div>
-    <div class="cs-grid" id="sellGrid"></div>
-    <div class="cs-empty" id="sellEmpty" style="display:none;">No stocks in SELL zone with current filters.</div>
-  </div>
-</div>
+</div><!-- .page -->
 
 <footer class="sx-footer">
   <div class="sx-foot-inner">
@@ -515,118 +1004,145 @@ _initHamburger();
   </div>
 </footer>
 
+<script src="/signals-meta.js"></script>
 <script>
-var STOCKS = [{"ticker": "FRO", "name": "Frontline", "exchange": "Oslo Børs", "sector": "Shipping", "signal": "VLCC Rate", "signalId": "vlcc", "zone": "sell", "url": "blog-frontline-vlcc-cycle.html", "return": "+621%", "note": "VLCC rates far above the $75k/day SELL level"}, {"ticker": "INSW", "name": "International Seaways", "exchange": "NYSE", "sector": "Shipping", "signal": "VLCC Rate", "signalId": "vlcc", "zone": "sell", "url": "blog-intl-seaways-vlcc-cycle.html", "return": "+178%", "note": "VLCC elevated post-Hormuz"}, {"ticker": "EURN", "name": "Euronav", "exchange": "Euronext Brussels", "sector": "Shipping", "signal": "VLCC Rate", "signalId": "vlcc", "zone": "sell", "url": "", "return": "+180%", "note": "VLCC rates far above the $75k/day SELL level"}, {"ticker": "GOGL", "name": "Golden Ocean", "exchange": "Oslo Børs", "sector": "Shipping", "signal": "Baltic Dry Index", "signalId": "bdi", "zone": "neutral", "url": "blog-golden-ocean-bdi-cycle.html", "return": "+407%", "note": "BDI 2,066 — neutral zone"}, {"ticker": "NORDEN", "name": "Norden", "exchange": "Nasdaq Copenhagen", "sector": "Shipping", "signal": "Baltic Dry Index", "signalId": "bdi", "zone": "neutral", "url": "blog-norden-cycle.html", "return": "+160%", "note": "BDI neutral"}, {"ticker": "SBMO", "name": "SBM Offshore", "exchange": "Euronext Amsterdam", "sector": "Shipping", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-sbmoffshore-brent-cycle.html", "return": "+200%", "note": "Brent $93 — hold zone"}, {"ticker": "2020BG", "name": "2020 Bulkers", "exchange": "Oslo Børs", "sector": "Shipping", "signal": "Baltic Dry Index", "signalId": "bdi", "zone": "neutral", "url": "blog-2020-bulkers-bdi.html", "return": "+310%", "note": "BDI neutral"}, {"ticker": "HMM", "name": "HMM", "exchange": "KRX Korea", "sector": "Shipping", "signal": "SCFI Container", "signalId": "scfi", "zone": "neutral", "url": "", "return": "+476%", "note": "SCFI 1,850 — neutral"}, {"ticker": "MAERSK", "name": "Maersk", "exchange": "Nasdaq Copenhagen", "sector": "Shipping", "signal": "SCFI Container", "signalId": "scfi", "zone": "neutral", "url": "blog-maersk-container-shipping.html", "return": "+280%", "note": "SCFI 1,850 — neutral"}, {"ticker": "EQNR", "name": "Equinor", "exchange": "Oslo Børs", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-equinor-brent-cycle.html", "return": "+196%", "note": "Brent $93 — ceasefire HOLD"}, {"ticker": "AKRBP", "name": "Aker BP", "exchange": "Oslo Børs", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-akerbp-brent-cycle.html", "return": "+388%", "note": "Brent $93 — HOLD"}, {"ticker": "SHEL", "name": "Shell", "exchange": "London", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-shell-oil-cycle.html", "return": "+156%", "note": "Brent $93 — HOLD"}, {"ticker": "TTE", "name": "TotalEnergies", "exchange": "Euronext Paris", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-totalenergies-oil-cycle.html", "return": "+120%", "note": "Brent $93 — HOLD"}, {"ticker": "COP", "name": "ConocoPhillips", "exchange": "NYSE", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-conocophillips-brent-cycle.html", "return": "+345%", "note": "Brent $93 — HOLD"}, {"ticker": "CNQ", "name": "Canadian Natural", "exchange": "TSX Canada", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-canadian-natural-cycle.html", "return": "+321%", "note": "Brent $93 — HOLD"}, {"ticker": "HAL", "name": "Halliburton", "exchange": "NYSE", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-halliburton-cycle.html", "return": "+280%", "note": "Brent $93 — HOLD"}, {"ticker": "SUBC", "name": "Subsea 7", "exchange": "Oslo Børs", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-subsea7-brent-cycle.html", "return": "+130%", "note": "Brent $93 — HOLD"}, {"ticker": "BORR", "name": "Borr Drilling", "exchange": "Oslo Børs", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-borr-drilling-cycle.html", "return": "+963%", "note": "Brent $93 — HOLD"}, {"ticker": "WDS", "name": "Woodside Energy", "exchange": "ASX Australia", "sector": "Energy", "signal": "Brent Crude", "signalId": "brent", "zone": "neutral", "url": "blog-woodside-energy-cycle.html", "return": "+180%", "note": "Brent $93 — HOLD"}, {"ticker": "FCX", "name": "Freeport-McMoRan", "exchange": "NYSE", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-freeport-copper-cycle.html", "return": "+648%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "KGHM", "name": "KGHM", "exchange": "Warsaw GPW", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-kghm-copper-cycle.html", "return": "+231%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "ANTO", "name": "Antofagasta", "exchange": "London", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-antofagasta-copper-cycle.html", "return": "+280%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "BOL", "name": "Boliden", "exchange": "Nasdaq Stockholm", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-boliden-stock-analysis.html", "return": "+132%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "TECK", "name": "Teck Resources", "exchange": "TSX Canada", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-teck-resources-cycle.html", "return": "+291%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "GLEN", "name": "Glencore", "exchange": "London", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-glencore-commodities-cycle.html", "return": "+210%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "AAL", "name": "Anglo American", "exchange": "London", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-angloamerican-copper-cycle.html", "return": "+190%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "SOUTHERN", "name": "Southern Copper", "exchange": "NYSE", "sector": "Copper", "signal": "LME Copper", "signalId": "copper", "zone": "sell", "url": "blog-southern-copper-cycle.html", "return": "+320%", "note": "Copper $12,043 — SELL zone"}, {"ticker": "RHM", "name": "Rheinmetall", "exchange": "Frankfurt XETRA", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-rheinmetall-defense-cycle.html", "return": "+533%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "KONGSBERG", "name": "Kongsberg Gruppen", "exchange": "Oslo Børs", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-kongsberg-defense-cycle.html", "return": "+311%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "SAAB", "name": "Saab", "exchange": "Nasdaq Stockholm", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-saab-defense-cycle.html", "return": "+280%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "BAES", "name": "BAE Systems", "exchange": "London", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-baesystems-defense-cycle.html", "return": "+220%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "LDO", "name": "Leonardo", "exchange": "Borsa Milano", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-leonardo-defense-cycle.html", "return": "+190%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "HO", "name": "Thales", "exchange": "Euronext Paris", "sector": "Defence", "signal": "NATO Defence", "signalId": "defense", "zone": "neutral", "url": "blog-thales-defense-cycle.html", "return": "+160%", "note": "NATO 2.4% — mid-cycle"}, {"ticker": "MOWI", "name": "Mowi", "exchange": "Oslo Børs", "sector": "Seafood", "signal": "Salmon Price", "signalId": "salmon", "zone": "sell", "url": "blog-mowi-salmon-cycle.html", "return": "+39%", "note": "Salmon NOK 95 — SELL zone"}, {"ticker": "SALM", "name": "SalMar", "exchange": "Oslo Børs", "sector": "Seafood", "signal": "Salmon Price", "signalId": "salmon", "zone": "sell", "url": "blog-salmar-salmon-cycle.html", "return": "+100%", "note": "Salmon NOK 95 — SELL zone"}, {"ticker": "LSG", "name": "Lerøy Seafood", "exchange": "Oslo Børs", "sector": "Seafood", "signal": "Salmon Price", "signalId": "salmon", "zone": "sell", "url": "blog-leroy-seafood-cycle.html", "return": "+85%", "note": "Salmon NOK 95 — SELL zone"}, {"ticker": "GSF", "name": "Grieg Seafood", "exchange": "Oslo Børs", "sector": "Seafood", "signal": "Salmon Price", "signalId": "salmon", "zone": "sell", "url": "", "return": "+95%", "note": "Salmon NOK 95 — SELL zone"}, {"ticker": "YAR", "name": "Yara International", "exchange": "Oslo Børs", "sector": "Fertilizer", "signal": "Urea Price", "signalId": "urea", "zone": "neutral", "url": "blog-yara-international-cycle.html", "return": "+121%", "note": "Urea $530 — near SELL zone"}, {"ticker": "NTR", "name": "Nutrien", "exchange": "NYSE / TSX", "sector": "Fertilizer", "signal": "Urea Price", "signalId": "urea", "zone": "neutral", "url": "blog-nutrien-fertilizer-cycle.html", "return": "+140%", "note": "Urea $530 — near SELL zone"}, {"ticker": "OCI", "name": "OCI Global", "exchange": "Euronext Amsterdam", "sector": "Fertilizer", "signal": "Urea Price", "signalId": "urea", "zone": "neutral", "url": "blog-oci-nitrogen-cycle.html", "return": "+180%", "note": "Urea $530 — near SELL zone"}, {"ticker": "POL", "name": "Azoty Group", "exchange": "Warsaw GPW", "sector": "Fertilizer", "signal": "Urea Price", "signalId": "urea", "zone": "neutral", "url": "blog-azoty-group-cycle.html", "return": "+111%", "note": "Urea $530 — near SELL zone"}, {"ticker": "NEM", "name": "Newmont", "exchange": "NYSE", "sector": "Gold", "signal": "Gold Price", "signalId": "gold", "zone": "sell", "url": "blog-newmont-gold-cycle.html", "return": "+250%", "note": "Gold $4,650 — DEEP SELL zone"}, {"ticker": "AU", "name": "AngloGold Ashanti", "exchange": "NYSE", "sector": "Gold", "signal": "Gold Price", "signalId": "gold", "zone": "sell", "url": "blog-anglogold-gold-cycle.html", "return": "+220%", "note": "Gold $4,650 — DEEP SELL zone"}, {"ticker": "GFI", "name": "Gold Fields", "exchange": "JSE", "sector": "Gold", "signal": "Gold Price", "signalId": "gold", "zone": "sell", "url": "blog-gold-fields-cycle.html", "return": "+280%", "note": "Gold $4,650 — DEEP SELL zone"}, {"ticker": "NST", "name": "Northern Star", "exchange": "ASX Australia", "sector": "Gold", "signal": "Gold Price", "signalId": "gold", "zone": "sell", "url": "blog-northern-star-cycle.html", "return": "+280%", "note": "Gold $4,650 — DEEP SELL zone"}, {"ticker": "VER", "name": "Verbund", "exchange": "Wiener Börse", "sector": "Renewables", "signal": "EUR 10Y Rate", "signalId": "eur10y", "zone": "neutral", "url": "blog-verbund-cycle.html", "return": "+118%", "note": "EUR 10Y 3.0% — neutral"}, {"ticker": "SLRIA", "name": "Solaria", "exchange": "Bolsa Madrid", "sector": "Renewables", "signal": "EUR 10Y Rate", "signalId": "eur10y", "zone": "neutral", "url": "blog-solaria-rate-cycle.html", "return": "+390%", "note": "EUR 10Y 3.0% — neutral"}, {"ticker": "ORSTED", "name": "Ørsted", "exchange": "Nasdaq Copenhagen", "sector": "Renewables", "signal": "EUR 10Y Rate", "signalId": "eur10y", "zone": "neutral", "url": "blog-orsted-cycle.html", "return": "+180%", "note": "EUR 10Y 3.0% — neutral"}, {"ticker": "RWE", "name": "RWE", "exchange": "Frankfurt XETRA", "sector": "Renewables", "signal": "EUR 10Y Rate", "signalId": "eur10y", "zone": "neutral", "url": "blog-rwe-cycle.html", "return": "+140%", "note": "EUR 10Y 3.0% — neutral"}, {"ticker": "ALB", "name": "Albemarle", "exchange": "NYSE", "sector": "Lithium", "signal": "Lithium Carbonate", "signalId": "lithium", "zone": "neutral", "url": "blog-albemarle-lithium-cycle.html", "return": "+380%", "note": "Lithium $17k — recovering from trough"}, {"ticker": "SQM", "name": "SQM", "exchange": "NYSE", "sector": "Lithium", "signal": "Lithium Carbonate", "signalId": "lithium", "zone": "neutral", "url": "blog-sqm-lithium-cycle.html", "return": "+420%", "note": "Lithium $17k — recovering"}, {"ticker": "PLS", "name": "Pilbara Minerals", "exchange": "ASX Australia", "sector": "Lithium", "signal": "Lithium Carbonate", "signalId": "lithium", "zone": "neutral", "url": "blog-pilbara-lithium-cycle.html", "return": "+650%", "note": "Lithium $17k — recovering"}, {"ticker": "1772", "name": "Ganfeng Lithium", "exchange": "HKEX", "sector": "Lithium", "signal": "Lithium Carbonate", "signalId": "lithium", "zone": "neutral", "url": "blog-ganfeng-lithium-cycle.html", "return": "+520%", "note": "Lithium $17k — recovering"}, {"ticker": "CATL", "name": "CATL", "exchange": "SSE Shanghai", "sector": "Lithium", "signal": "Lithium Carbonate", "signalId": "lithium", "zone": "neutral", "url": "blog-catl-battery-cycle.html", "return": "+280%", "note": "Lithium $17k — recovering"}];
-
-var activeZone = 'all';
-var activeSector = 'all';
-
-// Every stock's zone/note above is a hardcoded snapshot from whenever this
-// page was written (e.g. every Brent-driven stock frozen at "Brent $93 -
-// HOLD"). Overlay the live value + zone from signals-loader.js
-// (window.SignycleData) via signalId, so the BUY/NEUTRAL/SELL bucket and
-// note text reflect today's price. Falls back to the hardcoded snapshot
-// if live data isn't ready yet. This screener only has 3 buckets, so the
-// canonical "warn" (near-sell) zone folds into neutral rather than sell —
-// it hasn't actually crossed the sell threshold — though the note text
-// still calls it out as "NEAR SELL" for anyone reading the card.
-var ZONE_BUCKET_MAP = { buy: 'buy', neutral: 'neutral', warn: 'neutral', sell: 'sell' };
-var ZONE_NOTE_LABEL = { buy: 'BUY zone', neutral: 'neutral zone', warn: 'NEAR SELL zone', sell: 'SELL zone' };
-
-function fmtLiveVal(v) {
-  var n = parseFloat(v);
-  if (isNaN(n)) return v;
-  if (n >= 1000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
-  if (n >= 100)  return n.toFixed(0);
-  return n.toFixed(1);
+function submitAlertSignup(e, emailId, btnId, msgId) {
+  e.preventDefault();
+  var btn = document.getElementById(btnId);
+  var msg = document.getElementById(msgId);
+  var emailEl = document.getElementById(emailId);
+  var email = emailEl.value.trim();
+  btn.disabled = true;
+  msg.textContent = '';
+  msg.className = 'alert-signup-msg';
+  fetch('https://signycle-signals.fransbgn.workers.dev/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+    .then(function(r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
+    .then(function(res) {
+      btn.disabled = false;
+      if (res.status === 200) {
+        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'Check your email to confirm your subscription.';
+        msg.className = 'alert-signup-msg ok';
+        emailEl.value = '';
+      } else {
+        msg.textContent = res.data.error || 'Something went wrong — please try again.';
+        msg.className = 'alert-signup-msg err';
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.textContent = 'Network error — please try again.';
+      msg.className = 'alert-signup-msg err';
+    });
+  return false;
 }
-
-function withLiveZone(s) {
-  var d = window.SignycleData;
-  var sig = d && d.signals && d.signals[s.signalId];
-  if (!sig || sig.value == null || isNaN(parseFloat(sig.value))) return s;
-  var zone = ZONE_BUCKET_MAP[sig.zone] || s.zone;
-  var note = s.signal + ' ' + fmtLiveVal(sig.value) + ' ' + (sig.unit || '') + ' — ' + (ZONE_NOTE_LABEL[sig.zone] || s.zone + ' zone');
-  return Object.assign({}, s, { zone: zone, note: note });
-}
-
-function buildCard(s) {
-  var link = s.url ? 'href="'+s.url+'"' : '';
-  var tag = s.url ? 'a' : 'div';
-  return '<'+tag+' '+link+' class="cs-card '+s.zone+'" style="text-decoration:none;" data-sector="'+s.sector.toLowerCase()+'" data-zone="'+s.zone+'">'+
-    '<div class="cs-card-top">'+
-      '<span class="cs-ticker">'+s.ticker+'</span>'+
-      '<span class="cs-return '+s.zone+'">'+s.return+'</span>'+
-    '</div>'+
-    '<div class="cs-name">'+s.name+'</div>'+
-    '<div class="cs-meta">'+
-      '<span class="cs-pill exch">'+s.exchange+'</span>'+
-      '<span class="cs-pill sig">'+s.signal+'</span>'+
-    '</div>'+
-    '<div class="cs-note">'+s.note+'</div>'+
-  '</'+tag+'>';
-}
-
-function render() {
-  var live = STOCKS.map(withLiveZone);
-  var filtered = live.filter(function(s) {
-    var zoneOk = activeZone === 'all' || s.zone === activeZone;
-    var secOk = activeSector === 'all' || s.sector.toLowerCase() === activeSector;
-    return zoneOk && secOk;
-  });
-
-  ['buy','neutral','sell'].forEach(function(zone) {
-    var stocks = filtered.filter(function(s){ return s.zone === zone; });
-    var grid = document.getElementById(zone+'Grid');
-    var empty = document.getElementById(zone+'Empty');
-    var count = document.getElementById(zone+'Count');
-    var section = document.getElementById(zone+'Section');
-
-    count.textContent = stocks.length + ' stock' + (stocks.length !== 1 ? 's' : '');
-    grid.innerHTML = stocks.map(buildCard).join('');
-
-    var show = activeZone === 'all' || activeZone === zone;
-    section.style.display = show ? '' : 'none';
-    empty.style.display = (show && stocks.length === 0) ? '' : 'none';
-  });
-
-  document.getElementById('countLabel').textContent = 'Showing ' + filtered.length + ' stocks';
-}
-
-function filterZone(zone, btn) {
-  activeZone = zone;
-  document.querySelectorAll('.cs-zone-tab').forEach(function(b) {
-    b.classList.remove('active','all','buy','neutral','sell');
-  });
-  btn.classList.add('active', zone);
-  render();
-}
-
-function filter(sector, btn) {
-  activeSector = sector;
-  document.querySelectorAll('.cs-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  render();
-}
-
-render();
-document.addEventListener('signalsLoaded', render);
 </script>
-<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
-  <div class="search-box">
-    <div class="search-box-top">
-      <span class="search-box-icon">🔍</span>
-      <input class="search-box-input" id="overlayInput" placeholder="Search stocks, signals, exchanges…" autocomplete="off" spellcheck="false">
-      <button class="search-box-close" onclick="closeSearch()">✕</button>
-    </div>
-    <div class="search-box-results" id="overlayResults"></div>
-    <div class="search-box-footer">
-      <span>↑↓ navigate · Enter select · Esc close</span>
-      <span><span class="search-box-kbd">/ or ⌘K</span> to open</span>
-    </div>
-  </div>
-</div>
 <script>
+(function() {
+  var M = window.SignycleMeta;
+  if (!M) return;
+  var META = M.META, ZH = M.ZONE_HEX, ZL = M.ZONE_LABEL, fmt = M.fmt, esc = M.esc;
+  var ROWS = [["HELLENiQ Energy", "ELPE", "blog-helleniq-brent-cycle.html", "athens-stock-exchange", "brent"], ["Motor Oil Hellas", "MOH", "blog-motoroil-brent-cycle.html", "athens-stock-exchange", "brent"], ["Viohalco", "VIO", "blog-viohalco-cycle.html", "athens-stock-exchange", "copper"], ["Mytilineos", "MYTIL", "blog-mytilineos-alum-cycle.html", "athens-stock-exchange", "alum"], ["GEK Terna", "GEKTERNA", "blog-gekterna-pmi-cycle.html", "athens-stock-exchange", "pmi"], ["Vista Energy", "VISTAA", "blog-vista-energy-cycle.html", "bmv-mexico", "brent"], ["Grupo México", "GMEXICOB", "blog-grupo-mexico-cycle.html", "bmv-mexico", "copper"], ["Industrias Peñoles", "PE&OLES", "blog-penoles-cycle.html", "bmv-mexico", "gold"], ["Alpek", "ALPEKA", "blog-alpek-cycle.html", "bmv-mexico", "pmi"], ["Cemex", "CEMEXCPO", "blog-cemex-cycle.html", "bmv-mexico", "pmi"], ["Orbia Advance", "ORBIA", "blog-orbia-cycle.html", "bmv-mexico", "pmi"], ["ADNOC Distribution", "ADNOCDIST", "blog-adnoc-distribution-cycle.html", "dubai-dfm", "brent"], ["DEWA", "DEWA", "blog-dewa-utilities-cycle.html", "dubai-dfm", "brent"], ["Dana Gas", "DANA", "blog-dana-gas-brent-cycle.html", "dubai-dfm", "brent"], ["Gulf Navigation", "GNAV.DFM", "blog-gulf-navigation-cycle.html", "dubai-dfm", "vlcc"], ["DP World", "DPW.DFM", "blog-dp-world-cycle.html", "dubai-dfm", "scfi"], ["Fertiglobe", "FERTIGLOBE", "blog-fertiglobe-cycle.html", "dubai-dfm", "urea"], ["Emirates NBD", "EMIRATES", "blog-emirates-nbd-cycle.html", "dubai-dfm", "eur10y"], ["Emaar Properties", "EMAAR", "blog-emaar-properties-cycle.html", "dubai-dfm", "pmi"], ["Emirates Airline (dnata)", "n/a", "blog-sia-aviation-cycle.html", "dubai-dfm", "flying"], ["AMOC (Alexandria Mineral Oils)", "AMOC", "blog-amoc-cycle.html", "egypt-egx", "brent"], ["Sidi Kerir Petrochemicals", "SKPC", "blog-sidi-kerir-brent-cycle.html", "egypt-egx", "brent"], ["ElSewedy ElectricSWDY", "SWDY", "", "egypt-egx", "copper"], ["Alexandria Container", "ALCN.EGX", "blog-alexandria-container-cycle.html", "egypt-egx", "scfi"], ["Egyptian Fertilizers (EFC)", "EFIC", "blog-egyptian-fertilizers-cycle.html", "egypt-egx", "urea"], ["OCI Global", "OCI", "blog-oci-urea-cycle.html", "egypt-egx", "urea"], ["Heliopolis Housing", "HELI", "blog-heliopolis-housing-cycle.html", "egypt-egx", "pmi"], ["Suez Canal Bank", "CANA", "blog-suez-canal-bank-cycle.html", "egypt-egx", "pmi"], ["SBM Offshore", "SBMO.AS", "blog-sbmoffshore-brent-cycle.html", "euronext-amsterdam", "brent"], ["Shell", "SHEL", "blog-shell-oil-cycle.html", "euronext-amsterdam", "brent"], ["ArcelorMittal", "MT", "blog-arcelormittal-steel-cycle.html", "euronext-amsterdam", "steel"], ["OCI Nitrogen", "OCI.AS", "blog-oci-urea-cycle.html", "euronext-amsterdam", "urea"], ["Akzo Nobel", "AKZA", "blog-akzo-nobel-cycle.html", "euronext-amsterdam", "pmi"], ["Stellantis", "STLA", "blog-stellantis-auto-cycle.html", "euronext-amsterdam", "pmi"], ["ASML", "ASML", "blog-asml-semiconductor-cycle.html", "euronext-amsterdam", "wfe"], ["BE Semiconductor", "BESI.AS", "blog-be-semiconductor-cycle.html", "euronext-amsterdam", "wfe"], ["Bekaert", "BEKB.BR", "blog-bekaert-steel-cycle.html", "euronext-brussels", "steel"], ["Elia Group", "ELI.BR", "blog-elia-rate-cycle.html", "euronext-brussels", "eur10y"], ["D'Ieteren", "DIE.BR", "blog-dieteren-pmi-cycle.html", "euronext-brussels", "pmi"], ["Solvay", "SOLB.BR", "blog-solvay-cycle.html", "euronext-brussels", "pmi"], ["CRH", "CRH", "blog-crh-pmi-cycle.html", "euronext-dublin", "pmi"], ["Cairn Homes", "C5H", "blog-cairn-pmi-cycle.html", "euronext-dublin", "pmi"], ["Grafton Group", "GFTU", "blog-grafton-pmi-cycle.html", "euronext-dublin", "pmi"], ["Kingspan Group", "KRX", "blog-kingspan-pmi-cycle.html", "euronext-dublin", "pmi"], ["Smurfit WestRock", "SW", "blog-smurfit-pmi-cycle.html", "euronext-dublin", "pmi"], ["Ryanair", "RYA", "blog-ryanair-cycle.html", "euronext-dublin", "flying"], ["TechnipFMC", "TECNI", "blog-technip-oil-services-cycle.html", "euronext-paris", "brent"], ["TotalEnergies", "TTE", "blog-totalenergies-oil-cycle.html", "euronext-paris", "brent"], ["Michelin", "ML", "blog-michelin-pmi-cycle.html", "euronext-paris", "pmi"], ["Saint-Gobain", "SGO", "blog-saintgobain-pmi-cycle.html", "euronext-paris", "pmi"], ["Thales", "HO", "blog-thales-defense-cycle.html", "euronext-paris", "defense"], ["Air France-KLM", "AF", "blog-airfranceklm-cycle.html", "euronext-paris", "flying"], ["Airbus", "AIR", "blog-airbus-aerospace-cycle.html", "euronext-paris", "flying"], ["ThyssenKrupp", "TKA", "blog-thyssenkrupp-steel-cycle.html", "frankfurt-xetra", "steel"], ["Hapag-Lloyd", "HLAG", "blog-hapag-lloyd-cycle.html", "frankfurt-xetra", "scfi"], ["K+S", "SDF", "blog-ks-potash-cycle.html", "frankfurt-xetra", "urea"], ["RWE", "RWE", "blog-rwe-cycle.html", "frankfurt-xetra", "eur10y"], ["BASF", "BAS", "blog-basf-chemical-cycle.html", "frankfurt-xetra", "pmi"], ["BMW", "BMW", "blog-bmw-volkswagen-cycle.html", "frankfurt-xetra", "pmi"], ["HeidelbergMaterials", "HDMG", "blog-heidelberg-materials-cycle.html", "frankfurt-xetra", "pmi"], ["Siemens", "SIE", "blog-siemens-automation-cycle.html", "frankfurt-xetra", "pmi"], ["Siemens Energy", "ENR", "blog-siemens-energy-cycle.html", "frankfurt-xetra", "pmi"], ["Hensoldt", "HAG.DE", "blog-hensoldt-cycle.html", "frankfurt-xetra", "defense"], ["Rheinmetall", "RHM", "blog-rheinmetall-defense-cycle.html", "frankfurt-xetra", "defense"], ["Lufthansa", "LHA", "blog-lufthansa-cycle.html", "frankfurt-xetra", "flying"], ["CNOOC", "0883.HK", "blog-cnooc-brent-cycle.html", "hkex-hong-kong", "brent"], ["China Resources Gas", "1193.HK", "blog-china-resources-gas-cycle.html", "hkex-hong-kong", "brent"], ["China Molybdenum", "3993.HK", "blog-china-molybdenum-cycle.html", "hkex-hong-kong", "copper"], ["Zijin Mining", "2899.HK", "blog-zijin-mining-copper-cycle.html", "hkex-hong-kong", "copper"], ["Chalco", "2600.HK", "blog-chalco-cycle.html", "hkex-hong-kong", "alum"], ["China Shenhua", "1088.HK", "blog-china-shenhua-cycle.html", "hkex-hong-kong", "ironore"], ["Yanzhou Coal", "1171.HK", "blog-yanzhou-coal-cycle.html", "hkex-hong-kong", "ironore"], ["COSCO Shipping", "1919.HK", "blog-cosco-shipping-bdi-cycle.html", "hkex-hong-kong", "bdi"], ["Pacific Basin", "2343.HK", "blog-pacific-basin-cycle.html", "hkex-hong-kong", "bdi"], ["Cathay Pacific", "0293.HK", "blog-cathay-pacific-cycle.html", "hkex-hong-kong", "flying"], ["Petkim", "PETKM", "blog-petkim-cycle.html", "istanbul-stock-exchange", "brent"], ["Koza Altın", "KOZAL", "blog-koza-altin-cycle.html", "istanbul-stock-exchange", "gold"], ["Erdemir", "EREGL.IS", "blog-erdemir-cycle.html", "istanbul-stock-exchange", "steel"], ["Kardemir", "KRDMD", "blog-kardemir-cycle.html", "istanbul-stock-exchange", "steel"], ["BIM Birleşik", "BIMAS", "blog-tupras-cycle.html", "istanbul-stock-exchange", "pmi"], ["Aselsan", "ASELS", "blog-aselsan-cycle.html", "istanbul-stock-exchange", "defense"], ["Turkish Airlines", "THYAO", "blog-turkish-airlines-cycle.html", "istanbul-stock-exchange", "flying"], ["SK Innovation", "096770.KS", "blog-sk-innovation-cycle.html", "krx-korea", "brent"], ["Hyundai Steel", "004020.KS", "blog-hyundai-steel-cycle.html", "krx-korea", "steel"], ["POSCO Holdings", "005490.KS", "blog-posco-steel-cycle.html", "krx-korea", "steel"], ["Pan Ocean", "028670.KS", "blog-pan-ocean-cycle.html", "krx-korea", "bdi"], ["Samsung Heavy Industries", "010140.KS", "blog-samsung-heavy-shipbuilding-cycle.html", "krx-korea", "bdi"], ["HMM", "011200.KS", "blog-hmm-shipping-cycle.html", "krx-korea", "scfi"], ["KEPCO", "015760.KS", "blog-kepco-cycle.html", "krx-korea", "pmi"], ["Korean Air", "003490.KS", "blog-korean-air-cycle.html", "krx-korea", "flying"], ["BP", "BP", "blog-bp-oil-london.html", "london-stock-exchange", "brent"], ["Shell", "SHEL.L", "blog-shell-oil-cycle.html", "london-stock-exchange", "brent"], ["Anglo American", "AAL", "blog-angloamerican-copper-cycle.html", "london-stock-exchange", "copper"], ["Antofagasta", "ANTO", "blog-antofagasta-copper-cycle.html", "london-stock-exchange", "copper"], ["Glencore", "GLEN", "blog-glencore-commodities-cycle.html", "london-stock-exchange", "copper"], ["Weir Group", "WEIR", "blog-weir-copper-cycle.html", "london-stock-exchange", "copper"], ["BHP", "BHP", "blog-bhp-ironore-cycle.html", "london-stock-exchange", "ironore"], ["Rio Tinto", "RIO", "blog-rio-tinto-analysis.html", "london-stock-exchange", "ironore"], ["BAE Systems", "BAES", "blog-bae-systems-cycle.html", "london-stock-exchange", "defense"], ["IAG", "IAG", "blog-iag-aviation-cycle.html", "london-stock-exchange", "flying"], ["Rolls-Royce", "RR", "blog-rolls-royce-aerospace-cycle.html", "london-stock-exchange", "flying"], ["FLSmidth", "FLS", "blog-flsmidth-mining-cycle.html", "nasdaq-copenhagen", "copper"], ["Maersk", "MAERSK-B.CO", "blog-maersk-container-shipping.html", "nasdaq-copenhagen", "scfi"], ["Vestas", "VWS", "blog-vestas-wind-cycle.html", "nasdaq-copenhagen", "eur10y"], ["Ørsted", "ORSTED", "blog-orsted-cycle.html", "nasdaq-copenhagen", "eur10y"], ["DFDS", "DFDS.CO", "blog-dfds-cycle.html", "nasdaq-copenhagen", "pmi"], ["DSV", "DSV", "blog-dsv-logistics-pmi-cycle.html", "nasdaq-copenhagen", "pmi"], ["Outokumpu", "OUT1V", "blog-outokumpu-steel-cycle.html", "nasdaq-helsinki", "steel"], ["UPM-Kymmene", "UPM", "blog-upm-pulp-cycle.html", "nasdaq-helsinki", "nbsk"], ["Neste", "NESTE", "blog-neste-renewable-fuel.html", "nasdaq-helsinki", "eur10y"], ["Kone", "KNEBV.HE", "blog-kone-elevator-cycle.html", "nasdaq-helsinki", "pmi"], ["Finnair", "FIA1S", "blog-finnair-cycle.html", "nasdaq-helsinki", "flying"], ["Adani Enterprises", "ADANIENT", "blog-adani-enterprises-cycle.html", "nse-india", "brent"], ["ONGC", "ONGC", "blog-ongc-brent-crude-cycle.html", "nse-india", "brent"], ["Reliance Industries", "RELIANCE", "blog-reliance-industries-cycle.html", "nse-india", "brent"], ["Hindalco Industries", "HINDALCO", "blog-hindalco-copper-cycle.html", "nse-india", "copper"], ["Vedanta", "VEDL", "blog-vedanta-copper-zinc-cycle.html", "nse-india", "copper"], ["JSW Steel", "JSWSTEEL", "blog-jsw-steel-india-cycle.html", "nse-india", "steel"], ["Tata Steel", "TATASTEEL", "blog-tata-steel-cycle.html", "nse-india", "steel"], ["NMDC", "NMDC", "blog-nmdc-cycle.html", "nse-india", "ironore"], ["UltraTech Cement", "ULTRACEMCO", "blog-ultratech-cement-cycle.html", "nse-india", "pmi"], ["Aker BP", "AKRBP", "blog-akerbp-brent-cycle.html", "oslo-bors", "brent"], ["DNO", "DNO", "blog-dno-brent-cycle.html", "oslo-bors", "brent"], ["Equinor", "EQNR", "blog-equinor-brent-cycle.html", "oslo-bors", "brent"], ["Subsea 7", "SUBC", "blog-subsea7-brent-cycle.html", "oslo-bors", "brent"], ["Vår Energi", "VAR", "blog-var-energi-oil-cycle.html", "oslo-bors", "brent"], ["Akastor", "AKA", "blog-akastor-rig-cycle.html", "oslo-bors", "rig"], ["Borr Drilling", "BORR", "blog-borr-drilling-cycle.html", "oslo-bors", "rig"], ["Odfjell Drilling", "ODL", "blog-odfjell-drilling-cycle.html", "oslo-bors", "rig"], ["Elkem", "ELK", "blog-elkem-silicon-cycle.html", "oslo-bors", "alum"], ["Norsk Hydro", "NHY", "blog-norsk-hydro-alum-cycle.html", "oslo-bors", "alum"], ["2020 Bulkers", "2020", "blog-2020-bulkers-bdi.html", "oslo-bors", "bdi"], ["Golden Ocean", "GOGL", "blog-golden-ocean-bdi-cycle.html", "oslo-bors", "bdi"], ["Himalaya Shipping", "HSHP", "blog-himalaya-shipping-bdi.html", "oslo-bors", "bdi"], ["Star Bulk Carriers", "SBLK", "blog-star-bulk-bdi-cycle.html", "oslo-bors", "bdi"], ["Frontline", "FRO", "blog-frontline-vlcc-cycle.html", "oslo-bors", "vlcc"], ["Hafnia", "HAFNI", "blog-hafnia-vlcc-cycle.html", "oslo-bors", "vlcc"], ["Hunter Group", "HUNT", "blog-hunt-vlcc-cycle.html", "oslo-bors", "vlcc"], ["Awilco LNG", "ALNG", "blog-awilco-lng-cycle.html", "oslo-bors", "lng"], ["Golar LNG", "GLNG", "blog-golar-lng-cycle.html", "oslo-bors", "lng"], ["Høegh Autoliners", "HAUTO", "blog-hoegh-autoliners-pctc-cycle.html", "oslo-bors", "pctc"], ["Wallenius Wilhelmsen", "WAWI", "blog-wallenius-pctc-cycle.html", "oslo-bors", "pctc"], ["Grieg Seafood", "GSF", "blog-grieg-seafood-salmon-cycle.html", "oslo-bors", "salmon"], ["Mowi", "MOWI", "blog-mowi-salmon-cycle.html", "oslo-bors", "salmon"], ["SalMar", "SALM", "blog-salmar-salmon-cycle.html", "oslo-bors", "salmon"], ["Yara International", "YAR", "blog-fertilizer-cycle-yara.html", "oslo-bors", "urea"], ["Keppel Corporation", "BN4", "blog-keppel-corp-cycle.html", "singapore-exchange", "brent"], ["Mermaid Maritime", "EB5", "sgx-energy-sector.html", "singapore-exchange", "brent"], ["Sembcorp Industries", "U96", "blog-sembcorp-industries-cycle.html", "singapore-exchange", "brent"], ["Hutchison Port Holdings", "H07", "blog-hutchison-port-sgx-cycle.html", "singapore-exchange", "bdi"], ["Pacific Basin Shipping", "NС2", "sgx-shipping-sector.html", "singapore-exchange", "bdi"], ["Yangzijiang Shipbuilding", "BS6", "blog-yangzijiang-shipbuilding-cycle.html", "singapore-exchange", "bdi"], ["Golden Agri-Resources", "E5H", "blog-golden-agri-cpo-cycle.html", "singapore-exchange", "urea"], ["Olam Group", "O32", "blog-olam-group-cycle.html", "singapore-exchange", "urea"], ["Wilmar International", "F34", "blog-wilmar-sgx-cycle.html", "singapore-exchange", "urea"], ["Ascendas REIT", "A17U", "sgx-reit-sector.html", "singapore-exchange", "eur10y"], ["CapitaLand Investment", "C31", "sgx-reit-sector.html", "singapore-exchange", "eur10y"], ["DBS Group Holdings", "D05", "blog-dbs-bank-cycle.html", "singapore-exchange", "eur10y"], ["Frasers Logistics REIT", "M44U", "sgx-reit-sector.html", "singapore-exchange", "eur10y"], ["Mapletree Industrial REIT", "ME8U", "compare-mapletree-vs-ascendas.html", "singapore-exchange", "eur10y"], ["Mapletree Logistics REIT", "T82U", "sgx-reit-sector.html", "singapore-exchange", "eur10y"], ["OCBC Bank", "O39", "blog-ocbc-bank-cycle.html", "singapore-exchange", "eur10y"], ["UOB", "U11", "blog-uob-cycle.html", "singapore-exchange", "eur10y"], ["Jardine Matheson", "J37", "blog-jardine-matheson-cycle.html", "singapore-exchange", "pmi"], ["Singapore Exchange (SGX)", "S68", "sgx-hub.html", "singapore-exchange", "pmi"], ["Singtel", "Z74", "sgx-hub.html", "singapore-exchange", "pmi"], ["ST Engineering", "S63", "blog-st-engineering-cycle.html", "singapore-exchange", "defense"], ["SATS", "S58", "blog-sats-aviation-cycle.html", "singapore-exchange", "flying"], ["Singapore Airlines", "C6L", "blog-sia-aviation-cycle.html", "singapore-exchange", "flying"], ["AEM Holdings", "AWX", "blog-aem-holdings-cycle.html", "singapore-exchange", "wfe"], ["Venture Corporation", "V03", "sgx-hub.html", "singapore-exchange", "wfe"], ["Glencore", "GLEN", "blog-glencore-commodities-cycle.html", "six-swiss-exchange", "copper"], ["ABB", "ABBN", "blog-abb-copper-cycle.html", "six-swiss-exchange", "pmi"], ["Geberit", "GEBN", "blog-geberit-pmi-cycle.html", "six-swiss-exchange", "pmi"], ["Holcim", "HOLN", "blog-holcim-construction-cycle.html", "six-swiss-exchange", "pmi"], ["Kühne+Nagel", "KNIN", "blog-kuehne-nagel-pmi-cycle.html", "six-swiss-exchange", "pmi"], ["Sika", "SIKA", "blog-sika-construction-cycle.html", "six-swiss-exchange", "pmi"], ["CNOOC (A-share)", "600938.SS", "blog-cnooc-brent-cycle.html", "sse-shanghai", "brent"], ["SINOPEC", "600028.SS", "blog-sinopec-cycle.html", "sse-shanghai", "brent"], ["Baowu Steel (Baoshan)", "600019.SS", "blog-baowu-steel-cycle.html", "sse-shanghai", "steel"], ["Maanshan Steel", "600808.SS", "blog-maanshan-steel-cycle.html", "sse-shanghai", "steel"], ["China Coal Energy", "601898.SS", "blog-china-coal-cycle.html", "sse-shanghai", "ironore"], ["Yanzhou Coal Mining", "600188.SS", "blog-yanzhou-coal-cycle.html", "sse-shanghai", "ironore"], ["COSCO Shipping Holdings", "601919.SS", "blog-cosco-shipping-bdi-cycle.html", "sse-shanghai", "bdi"], ["BYD", "002594.SZ", "blog-byd-ev-copper-cycle.html", "szse-shenzhen", "copper"], ["CITIC Pacific Special Steel", "000708.SZ", "blog-citic-steel-cycle.html", "szse-shenzhen", "steel"], ["Contemporary Amperex (CATL)", "300750.SZ", "blog-catl-battery-cycle.html", "szse-shenzhen", "lithium"], ["Ganfeng Lithium", "002460.SZ", "blog-ganfeng-lithium-cycle.html", "szse-shenzhen", "lithium"], ["Tianqi Lithium", "002466.SZ", "blog-ganfeng-lithium-cycle.html", "szse-shenzhen", "lithium"], ["LONGi Green Energy", "601012.SZ", "blog-longi-solar-cycle.html", "szse-shenzhen", "wfe"], ["Saudi Aramco", "2222.SR", "blog-saudi-aramco-brent-cycle.html", "tadawul-saudi-arabia", "brent"], ["Saudi Aramco Base Oil", "2030.SR", "blog-saudi-aramco-brent-cycle.html", "tadawul-saudi-arabia", "brent"], ["Saudi Kayan", "2350.SR", "blog-saudi-kayan-petrochemical-cycle.html", "tadawul-saudi-arabia", "brent"], ["Ma'aden", "1211.SR", "blog-maaden-copper-gold-cycle.html", "tadawul-saudi-arabia", "gold"], ["SAFCO", "2020.SR", "blog-safco-urea-cycle.html", "tadawul-saudi-arabia", "urea"], ["Petrochem", "2002.SR", "blog-saudi-kayan-petrochemical-cycle.html", "tadawul-saudi-arabia", "pmi"], ["Eneos Holdings", "5020", "blog-eneos-holdings-cycle.html", "tokyo-stock-exchange", "brent"], ["Inpex", "1605", "blog-inpex-brent-cycle.html", "tokyo-stock-exchange", "brent"], ["Mitsubishi Materials", "5711", "blog-mitsubishi-materials-cycle.html", "tokyo-stock-exchange", "copper"], ["Sumitomo Metal Mining", "5713", "blog-sumitomo-metal-mining-cycle.html", "tokyo-stock-exchange", "copper"], ["JFE Holdings", "5411", "blog-jfe-holdings-steel-cycle.html", "tokyo-stock-exchange", "steel"], ["Nippon Steel", "5401", "blog-jfe-holdings-steel-cycle.html", "tokyo-stock-exchange", "steel"], ["Kawasaki Kisen (K Line)", "9107", "blog-kawasaki-kisen-cycle.html", "tokyo-stock-exchange", "bdi"], ["Mitsui OSK Lines", "9104", "blog-mitsui-osk-lines-cycle.html", "tokyo-stock-exchange", "bdi"], ["Nippon Yusen (NYK)", "9101", "blog-nippon-yusen-shipping-cycle.html", "tokyo-stock-exchange", "bdi"], ["Komatsu", "6301", "blog-komatsu-cycle.html", "tokyo-stock-exchange", "pmi"], ["China Steel", "2002.TW", "blog-nippon-steel-cycle.html", "twse-taiwan", "steel"], ["Evergreen Marine", "2603.TW", "blog-evergreen-marine-scfi-cycle.html", "twse-taiwan", "bdi"], ["Yang Ming Marine", "2609.TW", "blog-evergreen-marine-scfi-cycle.html", "twse-taiwan", "bdi"], ["Formosa Plastics", "1301.TW", "blog-formosa-plastics-cycle.html", "twse-taiwan", "pmi"], ["MediaTek", "2454.TW", "blog-mediatek-cycle.html", "twse-taiwan", "wfe"], ["TSMC", "2330.TW", "blog-mediatek-cycle.html", "twse-taiwan", "wfe"], ["PKN Orlen", "PKN", "blog-pkn-brent-cycle.html", "warsaw-stock-exchange", "brent"], ["KGHM Polska Miedź", "KGH", "blog-kghm-copper-cycle.html", "warsaw-stock-exchange", "copper"], ["JSW", "JSW", "blog-jsw-steel-cycle.html", "warsaw-stock-exchange", "steel"], ["Ciech", "CIE", "blog-ciech-cycle.html", "warsaw-stock-exchange", "urea"], ["PGE", "PGE", "blog-pge-cycle.html", "warsaw-stock-exchange", "eur10y"], ["OMV", "OMV", "blog-omv-oil-cycle.html", "wiener-boerse", "brent"], ["voestalpine", "VOE", "blog-voestalpine-steel-cycle.html", "wiener-boerse", "steel"], ["Erste Group", "EBS.VI", "blog-erste-group-cycle.html", "wiener-boerse", "eur10y"], ["Verbund", "VER", "blog-verbund-rate-cycle.html", "wiener-boerse", "eur10y"], ["Andritz", "ANDR", "blog-andritz-cycle.html", "wiener-boerse", "pmi"], ["Wienerberger", "WIE", "blog-wienerberger-cycle.html", "wiener-boerse", "pmi"], ["AT&S", "ATS.VI", "blog-at-s-cycle.html", "wiener-boerse", "wfe"]], EX = {"athens-stock-exchange": ["Athens Stock Exchange", "Greece"], "bmv-mexico": ["Bolsa Mexicana de Valores", "Mexico"], "dubai-dfm": ["Dubai Financial Market and ADX", "United Arab Emirates"], "egypt-egx": ["Egyptian Exchange (EGX)", "Egypt"], "euronext-amsterdam": ["Euronext Amsterdam", "Netherlands"], "euronext-brussels": ["Euronext Brussels", "Belgium"], "euronext-dublin": ["Euronext Dublin", "Ireland"], "euronext-paris": ["Euronext Paris", "France"], "frankfurt-xetra": ["Frankfurt Stock Exchange (Xetra)", "Germany"], "hkex-hong-kong": ["Hong Kong Stock Exchange", "Hong Kong"], "istanbul-stock-exchange": ["Borsa Istanbul", "Turkey"], "krx-korea": ["Korea Exchange (KRX)", "South Korea"], "london-stock-exchange": ["London Stock Exchange", "United Kingdom"], "nasdaq-copenhagen": ["Nasdaq Copenhagen", "Denmark"], "nasdaq-helsinki": ["Nasdaq Helsinki", "Finland"], "nse-india": ["National Stock Exchange of India", "India"], "oslo-bors": ["Oslo Børs", "Norway"], "singapore-exchange": ["Singapore Exchange (SGX)", "Singapore"], "six-swiss-exchange": ["SIX Swiss Exchange", "Switzerland"], "sse-shanghai": ["Shanghai Stock Exchange", "China"], "szse-shenzhen": ["Shenzhen Stock Exchange", "China"], "tadawul-saudi-arabia": ["Saudi Exchange (Tadawul)", "Saudi Arabia"], "tokyo-stock-exchange": ["Tokyo Stock Exchange", "Japan"], "twse-taiwan": ["Taiwan Stock Exchange", "Taiwan"], "warsaw-stock-exchange": ["Warsaw Stock Exchange (GPW)", "Poland"], "wiener-boerse": ["Wiener Börse", "Austria"]};
+  var ORDER = { sell: 0, warn: 1, neutral: 2, buy: 3, none: 4 };
+  var $ = function(id) { return document.getElementById(id); };
+  var state = { q: '', z: '', sig: '', ex: '', sort: 'zone', limit: 60 }, S = null;
+
+  // filter options
+  var sigs = {}, exs = {};
+  ROWS.forEach(function(r) { sigs[r[4]] = (sigs[r[4]] || 0) + 1; exs[r[3]] = (exs[r[3]] || 0) + 1; });
+  Object.keys(sigs).filter(function(id) { return META[id]; }).sort(function(a, b) { return META[a].name.localeCompare(META[b].name); }).forEach(function(id) {
+    $('fSig').insertAdjacentHTML('beforeend', '<option value="' + id + '">' + esc(META[id].name) + ' (' + sigs[id] + ')</option>');
+  });
+  Object.keys(exs).sort(function(a, b) { return EX[a][1].localeCompare(EX[b][1]); }).forEach(function(k) {
+    $('fEx').insertAdjacentHTML('beforeend', '<option value="' + k + '">' + esc(EX[k][1] + ' · ' + EX[k][0]) + ' (' + exs[k] + ')</option>');
+  });
+  // shareable filters: ?zone=sell&signal=brent&exchange=oslo-bors
+  try {
+    var qs = new URLSearchParams(location.search);
+    if (ORDER.hasOwnProperty(qs.get('zone'))) state.z = qs.get('zone');
+    if (sigs[qs.get('signal')]) state.sig = qs.get('signal');
+    if (exs[qs.get('exchange')]) state.ex = qs.get('exchange');
+  } catch (e) {}
+  $('fSig').value = state.sig; $('fEx').value = state.ex;
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c) { c.classList.toggle('on', c.getAttribute('data-z') === state.z); });
+
+  function sigOf(r) {
+    var s = S && S[r[4]];
+    if (!s || s.value == null || isNaN(parseFloat(s.value))) return null;
+    return s;
+  }
+  function zoneOf(r) { var s = sigOf(r); return s && ZH[s.zone] ? s.zone : 'none'; }
+  function stretch(r) { var s = sigOf(r); if (!s || !M.THRESHOLDS[r[4]]) return 0; return M.position(r[4], parseFloat(s.value)).raw; }
+
+  function render() {
+    if (!S) return;
+    var c = { buy: 0, neutral: 0, warn: 0, sell: 0 };
+    ROWS.forEach(function(r) { var z = zoneOf(r); if (c.hasOwnProperty(z)) c[z]++; });
+    $('kSell').textContent = c.sell; $('kWarn').textContent = c.warn; $('kNeu').textContent = c.neutral; $('kBuy').textContent = c.buy;
+
+    var q = state.q.toLowerCase();
+    var list = ROWS.filter(function(r) {
+      if (state.z && zoneOf(r) !== state.z) return false;
+      if (state.sig && r[4] !== state.sig) return false;
+      if (state.ex && r[3] !== state.ex) return false;
+      if (q && (r[0] + ' ' + r[1]).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    list.sort(function(a, b) {
+      if (state.sort === 'name') return a[0].localeCompare(b[0]);
+      if (state.sort === 'ex') return EX[a[3]][1].localeCompare(EX[b[3]][1]) || a[0].localeCompare(b[0]);
+      var d = ORDER[zoneOf(a)] - ORDER[zoneOf(b)];
+      if (d) return d;
+      var za = zoneOf(a), sa = stretch(a), sb = stretch(b);
+      return (za === 'buy' ? sa - sb : sb - sa) || a[0].localeCompare(b[0]);
+    });
+    var filtered = state.q || state.z || state.sig || state.ex;
+    $('reset').hidden = !filtered;
+    $('resCount').textContent = 'Showing ' + Math.min(list.length, state.limit) + ' of ' + list.length + (filtered ? ' matching' : '') + ' stocks';
+    var head = '<div class="st-row st-h"><span>Stock</span><span>Exchange</span><span>Signal</span><span style="text-align:right;">Value</span><span style="text-align:right;">Zone</span></div>';
+    if (!list.length) { $('st').innerHTML = head + '<div class="st-empty">No stocks match these filters.</div>'; return; }
+    $('st').innerHTML = head + list.slice(0, state.limit).map(function(r) {
+      var s = sigOf(r), z = zoneOf(r), m = META[r[4]] || { name: r[4] }, e = EX[r[3]];
+      var f = s ? M.freshness(s) : null;
+      var fr = !f ? '' : (f.live ? 'Live' : esc(f.text.replace('Manual · ', 'Updated ')));
+      return '<div class="st-row">' +
+        '<div class="st-name">' + (r[2] ? '<a href="' + r[2] + '">' + esc(r[0]) + '</a>' : '<b>' + esc(r[0]) + '</b>') + (r[1] ? '<span class="st-tk">' + esc(r[1]) + '</span>' : '') + '</div>' +
+        '<div class="st-ex"><a href="' + r[3] + '.html" style="color:inherit;text-decoration:none;">' + esc(e[1]) + '<small>' + esc(e[0]) + '</small></a></div>' +
+        '<div class="st-sig">' + (m.page ? '<a href="' + m.page + '">' + esc(m.name) + '</a>' : esc(m.name)) + (fr ? '<small class="' + (f.stale ? 'stale' : '') + '">' + fr + (f.stale ? ' · may be out of date' : '') + '</small>' : '') + '</div>' +
+        '<div class="st-val">' + (s ? fmt(parseFloat(s.value), s.unit) : '–') + '</div>' +
+        '<div class="st-z">' + (z === 'none' ? '<span class="badge neutral" style="opacity:.6;">NO DATA</span>' : '<span class="badge ' + z + '">' + ZL[z] + '</span>') + '</div>' +
+        '</div>';
+    }).join('') + (list.length > state.limit ? '<button class="st-more" id="more">Show ' + Math.min(60, list.length - state.limit) + ' more</button>' : '');
+    var more = $('more');
+    if (more) more.onclick = function() { state.limit += 60; render(); };
+  }
+  function set(k, v) { state[k] = v; state.limit = 60; render(); }
+  $('q').addEventListener('input', function() { set('q', this.value.trim()); });
+  $('fSig').addEventListener('change', function() { set('sig', this.value); });
+  $('fEx').addEventListener('change', function() { set('ex', this.value); });
+  $('fSort').addEventListener('change', function() { set('sort', this.value); });
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c) {
+    c.addEventListener('click', function() {
+      Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(x) { x.classList.toggle('on', x === c); });
+      set('z', c.getAttribute('data-z'));
+    });
+  });
+  $('reset').addEventListener('click', function() {
+    state.q = state.z = state.sig = state.ex = ''; $('q').value = ''; $('fSig').value = ''; $('fEx').value = '';
+    Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(x) { x.classList.toggle('on', x.getAttribute('data-z') === ''); });
+    set('limit', 60);
+  });
+  function onData(d) { if (d && d.signals) { S = d.signals; render(); } }
+  document.addEventListener('signalsLoaded', function(e) { onData(e.detail || window.SignycleData); });
+  if (window.SignycleData) onData(window.SignycleData);
+})();
+</script>
+
+<script>
+
 (function(){
   var INDEX=null, isOpen=false, selIdx=-1;
   var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
@@ -756,7 +1272,22 @@ document.addEventListener('signalsLoaded', render);
     }
   });
 })();
+
 </script>
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <div class="search-box-top">
+      <span class="search-box-icon">🔍</span>
+      <input class="search-box-input" id="overlayInput" placeholder="Search stocks, signals, exchanges…" autocomplete="off" spellcheck="false">
+      <button class="search-box-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-box-results" id="overlayResults"></div>
+    <div class="search-box-footer">
+      <span>↑↓ navigate · Enter select · Esc close</span>
+      <span><span class="search-box-kbd">/ or ⌘K</span> to open</span>
+    </div>
+  </div>
+</div>
 <script src="/signals-loader.js"></script>
 <script>
 function toggleRegion(id) {
@@ -797,22 +1328,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-(function(){
-  function render(){
-    var d = window.SignycleData;
-    if(!d || !d.updated) return;
-    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    var pretty = d.updated;
-    if(m){
-      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
-    }
-    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
-  }
-  render();
-  document.addEventListener('signalsLoaded', render);
-})();
-</script>
 </body>
 </html>

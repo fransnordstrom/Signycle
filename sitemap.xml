@@ -25,8 +25,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/backtest</loc>
-    <lastmod>2026-09-24</lastmod>
+    <loc>https://signycle.com/signal-history</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -1159,8 +1159,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/liquidity-cycle</loc>
-    <lastmod>2026-09-24</lastmod>
+    <loc>https://signycle.com/where-are-we-in-the-cycle</loc>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1244,7 +1244,7 @@
   </url>
   <url>
     <loc>https://signycle.com/recession-tracker</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -1303,12 +1303,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/where-are-we-in-the-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/wiener-boerse</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -1316,7 +1310,7 @@
   </url>
   <url>
     <loc>https://signycle.com/hormuz-dashboard</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -2978,7 +2972,7 @@
   </url>
   <url>
     <loc>https://signycle.com/cycle-screener</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -3160,12 +3154,6 @@
     <loc>https://signycle.com/signal-hscei-index</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/signal-history</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>

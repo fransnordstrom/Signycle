@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Are We In A Recession? Live Recession Tracker 2026 | Signycle</title>
-<meta name="description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
-<link rel="canonical" href="https://signycle.com/recession-tracker">
-<meta property="og:title" content="Are We In A Recession? Live Recession Tracker 2026 | Signycle">
-<meta property="og:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/recession-tracker.html">
-<meta property="og:site_name" content="Signycle">
-<meta property="og:image" content="https://signycle.com/og-image.png">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"Are we in a recession in 2026?","acceptedAnswer":{"@type":"Answer","text":"Signycle tracks recession risk using 6 weighted indicators — the yield curve, PMI, high-yield credit spreads, unemployment trend, the leading economic index, and oil price shocks. The current recession probability, phase, and per-indicator scores are shown live at the top of this page and update as the underlying data changes."}},
-    {"@type":"Question","name":"What is recession probability?","acceptedAnswer":{"@type":"Answer","text":"Recession probability is a weighted score based on key leading economic indicators: the yield curve (10Y-2Y spread), PMI, high yield credit spreads, unemployment trend, leading economic index and oil price shocks. A score above 70% historically precedes recessions within 12 months."}},
-    {"@type":"Question","name":"What does the yield curve say about recession risk?","acceptedAnswer":{"@type":"Answer","text":"The 10-year minus 2-year yield spread (yield curve) is one of the most reliable recession predictors. When the curve inverts (goes negative), a recession typically follows within 12-18 months. The current spread, pulled live from FRED, is shown in the indicator table on this page."}},
-    {"@type":"Question","name":"What is the PMI recession indicator?","acceptedAnswer":{"@type":"Answer","text":"The Purchasing Managers Index (PMI) measures manufacturing and services activity. A PMI below 50 indicates contraction. The current Global PMI of 51.4 — just below the 50 threshold, signalling mild economic weakness."}},
-    {"@type":"Question","name":"Is a recession coming in 2026?","acceptedAnswer":{"@type":"Answer","text":"See the live recession probability at the top of this page for the current reading. The biggest near-term risk being tracked is an oil price shock — if oil stays above $100/bbl and PMI falls further below 48, recession risk would escalate further."}}
-  ]
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485" crossorigin="anonymous"></script>
-<style>/* ── NAV ── */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recession Tracker: The US Yield Curve, Live | Signycle</title>
+<meta name="description" content="Is the US yield curve inverted? The live 10-year minus 2-year Treasury spread from FRED, every value Signycle has recorded, and how to read it as a recession warning sign.">
+<meta property="og:title" content="Recession Tracker: The US Yield Curve, Live | Signycle">
+<meta property="og:description" content="Is the US yield curve inverted? The live 10-year minus 2-year Treasury spread from FRED, every value Signycle has recorded, and how to read it as a recession warning sign.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signycle.com/recession-tracker">
+<meta property="og:site_name" content="Signycle">
+<meta property="og:image" content="https://signycle.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://signycle.com/recession-tracker">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://signycle.com/"}, {"@type": "ListItem", "position": 2, "name": "Recession tracker", "item": "https://signycle.com/recession-tracker"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are we in a recession right now?", "acceptedAnswer": {"@type": "Answer", "text": "Signycle doesn’t try to answer that with a single number. In the US, recessions are dated officially by the National Bureau of Economic Research (NBER), usually many months after they begin. This page tracks one widely watched early-warning sign, the shape of the US yield curve, and shows it live."}}, {"@type": "Question", "name": "What does an inverted yield curve mean?", "acceptedAnswer": {"@type": "Answer", "text": "It means short-term US government bonds yield more than long-term ones, so the 10-year minus 2-year spread is below zero. That usually happens when markets expect interest rates to fall in future, often because they expect the economy to slow."}}, {"@type": "Question", "name": "Does an inversion always lead to a recession?", "acceptedAnswer": {"@type": "Answer", "text": "No. Inversions have come before most US recessions of the past several decades, but the gap between inversion and recession has varied widely, and some inversions were not followed by a recession within the usual window. Treat it as one warning sign, not a forecast."}}, {"@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": {"@type": "Answer", "text": "The value is the FRED series T10Y2Y from the Federal Reserve Bank of St. Louis: the 10-year Treasury constant-maturity yield minus the 2-year. FRED publishes it once per business day; Signycle checks it about every 15 minutes and records what it finds."}}, {"@type": "Question", "name": "Why did the old recession score disappear?", "acceptedAnswer": {"@type": "Answer", "text": "It combined six indicators, five of which had to be typed in by hand and had fallen out of date. Rather than show a probability built on stale inputs, this page now shows only the indicator Signycle can keep live."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ── NAV ── */
 /* ── DROPDOWN NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -74,150 +67,159 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
+
 :root{
-  --green:#00956e;--green-light:#e6f5f1;--green-border:#b3e8d8;
-  --border:#e2e8e5;--surface:#f8faf9;--text:#475569;--dim:#6b7f78;
-  --muted:#a0b0ab;--ink:#0c1c2e;--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;
-  --red:#dc2626;--yellow:#d97706;--orange:#ea580c;
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
-.logo{font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
-.nav-link:hover,
-.nav-cta{background:var(--green);color:#fff;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;}
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
-.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:99;}
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-.mobile-menu 
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}}
-
-/* HERO */
-.hero{padding:5.5rem 1.5rem 0;background:linear-gradient(135deg,#fff5f5 0%,#fff 60%);border-bottom:1px solid var(--border);}
-.hero-inner{max-width:1100px;margin:0 auto;padding-bottom:2.5rem;}
-
-/* BIG PROBABILITY DISPLAY */
-.prob-display{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;margin:2rem 0;}
-.prob-circle{position:relative;width:180px;height:180px;flex-shrink:0;}
-.prob-circle svg{transform:rotate(-90deg);}
-.prob-circle-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.prob-pct{font-family:var(--mono);font-size:2.8rem;font-weight:700;color:#ea580c;line-height:1;}
-.prob-word{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);margin-top:4px;}
-.prob-meta{flex:1;min-width:240px;}
-.prob-meta h1{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.5rem;}
-.prob-meta p{font-size:0.9rem;color:var(--dim);max-width:480px;line-height:1.7;}
-.phase-badge{display:inline-flex;align-items:center;gap:6px;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:20px;padding:0.3rem 0.9rem;font-size:0.75rem;font-weight:700;color:#ea580c;margin-top:0.8rem;}
-.updated{font-size:0.72rem;font-family:var(--mono);color:var(--muted);margin-top:0.5rem;}
-
-/* INDICATOR TABLE */
-.main{max-width:1100px;margin:2rem auto;padding:0 1.5rem 5rem;display:grid;grid-template-columns:1fr 320px;gap:2rem;}
-@media(max-width:900px){.main{grid-template-columns:1fr;}}
-
-.section-h2{font-size:1.1rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:1.2rem;}
-.indicator-table{width:100%;border-collapse:collapse;margin-bottom:2.5rem;}
-.indicator-table th{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.5rem 0.8rem;text-align:left;border-bottom:2px solid var(--border);}
-.indicator-table td{padding:0.9rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:middle;}
-.ind-name{font-size:0.88rem;font-weight:600;color:var(--ink);}
-.ind-sub{font-size:0.72rem;color:var(--muted);margin-top:1px;}
-.ind-val{font-family:var(--mono);font-size:0.88rem;font-weight:700;color:var(--ink);}
-.ind-bar-wrap{width:120px;}
-.ind-bar-bg{height:6px;background:#e2e8e5;border-radius:3px;overflow:hidden;}
-.ind-bar-fill{height:100%;border-radius:3px;transition:width 0.8s ease;}
-.ind-badge{display:inline-block;font-size:0.62rem;font-weight:700;padding:0.2rem 0.6rem;border-radius:12px;letter-spacing:0.06em;text-transform:uppercase;white-space:nowrap;}
-.badge-low{background:#e6f5f1;color:#00956e;}
-.badge-mod{background:#fff7ed;color:#d97706;}
-.badge-high{background:#fef2f2;color:#dc2626;}
-.badge-extreme{background:#7f1d1d;color:#fca5a5;}
-
-/* HISTORY BAR CHART */
-.history-chart{margin-bottom:2.5rem;}
-.hist-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.6rem;}
-.hist-label{font-size:0.75rem;font-family:var(--mono);color:var(--dim);width:36px;text-align:right;flex-shrink:0;}
-.hist-bar-bg{flex:1;height:28px;background:var(--surface);border-radius:4px;position:relative;overflow:hidden;}
-.hist-bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:0.7rem;font-weight:700;color:#fff;font-family:var(--mono);white-space:nowrap;overflow:hidden;}
-.hist-now{border:2px solid var(--ink);background:transparent!important;}
-.hist-now .hist-bar-fill{color:var(--ink);}
-
-/* FAQ SECTION */
-.faq-section{margin-bottom:2rem;}
-.faq-item{border-bottom:1px solid var(--border);padding:1rem 0;}
-.faq-q{font-size:0.92rem;font-weight:700;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
-.faq-q:after{content:'↓';font-size:0.8rem;color:var(--muted);transition:transform 0.2s;flex-shrink:0;}
-.faq-item.open .faq-q:after{transform:rotate(180deg);}
-.faq-a{font-size:0.85rem;color:var(--text);line-height:1.7;padding-top:0.7rem;display:none;}
-.faq-item.open .faq-a{display:block;}
-
-/* SIDEBAR */
-.sidebar-section{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem;}
-.sidebar-title{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
-.related-link{display:block;font-size:0.82rem;font-weight:600;color:var(--ink);text-decoration:none;padding:0.4rem 0;border-bottom:1px solid var(--border);}
-.related-link:last-child{border-bottom:none;}
-.related-link:hover{color:var(--green);}
-
-/* PHASE TIMELINE */
-.phase-timeline{display:flex;gap:0;margin:1.5rem 0 2.5rem;border-radius:8px;overflow:hidden;}
-.phase-step{flex:1;padding:0.8rem 0.5rem;text-align:center;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;border-right:2px solid #fff;}
-.phase-step:last-child{border-right:none;}
-.phase-step.active{outline:2px solid var(--ink);outline-offset:-2px;z-index:1;}
-
-@media(max-width:768px){
-  .hist-bar-fill{font-size:0.65rem;padding-left:6px;}
-  .hist-row{margin-bottom:0.5rem;}
-  .hist-label{font-size:0.7rem;width:32px;}
-  .hist-bar-bg{height:26px;}
-  .main{grid-template-columns:1fr;}
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
 
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
 
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-.nav-cta:hover{background:#007a5a;}
-
-/* Mega row */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-
-/* Mobile */
-
-
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:199;overflow-y:auto;}
-.mobile-menu.open{display:block;}
-.mobile-menu-inner{padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
-
-
-.mob-link:hover{color:var(--green);}
-.mob-link.crisis{color:#dc2626;}
-
-
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
-}
-
-  
-}
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -255,15 +257,215 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
+
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
+
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
+
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
+
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
+
+/* ── Tool pages ── */
+.tool-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.tool-hero .wrap{padding-top:2.4rem;padding-bottom:2rem;}
+.tool-h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);}
+.tool-h1 em{font-style:normal;color:var(--green);}
+.tool-lede{font-size:1rem;line-height:1.65;color:var(--text);margin-top:0.8rem;max-width:720px;}
+.tool-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:720px;}
+.prose-card{font-size:0.92rem;line-height:1.7;color:var(--text);}
+.prose-card p + p{margin-top:0.7rem;}
+.prose-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.1rem 0 0.3rem;}
+.prose-card h3:first-child{margin-top:0;}
+.prose-card ul{margin:0.5rem 0 0 1.2rem;}
+.prose-card li{margin-bottom:0.4rem;}
+.prose-card a{color:var(--green);}
+.prose-card b{color:var(--ink);}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;}
+.faq details + details{margin-top:0.5rem;}
+.faq summary{cursor:pointer;font-size:0.95rem;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--green);font-weight:700;}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:0.6rem;}
+.faq details p a{color:var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.kpi{background:#fff;border:1px solid var(--border);border-top:3px solid var(--kc);border-radius:10px;padding:0.6rem 0.8rem;}
+.kpi b{display:block;font-size:1.4rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.kpi span{font-size:0.72rem;color:var(--dim);}
+
+.yc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:1rem;margin-top:1.4rem;}
+@media(max-width:860px){.yc-grid{grid-template-columns:1fr;}}
+.yc-val{font-size:3.4rem;font-weight:700;letter-spacing:-0.03em;line-height:1;margin-top:0.4rem;font-variant-numeric:tabular-nums;}
+.yc-state{display:inline-block;margin-top:0.6rem;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;padding:0.25rem 0.65rem;border-radius:20px;}
+.yc-state.pos{background:var(--buy-t);color:#00704f;}
+.yc-state.neg{background:var(--sell-t);color:#b01e1e;}
+.yc-scale{position:relative;height:10px;border-radius:5px;margin:1.3rem 0 0.35rem;background:linear-gradient(90deg,#dc2626 0%,#f0b35a 40%,#cfd8d4 50%,#8fd1b9 75%,#00956e 100%);}
+.yc-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.yc-scale-l{display:flex;justify-content:space-between;font-size:0.66rem;color:var(--muted);}
+.yc-meta{font-size:0.74rem;color:var(--dim);margin-top:0.9rem;line-height:1.5;}
+.chart-wrap{position:relative;}
+.chart-wrap svg{display:block;width:100%;height:240px;}
+.chart-note{font-size:0.72rem;color:var(--muted);margin-top:0.4rem;}
+.rel-links{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.rel-links a{font-size:0.84rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.45rem 0.9rem;text-decoration:none;}
+.rel-links a:hover{border-color:var(--green);color:var(--green);}
+
 </style>
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@signycle">
-<meta name="twitter:title" content="Are We In A Recession? Live Recession Tracker 2026 | Signycle">
-<meta name="twitter:description" content="Are we in a recession in 2026? Live recession probability tracker using yield curve, PMI, credit spreads, unemployment and leading indicators, updated as conditions change.">
-<meta name="twitter:image" content="https://signycle.com/og-image.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
+     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo"><div class="logo-dot"></div>Signycle</a>
@@ -286,11 +488,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
         <div class="nav-drop">
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
-          <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
           <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
           <a href="signal-history.html"><b>Signal History</b><span>Real zone crossings, dated</span></a>
           <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
-          <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
         </div>
@@ -397,11 +597,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   <div class="mob-section-label">Cycle Tools</div>
   <a href="cycle-screener.html" class="nav-link" style="padding-left:0.5rem;font-weight:700;color:#00956e;">Cycle Screener</a>
   <a href="cycle-dashboard.html" class="nav-link" style="padding-left:0.5rem;">Cycle Dashboard</a>
-  <a href="backtest.html" class="nav-link" style="padding-left:0.5rem;">Signal Backtest</a>
   <a href="live-signals.html" class="nav-link" style="padding-left:0.5rem;">Live Signals</a>
   <a href="signal-history.html" class="nav-link" style="padding-left:0.5rem;">Signal History</a>
   <a href="recession-tracker.html" class="nav-link" style="padding-left:0.5rem;">Recession Tracker</a>
-  <a href="liquidity-cycle.html" class="nav-link" style="padding-left:0.5rem;">Liquidity Cycle</a>
   <a href="hormuz-dashboard.html" class="nav-link" style="padding-left:0.5rem;color:#dc2626;font-weight:600;">Hormuz Dashboard</a>
   <div class="mob-section-label">Stock Tools</div>
   <a href="cyclical-dividend-scanner.html" class="nav-link" style="padding-left:0.5rem;">Dividend Scanner</a>
@@ -702,273 +900,77 @@ function _initHamburger() {
 _initHamburger();
 </script>
 
+<div class="page">
 
+<section class="tool-hero">
+<div class="wrap">
+  <div class="dash-eyebrow">Recession tracker &middot; live from FRED</div>
+  <h1 class="tool-h1">Recession tracker: the US <em>yield curve</em></h1>
+  <p class="tool-lede">The gap between 10-year and 2-year US Treasury yields is one of the most watched recession warning signs. When it turns negative, the curve is &ldquo;inverted&rdquo;. Here it is live, with every value Signycle has recorded.</p>
+  <p class="tool-now" id="ycNow">Loading the latest reading…</p>
 
-
-
-
-
-
-<div class="hero" style="padding-top:5.5rem;">
-  <div class="hero-inner">
-
-    <!-- BIG ANSWER -->
-    <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#ea580c;margin-bottom:0.5rem;">Recession Tracker · Updated <span class="live-updated-date">1 Jun 2026</span></div>
-    <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:8px;padding:0.5rem 1rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;color:#15803d;margin-bottom:1rem;margin-top:0.5rem;clear:both;">🔄 Updated live &nbsp;·&nbsp; Last update: <span class="live-updated-date">1 Jun 2026</span></div>
-
-    <div class="prob-display">
-      <!-- Animated circle -->
-      <div class="prob-circle">
-        <svg width="180" height="180" viewBox="0 0 180 180">
-          <circle cx="90" cy="90" r="78" fill="none" stroke="#fee2e2" stroke-width="14"/>
-          <circle cx="90" cy="90" r="78" fill="none" stroke="#ea580c" stroke-width="14"
-            stroke-dasharray="490" stroke-dashoffset="289" id="probCircleFill"
-            stroke-linecap="round"/>
-        </svg>
-        <div class="prob-circle-label">
-          <div class="prob-pct"><span data-signal="recessionProb">55%</span></div>
-          <div class="prob-word" id="probWord">Moderate</div>
-        </div>
-      </div>
-
-      <div class="prob-meta">
-        <h1>Are We In A Recession?</h1>
-        <p>Not yet — but risk is elevated. Several of the 6 tracked indicators are flashing warning signs. The yield curve remains positive and labour markets are holding.</p>
-        <div class="phase-badge" id="phaseBadge">⚠️ Economic phase: Mid-late cycle</div>
-        <div class="updated">Signycle Recession Score · 6 indicators, editorially weighted by us — not a black-box model. The yield curve is pulled live from FRED; the other 5 are updated manually as new data is published.</div>
-      </div>
+  <div class="yc-grid">
+    <div class="card">
+      <div class="card-label">US 10Y minus 2Y, right now</div>
+      <div class="yc-val" id="ycVal">–</div>
+      <span class="yc-state" id="ycState"></span>
+      <div class="yc-scale" aria-hidden="true"><div class="yc-pin" id="ycPin" style="left:50%;"></div></div>
+      <div class="yc-scale-l"><span>&minus;1.0 inverted</span><span>0</span><span>+1.0 steep</span></div>
+      <div class="yc-meta" id="ycMeta">Source: FRED series T10Y2Y, Federal Reserve Bank of St. Louis.</div>
     </div>
-
-    <!-- PHASE TIMELINE -->
-    <div class="phase-timeline" id="phaseStepsRow">
-      <div class="phase-step" data-phase="Early Cycle" style="background:#e6f5f1;color:#00956e;"><span class="phase-step-name">Early Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Expansion begins</span></div>
-      <div class="phase-step" data-phase="Mid Cycle" style="background:#d1fae5;color:#059669;"><span class="phase-step-name">Mid Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Peak growth</span></div>
-      <div class="phase-step" data-phase="Late Cycle" style="background:#fff7ed;color:#ea580c;"><span class="phase-step-name">Late Cycle</span><br><span style="font-weight:400;font-size:0.58rem">Growth slowing</span></div>
-      <div class="phase-step" data-phase="Recession" style="background:#fef2f2;color:#dc2626;"><span class="phase-step-name">Recession</span><br><span style="font-weight:400;font-size:0.58rem">Contraction</span></div>
-      <div class="phase-step" data-phase="Recovery" style="background:#f8faf9;color:#6b7f78;"><span class="phase-step-name">Recovery</span><br><span style="font-weight:400;font-size:0.58rem">Trough &amp; rebound</span></div>
-    </div>
-
-  </div>
-</div>
-
-<div class="main">
-  <div>
-
-    <!-- INDICATOR TABLE -->
-    <h2 class="section-h2">6 Key Recession Indicators</h2>
-    <div style="font-size:0.75rem;color:var(--muted);margin:-0.5rem 0 0.8rem;">Risk Score and Status below are Signycle's own simplified read of each indicator, weighted by us — not output from an official model or algorithm.</div>
-    <table class="indicator-table">
-      <thead><tr>
-        <th>Indicator</th>
-        <th>Current Value</th>
-        <th>Risk Score</th>
-        <th>Status</th>
-      </tr></thead>
-      <tbody>
-
-        <tr>
-          <td><div class="ind-name">🔄 Yield Curve (10Y–2Y)</div><div class="ind-sub">Live from FRED · Negative = recession warning · Weight: 25%</div></td>
-          <td><span class="ind-val yc-value-live" id="ycValue">+0.4%</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" id="ycBarFill" style="width:55%;background:#d97706;"></div></div><span id="ycBarScore" style="font-size:0.68rem;color:#d97706;font-family:var(--mono);margin-top:2px;display:block;">55 / 100</span></div></td>
-          <td><span class="ind-badge badge-mod" id="ycBadge">⚠️ Flattening</span></td>
-        </tr>
-
-        <tr>
-          <td><div class="ind-name">🏭 Global PMI</div><div class="ind-sub">Below 50 = contraction · Weight: 20%</div></td>
-          <td><span class="ind-val">53.3</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:55%;background:#d97706;"></div></div><span style="font-size:0.68rem;color:#d97706;font-family:var(--mono);margin-top:2px;display:block;">55 / 100</span></div></td>
-          <td><span class="ind-badge badge-mod">⚠️ Slowing</span></td>
-        </tr>
-
-        <tr>
-          <td><div class="ind-name">📊 HY Credit Spread</div><div class="ind-sub">Above 6% = stress · Weight: 20%</div></td>
-          <td><span class="ind-val">3.2%</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:20%;background:#00956e;"></div></div><span style="font-size:0.68rem;color:#00956e;font-family:var(--mono);margin-top:2px;display:block;">20 / 100</span></div></td>
-          <td><span class="ind-badge badge-low">✅ Normal</span></td>
-        </tr>
-
-        <tr>
-          <td><div class="ind-name">👷 Unemployment Trend</div><div class="ind-sub">Rising &gt;0.5pp = recession · Weight: 15%</div></td>
-          <td><span class="ind-val">+0.1pp</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:20%;background:#00956e;"></div></div><span style="font-size:0.68rem;color:#00956e;font-family:var(--mono);margin-top:2px;display:block;">20 / 100</span></div></td>
-          <td><span class="ind-badge badge-low">✅ Stable</span></td>
-        </tr>
-
-        <tr>
-          <td><div class="ind-name">📉 Leading Econ. Index (LEI)</div><div class="ind-sub">Below –0.5% MoM = warning · Weight: 10%</div></td>
-          <td><span class="ind-val">–0.3% MoM</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:60%;background:#dc2626;"></div></div><span style="font-size:0.68rem;color:#dc2626;font-family:var(--mono);margin-top:2px;display:block;">60 / 100</span></div></td>
-          <td><span class="ind-badge badge-high">🔴 Declining</span></td>
-        </tr>
-
-        <tr>
-          <td><div class="ind-name">🛢️ Oil Price Shock</div><div class="ind-sub">Above $100/bbl = demand shock · Weight: 10%</div></td>
-          <td><span class="ind-val">$93/bbl</span></td>
-          <td><div class="ind-bar-wrap"><div class="ind-bar-bg"><div class="ind-bar-fill" style="width:75%;background:#dc2626;"></div></div><span style="font-size:0.68rem;color:#dc2626;font-family:var(--mono);margin-top:2px;display:block;">75 / 100</span></div></td>
-          <td><span class="ind-badge badge-high">⚠️ Ceasefire — easing</span></td>
-        </tr>
-
-      </tbody>
-    </table>
-
-    <!-- HISTORICAL COMPARISON -->
-    <h2 class="section-h2">Historical Recession Probability Comparison</h2>
-    <div class="history-chart">
-      <div class="hist-row">
-        <div class="hist-label">2008</div>
-        <div class="hist-bar-bg"><div class="hist-bar-fill" style="width:92%;background:#7f1d1d;">92% GFC 2008</div></div>
-      </div>
-      <div class="hist-row">
-        <div class="hist-label">2020</div>
-        <div class="hist-bar-bg"><div class="hist-bar-fill" style="width:88%;background:#991b1b;">88% COVID-19</div></div>
-      </div>
-      <div class="hist-row">
-        <div class="hist-label">2022</div>
-        <div class="hist-bar-bg"><div class="hist-bar-fill" style="width:58%;background:#d97706;">58% Energy crisis</div></div>
-      </div>
-      <div class="hist-row">
-        <div class="hist-label">2023</div>
-        <div class="hist-bar-bg"><div class="hist-bar-fill" style="width:42%;background:#d97706;">42% Banking stress</div></div>
-      </div>
-      <div class="hist-row">
-        <div class="hist-label">2024</div>
-        <div class="hist-bar-bg"><div class="hist-bar-fill" style="width:28%;background:#059669;">28% Soft landing</div></div>
-      </div>
-      <div class="hist-row">
-        <div class="hist-label" style="color:var(--ink);font-weight:700;">NOW</div>
-        <div class="hist-bar-bg" style="border:2px solid #ea580c;"><div class="hist-bar-fill" id="histNowBar" style="width:52%;background:#ea580c;"><span data-signal="recessionProb">52%</span> current</div></div>
-      </div>
-    </div>
-
-    <!-- WHAT TO DO IF RECESSION -->
-    <h2 class="section-h2">How to Position for a Recession</h2>
-    <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
-      <p style="font-size:0.88rem;color:var(--text);line-height:1.7;margin-bottom:1rem;">A rising recession probability changes the Signycle signal framework. Here is how the indicators interact with cyclical stock positioning:</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        <div>
-          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#dc2626;margin-bottom:0.5rem;">🔴 Avoid / Reduce</div>
-          <div style="font-size:0.82rem;color:var(--text);line-height:1.8;">
-            ✗ Oil stocks — Brent at SELL threshold<br>
-            ✗ Copper miners — SELL zone<br>
-            ✗ Highly levered industrials<br>
-            ✗ Tankers at peak rates
-          </div>
-        </div>
-        <div>
-          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#00956e;margin-bottom:0.5rem;">🟢 Watch / Accumulate</div>
-          <div style="font-size:0.82rem;color:var(--text);line-height:1.8;">
-            ✓ Defence stocks — structural demand<br>
-            ✓ Fertilizer at low prices (Yara)<br>
-            ✓ Cash and short duration bonds<br>
-            ✓ Waiting for BDI to hit BUY zone
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);">Not financial advice. Signycle is a macro signal tool — not an investment advisor.</div>
-    </div>
-
-    <!-- FAQ -->
-    
-    <!-- SO WHAT BOX -->
-    <div style="background:#0c1c2e;border-radius:14px;padding:2rem;margin-bottom:2.5rem;">
-      <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#5a8070;margin-bottom:0.6rem;">The SO WHAT</div>
-      <h2 style="font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:1rem;">What does a <span data-signal="recessionProb">54%</span> recession probability mean for your portfolio?</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-        <div>
-          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#e03e3e;margin-bottom:0.5rem;">🔴 Reduce exposure</div>
-          <div style="font-size:0.82rem;color:#8fb5a0;line-height:1.8;">Oil stocks — Brent at SELL<br>Copper miners — above threshold<br>Highly levered industrials<br>Tankers at peak rates</div>
-        </div>
-        <div>
-          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#00956e;margin-bottom:0.5rem;">🟢 Structural holds</div>
-          <div style="font-size:0.82rem;color:#8fb5a0;line-height:1.8;">Defence (NATO rearmament)<br>Fertilizer at neutral prices<br>Cash for next cycle entry<br>Wait for BDI BUY signal</div>
-        </div>
-      </div>
-      <div style="margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid #1e2d26;font-size:0.78rem;color:#3a5548;">
-        See the full <a href="where-are-we-in-the-cycle.html" style="color:#00956e;font-weight:700;">market cycle indicator</a> — or explore <a href="market-cycles-history.html" style="color:#00956e;font-weight:700;">every bull and bear market since 1900</a>.
-      </div>
-    </div>
-    <h2 class="section-h2">Frequently Asked Questions</h2>
-    <div class="faq-section">
-      <div class="faq-item open">
-        <div class="faq-q">Are we in a recession in 2026?</div>
-        <div class="faq-a">Not yet — but risk is elevated at <span data-signal="recessionProb">54%</span>. The economy is in late-cycle territory. An oil price shock above $100/bbl is the biggest near-term risk. PMI has fallen below 50 and the leading economic index is declining. However, the yield curve remains positive (<span class="yc-value-live">+0.4%</span>) and unemployment is stable, which are the two most reliable recession indicators — both currently point away from imminent recession.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What is the most reliable recession indicator?</div>
-        <div class="faq-a">The yield curve (10Y–2Y Treasury spread) has preceded every US recession since 1950 with only two false positives. When the 10-year yield falls below the 2-year yield (inversion), a recession typically follows within 12–18 months. Currently the curve is at <span class="yc-value-live">+0.4%</span> — positive but flattening from the inversion seen in 2022–2023.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Is a recession coming in 2026?</div>
-        <div class="faq-a">The recession probability of <span data-signal="recessionProb"><span data-signal="recessionProb"></span></span> reflects a weighted blend of 6 leading indicators — see the live score at the top of this page. The key swing factor being tracked is oil price shocks — if oil stays above $100/bbl for an extended period, recession risk would climb further; if it falls back toward $70-80, risk would ease.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What does PMI below 50 mean?</div>
-        <div class="faq-a">The Purchasing Managers Index (PMI) measures whether manufacturing and services activity is expanding (above 50) or contracting (below 50). The current Global PMI of 51.4 is just barely in contraction territory. Historically, a PMI sustained below 48 for 3+ months strongly correlates with recession. We are currently at the warning threshold but have not yet breached the recession zone.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How does the Hormuz crisis affect recession risk?</div>
-        <div class="faq-a">The Hormuz crisis (Iran's mining of the strait in February 2026) has sent oil prices above $100/barrel. Energy price shocks are historically one of the most reliable recession triggers — the 1973 oil embargo, the 1979 Iranian revolution, and the 1990 Gulf War all preceded recessions within 12 months. The current shock adds approximately 15-20 percentage points to the recession probability score.</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- SIDEBAR -->
-  <div>
-    <div class="sidebar-section" style="background:#fff8f8;border-color:#fca5a5;">
-      <div class="sidebar-title" style="color:#dc2626;">Recession Score</div>
-      <div style="font-family:var(--mono);font-size:2.5rem;font-weight:700;color:#ea580c;margin-bottom:0.3rem;"><span data-signal="recessionProb">54%</span></div>
-      <div style="font-size:0.75rem;color:#ea580c;font-weight:600;margin-bottom:1rem;" id="sidebarLabel">⚠️ Elevated — Late Cycle</div>
-      <div style="font-size:0.75rem;color:var(--text);line-height:1.6;">
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>Yield Curve</span><span style="font-family:var(--mono);color:#d97706;" id="sidebarYC">55%</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>PMI</span><span style="font-family:var(--mono);color:#d97706;">55%</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>Credit Spreads</span><span style="font-family:var(--mono);color:#00956e;">20%</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>Unemployment</span><span style="font-family:var(--mono);color:#00956e;">20%</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid var(--border);">
-          <span>LEI</span><span style="font-family:var(--mono);color:#dc2626;">60%</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;">
-          <span>Oil Shock</span><span style="font-family:var(--mono);color:#dc2626;">75%</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-title">Related signals</div>
-      <a href="live-signals.html" class="related-link">→ Live Signal Dashboard</a>
-      <a href="signal-brent-crude.html" class="related-link">→ 12 Oil Stocks — SELL Zone</a>
-      <a href="signal-global-pmi.html" class="related-link">→ PMI Stocks Ranking</a>
-      <a href="blog-hormuz-crisis-signals.html" class="related-link">→ Hormuz Crisis Analysis</a>
-      <a href="best-stocks-during-inflation.html" class="related-link">→ Best Stocks During Inflation</a>
-      <a href="guide-credit-spread-signal.html" class="related-link">→ Credit Spread Guide</a>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-title">What to watch</div>
-      <p style="font-size:0.8rem;color:var(--dim);line-height:1.6;">If these change, recession risk escalates:<br><br>
-        🔴 Yield curve below 0%<br>
-        🔴 PMI below 48<br>
-        🔴 Credit spreads above 5%<br>
-        🔴 Unemployment rising &gt;0.3pp<br>
-        🔴 Oil sustained above $110
-      </p>
-    </div>
-
-    <div class="sidebar-section">
-      <div class="sidebar-title">Pro alerts</div>
-      <p style="font-size:0.8rem;color:var(--dim);margin-bottom:0.8rem;">Get alerted when the recession score crosses 60%.</p>
-      <a href="live-signals.html" style="display:block;text-align:center;background:var(--green);color:#fff;font-weight:700;font-size:0.85rem;padding:0.6rem;border-radius:8px;text-decoration:none;">View live signals →</a>
+    <div class="card">
+      <div class="card-label" id="chTitle">Recorded by Signycle</div>
+      <div class="chart-wrap" id="chart"><div class="card-note" style="padding:4rem 0;text-align:center;">Loading recorded history…</div></div>
+      <div class="chart-note" id="chNote"></div>
     </div>
   </div>
 </div>
+</section>
+
+<div class="wrap">
+  <div class="sec-head" style="margin-top:0.4rem;"><div><h2 class="sec-title">How to read it</h2></div></div>
+  <div class="card prose-card">
+    <h3>Positive: the normal shape</h3>
+    <p>Lenders usually want a higher yield to tie money up for longer, so the 10-year normally yields more than the 2-year and the spread is above zero.</p>
+    <h3>Negative: inverted</h3>
+    <p>When the 2-year yields more than the 10-year, markets are pricing in lower interest rates ahead, which often reflects expectations of a slowdown. Inversions have come before most US recessions of the past several decades.</p>
+    <h3>Why it&rsquo;s only a warning sign</h3>
+    <ul>
+      <li><b>The timing varies.</b> The gap between an inversion and a recession has ranged from months to years.</li>
+      <li><b>It can be wrong.</b> Not every inversion has been followed by a recession within the usual window. The long inversion that began in 2022 is an example many analysts point to.</li>
+      <li><b>Turning positive again isn&rsquo;t an all-clear.</b> Analysts often note that past recessions began after the curve had already moved back above zero.</li>
+      <li><b>It is one indicator.</b> Jobs, credit spreads, manufacturing surveys and earnings all matter, and none of them is shown here.</li>
+    </ul>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Why it matters for cyclical stocks</h2></div></div>
+  <div class="card prose-card">
+    <p>Cyclical companies, such as miners, shippers, steelmakers and chemicals producers, tend to see their earnings fall furthest when demand weakens. A curve that inverts while several of Signycle&rsquo;s commodity signals are in SELL is a combination worth watching. The yield curve is left out of the <a href="where-are-we-in-the-cycle.html">cycle score</a> because it is a recession indicator, not a price cycle.</p>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Questions</h2></div></div>
+  <div class="faq">
+    <details><summary>Are we in a recession right now?</summary><p>Signycle doesn&rsquo;t try to answer that with a single number. In the US, recessions are dated officially by the National Bureau of Economic Research (NBER), usually many months after they begin. This page tracks one widely watched early-warning sign, the shape of the US yield curve, and shows it live.</p></details>
+    <details><summary>What does an inverted yield curve mean?</summary><p>It means short-term US government bonds yield more than long-term ones, so the 10-year minus 2-year spread is below zero. That usually happens when markets expect interest rates to fall in future, often because they expect the economy to slow.</p></details>
+    <details><summary>Does an inversion always lead to a recession?</summary><p>No. Inversions have come before most US recessions of the past several decades, but the gap between inversion and recession has varied widely, and some inversions were not followed by a recession within the usual window. Treat it as one warning sign, not a forecast.</p></details>
+    <details><summary>Where does the data come from?</summary><p>The value is the FRED series T10Y2Y from the Federal Reserve Bank of St. Louis: the 10-year Treasury constant-maturity yield minus the 2-year. FRED publishes it once per business day; Signycle checks it about every 15 minutes and records what it finds.</p></details>
+    <details><summary>Why did the old recession score disappear?</summary><p>It combined six indicators, five of which had to be typed in by hand and had fallen out of date. Rather than show a probability built on stale inputs, this page now shows only the indicator Signycle can keep live.</p></details>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Related</h2></div></div>
+  <div class="rel-links">
+    <a href="where-are-we-in-the-cycle.html">Where are we in the cycle?</a>
+    <a href="signal-eur-10y-rate.html">EUR 10-year rate</a>
+    <a href="signal-global-pmi.html">Global manufacturing PMI</a>
+    <a href="blog-recession-cyclical-stocks.html">Cyclical stocks in a recession</a>
+    <a href="blog-10-year-treasury-cycle.html">The 10-year Treasury and the cycle</a>
+    <a href="signal-history.html">Signal history</a>
+  </div>
+
+  <p class="foot-note">For information only, not financial advice. See the <a href="disclaimer.html">disclaimer</a>.</p>
+</div>
+
+</div><!-- .page -->
 
 <footer class="sx-footer">
   <div class="sx-foot-inner">
@@ -989,25 +991,71 @@ _initHamburger();
   </div>
 </footer>
 
+<script src="/signals-meta.js"></script>
+
 <script>
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(function(q) {
-  q.addEventListener('click', function() {
-    var item = q.parentElement;
-    item.classList.toggle('open');
-  });
-});
+(function() {
+  var $ = function(id) { return document.getElementById(id); };
+  function show(v) {
+    if (v == null || isNaN(v)) return;
+    var neg = v < 0;
+    $('ycVal').textContent = (v > 0 ? '+' : '') + v.toFixed(2) + ' pts';
+    $('ycVal').style.color = neg ? 'var(--sell)' : 'var(--ink)';
+    $('ycState').textContent = neg ? 'INVERTED' : 'NOT INVERTED';
+    $('ycState').className = 'yc-state ' + (neg ? 'neg' : 'pos');
+    $('ycPin').style.left = Math.max(1, Math.min(99, 50 + v * 50)) + '%';
+    $('ycNow').innerHTML = neg
+      ? 'The US 10-year Treasury yields <b>' + Math.abs(v).toFixed(2) + ' percentage points less</b> than the 2-year, so the curve is <b style="color:var(--sell);">inverted</b>.'
+      : 'The US 10-year Treasury yields <b>' + v.toFixed(2) + ' percentage points more</b> than the 2-year, so the curve is <b>not inverted</b>.';
+  }
+  function onData(d) {
+    var s = d && d.signals && d.signals.yieldCurve;
+    if (s && s.value != null) show(parseFloat(s.value));
+  }
+  document.addEventListener('signalsLoaded', function(e) { onData(e.detail || window.SignycleData); });
+  if (window.SignycleData) onData(window.SignycleData);
+
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function day(iso) { var d = new Date(iso); return d.getUTCDate() + ' ' + MON[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); }
+  fetch('https://signycle-signals.fransbgn.workers.dev/api/history?signal=yieldCurve&limit=20000')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      // One point per UTC day (FRED publishes daily); drop impossible values from bad fetches.
+      var byDay = {};
+      (data.points || []).forEach(function(p) {
+        var v = parseFloat(p.value);
+        if (isNaN(v) || Math.abs(v) > 5) return;
+        byDay[p.recorded_at.slice(0, 10)] = { t: p.recorded_at, v: v };
+      });
+      var pts = Object.keys(byDay).sort().map(function(k) { return byDay[k]; });
+      if (pts.length < 2) { $('chart').innerHTML = '<div class="card-note" style="padding:4rem 0;text-align:center;">Not enough recorded history yet.</div>'; return; }
+      var W = 600, H = 240, pl = 40, pr = 10, pt = 12, pb = 26;
+      var vs = pts.map(function(p) { return p.v; });
+      var lo = Math.min(0, Math.min.apply(null, vs)), hi = Math.max(0, Math.max.apply(null, vs));
+      var pad = (hi - lo) * 0.15 || 0.1; lo -= pad; hi += pad;
+      var x = function(i) { return pl + (W - pl - pr) * i / (pts.length - 1); };
+      var y = function(v) { return pt + (H - pt - pb) * (hi - v) / (hi - lo); };
+      var path = pts.map(function(p, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ',' + y(p.v).toFixed(1); }).join('');
+      var area = path + 'L' + x(pts.length - 1).toFixed(1) + ',' + y(lo).toFixed(1) + 'L' + x(0).toFixed(1) + ',' + y(lo).toFixed(1) + 'Z';
+      var ticks = [], step = (hi - lo) / 4;
+      for (var k = 0; k <= 4; k++) { var tv = lo + step * k; ticks.push('<text x="' + (pl - 6) + '" y="' + (y(tv) + 3).toFixed(1) + '" text-anchor="end" font-size="10" fill="#94a3b8">' + tv.toFixed(2) + '</text><line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + y(tv).toFixed(1) + '" y2="' + y(tv).toFixed(1) + '" stroke="#eef2f0"/>'); }
+      var lab = [0, Math.floor((pts.length - 1) / 2), pts.length - 1].map(function(i, j) {
+        return '<text x="' + x(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + ['start', 'middle', 'end'][j] + '" font-size="10" fill="#94a3b8">' + day(pts[i].t) + '</text>';
+      }).join('');
+      $('chart').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="US 10Y-2Y spread recorded by Signycle">' +
+        ticks.join('') + '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + y(0).toFixed(1) + '" y2="' + y(0).toFixed(1) + '" stroke="#dc2626" stroke-dasharray="4 3"/>' +
+        '<path d="' + area + '" fill="rgba(0,149,110,.08)"/><path d="' + path + '" fill="none" stroke="#00956e" stroke-width="2" vector-effect="non-scaling-stroke"/>' + lab + '</svg>';
+      var mn = Math.min.apply(null, vs), mx = Math.max.apply(null, vs);
+      $('chTitle').textContent = 'Recorded by Signycle since ' + day(pts[0].t);
+      $('chNote').textContent = pts.length + ' daily readings, from ' + mn.toFixed(2) + ' to ' + mx.toFixed(2) + ' points. Dashed red line = zero (inversion). Signycle only has data from when its recording started; for the full history since 1976 see FRED series T10Y2Y.';
+      $('ycMeta').textContent = 'Source: FRED series T10Y2Y, Federal Reserve Bank of St. Louis. Last recorded ' + day(pts[pts.length - 1].t) + '.';
+    })
+    .catch(function() { $('chart').innerHTML = '<div class="card-note" style="padding:4rem 0;text-align:center;">Recorded history could not be loaded.</div>'; });
+})();
 </script>
 
-  <script>
-    (function(){
-      var btn=document.getElementById('toolsBtn'),menu=document.getElementById('toolsMenu');
-      if(!btn||!menu) return;
-      btn.addEventListener('click',function(e){e.stopPropagation();menu.style.display=menu.style.display==='none'?'block':'none';});
-      document.addEventListener('click',function(e){if(menu&&!e.target.closest('#hambBtn'))menu.style.display='none';});
-    })();
-  </script>
 <script>
+
 (function(){
   var INDEX=null, isOpen=false, selIdx=-1;
   var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
@@ -1137,6 +1185,7 @@ document.querySelectorAll('.faq-q').forEach(function(q) {
     }
   });
 })();
+
 </script>
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-box">
@@ -1192,128 +1241,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<script>
-(function(){
-  // This page's own 5-stage vocabulary (Early/Mid/Late Cycle, Recession, Recovery)
-  // differs from the sitewide cyclePhase computed in signals-loader.js — map
-  // one onto the other rather than pass it through untranslated.
-  var PHASE_MAP = {
-    'Deep BUY':        'Recovery',
-    'Early Expansion': 'Early Cycle',
-    'Mid Cycle':        'Mid Cycle',
-    'Late Expansion':  'Late Cycle',
-    'Distribution':     'Recession'
-  };
-  var CIRCUMFERENCE = 490;
-
-  function bandFor(p){
-    if (p >= 70) return { word: 'High',     color: '#dc2626', emoji: '🔴' };
-    if (p >= 50) return { word: 'Elevated', color: '#ea580c', emoji: '⚠️' };
-    if (p >= 30) return { word: 'Moderate', color: '#d97706', emoji: '⚪' };
-    return             { word: 'Low',      color: '#00956e', emoji: '🟢' };
-  }
-
-  function updatePhase(mapped){
-    if (!mapped) return;
-    var badge = document.getElementById('phaseBadge');
-    if (badge) badge.textContent = '⚠️ Economic phase: ' + mapped;
-    var row = document.getElementById('phaseStepsRow');
-    if (!row) return;
-    row.querySelectorAll('.phase-step').forEach(function(step){
-      var isActive = step.getAttribute('data-phase') === mapped;
-      step.classList.toggle('active', isActive);
-      var marker = step.querySelector('.phase-step-marker');
-      if (marker) marker.remove();
-      if (isActive) {
-        var nameEl = step.querySelector('.phase-step-name');
-        if (nameEl) {
-          var span = document.createElement('span');
-          span.className = 'phase-step-marker';
-          span.textContent = ' ◀';
-          nameEl.appendChild(span);
-        }
-      }
-    });
-  }
-
-  function updateProb(d, mapped){
-    var p = parseFloat(d.recessionProb);
-    if (isNaN(p)) return;
-    var clamped = Math.max(0, Math.min(100, p));
-    var band = bandFor(p);
-
-    var circle = document.getElementById('probCircleFill');
-    if (circle) circle.setAttribute('stroke-dashoffset', CIRCUMFERENCE * (1 - clamped / 100));
-
-    var word = document.getElementById('probWord');
-    if (word) word.textContent = band.word;
-
-    var sidebarLabel = document.getElementById('sidebarLabel');
-    if (sidebarLabel) {
-      sidebarLabel.textContent = band.emoji + ' ' + band.word + (mapped ? ' — ' + mapped : '');
-      sidebarLabel.style.color = band.color;
-    }
-
-    var histBar = document.getElementById('histNowBar');
-    if (histBar) {
-      histBar.style.width = clamped + '%';
-      histBar.style.background = band.color;
-    }
-  }
-
-  // Yield-curve risk read below is Signycle's own simplified heuristic for
-  // display purposes only — not an official recession-probability model.
-  // Positive/steep = low risk, flattening toward zero = moderate, inverted
-  // (negative) = high, scaled smoothly so the bar/badge don't jump sharply
-  // at the zero line.
-  function ycRisk(spread){
-    if (spread >= 0.5) return { score: 15, tier: 'low',  color: '#00956e', label: '✅ Positive / healthy' };
-    if (spread >= 0)   return { score: Math.round(30 + (0.5 - spread) * 50), tier: 'mod',  color: '#d97706', label: '⚠️ Flattening' };
-    return                    { score: Math.min(95, Math.round(60 + Math.abs(spread) * 40)), tier: 'high', color: '#dc2626', label: '🔴 Inverted' };
-  }
-  var YC_BADGE_CLASS = { low: 'badge-low', mod: 'badge-mod', high: 'badge-high' };
-
-  function updateYieldCurve(d){
-    var sig = d.signals && d.signals.yieldCurve;
-    if (!sig || sig.value == null) return;
-    var v = parseFloat(sig.value);
-    if (isNaN(v)) return;
-    var formatted = (v >= 0 ? '+' : '') + v.toFixed(2) + '%';
-    document.querySelectorAll('.yc-value-live').forEach(function(el){ el.textContent = formatted; });
-
-    var risk = ycRisk(v);
-    var barFill = document.getElementById('ycBarFill');
-    if (barFill) { barFill.style.width = risk.score + '%'; barFill.style.background = risk.color; }
-    var barScore = document.getElementById('ycBarScore');
-    if (barScore) { barScore.textContent = risk.score + ' / 100'; barScore.style.color = risk.color; }
-    var badge = document.getElementById('ycBadge');
-    if (badge) { badge.textContent = risk.label; badge.className = 'ind-badge ' + (YC_BADGE_CLASS[risk.tier] || 'badge-mod'); }
-    var sidebarYC = document.getElementById('sidebarYC');
-    if (sidebarYC) { sidebarYC.textContent = risk.score + '%'; sidebarYC.style.color = risk.color; }
-  }
-
-  function render(){
-    var d = window.SignycleData;
-    if(!d) return;
-
-    if (d.updated) {
-      var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-      var pretty = d.updated;
-      if(m){
-        var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
-      }
-      document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
-    }
-
-    var mapped = PHASE_MAP[d.cyclePhase];
-    if (mapped) updatePhase(mapped);
-    if (d.recessionProb != null) updateProb(d, mapped);
-    updateYieldCurve(d);
-  }
-  render();
-  document.addEventListener('signalsLoaded', render);
-})();
-</script>
 </body>
 </html>

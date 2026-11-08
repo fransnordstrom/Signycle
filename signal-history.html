@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signal History — Recent Zone Changes | Signycle</title>
-<meta name="description" content="A live, dated feed of real zone changes across Signycle's tracked signals — see exactly when Brent, copper, gold and more crossed BUY, WARN or SELL, from real recorded prices.">
-<link rel="canonical" href="https://signycle.com/signal-history">
-<meta property="og:title" content="Signal History — Recent Zone Changes | Signycle">
-<meta property="og:description" content="A live, dated feed of real zone changes across Signycle's tracked signals — built from real recorded prices, not projected or backfilled.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/signal-history.html">
-<meta property="og:image" content="https://signycle.com/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
-<style>/* ── NAV ── */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal History: Recorded Zone Changes | Signycle</title>
+<meta name="description" content="A dated log of every recorded BUY, near-sell and SELL zone change for Signycle&#39;s live-priced commodity and macro signals, built from values recorded every 15 minutes.">
+<meta property="og:title" content="Signal History: Recorded Zone Changes | Signycle">
+<meta property="og:description" content="A dated log of every recorded BUY, near-sell and SELL zone change for Signycle&#39;s live-priced commodity and macro signals, built from values recorded every 15 minutes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signycle.com/signal-history">
+<meta property="og:site_name" content="Signycle">
+<meta property="og:image" content="https://signycle.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://signycle.com/signal-history">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://signycle.com/"}, {"@type": "ListItem", "position": 2, "name": "Signal history", "item": "https://signycle.com/signal-history"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What counts as a zone change?", "acceptedAnswer": {"@type": "Answer", "text": "A recorded value that puts a signal in a different zone (BUY, neutral, near sell or SELL) than before. To filter out price jitter right at a level, the new zone has to hold for two recordings in a row, about 30 minutes, before it is logged. The same rule decides when alert emails are sent."}}, {"@type": "Question", "name": "Why are only some signals listed?", "acceptedAnswer": {"@type": "Answer", "text": "Only signals that Signycle prices live are recorded every 15 minutes: Brent, WTI, the Brent–WTI spread, copper, aluminium, gold, steel, iron ore, lithium, the EUR 10-year rate and the US yield curve. Hand-updated signals change only when a new value is entered, so they have no continuous record."}}, {"@type": "Question", "name": "Is there a backtest of past signals?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. A proper backtest needs a long, verified price history, and Signycle’s own recording only started in September 2026. The earlier backtest page used illustrative figures that had not been checked against market data, so it was removed. This log is the real record and grows every day."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ── NAV ── */
 /* ── DROPDOWN NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -63,188 +67,159 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
+
 :root{
-  --green:#00956e;--green-dark:#007a5a;--green-light:#e6f5f1;--green-border:#b3e8d8;
-  --sell:#e03e3e;--sell-light:#fef2f2;--sell-border:#fecaca;
-  --gold:#d97706;--gold-light:#fffbeb;--gold-border:#fed7aa;
-  --border:#e2e8e5;--surface:#f8faf9;--text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--ink:#0c1c2e;
-  --mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{max-width:100%;overflow-x:hidden;}
-body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.6;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
-.logo{font-family:var(--sans);font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
-.nav-link:hover,
-.nav-cta{background:var(--green);color:#fff;font-family:var(--sans);font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;}
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:99;}
-
-.mobile-menu 
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}}
-
-/* HERO */
-.hero{padding:6.5rem 1.5rem 2.5rem;background:#f0f4f2;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
-.hero-left h1{font-family:var(--sans);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.3rem;}
-.hero-left p{font-size:0.88rem;color:var(--dim);}
-.hero-meta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
-.live-badge{display:flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;color:var(--green);font-family:var(--mono);}
-.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.updated-ts{font-size:0.72rem;color:var(--muted);font-family:var(--mono);}
-
-/* SUMMARY BAR */
-.alert-signup{background:var(--green-light);border-bottom:1px solid var(--green-border);padding:0.9rem 1.5rem;}
-.alert-signup-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;}
-.alert-signup-label{font-size:0.82rem;font-weight:600;color:var(--ink);flex:1;min-width:220px;}
-.alert-signup-label span{display:block;font-size:0.72rem;font-weight:400;color:var(--dim);margin-top:0.15rem;}
-.alert-signup-form{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.alert-signup-form input{padding:0.55rem 0.8rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.82rem;font-family:var(--sans);min-width:220px;}
-.alert-signup-form input:focus{outline:none;border-color:var(--green);}
-.alert-signup-form button{padding:0.55rem 1.1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);}
-.alert-signup-form button:disabled{opacity:0.6;cursor:not-allowed;}
-.alert-signup-msg{font-size:0.76rem;margin-top:0.4rem;width:100%;}
-.alert-signup-msg.ok{color:var(--green-dark);}
-.alert-signup-msg.err{color:var(--sell);}
-.summary-bar{background:#fff;border-bottom:1px solid var(--border);padding:0.9rem 1.5rem;}
-.summary-inner{max-width:1100px;margin:0 auto;display:flex;gap:2rem;flex-wrap:wrap;align-items:center;}
-.sum-item{display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;}
-.sum-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-.sum-dot.buy{background:var(--green);}
-.sum-dot.neutral{background:var(--gold);}
-.sum-dot.sell{background:var(--sell);}
-.sum-label{color:var(--dim);}
-.sum-count{font-weight:700;color:var(--ink);font-family:var(--mono);}
-
-/* MAIN */
-.main{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 5rem;}
-
-/* FILTER TABS */
-.filter-row{display:flex;gap:0.5rem;flex-wrap:nowrap;overflow-x:auto;margin-bottom:2rem;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.filter-row::-webkit-scrollbar{display:none;}
-.ftab{font-size:0.75rem;font-weight:600;padding:0.4rem 1rem;border-radius:20px;border:1.5px solid var(--border);color:var(--dim);cursor:pointer;transition:all 0.15s;background:#fff;white-space:nowrap;flex-shrink:0;}
-.ftab.active,.ftab:hover{border-color:var(--green);color:var(--green);background:var(--green-light);}
-
-/* SIGNAL GRID */
-.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem;}
-.signals-section-title{font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:1rem;display:flex;align-items:baseline;gap:0.6rem;flex-wrap:wrap;}
-.signals-section-title span{font-size:0.76rem;font-weight:400;color:var(--dim);}
-
-/* SIGNAL CARD */
-.sig-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.4rem;position:relative;overflow:hidden;transition:box-shadow 0.15s;}
-.sig-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
-.sig-card.buy{border-color:rgba(0,149,110,0.3);background:linear-gradient(135deg,rgba(0,149,110,0.03) 0%,#fff 60%);}
-.sig-card.sell{border-color:rgba(224,62,62,0.3);background:linear-gradient(135deg,rgba(224,62,62,0.03) 0%,#fff 60%);}
-.sig-card.neutral{border-color:rgba(217,119,6,0.25);}
-
-.sig-status-bar{position:absolute;top:0;left:0;right:0;height:3px;}
-.sig-card.buy .sig-status-bar{background:linear-gradient(90deg,var(--green),#00c48a);}
-.sig-card.sell .sig-status-bar{background:linear-gradient(90deg,var(--sell),#c0392b);}
-.sig-card.neutral .sig-status-bar{background:linear-gradient(90deg,var(--gold),#f59e0b);}
-
-.sig-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
-.sig-name{font-size:0.95rem;font-weight:700;color:var(--ink);}
-.sig-badge{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;font-family:var(--mono);padding:0.3rem 0.9rem;border-radius:20px;}
-.sig-badge.buy{background:#f0fdf4;color:#166534;border:1px solid #86efac;}
-.sig-badge.sell{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
-.sig-badge.neutral{background:#f1f5f4;color:#64748b;border:1px solid #cbd5d1;}
-.sig-badge.warn{background:var(--gold-light);color:var(--gold);border:1px solid var(--gold-border);}
-
-.sig-value{font-family:var(--mono);font-size:1.8rem;font-weight:500;color:var(--ink);line-height:1;margin-bottom:0.3rem;}
-.sig-value.loading{color:var(--muted);font-size:1.2rem;}
-.sig-unit{font-size:0.72rem;color:var(--muted);margin-bottom:1rem;font-family:var(--mono);}
-
-/* THRESHOLD BAR */
-.thresh-wrap{margin:0.8rem 0;}
-.thresh-label-row{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);font-family:var(--mono);margin-bottom:0.3rem;}
-.thresh-bar-bg{height:6px;background:#f0f4f2;border-radius:3px;position:relative;overflow:visible;}
-.thresh-bar-fill{height:100%;border-radius:3px;transition:width 0.6s ease;}
-.thresh-marker{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);transform:translateX(-50%);transition:left 0.6s ease;}
-
-.thresh-zones{display:flex;height:4px;border-radius:2px;overflow:hidden;margin-top:4px;}
-.zone-buy{background:rgba(0,149,110,0.25);flex-shrink:0;}
-.zone-neutral{background:rgba(217,119,6,0.2);}
-.zone-sell{background:rgba(224,62,62,0.2);flex-shrink:0;}
-
-.sig-thresholds{display:flex;gap:0.5rem;margin-top:0.8rem;}
-.thresh-pill{font-size:0.65rem;font-family:var(--mono);padding:0.2rem 0.6rem;border-radius:4px;display:flex;align-items:center;gap:0.3rem;}
-.thresh-pill.buy{background:rgba(0,149,110,0.08);color:var(--green);border:1px solid rgba(0,149,110,0.2);}
-.thresh-pill.sell{background:rgba(224,62,62,0.08);color:var(--sell);border:1px solid rgba(224,62,62,0.2);}
-
-.sig-stocks{margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border);}
-.sig-stocks-label{font-size:0.62rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
-.stock-chips{display:flex;flex-wrap:wrap;gap:0.3rem;}
-.stock-chip{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#f0f4f2;border:1px solid #e2e8e5;border-radius:4px;color:var(--dim);text-decoration:none;}
-.stock-chip:hover{border-color:var(--green);color:var(--green);}
-.stock-chip-more{font-size:0.65rem;font-family:var(--mono);padding:0.15rem 0.5rem;background:#fff;border:1px dashed #cbd5d1;border-radius:4px;color:var(--dim);cursor:pointer;}
-.stock-chip-more:hover{border-color:var(--green);color:var(--green);}
-
-.sig-source{font-size:0.62rem;color:var(--muted);margin-top:0.6rem;display:flex;align-items:center;gap:0.3rem;}
-.sig-source.live::before{content:'●';color:var(--green);font-size:0.5rem;}
-.sig-source.manual::before{content:'○';color:var(--muted);font-size:0.5rem;}
-
-/* CTA BOX */
-.cta-box{background:linear-gradient(135deg,var(--green-light),#f0faf6);border:1px solid var(--green-border);border-radius:12px;padding:1.5rem 2rem;margin-top:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.cta-text h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem;}
-.cta-text p{font-size:0.82rem;color:var(--dim);}
-.cta-btn{background:var(--green);color:#fff;font-family:var(--sans);font-size:0.88rem;font-weight:700;padding:0.7rem 1.5rem;border-radius:8px;text-decoration:none;white-space:nowrap;}
-
-footer{background:#f0f4f2;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);}
-.footer-logo{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--ink);}
-@media(max-width:640px){.main{padding:2rem 1rem 3rem;}.signals-grid{grid-template-columns:1fr;}.cta-box{flex-direction:column;}footer{padding:1.5rem;flex-direction:column;}}
-
-
-
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-.nav-cta:hover{background:#007a5a;}
-
-/* Mega row */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-
-/* Mobile */
-
-
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:199;overflow-y:auto;}
-.mobile-menu.open{display:block;}
-.mobile-menu-inner{padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
-
-
-.mob-link:hover{color:var(--green);}
-.mob-link.crisis{color:#dc2626;}
-
-
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
-  
-}
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
+
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -282,15 +257,213 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
+
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
+
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
+
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
+
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
+
+/* ── Tool pages ── */
+.tool-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.tool-hero .wrap{padding-top:2.4rem;padding-bottom:2rem;}
+.tool-h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);}
+.tool-h1 em{font-style:normal;color:var(--green);}
+.tool-lede{font-size:1rem;line-height:1.65;color:var(--text);margin-top:0.8rem;max-width:720px;}
+.tool-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:720px;}
+.prose-card{font-size:0.92rem;line-height:1.7;color:var(--text);}
+.prose-card p + p{margin-top:0.7rem;}
+.prose-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.1rem 0 0.3rem;}
+.prose-card h3:first-child{margin-top:0;}
+.prose-card ul{margin:0.5rem 0 0 1.2rem;}
+.prose-card li{margin-bottom:0.4rem;}
+.prose-card a{color:var(--green);}
+.prose-card b{color:var(--ink);}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;}
+.faq details + details{margin-top:0.5rem;}
+.faq summary{cursor:pointer;font-size:0.95rem;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--green);font-weight:700;}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:0.6rem;}
+.faq details p a{color:var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.kpi{background:#fff;border:1px solid var(--border);border-top:3px solid var(--kc);border-radius:10px;padding:0.6rem 0.8rem;}
+.kpi b{display:block;font-size:1.4rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.kpi span{font-size:0.72rem;color:var(--dim);}
+
+.sh-bar{display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin:1.4rem 0 0.8rem;}
+.sh-bar select{font-family:var(--sans);font-size:0.86rem;padding:0.55rem 0.75rem;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--ink);}
+.sh-meta{font-size:0.78rem;color:var(--dim);}
+.ev{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.85rem 1.1rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0.25rem 1rem;align-items:center;}
+.ev + .ev{margin-top:0.5rem;}
+.ev-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;}
+a.ev-name:hover{color:var(--green);}
+.ev-when{font-size:0.74rem;color:var(--muted);}
+.ev-z{display:flex;align-items:center;gap:0.4rem;grid-row:1/3;grid-column:2;}
+.ev-z .arr{color:#cbd5e1;}
+.ev-val{font-size:0.78rem;color:var(--text);}
+@media(max-width:520px){.ev{grid-template-columns:1fr;}.ev-z{grid-row:auto;grid-column:1;margin-top:0.3rem;}}
+.sh-empty{padding:2.4rem 1.2rem;text-align:center;background:#fff;border:1px solid var(--border);border-radius:12px;color:var(--dim);font-size:0.88rem;line-height:1.7;}
+.sh-more{display:block;margin:0.8rem auto 0;font-family:var(--sans);font-size:0.86rem;font-weight:700;color:var(--green);background:#fff;border:1px solid var(--border);border-radius:8px;padding:0.6rem 1.2rem;cursor:pointer;}
+
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
      crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"Signal History — Recent Zone Changes","description":"A live, dated feed of real zone changes across Signycle's tracked commodity and macro signals, built from real recorded prices.","url":"https://signycle.com/signal-history.html","publisher":{"@type":"Organization","name":"Signycle","url":"https://signycle.com"}}
-</script>
 <link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo"><div class="logo-dot"></div>Signycle</a>
@@ -313,11 +486,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
         <div class="nav-drop">
           <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
-          <a href="backtest.html"><b>Signal Backtest</b><span>Historical returns</span></a>
           <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
           <a href="signal-history.html"><b>Signal History</b><span>Real zone crossings, dated</span></a>
           <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
-          <a href="liquidity-cycle.html"><b>Liquidity Cycle</b><span>Credit &amp; money supply</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
           <a href="hormuz-dashboard.html" style="color:#dc2626;"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
         </div>
@@ -424,11 +595,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   <div class="mob-section-label">Cycle Tools</div>
   <a href="cycle-screener.html" class="nav-link" style="padding-left:0.5rem;font-weight:700;color:#00956e;">Cycle Screener</a>
   <a href="cycle-dashboard.html" class="nav-link" style="padding-left:0.5rem;">Cycle Dashboard</a>
-  <a href="backtest.html" class="nav-link" style="padding-left:0.5rem;">Signal Backtest</a>
   <a href="live-signals.html" class="nav-link" style="padding-left:0.5rem;">Live Signals</a>
   <a href="signal-history.html" class="nav-link" style="padding-left:0.5rem;">Signal History</a>
   <a href="recession-tracker.html" class="nav-link" style="padding-left:0.5rem;">Recession Tracker</a>
-  <a href="liquidity-cycle.html" class="nav-link" style="padding-left:0.5rem;">Liquidity Cycle</a>
   <a href="hormuz-dashboard.html" class="nav-link" style="padding-left:0.5rem;color:#dc2626;font-weight:600;">Hormuz Dashboard</a>
   <div class="mob-section-label">Stock Tools</div>
   <a href="cyclical-dividend-scanner.html" class="nav-link" style="padding-left:0.5rem;">Dividend Scanner</a>
@@ -729,179 +898,36 @@ function _initHamburger() {
 _initHamburger();
 </script>
 
+<div class="page">
 
+<section class="tool-hero">
+<div class="wrap">
+  <div class="dash-eyebrow">Signal history &middot; recorded, not backfilled</div>
+  <h1 class="tool-h1">Signal <em>history</em></h1>
+  <p class="tool-lede">A dated log of every time a live-priced Signycle signal crossed into a new zone. It is built only from values Signycle actually recorded, about every 15 minutes, starting in September 2026. Nothing is projected or filled in afterwards.</p>
+</div>
+</section>
 
+<div class="wrap">
+  <div class="sh-bar">
+    <select id="feedFilter" aria-label="Signal"><option value="all">All signals</option></select>
+    <span class="sh-meta" id="feedMeta"></span>
+  </div>
+  <div id="feedList"></div>
+  <div class="sh-empty" id="feedEmpty" hidden></div>
+  <div class="sh-empty" id="feedLoading">Loading recorded history…</div>
 
-
-
-
-
-<div class="main" style="max-width:800px;margin:0 auto;padding:6.5rem 1.5rem 3rem;">
-  <div style="margin-bottom:0.6rem;"><span style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#00956e;background:#e6f5f1;padding:0.25rem 0.6rem;border-radius:20px;">Live feed</span></div>
-  <h1 style="font-size:1.9rem;font-weight:700;color:#0c1c2e;margin-bottom:0.6rem;">Signal history</h1>
-  <p style="font-size:0.95rem;color:#475569;line-height:1.65;margin-bottom:0.4rem;">
-    A real, dated log of when Signycle's tracked signals actually crossed a zone — BUY, NEUTRAL, WARN or SELL — built from prices recorded every ~15 minutes, not projected or backfilled.
-  </p>
-  <p style="font-size:0.82rem;color:#94a3b8;line-height:1.6;margin-bottom:1.8rem;">
-    Want to explore a single signal's full price history and set your own hypothetical thresholds? See <a href="live-signals.html" style="color:#00956e;font-weight:600;">Live Signals</a>.
-  </p>
-
-  <div style="display:flex;gap:0.8rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem;">
-    <select id="feedFilter" style="font-family:'IBM Plex Mono',monospace;font-size:0.8rem;font-weight:600;color:#0c1c2e;background:#f8faf9;border:1px solid #e2e8e5;border-radius:8px;padding:0.5rem 0.8rem;">
-      <option value="all">All signals</option>
-    </select>
-    <div style="font-size:0.75rem;color:#94a3b8;" id="feedMeta"></div>
+  <div class="sec-head"><div><h2 class="sec-title">Questions</h2></div></div>
+  <div class="faq">
+    <details><summary>What counts as a zone change?</summary><p>A recorded value that puts a signal in a different zone (BUY, neutral, near sell or SELL) than before. To filter out price jitter right at a level, the new zone has to hold for two recordings in a row, about 30 minutes, before it is logged. The same rule decides when alert emails are sent.</p></details>
+    <details><summary>Why are only some signals listed?</summary><p>Only signals that Signycle prices live are recorded every 15 minutes: Brent, WTI, the Brent&ndash;WTI spread, copper, aluminium, gold, steel, iron ore, lithium, the EUR 10-year rate and the US yield curve. Hand-updated signals change only when a new value is entered, so they have no continuous record.</p></details>
+    <details><summary>Is there a backtest of past signals?</summary><p>Not yet. A proper backtest needs a long, verified price history, and Signycle&rsquo;s own recording only started in September 2026. The earlier backtest page used illustrative figures that had not been checked against market data, so it was removed. This log is the real record and grows every day.</p></details>
   </div>
 
-  <div id="feedList"></div>
-  <div id="feedEmpty" style="display:none;padding:3rem 1.5rem;text-align:center;background:#fff;border:1px solid #e2e8e5;border-radius:12px;color:#6b7f78;font-size:0.88rem;line-height:1.7;"></div>
-  <div id="feedLoading" style="padding:3rem 1.5rem;text-align:center;color:#94a3b8;font-size:0.85rem;">Loading signal history…</div>
+  <p class="foot-note">Times are in UTC. For information only, not financial advice. See the <a href="disclaimer.html">disclaimer</a>.</p>
 </div>
 
-<script>
-(function() {
-  // Only signals the Worker actually prices live and records to D1 have
-  // real history (see worker.js LIVE_TICKERS + fetchEurYield + fetchYieldCurve).
-  // Same list used by live-signals.html's "Signal history" chart section.
-  var HIST_SIGNALS = [
-    { id: 'brent',      name: 'Brent Crude Oil' },
-    { id: 'wti',        name: 'WTI Crude Oil' },
-    { id: 'spread',     name: 'Brent-WTI Spread' },
-    { id: 'copper',     name: 'LME Copper' },
-    { id: 'alum',       name: 'LME Aluminium' },
-    { id: 'gold',       name: 'Gold Price' },
-    { id: 'steel',      name: 'Steel HRC Price' },
-    { id: 'ironore',    name: 'Iron Ore (62% Fe)' },
-    { id: 'lithium',    name: 'Lithium Carbonate' },
-    { id: 'eur10y',     name: 'EUR 10-Year Rate' },
-    { id: 'yieldCurve', name: 'US 10Y-2Y Spread' },
-  ];
-  var ZONE_STYLE = {
-    buy:     { label: 'BUY',     bg: '#e6f5f1', color: '#00956e' },
-    neutral: { label: 'NEUTRAL', bg: '#f0f4f2', color: '#475569' },
-    warn:    { label: 'WARN',    bg: '#fffbeb', color: '#d97706' },
-    sell:    { label: 'SELL',    bg: '#fef2f2', color: '#dc2626' },
-  };
-  var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
-
-  var filterSelect = document.getElementById('feedFilter');
-  var listEl = document.getElementById('feedList');
-  var emptyEl = document.getElementById('feedEmpty');
-  var loadingEl = document.getElementById('feedLoading');
-  var metaEl = document.getElementById('feedMeta');
-  var ALL_EVENTS = [];
-
-  HIST_SIGNALS.forEach(function(s) {
-    var o = document.createElement('option');
-    o.value = s.id;
-    o.textContent = s.name;
-    filterSelect.appendChild(o);
-  });
-
-  function formatDateTime(iso) {
-    var d = new Date(iso);
-    if (isNaN(d.getTime())) return '';
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return d.getUTCDate() + ' ' + months[d.getUTCMonth()] + ' ' + d.getUTCFullYear() + ', ' +
-      String(d.getUTCHours()).padStart(2,'0') + ':' + String(d.getUTCMinutes()).padStart(2,'0') + ' UTC';
-  }
-
-  // The raw `zone` on each recorded point is undebounced — it's whatever
-  // calcZone() returned at that exact tick, including single-tick noise
-  // from ordinary price jitter near a threshold (see worker.js checkAlerts,
-  // which requires a zone to hold for 2 consecutive ticks before treating
-  // it as a real alertable crossing). Applying that same confirm-on-second-
-  // tick rule here before turning segment boundaries into feed events,
-  // instead of merging the raw zone directly, keeps this feed from
-  // reporting the same noise as a string of fake crossings.
-  function confirmedSegments(points) {
-    if (!points.length) return [];
-    var accepted = [{ p: points[0], zone: points[0].zone || 'neutral' }];
-    var confirmedZone = accepted[0].zone;
-    var pendingZone = null, pendingBuf = [];
-    for (var i = 1; i < points.length; i++) {
-      var p = points[i], zone = p.zone || 'neutral';
-      if (zone === confirmedZone) {
-        accepted.push({ p: p, zone: confirmedZone });
-        pendingZone = null; pendingBuf = [];
-      } else if (zone === pendingZone) {
-        pendingBuf.push(p);
-        pendingBuf.forEach(function(pp) { accepted.push({ p: pp, zone: zone }); });
-        confirmedZone = zone;
-        pendingZone = null; pendingBuf = [];
-      } else {
-        pendingZone = zone; pendingBuf = [p];
-      }
-    }
-    var segments = [];
-    accepted.forEach(function(a) {
-      var last = segments[segments.length - 1];
-      if (last && last.zone === a.zone) { last.points.push(a.p); }
-      else { segments.push({ zone: a.zone, points: [a.p] }); }
-    });
-    return segments;
-  }
-
-  // Turns every confirmed segment boundary (after the first) into a dated
-  // crossing event. The first segment is excluded — it just means
-  // "recording started here," not that a real crossing happened then.
-  function eventsFromPoints(sig, points) {
-    var segments = confirmedSegments(points);
-    var events = [];
-    for (var i = 1; i < segments.length; i++) {
-      var from = segments[i - 1].zone, to = segments[i].zone;
-      var first = segments[i].points[0];
-      events.push({ signalId: sig.id, signalName: sig.name, from: from, to: to, at: first.recorded_at, value: first.value });
-    }
-    return events;
-  }
-
-  function renderBadge(zone) {
-    var z = ZONE_STYLE[zone] || ZONE_STYLE.neutral;
-    return '<span style="font-size:0.68rem;font-weight:700;padding:0.15rem 0.55rem;border-radius:12px;background:' + z.bg + ';color:' + z.color + ';">' + z.label + '</span>';
-  }
-
-  function render() {
-    var filter = filterSelect.value;
-    var events = filter === 'all' ? ALL_EVENTS : ALL_EVENTS.filter(function(e) { return e.signalId === filter; });
-    if (!events.length) {
-      listEl.style.display = 'none';
-      emptyEl.style.display = 'block';
-      emptyEl.textContent = ALL_EVENTS.length
-        ? 'No recorded zone changes yet for this signal — try "All signals" or check back soon.'
-        : 'No zone changes recorded yet. History tracking only started recently, so this feed will fill in as real crossings happen — check back soon.';
-      return;
-    }
-    listEl.style.display = 'block';
-    emptyEl.style.display = 'none';
-    listEl.innerHTML = events.map(function(e) {
-      return '<div style="background:#fff;border:1px solid #e2e8e5;border-radius:10px;padding:1rem 1.2rem;margin-bottom:0.7rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">' +
-        '<div>' +
-          '<div style="font-size:0.9rem;font-weight:700;color:#0c1c2e;margin-bottom:0.3rem;">' + e.signalName + '</div>' +
-          '<div style="font-size:0.78rem;color:#94a3b8;">' + formatDateTime(e.at) + '</div>' +
-        '</div>' +
-        '<div style="display:flex;align-items:center;gap:0.5rem;">' +
-          renderBadge(e.from) + '<span style="color:#cbd5e1;">&rarr;</span>' + renderBadge(e.to) +
-        '</div>' +
-      '</div>';
-    }).join('');
-  }
-
-  filterSelect.addEventListener('change', render);
-
-  Promise.all(HIST_SIGNALS.map(function(sig) {
-    return fetch(HISTORY_API + '?signal=' + encodeURIComponent(sig.id) + '&limit=20000')
-      .then(function(r) { return r.json(); })
-      .then(function(data) { return eventsFromPoints(sig, (data && data.points) || []); })
-      .catch(function() { return []; });
-  })).then(function(results) {
-    ALL_EVENTS = [].concat.apply([], results).sort(function(a, b) { return new Date(b.at) - new Date(a.at); });
-    loadingEl.style.display = 'none';
-    metaEl.textContent = ALL_EVENTS.length + ' recorded crossing' + (ALL_EVENTS.length === 1 ? '' : 's') + ' across ' + HIST_SIGNALS.length + ' live-tracked signals';
-    render();
-  });
-})();
-</script>
+</div><!-- .page -->
 
 <footer class="sx-footer">
   <div class="sx-foot-inner">
@@ -922,7 +948,77 @@ _initHamburger();
   </div>
 </footer>
 
+<script src="/signals-meta.js"></script>
+
 <script>
+(function() {
+  var M = window.SignycleMeta;
+  var ZL = M ? M.ZONE_LABEL : { buy: 'BUY', neutral: 'NEUTRAL', warn: 'NEAR SELL', sell: 'SELL' };
+  var HIST = ['brent', 'wti', 'spread', 'copper', 'alum', 'gold', 'steel', 'ironore', 'lithium', 'eur10y', 'yieldCurve'];
+  var API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
+  var $ = function(id) { return document.getElementById(id); };
+  var esc = M ? M.esc : function(s) { return s; };
+  function nameOf(id) { return M && M.META[id] ? M.META[id].name : id; }
+  function pageOf(id) { return M && M.META[id] ? M.META[id].page : ''; }
+  var ALL = [], limit = 50;
+  HIST.forEach(function(id) { $('feedFilter').insertAdjacentHTML('beforeend', '<option value="' + id + '">' + esc(nameOf(id)) + '</option>'); });
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function when(iso) {
+    var d = new Date(iso); if (isNaN(d.getTime())) return '';
+    return d.getUTCDate() + ' ' + MON[d.getUTCMonth()] + ' ' + d.getUTCFullYear() + ', ' + String(d.getUTCHours()).padStart(2, '0') + ':' + String(d.getUTCMinutes()).padStart(2, '0') + ' UTC';
+  }
+  // A new zone only counts once it holds for two consecutive recordings (same rule as the alert emails).
+  function confirmed(points) {
+    if (!points.length) return [];
+    var acc = [{ p: points[0], zone: points[0].zone || 'neutral' }], cur = acc[0].zone, pend = null, buf = [];
+    for (var i = 1; i < points.length; i++) {
+      var p = points[i], z = p.zone || 'neutral';
+      if (z === cur) { acc.push({ p: p, zone: cur }); pend = null; buf = []; }
+      else if (z === pend) { buf.push(p); buf.forEach(function(q) { acc.push({ p: q, zone: z }); }); cur = z; pend = null; buf = []; }
+      else { pend = z; buf = [p]; }
+    }
+    var seg = [];
+    acc.forEach(function(a) { var l = seg[seg.length - 1]; if (l && l.zone === a.zone) l.points.push(a.p); else seg.push({ zone: a.zone, points: [a.p] }); });
+    return seg;
+  }
+  function events(id, data) {
+    var pts = (data && data.points) || [], seg = confirmed(pts), out = [];
+    for (var i = 1; i < seg.length; i++) out.push({ id: id, from: seg[i - 1].zone, to: seg[i].zone, at: seg[i].points[0].recorded_at, value: seg[i].points[0].value, unit: data.unit || '' });
+    return { ev: out, since: pts.length ? pts[0].recorded_at : null };
+  }
+  function badge(z) { return '<span class="badge ' + (ZL[z] ? z : 'neutral') + '">' + (ZL[z] || 'NEUTRAL') + '</span>'; }
+  function render() {
+    var f = $('feedFilter').value, list = f === 'all' ? ALL : ALL.filter(function(e) { return e.id === f; });
+    if (!list.length) {
+      $('feedList').innerHTML = ''; $('feedEmpty').hidden = false;
+      $('feedEmpty').textContent = ALL.length ? 'No zone changes recorded for this signal yet.' : 'No zone changes recorded yet. The log fills in as real crossings happen.';
+      return;
+    }
+    $('feedEmpty').hidden = true;
+    $('feedList').innerHTML = list.slice(0, limit).map(function(e) {
+      var pg = pageOf(e.id), v = parseFloat(e.value);
+      return '<div class="ev">' + (pg ? '<a class="ev-name" href="' + pg + '">' + esc(nameOf(e.id)) + '</a>' : '<span class="ev-name">' + esc(nameOf(e.id)) + '</span>') +
+        '<div class="ev-z">' + badge(e.from) + '<span class="arr">&rarr;</span>' + badge(e.to) + '</div>' +
+        '<div class="ev-when">' + when(e.at) + (isNaN(v) ? '' : ' &middot; <span class="ev-val">at ' + (M ? M.fmt(v, e.unit) : v) + '</span>') + '</div></div>';
+    }).join('') + (list.length > limit ? '<button class="sh-more" id="more">Show more</button>' : '');
+    var more = $('more'); if (more) more.onclick = function() { limit += 50; render(); };
+  }
+  $('feedFilter').addEventListener('change', function() { limit = 50; render(); });
+  Promise.all(HIST.map(function(id) {
+    return fetch(API + '?signal=' + encodeURIComponent(id) + '&limit=20000').then(function(r) { return r.json(); })
+      .then(function(d) { return events(id, d); }).catch(function() { return { ev: [], since: null }; });
+  })).then(function(res) {
+    ALL = [].concat.apply([], res.map(function(r) { return r.ev; })).sort(function(a, b) { return new Date(b.at) - new Date(a.at); });
+    var since = res.map(function(r) { return r.since; }).filter(Boolean).sort()[0];
+    $('feedLoading').hidden = true;
+    $('feedMeta').textContent = ALL.length + ' recorded zone change' + (ALL.length === 1 ? '' : 's') + ' across ' + HIST.length + ' signals' + (since ? ', recording since ' + when(since).split(',')[0] : '');
+    render();
+  });
+})();
+</script>
+
+<script>
+
 (function(){
   var INDEX=null, isOpen=false, selIdx=-1;
   var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
@@ -1052,6 +1148,7 @@ _initHamburger();
     }
   });
 })();
+
 </script>
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-box">
@@ -1106,5 +1203,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 </body>
 </html>
