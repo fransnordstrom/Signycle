@@ -90,6 +90,7 @@
   function fmt(value, decimals) {
     var n = parseFloat(value);
     if (isNaN(n)) return String(value);
+    if (n >= 1000000) return (Math.round(n / 10000) / 100) + 'M';
     if (n >= 100000) return (n/1000).toFixed(0) + 'k';
     if (n >= 10000)  return n.toLocaleString('en-US', {maximumFractionDigits: 0});
     if (n >= 1000)   return n.toLocaleString('en-US', {maximumFractionDigits: 0});
