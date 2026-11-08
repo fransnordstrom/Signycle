@@ -38,3 +38,11 @@
   .sx-foot-inner{grid-template-columns:1fr;gap:1.5rem;}
   .sx-foot-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.3rem 1rem;}
 }
+
+/* ── Mobile menu ─────────────────────────────────────────────────────────
+   Pages size the open menu with height:calc(100vh - 58px). On iPhone Safari
+   100vh includes the area behind the bottom toolbar, so the last links were
+   hidden. (The html body prefix outranks inline page styles that load after this file.) Anchoring to bottom:0 sizes it to the visible area instead, and
+   the extra bottom padding keeps the last link clear of the home indicator. */
+html body .mobile-menu.open{bottom:0;height:auto;}
+html body .mobile-menu .mobile-menu-inner{padding-bottom:calc(4rem + env(safe-area-inset-bottom, 0px));}
