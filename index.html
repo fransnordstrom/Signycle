@@ -8,10 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="msvalidate.01" content="EE82BC86C772CF83EB1FAE7AF42BE078" />
 <title>Signycle – The Global Market Cycle Intelligence Platform</title>
-<meta name="description" content="Know when to buy. Know when to sell. Global macro and market cycle intelligence. Track 21 signals, recession probability, precious metals, liquidity.">
+<meta name="description" content="Know when to buy. Know when to sell. Track 24 commodity, freight and macro signals against their historical BUY and SELL levels, with live prices and the stocks tied to each.">
 <meta name="keywords" content="market cycle signals, shipping stocks buy signal, Baltic Dry Index alert, cyclical investing, Oslo Bors signals, energy stocks cycle, salmon stocks signal, offshore stocks alert, global stock cycle monitor">
 <meta property="og:title" content="Signycle – The Global Market Cycle Intelligence Platform">
-<meta property="og:description" content="Know when to buy. Know when to sell. Global macro and market cycle intelligence. Track 21 signals, recession probability, precious metals, liquidity.">
+<meta property="og:description" content="Know when to buy. Know when to sell. Track 24 commodity, freight and macro signals against their historical BUY and SELL levels, with live prices and the stocks tied to each.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://signycle.com/index.html">
 <meta property="og:site_name" content="Signycle">
@@ -23,7 +23,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<style>/* ── NAV ── */
+<style>
+/* ── NAV ── */
 /* ── DROPDOWN NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -51,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .nav-top-link:hover{color:#00956e;}
 .nav-cta{background:#00956e;color:#fff;font-size:0.78rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;transition:background .15s;}
 .nav-cta:hover{background:#007a5a;}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;padding:4px;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
 .hamburger span{display:block;width:22px;height:2px;background:#0c1c2e;border-radius:2px;}
 @media(max-width:960px){.nav-links{display:none;}.nav-top-right{display:none;}.hamburger{display:flex;}}
 /* ── END DROPDOWN NAV ── */
@@ -67,271 +68,160 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
-:root {
-  --white: #ffffff;
-  --off: #f5f7fa;
-  --off2: #eef1f6;
-  --border: #e2e8f0;
-  --border2: #cbd5e1;
-  --ink: #0c1c2e;
-  --ink2: #1e3050;
-  --text: #475569;
-  --muted: #94a3b8;
-  --green: #00956e;
-  --green-dark: #007a5a;
-  --green-bg: #f0faf6;
-  --green-border: #b3e8d8;
-  --red: #e53e3e;
-  --red-bg: #fff5f5;
-  --amber: #d97706;
-  --amber-bg: #fffbeb;
-  --blue: #2563eb;
-  --mono: "IBM Plex Mono", monospace;
-  --sans: "DM Sans", system-ui, sans-serif;
-}
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--ink); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
 
+:root{
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-/* Mega row — desktop only */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-/* Hamburger — hidden on desktop, shown on mobile */
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
-/* Mobile menu — hidden on desktop */
-.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;bottom:0;background:#fff;border-bottom:1px solid var(--border);z-index:199;overflow-y:auto;-webkit-overflow-scrolling:touch;}
-.mobile-menu.open{display:block;height:calc(100vh - 58px);}
-.mobile-menu-inner{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:1.2rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;}
-.mobile-menu 
-.mobile-menu 
-.mobile-menu .nav-cta{background:var(--green);color:#fff;font-weight:700;font-size:0.9rem;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;display:block;text-align:center;margin-top:0.5rem;}
-.mob-section-label{font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.6rem 0 0.2rem;}
-/* Mobile breakpoint */
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
-}
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: grid; grid-template-columns: 1fr 1fr;
-  align-items: center; gap: 4rem;
-  padding: 7rem 3rem 4rem;
-  max-width: 1200px; margin: 0 auto;
-  overflow: hidden;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--green); background: var(--green-bg); border: 1px solid var(--green-border);
-  padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.5rem;
-}
-.pulse { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.3); } }
-.hero-h1 {
-  font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 700;
-  color: var(--ink); line-height: 1.1; letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-}
-.hero-h1 em { font-style: italic; color: var(--green); }
-.hero-sub { font-size: 1.05rem; color: var(--text); line-height: 1.7; margin-bottom: 2rem; max-width: 500px; word-break: break-word; overflow-wrap: break-word; }
-.market-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.market-pill {
-  display: flex; align-items: center; gap: 0.4rem;
-  font-family: var(--mono); font-size: 0.68rem;
-  background: var(--off); border: 1px solid var(--border);
-  color: var(--text); padding: 0.3rem 0.7rem; border-radius: 4px;
-}
-.pill-dot { width: 6px; height: 6px; border-radius: 50%; }
-.pill-green { background: var(--green); }
-.pill-amber { background: var(--amber); }
-.pill-red { background: var(--red); }
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-.hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin: 1.5rem 0 2rem; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--green); color: #fff; font-weight: 700; font-size: 0.92rem;
-  padding: 0.85rem 1.4rem; border-radius: 10px; text-decoration: none;
-  transition: background 0.15s, transform 0.15s;
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
-.btn-primary:hover { background: #007a5a; transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  background: #fff; color: var(--ink); font-weight: 600; font-size: 0.88rem;
-  padding: 0.8rem 1.3rem; border-radius: 10px; border: 1.5px solid var(--border);
-  text-decoration: none; transition: border-color 0.15s, color 0.15s;
-}
-.btn-secondary:hover { border-color: var(--green); color: var(--green); }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
-/* Hero right — signal dashboard mockup */
-.hero-right { position: relative; }
-.signal-dashboard {
-  background: white; border: 1px solid var(--border);
-  border-radius: 16px; padding: 1.5rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
-}
-.dash-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
-}
-.dash-title { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
-.dash-live {
-  display: flex; align-items: center; gap: 0.4rem;
-  font-family: var(--mono); font-size: 0.62rem; color: var(--green);
-  background: var(--green-bg); padding: 0.2rem 0.6rem; border-radius: 4px;
-}
-.dash-rows { display: flex; flex-direction: column; gap: 0.6rem; }
-.dash-row {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 0.8rem 1rem; border-radius: 8px; background: var(--off);
-  border-left: 3px solid transparent;
-}
-.dash-row.green-row { background: var(--green-bg); border-left-color: var(--green); }
-.dash-row.amber-row { background: var(--amber-bg); border-left-color: var(--amber); }
-.dash-row.red-row { background: var(--red-bg); border-left-color: var(--red); }
-.dash-row-left { flex: 1; }
-.dash-row-exch { font-size: 0.62rem; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
-.dash-row-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-top: 1px; }
-.dash-badge {
-  font-family: var(--mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
-  padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; white-space: nowrap;
-}
-.badge-buy { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-.badge-neutral { background: var(--amber-bg); color: var(--amber); border: 1px solid #fde68a; }
-.badge-sell { background: var(--red-bg); color: var(--red); border: 1px solid #fca5a5; }
-.badge-neu2 { background: #f1f5f4; color: #64748b; border: 1px solid #cbd5d1; }
-.dash-val { font-family: var(--mono); font-size: 0.75rem; color: var(--text); white-space: nowrap; }
-.dash-footer { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--muted); text-align: center; }
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
 
-/* floating accent cards */
-.float-card {
-  position: absolute; background: white; border: 1px solid var(--border);
-  border-radius: 10px; padding: 0.8rem 1.1rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  font-size: 0.75rem;
-}
-.float-card-top { font-size: 0.6rem; color: var(--muted); font-family: var(--mono); text-transform: uppercase; margin-bottom: 0.25rem; }
-.float-card-val { font-size: 1.3rem; font-weight: 700; color: var(--green); font-family: var(--mono); }
-.float-card-sub { font-size: 0.6rem; color: var(--muted); }
-.float-left { top: -110px; left: -30px; animation: floatA 4s ease-in-out infinite; }
-.float-right { bottom: -110px; right: -30px; animation: floatB 5s ease-in-out infinite; }
-@keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-@keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
 
-html, body { max-width: 100%; overflow-x: hidden; }
-.dash-mobile-stats { display:none; }
-@media(max-width:900px) {
-  .hero { grid-template-columns:1fr; padding:6rem 1.5rem 3rem; min-height:auto; }
-  .float-left,.float-right { display:none; }
-  .hero-right { margin-top:2rem; }
-  .dash-mobile-stats { display:flex; gap:0.6rem; margin-bottom:1.2rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
-  .dms-item { flex:1; text-align:center; }
-  .dms-label { display:block; font-size:0.58rem; color:var(--muted); font-family:var(--mono); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.2rem; }
-  .dms-val { font-family:var(--mono); font-weight:700; font-size:1.05rem; }
-  .dms-divider { width:1px; background:var(--border); }
-  .dash-row { flex-wrap:wrap; row-gap:0.4rem; }
-  .dash-row-left { min-width:0; flex-basis:100%; }
-  .dash-val { margin-right:auto; }
-}
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
-/* ── STATS BAR ── */
-.stats-bar {
-  background: var(--ink); color: white;
-  padding: 2.5rem 3rem;
-}
-.stats-inner {
-  max-width: 1000px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
-}
-.stat-item { text-align: center; }
-.stat-n {
-  font-family: var(--mono); font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500; color: var(--green); line-height: 1;
-  margin-bottom: 0.4rem;
-}
-.stat-l { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
-@media(max-width:600px) { .stats-inner { grid-template-columns:repeat(2,1fr); } .stats-bar { padding:2rem 1.5rem; } }
-
-/* ── GENERIC SECTION ── */
-.section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
-.section-alt { background: var(--off); }
-.section-wrap { padding: 6rem 3rem; }
-.section-wrap-inner { max-width: 1100px; margin: 0 auto; }
-.eyebrow {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--green); margin-bottom: 0.8rem;
-}
-.section-h {
-  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
-  color: var(--ink); line-height: 1.15; letter-spacing: -0.025em;
-  margin-bottom: 1rem;
-}
-.section-h em { font-style: italic; color: var(--green); }
-.section-p { font-size: 1rem; color: var(--text); line-height: 1.7; max-width: 580px; margin-bottom: 3rem; }
-.reveal { opacity: 1; transform: none; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-/* ── FOOTER ── */
-footer {
-  background: var(--ink); padding: 2rem 3rem;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 1rem;
-}
-.footer-logo { font-size: 1rem; font-weight: 700; color: white; }
-footer div { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
-@media(max-width:600px) { footer { padding:1.5rem; flex-direction:column; text-align:center; } .blog-section { padding:3rem 1.25rem; } .section { padding:3rem 1.25rem; } .section-wrap { padding:3rem 1.25rem; } }
-@media(max-width:768px) {
-  .section { padding:4rem 1.25rem; }
-  .section-wrap { padding:4rem 1.25rem; }
-  .blog-section { padding:3.5rem 1.25rem; }
-  .final-section { padding:4rem 1.25rem; }
-  .stats-bar { padding:2rem 1.25rem; }
-  .stats-inner { grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-  .hero-sub { font-size:0.95rem; max-width:100%; }
-  .hero-h1 { font-size:clamp(2rem,8vw,3rem); }
-  .hero-left { max-width:100%; overflow:hidden; }
-  .signal-tabs { flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px; scrollbar-width:none; }
-  .signal-tabs::-webkit-scrollbar { display:none; }
-  .stab { flex-shrink:0; white-space:nowrap; }
-  .signal-grid { grid-template-columns:1fr; }
-  .price-grid { gap:1rem; }
-  .macro-grid { gap:1rem; }
-  .how-grid { gap:1rem; }
-  .blog-grid { grid-template-columns:1fr; }
-  .blog-grid-wide { grid-template-columns:1fr; }
-  .exchange-regions { gap:1rem; }
-}
-
-
-
-.hero-proof{display:flex;align-items:center;gap:0.8rem;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
-.proof-item{text-align:center;}.proof-item strong{display:block;font-size:1.1rem;font-weight:800;color:var(--green);font-family:'IBM Plex Mono',monospace;}
-.proof-item span{font-size:0.65rem;color:var(--muted);}
-.proof-divider{width:1px;height:32px;background:var(--border);}
-.neutral-row{background:rgba(74,112,96,0.04);}
 
 
 
@@ -368,9 +258,165 @@ footer div { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
 .search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
+
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
+
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
+
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
+
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
 </style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
      crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
 <!-- NAV -->
@@ -811,178 +857,168 @@ function _initHamburger() {
 }
 _initHamburger();
 </script>
-<!-- ANNOUNCEMENT BAR -->
 
-<!-- HERO -->
-<div style="background: linear-gradient(180deg, #f0faf6 0%, #ffffff 60%);">
-<section class="hero">
-  <div class="hero-left">
+<div class="page">
 
-    <div class="hero-eyebrow"><span class="pulse"></span>Free · No Bloomberg needed · Live pricing</div>
+<section class="home-hero">
+<div class="wrap">
+  <div>
+    <div class="dash-eyebrow">Free · live prices · no sign-up</div>
+    <h1 class="home-h1">Know when to buy.<br>Know when to <em>sell.</em></h1>
+    <p class="home-lede">Signycle tracks 24 commodity, freight and macro signals against their own historical BUY and SELL levels, and links each one to the stocks that tend to move with it.</p>
+    <p class="home-now" id="homeNow">Loading today&rsquo;s signals…</p>
+    <div class="home-ctas">
+      <a class="btn btn-p" href="live-signals.html">See all live signals →</a>
+      <a class="btn btn-s" href="how-it-works.html">How it works</a>
+    </div>
+    <div class="home-src"><span class="dot-live"></span>Live prices from Yahoo Finance, the ECB and FRED, refreshed about every 15 minutes.</div>
+  </div>
 
-    <h1 class="hero-h1">Know when to buy.<br>Know when to <em>sell.</em></h1>
-
-    <p class="hero-sub" style="font-size:1rem;line-height:1.75;">
-  Track 21 commodity and macro signals — each with a <strong style="color:var(--ink);">historical BUY and SELL threshold.</strong><br>
-  Know when oil, copper, shipping and gold are cheap or expensive relative to history.<br>
-  <strong style="color:#dc2626;">Right now: <span data-signal="sellZoneCount">5</span> signals are in SELL zone. Cycle score <span data-signal="cycleScore">73/100</span>.</strong>
-</p>
-
-<!-- For who -->
-<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.2rem;">
-  <span style="background:#f0fdf4;border:1px solid #86efac;border-radius:20px;padding:0.2rem 0.7rem;font-size:0.72rem;font-weight:600;color:#15803d;">✓ Cyclical stock investors</span>
-  <span style="background:#f0f4ff;border:1px solid #c7d7f8;border-radius:20px;padding:0.2rem 0.7rem;font-size:0.72rem;font-weight:600;color:#1d4ed8;">✓ Macro-aware traders</span>
-  <span style="background:#fdf4ff;border:1px solid #e9d5ff;border-radius:20px;padding:0.2rem 0.7rem;font-size:0.72rem;font-weight:600;color:#7c3aed;">✓ Long-term portfolio managers</span>
+  <div class="card now-card">
+    <div class="now-top">
+      <div>
+        <div class="card-label">Cycle score right now</div>
+        <div class="score-row"><span class="score-num" id="scoreNum">–</span><span class="score-of">/100</span><span class="score-phase" id="scorePhase"></span></div>
+      </div>
+      <a href="cycle-dashboard.html" class="card-note" style="color:var(--green);font-weight:600;text-decoration:none;white-space:nowrap;margin-top:0.2rem;">Dashboard →</a>
+    </div>
+    <div class="meter" aria-hidden="true">
+      <div class="meter-pin" id="meterPin" style="left:0%;"></div>
+      <div class="meter-track">
+        <span style="flex:25;background:#00956e;"></span>
+        <span style="flex:20;background:#8fd1b9;"></span>
+        <span style="flex:20;background:#cfd8d4;"></span>
+        <span style="flex:15;background:#f0b35a;"></span>
+        <span style="flex:20;background:#dc2626;"></span>
+      </div>
+      <div class="meter-labels" id="meterLabels">
+        <span style="flex:25;">Deep buy</span>
+        <span style="flex:20;">Early</span>
+        <span style="flex:20;">Mid cycle</span>
+        <span style="flex:15;">Late</span>
+        <span style="flex:20;text-align:right;">Distribution</span>
+      </div>
+    </div>
+    <div class="seg-bar" id="segBar" role="img" aria-label="Signals by zone"></div>
+    <div class="legend" style="margin-top:0.5rem;">
+      <span><i style="background:var(--buy);"></i>Buy</span>
+      <span><i style="background:var(--neutral);"></i>Neutral</span>
+      <span><i style="background:var(--warn);"></i>Near sell</span>
+      <span><i style="background:var(--sell);"></i>Sell</span>
+    </div>
+    <div class="mini" id="miniRows"></div>
+    <div class="now-foot"><a href="live-signals.html" id="allLink">All signals →</a><span>Not financial advice</span></div>
+  </div>
 </div>
-
-    <div style="display:flex;flex-direction:column;gap:0.6rem;margin:1.5rem 0;">
-      <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.88rem;color:var(--text);">
-        <span style="width:22px;height:22px;background:var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;">1</span>
-        <span><strong style="color:var(--ink);">We track signals</strong> — Brent crude, copper, BDI, salmon, gold and 13 more</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.88rem;color:var(--text);">
-        <span style="width:22px;height:22px;background:var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;">2</span>
-        <span><strong style="color:var(--ink);">Each signal has thresholds</strong> — BUY below $X, SELL above $Y, based on history</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.7rem;font-size:0.88rem;color:var(--text);">
-        <span style="width:22px;height:22px;background:var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0;">3</span>
-        <span><strong style="color:var(--ink);">We map stocks to signals</strong> — Frontline follows VLCC rates. FCX follows copper. Equinor follows Brent.</span>
-      </div>
-    </div>
-
-<div class="hero-ctas">
-      <a href="where-are-we-in-the-cycle.html" class="btn-primary">📍 Where are we now? <span style="font-weight:400;opacity:0.85;">Cycle score <span data-signal="cycleScore">73/100</span></span></a>
-      <a href="how-it-works.html" class="btn-secondary">How it works →</a>
-      <a href="backtest.html" class="btn-secondary" style="border-color:var(--green-border);color:var(--green);">📈 See the backtest →</a>
-    </div>
-
-    <div class="hero-proof">
-      <div class="proof-item"><strong>+621%</strong><span>Frontline · VLCC signal · 2020</span></div>
-      <div class="proof-divider"></div>
-      <div class="proof-item"><strong>+648%</strong><span>Freeport · Copper signal · 2020</span></div>
-      <div class="proof-divider"></div>
-      <div class="proof-item"><strong>+963%</strong><span>Borr Drilling · Brent signal · 2020</span></div>
-    </div>
-
-  </div>
-
-  <!-- Live signal dashboard -->
-  <div class="hero-right" style="position:relative;">
-    <div class="float-card float-left">
-      <div class="float-card-top">Cycle score</div>
-      <div class="float-card-val" style="color:#d97706;"><span data-signal="cycleScore">73/100</span></div>
-      <div class="float-card-sub"><span data-signal="cyclePhase">Late Expansion</span></div>
-    </div>
-
-    <div class="signal-dashboard">
-      <div class="dash-header">
-        <div class="dash-title">Live signals — <span id="dashTitleDate">4 Apr 2026</span></div>
-        <div class="dash-live"><span class="pulse"></span>Live</div>
-      </div>
-      <div class="dash-mobile-stats">
-        <div class="dms-item">
-          <span class="dms-label">Cycle score</span>
-          <span class="dms-val" style="color:#d97706;"><span data-signal="cycleScore">73/100</span></span>
-        </div>
-        <div class="dms-divider"></div>
-        <div class="dms-item">
-          <span class="dms-label">Recession</span>
-          <span class="dms-val" style="color:#dc2626;"><span data-signal="recessionProb">55%</span></span>
-        </div>
-      </div>
-      <div class="dash-rows" id="heroDashRows">
-        <div class="dash-row" data-dashid="brent">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Global · Energy</div>
-            <div class="dash-row-name">Brent Crude</div>
-          </div>
-          <div class="dash-val">$<span data-signal="brent" data-format="valueOnly"></span>/bbl</div>
-          <div class="dash-badge">···</div>
-        </div>
-        <div class="dash-row" data-dashid="copper">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Global · Metals</div>
-            <div class="dash-row-name">LME Copper</div>
-          </div>
-          <div class="dash-val">$<span data-signal="copper" data-format="valueOnly"></span>/t</div>
-          <div class="dash-badge">···</div>
-        </div>
-        <div class="dash-row" data-dashid="gold">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Global · Metals</div>
-            <div class="dash-row-name">Gold</div>
-          </div>
-          <div class="dash-val">$<span data-signal="gold" data-format="valueOnly"></span>/oz</div>
-          <div class="dash-badge">···</div>
-        </div>
-        <div class="dash-row" data-dashid="vlcc">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Oslo Børs · Shipping</div>
-            <div class="dash-row-name">VLCC Rate</div>
-          </div>
-          <div class="dash-val">$<span data-signal="vlcc" data-format="valueOnly"></span>/day</div>
-          <div class="dash-badge">···</div>
-        </div>
-        <div class="dash-row" data-dashid="bdi">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Global · Shipping</div>
-            <div class="dash-row-name">Baltic Dry Index</div>
-          </div>
-          <div class="dash-val"><span data-signal="bdi" data-format="valueOnly"></span> pts</div>
-          <div class="dash-badge">···</div>
-        </div>
-        <div class="dash-row" data-dashid="pmi">
-          <div class="dash-row-left">
-            <div class="dash-row-exch">Global · Macro</div>
-            <div class="dash-row-name">Manufacturing PMI</div>
-          </div>
-          <div class="dash-val"><span data-signal="pmi" data-format="valueOnly"></span></div>
-          <div class="dash-badge">···</div>
-        </div>
-      </div>
-      <div class="dash-footer">
-        <a href="live-signals.html" style="color:var(--green);font-weight:600;text-decoration:none;">View all 21 signals →</a>
-        &nbsp;·&nbsp; Not financial advice
-      </div>
-    </div>
-
-    <div class="float-card float-right">
-      <div class="float-card-top">Recession prob.</div>
-      <div class="float-card-val" style="color:#dc2626;"><span data-signal="recessionProb">55%</span></div>
-      <div class="float-card-sub">6-indicator model</div>
-    </div>
-  </div>
 </section>
-</div>
 
-<!-- ALERT SIGNUP -->
-<div class="alert-signup">
-  <div class="alert-signup-inner">
-    <div class="alert-signup-label">
-      Get emailed when a signal crosses a zone
-      <span>Brent, copper, gold and more — sent the moment it happens, both ways.</span>
+<div class="wrap">
+
+  <div class="card alert-card" style="margin-top:0;">
+    <div class="alert-copy">
+      <div class="card-title">Get an email when a signal changes zone</div>
+      <div class="card-note">Free. Sent when a signal crosses into or out of BUY, near sell or SELL. A move has to hold for two checks in a row (about 30 minutes) before it counts, so ordinary price jitter doesn&rsquo;t trigger it.</div>
     </div>
-    <form class="alert-signup-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
-      <input type="email" id="alertSignupEmail" placeholder="you@example.com" required>
+    <form class="alert-form" id="alertSignupForm" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
+      <input type="email" id="alertSignupEmail" placeholder="you@example.com" aria-label="Email address" required>
       <button type="submit" id="alertSignupBtn">Get alerts</button>
-      <div class="alert-signup-msg" id="alertSignupMsg"></div>
+      <div class="alert-signup-msg" id="alertSignupMsg" role="status"></div>
     </form>
   </div>
+
+  <div class="sec-head"><div>
+    <h2 class="sec-title">How it works</h2>
+    <p class="sec-sub">Cyclical stocks rise and fall with the prices that drive their earnings. Signycle watches those prices so you can see where each cycle stands.</p>
+  </div></div>
+  <div class="steps">
+    <div class="card step"><div class="step-n">1</div><h3>We track the signals</h3><p>Brent crude, copper, freight rates, salmon, gold, interest rates and more: 24 signals that cyclical sectors depend on.</p></div>
+    <div class="card step"><div class="step-n">2</div><h3>Each has a BUY and a SELL level</h3><p>Set from the signal&rsquo;s own history. Below BUY it is historically cheap; above SELL it is historically expensive.</p></div>
+    <div class="card step"><div class="step-n">3</div><h3>We map stocks to signals</h3><p>Frontline follows tanker rates, Freeport follows copper, Equinor follows Brent. Every signal links to the stocks most tied to it.</p></div>
+  </div>
+
+  <div class="sec-head"><div>
+    <h2 class="sec-title">Most stretched right now</h2>
+    <p class="sec-sub">The signals furthest past their SELL or BUY level today, and the stocks most exposed to them.</p>
+  </div></div>
+  <div class="str-grid" id="stretched"><div class="card grid-empty">Loading signals…</div></div>
+
+  <div class="sec-head"><div>
+    <h2 class="sec-title">Go deeper</h2>
+    <p class="sec-sub">Tools for reading the wider cycle.</p>
+  </div></div>
+  <div class="tools">
+    <a class="tool hi" href="where-are-we-in-the-cycle.html"><div class="tool-k">Start here</div><b>Where are we in the cycle?</b><span>Today&rsquo;s cycle score and what each phase has meant historically.</span></a>
+    <a class="tool" href="cycle-dashboard.html"><div class="tool-k">Overview</div><b>Cycle dashboard</b><span>Every signal on one screen, with price history.</span></a>
+    <a class="tool" href="signal-history.html"><div class="tool-k">Record</div><b>Signal history</b><span>Every confirmed zone crossing since live recording began.</span></a>
+    <a class="tool" href="recession-tracker.html"><div class="tool-k">Risk</div><b>Recession tracker</b><span>A six-indicator recession model, including the US yield curve.</span></a>
+    <a class="tool" href="backtest.html"><div class="tool-k">History</div><b>Signal backtest</b><span>What past BUY and SELL signals would have returned. Hypothetical, not a guarantee.</span></a>
+    <a class="tool" href="market-cycles-history.html"><div class="tool-k">Context</div><b>Market cycles since 1900</b><span>Bull and bear markets over more than a century.</span></a>
+    <a class="tool" href="precious-metals-cycle.html"><div class="tool-k">Metals</div><b>Precious metals cycle</b><span>Gold, silver, platinum and palladium.</span></a>
+    <a class="tool" href="liquidity-cycle.html"><div class="tool-k">Macro</div><b>Global liquidity cycle</b><span>Central banks and money supply.</span></a>
+    <a class="tool" href="private-equity-cycle.html"><div class="tool-k">Private markets</div><b>PE &amp; VC cycle</b><span>Dry powder, buyout pricing and venture funding.</span></a>
+    <a class="tool" href="blog.html"><div class="tool-k">Research</div><b>Signycle Research</b><span>Stock-by-stock analyses of how cyclical companies move with their signals.</span></a>
+    <a class="tool" href="investor-guides.html"><div class="tool-k">Guides</div><b>Investor guides</b><span>Country and exchange guides for cyclical investors.</span></a>
+    <a class="tool" href="news.html"><div class="tool-k">News</div><b>Market news</b><span>Latest commodity, shipping and macro headlines.</span></a>
+  </div>
+
+  <div class="sec-head"><div>
+    <h2 class="sec-title">Cyclical stocks by exchange</h2>
+    <p class="sec-sub">Guides to the cyclical sectors on each market, with the signals that drive them.</p>
+  </div></div>
+  <div class="ex-chips">
+    <a href="oslo-bors-hub.html">Oslo Børs</a>
+    <a href="nasdaq-stockholm.html">Stockholm</a>
+    <a href="nasdaq-copenhagen.html">Copenhagen</a>
+    <a href="nasdaq-helsinki.html">Helsinki</a>
+    <a href="lse-hub.html">London</a>
+    <a href="frankfurt-hub.html">Frankfurt</a>
+    <a href="euronext-paris.html">Paris</a>
+    <a href="euronext-amsterdam.html">Amsterdam</a>
+    <a href="borsa-italiana-milano.html">Milan</a>
+    <a href="bolsa-madrid.html">Madrid</a>
+    <a href="six-swiss-exchange.html">Zurich</a>
+    <a href="warsaw-stock-exchange.html">Warsaw</a>
+    <a href="nyse-hub.html">New York</a>
+    <a href="tokyo-stock-exchange.html">Tokyo</a>
+    <a href="hkex-hong-kong.html">Hong Kong</a>
+    <a href="sgx-hub.html">Singapore</a>
+    <a href="nse-india-hub.html">India</a>
+    <a href="asx-australia.html">Australia</a>
+    <a href="exchanges.html" class="all">All exchanges →</a>
+  </div>
+
+  <div class="sec-head"><div>
+    <h2 class="sec-title">About the data</h2>
+  </div></div>
+  <div class="trust">
+    <div class="card"><div class="card-title">Where the numbers come from</div><div class="card-note">11 signals are priced live from Yahoo Finance, the ECB and FRED. The rest are updated by hand from published sources and show the date they were last updated. <a href="how-it-works.html">Sources →</a></div></div>
+    <div class="card"><div class="card-title">How zones are set</div><div class="card-note">Each BUY and SELL level is a historical reference point, not a forecast. Zones are calculated by code from the latest value. <a href="how-it-works.html">Method →</a></div></div>
+    <div class="card"><div class="card-title">Written with AI</div><div class="card-note">Much of the writing on this site is AI-generated and not every page is individually reviewed. Signal values and zones are not. <a href="about.html#how-its-made">How it&rsquo;s made →</a></div></div>
+  </div>
+
+  <p class="foot-note">Signycle is for information only and is not financial advice. Thresholds describe history and can be wrong about the future. See the <a href="disclaimer.html">disclaimer</a>.</p>
 </div>
-<style>
-.alert-signup{background:var(--green-bg);border-bottom:1px solid var(--green-border);padding:0.9rem 1.5rem;}
-.alert-signup-inner{max-width:1100px;margin:0 auto;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;}
-.alert-signup-label{font-size:0.82rem;font-weight:600;color:var(--ink);flex:1;min-width:220px;}
-.alert-signup-label span{display:block;font-size:0.72rem;font-weight:400;color:var(--text);margin-top:0.15rem;}
-.alert-signup-form{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.alert-signup-form input{padding:0.55rem 0.8rem;border:1px solid var(--green-border);border-radius:8px;font-size:0.82rem;font-family:var(--sans);min-width:220px;}
-.alert-signup-form input:focus{outline:none;border-color:var(--green);}
-.alert-signup-form button{padding:0.55rem 1.1rem;background:var(--green);color:#fff;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:var(--sans);}
-.alert-signup-form button:disabled{opacity:0.6;cursor:not-allowed;}
-.alert-signup-msg{font-size:0.76rem;margin-top:0.4rem;width:100%;}
-.alert-signup-msg.ok{color:var(--green-dark);}
-.alert-signup-msg.err{color:var(--red);}
-</style>
+</div><!-- .page -->
+
+<footer class="sx-footer">
+  <div class="sx-foot-inner">
+    <div class="sx-foot-brand">
+      <a href="index.html" class="sx-foot-logo"><span></span>Signycle</a>
+      <p>Macro signals for cyclical stocks: where commodities, freight and rates sit against their BUY and SELL levels.</p>
+    </div>
+    <div class="sx-foot-cols">
+      <div><b>Signals</b><a class="sx-fl" href="live-signals.html">Live signals</a><a class="sx-fl" href="cycle-dashboard.html">Cycle dashboard</a><a class="sx-fl" href="signal-history.html">Signal history</a><a class="sx-fl" href="recession-tracker.html">Recession tracker</a></div>
+      <div><b>Research</b><a class="sx-fl" href="blog.html">Signycle Research</a><a class="sx-fl" href="investor-guides.html">Investor guides</a><a class="sx-fl" href="how-it-works.html">How it works</a><a class="sx-fl" href="faq.html">FAQ</a></div>
+      <div><b>Signycle</b><a class="sx-fl" href="about.html">About</a><a class="sx-fl" href="contact.html">Contact</a><a class="sx-fl" href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div><b>Legal</b><a class="sx-fl" href="terms.html">Terms</a><a class="sx-fl" href="privacy.html">Privacy policy</a><a class="sx-fl" href="disclaimer.html">Disclaimer</a></div>
+    </div>
+  </div>
+  <div class="sx-foot-bottom">
+    <span>&copy; 2026 Signycle &middot; Not financial advice</span>
+    <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
+  </div>
+</footer>
+<script src="/signals-meta.js"></script>
 <script>
 function submitAlertSignup(e, emailId, btnId, msgId) {
   e.preventDefault();
@@ -1018,144 +1054,75 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   return false;
 }
 </script>
-
 <script>
-/* Sets the hero dashboard's date from live data (was previously also driven by the cycle heatmap, now removed). */
-(function(){
-  function render(){
-    try{
-      var d=window.SignycleData;
-      var dt=document.getElementById('dashTitleDate');
-      if(d&&d.updated&&dt){
-        var m=String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-        if(m){
-          var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-          dt.textContent=parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
-        }else{
-          dt.textContent=d.updated;
-        }
-      }
-    }catch(e){}
+(function() {
+  var M = window.SignycleMeta;
+  var T = M.THRESHOLDS, META = M.META, ZH = M.ZONE_HEX, ZL = M.ZONE_LABEL, fmt = M.fmt, esc = M.esc;
+  var ZONE_POINTS = { buy: 15, neutral: 50, warn: 72, sell: 90 }; // mirrors signals-loader.js
+  var PHASES = [[25, 'Deep BUY', '#00956e'], [45, 'Early Expansion', '#2f9e7a'], [65, 'Mid Cycle', '#64748b'], [80, 'Late Expansion', '#c26a00'], [101, 'Distribution', '#dc2626']];
+  var MINI = ['brent', 'copper', 'gold', 'steel', 'bdi', 'eur10y'];
+  var $ = function(id) { return document.getElementById(id); };
+
+  function track(id, v, zone) {
+    var p = M.position(id, v), over = p.raw > 100, under = p.raw < 0;
+    var dot = over || under
+      ? '<span class="track-dot" style="left:' + p.x + '%;background:' + ZH[zone] + ';clip-path:polygon(' + (over ? '0 0,100% 50%,0 100%' : '100% 0,0 50%,100% 100%') + ');border:0;box-shadow:none;"></span>'
+      : '<span class="track-dot" style="left:' + p.x + '%;background:' + ZH[zone] + ';"></span>';
+    return '<div class="track" aria-hidden="true"><div class="track-bar">' +
+      '<span style="width:18%;background:var(--buy-t);"></span><span style="width:' + (p.warn - 18) + '%;background:var(--neutral-t);"></span>' +
+      '<span style="width:' + (82 - p.warn) + '%;background:var(--warn-t);"></span><span style="flex:1;background:var(--sell-t);"></span></div>' + dot + '</div>';
   }
-  render();
-  document.addEventListener('signalsLoaded',render);
+
+  function render(d) {
+    if (!d || !d.signals) return;
+    var S = d.signals, ids = Object.keys(META).filter(function(id) { return S[id] && S[id].value != null && !isNaN(parseFloat(S[id].value)); });
+    // Same set the cycle score counts: everything with a zone, minus spread and yield curve.
+    var counted = ids.filter(function(id) { return id !== 'spread' && id !== 'yieldCurve' && ZONE_POINTS.hasOwnProperty(S[id].zone); });
+    var c = { buy: 0, neutral: 0, warn: 0, sell: 0 };
+    counted.forEach(function(id) { c[S[id].zone]++; });
+    var score = d.cycleScore;
+    if (score != null) {
+      var ph = PHASES.filter(function(p) { return score < p[0]; })[0] || PHASES[PHASES.length - 1];
+      $('scoreNum').textContent = score;
+      $('scorePhase').textContent = ph[1];
+      $('scorePhase').style.color = ph[2];
+      $('meterPin').style.left = Math.max(0, Math.min(100, score)) + '%';
+      var labels = $('meterLabels').children;
+      for (var i = 0; i < labels.length; i++) labels[i].classList.toggle('on', PHASES[i][1] === ph[1]);
+      $('homeNow').innerHTML = 'Right now <b>' + c.sell + ' of ' + counted.length + '</b> signals are in the SELL zone and <b>' + c.buy + '</b> in BUY. The cycle score is <b>' + score + '/100</b>, <b style="color:' + ph[2] + ';">' + ph[1] + '</b>.';
+    }
+    $('segBar').innerHTML = ['buy', 'neutral', 'warn', 'sell'].filter(function(z) { return c[z]; }).map(function(z) {
+      return '<div style="flex-grow:' + c[z] + ';background:' + ZH[z] + ';color:' + (z === 'warn' ? '#2b1a00' : '#fff') + ';" title="' + ZL[z] + ': ' + c[z] + '">' + c[z] + '</div>';
+    }).join('');
+    $('segBar').setAttribute('aria-label', 'Buy ' + c.buy + ', neutral ' + c.neutral + ', near sell ' + c.warn + ', sell ' + c.sell);
+
+    $('miniRows').innerHTML = MINI.filter(function(id) { return ids.indexOf(id) > -1; }).map(function(id) {
+      var s = S[id], v = parseFloat(s.value), z = ZH[s.zone] ? s.zone : 'neutral', m = META[id];
+      return '<a class="mini-row" href="' + (m.page || 'live-signals.html') + '"><span class="mini-name">' + esc(m.name) + '</span>' + track(id, v, z) +
+        '<span class="mini-val">' + fmt(v, s.unit) + '</span><span class="badge ' + z + '">' + ZL[z] + '</span></a>';
+    }).join('');
+    $('allLink').textContent = 'All ' + ids.length + ' signals →';
+
+    // Most stretched: how far past the SELL (or below the BUY) level, on the bar's scale.
+    var str = ids.filter(function(id) { return T[id] && (S[id].zone === 'sell' || S[id].zone === 'buy'); }).map(function(id) {
+      var v = parseFloat(S[id].value), p = M.position(id, v);
+      return { id: id, v: v, z: S[id].zone, d: S[id].zone === 'sell' ? p.raw - 82 : 18 - p.raw };
+    }).sort(function(a, b) { return b.d - a.d; }).slice(0, 3);
+    $('stretched').innerHTML = str.length ? str.map(function(r) {
+      var s = S[r.id], m = META[r.id], f = M.freshness(s), t = T[r.id];
+      return '<article class="sig-card" style="--zc:' + ZH[r.z] + ';">' +
+        '<div class="sc-top"><div>' + (m.page ? '<a class="sc-name" href="' + m.page + '">' + esc(m.name) + '</a>' : '<span class="sc-name">' + esc(m.name) + '</span>') + '<div class="sc-sector">' + m.sector + '</div></div><span class="badge ' + r.z + '">' + ZL[r.z] + '</span></div>' +
+        '<div class="sc-val">' + fmt(r.v, s.unit) + '<small>' + esc(M.unitLabel(s.unit)) + '</small></div>' +
+        '<div class="sc-ctx">' + M.context(r.id, r.v, r.z) + '</div>' + track(r.id, r.v, r.z) +
+        '<div class="sc-levels"><span>BUY ≤ <b>' + fmt(t.buy, s.unit) + '</b></span><span>SELL ≥ <b>' + fmt(t.sell, s.unit) + '</b></span></div>' +
+        (m.s.length ? '<div class="sc-stocks">' + m.s.slice(0, 5).map(function(x) { return '<a href="' + x[1] + '">' + esc(x[0]) + '</a>'; }).join('') + '</div>' : '') +
+        '<div class="sc-foot"><span class="pos-meta' + (f.stale ? ' stale' : '') + '">' + (f.live ? '<span class="dot-live"></span>Live' : esc(f.text) + (f.stale ? ' · stale' : '')) + '</span></div></article>';
+    }).join('') : '<div class="card grid-empty">No signals are past their BUY or SELL level right now.</div>';
+  }
+  document.addEventListener('signalsLoaded', function(e) { render(e.detail || window.SignycleData); });
+  if (window.SignycleData && window.SignycleData.signals) render(window.SignycleData);
 })();
 </script>
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item reveal">
-      <div class="stat-n">34+</div>
-      <div class="stat-l">Global exchanges tracked</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-n">21</div>
-      <div class="stat-l">Macro signals tracked</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-n">260+</div>
-      <div class="stat-l">Cyclical stocks mapped</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-n">0</div>
-      <div class="stat-l">Noise. Only signal.</div>
-    </div>
-  </div>
-</div>
-<script>
-/* Hero mini-dashboard rows — zone-driven row/badge colour from window.SignycleData */
-(function(){
-  var ZONE={
-    buy:    {row:'green-row',   badge:'badge-buy',  label:'BUY'},
-    neutral:{row:'neutral-row', badge:'badge-neu2', label:'NEUTRAL'},
-    warn:   {row:'amber-row',   badge:'badge-neutral', label:'WARN'},
-    sell:   {row:'red-row',     badge:'badge-sell', label:'SELL'}
-  };
-  var rows=document.querySelectorAll('#heroDashRows .dash-row[data-dashid]');
-  if(!rows.length)return;
-  function render(){
-    var d=window.SignycleData;
-    if(!d||!d.signals)return;
-    rows.forEach(function(row){
-      var sig=d.signals[row.getAttribute('data-dashid')];
-      var z=ZONE[(sig&&sig.zone)||'neutral'];
-      row.className='dash-row '+z.row;
-      var badge=row.querySelector('.dash-badge');
-      if(badge){badge.className='dash-badge '+z.badge;badge.textContent=z.label;}
-    });
-  }
-  render();
-  document.addEventListener('signalsLoaded',render);
-})();
-</script>
-<!-- INTELLIGENCE TOOLS -->
-<div class="section-wrap" style="background:#fff;border-top:1px solid var(--border);">
-  <div class="section-wrap-inner">
-    <div class="eyebrow">Intelligence tools</div>
-    <h2 class="section-h reveal">Beyond signals.<br><em>Understand the cycle.</em></h2>
-    <p class="section-p reveal" style="max-width:520px;">Signycle has expanded into a full macro cycle intelligence platform. Eight tools to understand where we are, where we've been, and where we're going.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-top:2rem;">
-
-      <a href="where-are-we-in-the-cycle.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:#fff8f4;border-color:#fed7aa;transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">⭐</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#ea580c;margin-bottom:0.3rem;">Most important</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Where Are We In The Cycle?</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Cycle score <span data-signal="cycleScore">73/100</span> · <span data-signal="cyclePhase">Late Expansion</span></div>
-      </a>
-
-      <a href="recession-tracker.html" style="display:block;border:1.5px solid #fca5a5;border-radius:12px;padding:1.2rem;text-decoration:none;background:#fff9f9;transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">📉</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#dc2626;margin-bottom:0.3rem;">Risk monitor</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Recession Probability Tracker</div>
-        <div style="font-size:0.78rem;color:#6b7f78;"><span data-signal="recessionProb">55%</span> probability · 6-indicator model</div>
-      </a>
-
-      <a href="market-cycles-history.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:var(--surface);transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">📈</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:0.3rem;">Historical context</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Every Bull & Bear Market Since 1900</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">125 years of cycles · avg bull 4.4yrs · avg bear 11mths</div>
-      </a>
-
-      <a href="cycle-dashboard.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:var(--surface);transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">📊</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--dim);margin-bottom:0.3rem;">Visualisation</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Cycle Dashboard</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Gauges · heatmaps · historical charts · stock overlays</div>
-      </a>
-
-      <a href="precious-metals-cycle.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:#fdfbf0;border-color:#e9d87a;transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">🥇</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#d4a017;margin-bottom:0.3rem;">New</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Precious Metals Cycle</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Gold $<span data-signal="gold" data-format="valueOnly"></span> · Silver, Platinum, Palladium</div>
-      </a>
-
-      <a href="liquidity-cycle.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:var(--surface);transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">💧</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0891b2;margin-bottom:0.3rem;">Macro driver</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">Global Liquidity Cycle</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">G4 central banks · M2 money supply · ECB · Fed · BOJ</div>
-      </a>
-
-      <a href="private-equity-cycle.html" style="display:block;border:1.5px solid var(--border);border-radius:12px;padding:1.2rem;text-decoration:none;background:var(--surface);transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">🏦</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#7c3aed;margin-bottom:0.3rem;">Private markets</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">PE & VC Cycle</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Dry powder $3.9T · buyout multiples · VC funding trends</div>
-      </a>
-
-      <a href="live-signals.html" style="display:block;border:1.5px solid var(--green-border);border-radius:12px;padding:1.2rem;text-decoration:none;background:var(--green-light);transition:box-shadow 0.15s;">
-        <div style="font-size:1.3rem;margin-bottom:0.4rem;">📡</div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:0.3rem;">Live</div>
-        <div style="font-size:0.95rem;font-weight:700;color:#0c1c2e;margin-bottom:0.2rem;">21 Macro Signals</div>
-        <div style="font-size:0.78rem;color:#6b7f78;">Brent · Copper · BDI · VLCC · Salmon · Defence · PMI</div>
-      </a>
-
-    </div>
-  </div>
-</div>
 <script>
 
 (function(){
@@ -1303,18 +1270,6 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
     </div>
   </div>
 </div>
-
-<script>
-(function(){
-  if(!window.IntersectionObserver) return;
-  var els = document.querySelectorAll('.reveal');
-  els.forEach(function(el){ el.style.opacity='0'; el.style.transform='translateY(24px)'; el.style.transition='opacity 0.6s ease, transform 0.6s ease'; });
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; obs.unobserve(e.target); }});
-  }, {threshold:0.1});
-  els.forEach(function(el){ obs.observe(el); });
-})();
-</script>
 <script src="/signals-loader.js"></script>
 <script>
 function toggleRegion(id) {
@@ -1355,16 +1310,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<footer>
-  <div class="footer-logo">Signycle</div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a> · <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
-    <a href="disclaimer.html" style="color:#a0b0ab;text-decoration:none;">Disclaimer</a>
-    <a href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener" style="color:#a0b0ab;text-decoration:none;">LinkedIn</a>
-    <a href="about.html" style="color:#a0b0ab;text-decoration:none;">About</a>
-  </div>
-  <div>&copy; 2026 Signycle. Not financial advice.</div>
-</footer>
-<div class="ai-note" style="text-align:center;font-size:0.7rem;line-height:1.5;color:#94a3b8;padding:0.7rem 1rem 1.1rem;font-family:'DM Sans',system-ui,sans-serif;">Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made" style="color:#6b7f78;">How it&rsquo;s made</a></div>
 </body>
 </html>
