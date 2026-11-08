@@ -1220,7 +1220,7 @@ _initHamburger();
     var first = pts[0].value, last = pts[pts.length - 1].value, zone = pts[pts.length - 1].zone;
     $('histNow').innerHTML = fmt(last, unit) + '<small>' + esc(unit) + '</small>' + (THRESHOLDS[histId] && ZONE_HEX[zone] ? ' <span class="badge ' + zone + '" style="vertical-align:middle;">' + ZONE_LABEL[zone] + '</span>' : '');
     var chg = first ? (last / first - 1) * 100 : 0;
-    $('histChg').textContent = (chg >= 0 ? '▲ +' : '▼ ') + chg.toFixed(1) + '% over ' + (histRange === 'all' ? 'all recorded history' : histRange === '1w' ? 'the past week' : 'the past month');
+    $('histChg').textContent = (chg >= 0 ? '▲ +' : '▼ −') + Math.abs(chg).toFixed(1) + '% over ' + (histRange === 'all' ? 'all recorded history' : histRange === '1w' ? 'the past week' : 'the past month');
     $('histChg').style.color = 'var(--text)';
     chartState = { pts: pts, unit: unit, t: THRESHOLDS[histId] };
     drawChart(-1);
