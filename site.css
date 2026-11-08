@@ -1,0 +1,40 @@
+/* Signycle shared styles.
+   Linked from every page as /site.css?v=N — bump N when this file changes
+   (Cloudflare caches CSS for 24h, see _headers).
+   Everything here is namespaced (.sx-*, --sx-*) so it can't collide with the
+   per-page inline styles that most pages still carry. */
+
+:root{
+  --sx-bg:#f6f8f7;--sx-card:#fff;--sx-surface:#f8faf9;
+  --sx-border:#e2e8e5;--sx-hair:#eef2f0;
+  --sx-ink:#0c1c2e;--sx-text:#475569;--sx-dim:#6b7f78;--sx-muted:#94a3b8;
+  --sx-green:#00956e;--sx-green-dark:#007a5a;
+  --sx-buy:#00956e;--sx-neutral:#64748b;--sx-warn:#d97706;--sx-sell:#dc2626;
+  --sx-buy-t:#d7efe6;--sx-neutral-t:#e8edeb;--sx-warn-t:#fbe9cf;--sx-sell-t:#fbdcdc;
+  --sx-sans:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --sx-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────
+   Every property a page's own `footer{}` / `footer a{}` rules might set is
+   set explicitly here; class selectors outrank those element selectors. */
+.sx-footer{display:block;margin:0;padding:2.6rem 1.5rem 1.4rem;background:#fff;border-top:1px solid var(--sx-border);color:var(--sx-dim);font-family:var(--sx-sans);font-size:0.82rem;line-height:1.6;text-align:left;flex-direction:column;gap:0;box-sizing:border-box;width:auto;}
+.sx-footer *{box-sizing:border-box;}
+.sx-foot-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(200px,1.3fr) 3fr;gap:2rem;padding:0;background:none;border:0;}
+.sx-foot-logo{display:inline-flex;align-items:center;gap:8px;font-size:1.05rem;font-weight:700;color:var(--sx-ink);text-decoration:none;}
+.sx-foot-logo:hover{color:var(--sx-ink);}
+.sx-foot-logo span{width:8px;height:8px;border-radius:50%;background:var(--sx-green);display:inline-block;}
+.sx-foot-brand p{margin:0.55rem 0 0;padding:0;font-size:0.8rem;color:var(--sx-dim);max-width:260px;line-height:1.55;}
+.sx-foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem;margin:0;padding:0;background:none;border:0;position:static;height:auto;}
+.sx-foot-cols div{display:flex;flex-direction:column;gap:0.4rem;margin:0;padding:0;}
+.sx-foot-cols b{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--sx-ink);margin-bottom:0.15rem;}
+.sx-footer a.sx-fl{color:var(--sx-text);text-decoration:none;font-size:0.82rem;font-weight:400;padding:0;margin:0;border:0;background:none;display:inline;white-space:normal;height:auto;}
+.sx-footer a.sx-fl:hover{color:var(--sx-green);text-decoration:none;}
+.sx-foot-bottom{max-width:1100px;margin:2rem auto 0;padding:1.1rem 0 0;border-top:1px solid var(--sx-hair);display:flex;justify-content:space-between;gap:0.4rem 1.5rem;flex-wrap:wrap;font-size:0.72rem;color:var(--sx-muted);}
+.sx-foot-bottom a{color:var(--sx-dim);text-decoration:underline;}
+.sx-foot-bottom a:hover{color:var(--sx-green);}
+@media(max-width:760px){
+  .sx-footer{padding:2rem 1rem 1.2rem;}
+  .sx-foot-inner{grid-template-columns:1fr;gap:1.5rem;}
+  .sx-foot-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.3rem 1rem;}
+}

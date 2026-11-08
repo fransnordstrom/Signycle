@@ -337,6 +337,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 <meta name="twitter:title" content="Signal Backtest — Historical Returns">
 <meta name="twitter:description" content="Signal-based backtest for 111 cyclical stocks across 17 European exchanges — illustrative examples based on approximate historical price levels, 2012–2024.">
 <meta name="twitter:image" content="https://signycle.com/og-image.png">
+<link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
 <nav>
@@ -894,23 +895,24 @@ _initHamburger();
   <div class="cards-grid" id="cardsGrid"></div>
 </div>
 
-<footer>
-  <div class="footer-logo">Signycle</div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-    <a href="/privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
-    <a href="/about.html" style="color:#a0b0ab;text-decoration:none;">About</a>
-    <a href="/contact.html" style="color:#a0b0ab;text-decoration:none;">Contact</a>
+<footer class="sx-footer">
+  <div class="sx-foot-inner">
+    <div class="sx-foot-brand">
+      <a href="index.html" class="sx-foot-logo"><span></span>Signycle</a>
+      <p>Macro signals for cyclical stocks: where commodities, freight and rates sit against their BUY and SELL levels.</p>
+    </div>
+    <div class="sx-foot-cols">
+      <div><b>Signals</b><a class="sx-fl" href="live-signals.html">Live signals</a><a class="sx-fl" href="cycle-dashboard.html">Cycle dashboard</a><a class="sx-fl" href="signal-history.html">Signal history</a><a class="sx-fl" href="recession-tracker.html">Recession tracker</a></div>
+      <div><b>Research</b><a class="sx-fl" href="blog.html">Signycle Research</a><a class="sx-fl" href="investor-guides.html">Investor guides</a><a class="sx-fl" href="how-it-works.html">How it works</a><a class="sx-fl" href="faq.html">FAQ</a></div>
+      <div><b>Signycle</b><a class="sx-fl" href="about.html">About</a><a class="sx-fl" href="contact.html">Contact</a><a class="sx-fl" href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div><b>Legal</b><a class="sx-fl" href="terms.html">Terms</a><a class="sx-fl" href="privacy.html">Privacy policy</a><a class="sx-fl" href="disclaimer.html">Disclaimer</a></div>
+    </div>
   </div>
-  <div>Not financial advice &middot; &copy; 2026 Signycle</div>
-  <div><a href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;opacity:0.6;font-size:0.75rem;">LinkedIn</a></div>
-
-  <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a>
-    <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
-    <a href="disclaimer.html" style="color:#a0b0ab;text-decoration:none;">Disclaimer</a>
+  <div class="sx-foot-bottom">
+    <span>&copy; 2026 Signycle &middot; Not financial advice</span>
+    <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
   </div>
 </footer>
-<div class="ai-note" style="text-align:center;font-size:0.7rem;line-height:1.5;color:#94a3b8;padding:0.7rem 1rem 1.1rem;font-family:'DM Sans',system-ui,sans-serif;">Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made" style="color:#6b7f78;">How it&rsquo;s made</a></div>
 
 <script>
 var DATES=["2012-01-01", "2012-02-01", "2012-03-01", "2012-04-01", "2012-05-01", "2012-06-01", "2012-07-01", "2012-08-01", "2012-09-01", "2012-10-01", "2012-11-01", "2012-12-01", "2013-01-01", "2013-02-01", "2013-03-01", "2013-04-01", "2013-05-01", "2013-06-01", "2013-07-01", "2013-08-01", "2013-09-01", "2013-10-01", "2013-11-01", "2013-12-01", "2014-01-01", "2014-02-01", "2014-03-01", "2014-04-01", "2014-05-01", "2014-06-01", "2014-07-01", "2014-08-01", "2014-09-01", "2014-10-01", "2014-11-01", "2014-12-01", "2015-01-01", "2015-02-01", "2015-03-01", "2015-04-01", "2015-05-01", "2015-06-01", "2015-07-01", "2015-08-01", "2015-09-01", "2015-10-01", "2015-11-01", "2015-12-01", "2016-01-01", "2016-02-01", "2016-03-01", "2016-04-01", "2016-05-01", "2016-06-01", "2016-07-01", "2016-08-01", "2016-09-01", "2016-10-01", "2016-11-01", "2016-12-01", "2017-01-01", "2017-02-01", "2017-03-01", "2017-04-01", "2017-05-01", "2017-06-01", "2017-07-01", "2017-08-01", "2017-09-01", "2017-10-01", "2017-11-01", "2017-12-01", "2018-01-01", "2018-02-01", "2018-03-01", "2018-04-01", "2018-05-01", "2018-06-01", "2018-07-01", "2018-08-01", "2018-09-01", "2018-10-01", "2018-11-01", "2018-12-01", "2019-01-01", "2019-02-01", "2019-03-01", "2019-04-01", "2019-05-01", "2019-06-01", "2019-07-01", "2019-08-01", "2019-09-01", "2019-10-01", "2019-11-01", "2019-12-01", "2020-01-01", "2020-02-01", "2020-03-01", "2020-04-01", "2020-05-01", "2020-06-01", "2020-07-01", "2020-08-01", "2020-09-01", "2020-10-01", "2020-11-01", "2020-12-01", "2021-01-01", "2021-02-01", "2021-03-01", "2021-04-01", "2021-05-01", "2021-06-01", "2021-07-01", "2021-08-01", "2021-09-01", "2021-10-01", "2021-11-01", "2021-12-01", "2022-01-01", "2022-02-01", "2022-03-01", "2022-04-01", "2022-05-01", "2022-06-01", "2022-07-01", "2022-08-01", "2022-09-01", "2022-10-01", "2022-11-01", "2022-12-01", "2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01", "2023-07-01", "2023-08-01", "2023-09-01", "2023-10-01", "2023-11-01", "2023-12-01", "2024-01-01", "2024-02-01", "2024-03-01", "2024-04-01", "2024-05-01", "2024-06-01", "2024-07-01", "2024-08-01", "2024-09-01", "2024-10-01", "2024-11-01", "2024-12-01"];

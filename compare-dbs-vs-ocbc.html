@@ -171,6 +171,7 @@ footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem
 .rel-card-title {font-size:0.82rem;font-weight:700;color:#0c1c2e;}
 .disclaimer {font-size:0.74rem;color:#94a3b8;margin-top:2rem;padding-top:1rem;border-top:1px solid #f0f4f2;line-height:1.6;}
 </style>
+<link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
 <nav>
@@ -697,17 +698,24 @@ _initHamburger();
 </div>
 <p class="disclaimer">This comparison is for informational purposes only and does not constitute financial advice. Signal data sourced from Signycle. See our <a href="disclaimer.html" style="color:var(--green);">disclaimer</a>.</p>
 </div>
-<footer>
-  <div class="footer-logo">Signycle</div>
-  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-    <a href="terms.html" style="color:#a0b0ab;text-decoration:none;">Terms</a> · <a href="privacy.html" style="color:#a0b0ab;text-decoration:none;">Privacy</a>
-    <a href="disclaimer.html" style="color:#a0b0ab;text-decoration:none;">Disclaimer</a>
-    <a href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener" style="color:#a0b0ab;text-decoration:none;">LinkedIn</a>
-    <a href="about.html" style="color:#a0b0ab;text-decoration:none;">About</a>
+<footer class="sx-footer">
+  <div class="sx-foot-inner">
+    <div class="sx-foot-brand">
+      <a href="index.html" class="sx-foot-logo"><span></span>Signycle</a>
+      <p>Macro signals for cyclical stocks: where commodities, freight and rates sit against their BUY and SELL levels.</p>
+    </div>
+    <div class="sx-foot-cols">
+      <div><b>Signals</b><a class="sx-fl" href="live-signals.html">Live signals</a><a class="sx-fl" href="cycle-dashboard.html">Cycle dashboard</a><a class="sx-fl" href="signal-history.html">Signal history</a><a class="sx-fl" href="recession-tracker.html">Recession tracker</a></div>
+      <div><b>Research</b><a class="sx-fl" href="blog.html">Signycle Research</a><a class="sx-fl" href="investor-guides.html">Investor guides</a><a class="sx-fl" href="how-it-works.html">How it works</a><a class="sx-fl" href="faq.html">FAQ</a></div>
+      <div><b>Signycle</b><a class="sx-fl" href="about.html">About</a><a class="sx-fl" href="contact.html">Contact</a><a class="sx-fl" href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div><b>Legal</b><a class="sx-fl" href="terms.html">Terms</a><a class="sx-fl" href="privacy.html">Privacy policy</a><a class="sx-fl" href="disclaimer.html">Disclaimer</a></div>
+    </div>
   </div>
-  <div>&copy; 2026 Signycle. Not financial advice.</div>
+  <div class="sx-foot-bottom">
+    <span>&copy; 2026 Signycle &middot; Not financial advice</span>
+    <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
+  </div>
 </footer>
-<div class="ai-note" style="text-align:center;font-size:0.7rem;line-height:1.5;color:#94a3b8;padding:0.7rem 1rem 1.1rem;font-family:'DM Sans',system-ui,sans-serif;">Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made" style="color:#6b7f78;">How it&rsquo;s made</a></div>
 <script src="/signals-loader.js"></script>
 <script>
 function toggleRegion(id) {
