@@ -751,26 +751,17 @@
 /china-materials-sector.html /china-materials-sector 301
 /china-shipping-sector.html /china-shipping-sector 301
 /coming-soon.html /coming-soon 301
-/compare-brent.html /compare-brent 301
 /compare-byd-vs-catl.html /compare-byd-vs-catl 301
 /compare-cnooc-vs-petrochina.html /compare-cnooc-vs-petrochina 301
-/compare-copper.html /compare-copper 301
 /compare-cosco-vs-yangzijiang.html /compare-cosco-vs-yangzijiang 301
-/compare-dbs-vs-ocbc.html /compare-dbs-vs-ocbc 301
-/compare-equinor-vs-akerbp.html /compare-equinor-vs-akerbp 301
-/compare-eur10y.html /compare-eur10y 301
-/compare-frontline-vs-golden-ocean.html /compare-frontline-vs-golden-ocean 301
 /compare-mapletree-vs-ascendas.html /compare-mapletree-vs-ascendas 301
-/compare-mowi-vs-salmar.html /compare-mowi-vs-salmar 301
 /compare-oil-vs-shipping.html /compare-oil-vs-shipping 301
 /compare-oslo-vs-frankfurt.html /compare-oslo-vs-frankfurt 301
-/compare-pmi.html /compare-pmi 301
 /compare-reliance-vs-ongc.html /compare-reliance-vs-ongc 301
 /compare-renewables-vs-oil.html /compare-renewables-vs-oil 301
 /compare-rio-vs-bhp.html /compare-rio-vs-bhp 301
 /compare-shell-vs-bp.html /compare-shell-vs-bp 301
 /compare-sia-vs-cathay.html /compare-sia-vs-cathay 301
-/compare-steel.html /compare-steel 301
 /compare-tata-vs-jsw-steel.html /compare-tata-vs-jsw-steel 301
 /compare-wti-brent.html /compare-wti-brent 301
 /contact.html /contact 301
@@ -899,7 +890,6 @@
 /signal-vlcc-rates.html /signal-vlcc-rate 301
 /singapore-exchange.html /singapore-exchange 301
 /six-swiss-exchange.html /six-swiss-exchange 301
-/six-zuerich.html /six-zuerich 301
 /sse-shanghai.html /sse-shanghai 301
 /stock-comparison.html /stock-comparison 301
 /szse-shenzhen.html /szse-shenzhen 301
@@ -1130,3 +1120,26 @@
 /blog-singtel-cycle /sgx-hub 301
 /blog-tokyo-investor-guide /tokyo-stock-exchange 301
 /blog-venture-corp-cycle /sgx-hub 301
+# Retired duplicate pages (step 5, Nov 2026)
+/six-zuerich.html /six-swiss-exchange 301
+/six-zuerich /six-swiss-exchange 301
+/compare-brent.html /signal-brent-crude 301
+/compare-brent /signal-brent-crude 301
+/compare-copper.html /signal-lme-copper 301
+/compare-copper /signal-lme-copper 301
+/compare-eur10y.html /signal-eur-10y-rate 301
+/compare-eur10y /signal-eur-10y-rate 301
+/compare-pmi.html /signal-global-pmi 301
+/compare-pmi /signal-global-pmi 301
+/compare-steel.html /signal-us-hrc-steel 301
+/compare-steel /signal-us-hrc-steel 301
+# Retired duplicate pages (step 5, Nov 2026)
+/compare-equinor-vs-akerbp.html /blog-equinor-vs-aker-bp 301
+/compare-equinor-vs-akerbp /blog-equinor-vs-aker-bp 301
+/compare-mowi-vs-salmar.html /blog-mowi-vs-salmar 301
+/compare-mowi-vs-salmar /blog-mowi-vs-salmar 301
+/compare-frontline-vs-golden-ocean.html /blog-frontline-vs-golden-ocean 301
+/compare-frontline-vs-golden-ocean /blog-frontline-vs-golden-ocean 301
+# Retired duplicate pages (step 5, Nov 2026)
+/compare-dbs-vs-ocbc.html /blog-dbs-ocbc-uob-singapore-banks-cycle 301
+/compare-dbs-vs-ocbc /blog-dbs-ocbc-uob-singapore-banks-cycle 301
