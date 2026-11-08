@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyclical Dividend Scanner — Yield vs Cycle Signal | Signycle</title>
-<meta name="description" content="Interactive dividend scanner for 33 cyclical stocks. See current yield vs historical buy/sell zones for shipping, energy, mining, salmon and fertilizer stocks.">
-<link rel="canonical" href="https://signycle.com/cyclical-dividend-scanner">
-<meta property="og:title" content="Cyclical Dividend Scanner — Yield vs Cycle Signal | Signycle">
-<meta property="og:description" content="Current yield vs historical buy/sell zones for 33 cyclical dividend stocks. Shipping, energy, mining, salmon, fertilizer.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyclical Dividend Scanner: When a High Yield Is a Warning | Signycle</title>
+<meta name="description" content="Why cyclical stocks often pay their biggest dividends at the top of the cycle, and the live zone of the commodity or freight price behind each of 28 well-known dividend payers.">
+<meta property="og:title" content="Cyclical Dividend Scanner: When a High Yield Is a Warning | Signycle">
+<meta property="og:description" content="Why cyclical stocks often pay their biggest dividends at the top of the cycle, and the live zone of the commodity or freight price behind each of 28 well-known dividend payers.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/cyclical-dividend-scanner.html">
+<meta property="og:url" content="https://signycle.com/cyclical-dividend-scanner">
 <meta property="og:site_name" content="Signycle">
 <meta property="og:image" content="https://signycle.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://signycle.com/cyclical-dividend-scanner">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://signycle.com/"}, {"@type": "ListItem", "position": 2, "name": "Dividend scanner", "item": "https://signycle.com/cyclical-dividend-scanner"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does a high dividend yield on a cyclical stock need care?", "acceptedAnswer": {"@type": "Answer", "text": "A trailing dividend yield divides the dividends paid over the past year by today’s share price. For a cyclical company, those dividends were paid out of recent earnings, which may have been unusually high. If the price behind those earnings is now at a historical high, the dividend can fall sharply once it turns, and the yield you see today won’t be repeated."}}, {"@type": "Question", "name": "Why are there no yield figures on this page?", "acceptedAnswer": {"@type": "Answer", "text": "Yields change with every share price move and every dividend announcement, and Signycle has no live source for them. Rather than show figures that may be out of date, the page shows the live zone of each company’s main driver. Check current yields and dividend policies on the company’s investor relations pages or your broker."}}, {"@type": "Question", "name": "Is a stock with a low yield and a signal in BUY a good buy?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. A low dividend while the driver is historically cheap is what you would expect near the bottom of a cycle, but the company also needs a balance sheet strong enough to get through the downturn. BUY levels are historical reference points, not forecasts, and nothing here is financial advice."}}, {"@type": "Question", "name": "Why are some drivers marked &ldquo;not tracked&rdquo;?", "acceptedAnswer": {"@type": "Answer", "text": "A few companies depend on prices Signycle doesn’t track, such as coal or LPG freight. They are still listed because the dividend logic applies to them too, but there is no live zone to show."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
-     crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 /* ── NAV ── */
 /* ── DROPDOWN NAV ── */
@@ -64,116 +67,159 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
+
 :root{
-  --bg:#ffffff;--surface:#f8faf9;--border:#e2e8e5;--border2:#d1dbd7;
-  --green:#00956e;--green-dark:#007a5a;--green-light:#e6f5f1;--green-border:#b3e8d8;
-  --buy:#00956e;--sell:#e03e3e;--gold:#d97706;
-  --text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--bright:#1a2e25;--white:#1a2e25;
-  --void:#ffffff;--deep:#f8faf9;--tide:#00956e;--crest:#007a5a;--surface2:#f0f4f2;
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{max-width:100%;overflow-x:hidden;}
-body{background:#ffffff;color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.75;overflow-x:hidden;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
-.logo{font-family:"DM Sans",sans-serif;font-size:1.25rem;font-weight:700;color:#0c1c2e;text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
-.nav-link:hover,
-.nav-cta{background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.875rem;font-weight:600;padding:0.5rem 1.25rem;border-radius:6px;text-decoration:none;transition:background 0.15s;}
-.nav-cta:hover{background:var(--green-dark);}
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
-.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#ffffff;border-bottom:1px solid var(--border);z-index:99;box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-.mobile-menu 
-.mobile-menu .nav-cta{width:fit-content;margin-top:0.5rem;}
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.logo{font-size:1.1rem;}.nav-links,.nav-cta{display:none;}}
-.hero{padding:7rem 1.5rem 3.5rem;background:#f8faf9;border-bottom:1px solid var(--border);}
-.hero-inner{max-width:760px;margin:0 auto;}
-.eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
-.eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--green);border-radius:1px;}
-h1{font-family:"DM Sans",sans-serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;color:#0c1c2e;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem;}
-h1 em{font-style:italic;color:var(--green);}
-.hero-meta{font-size:0.78rem;color:var(--muted);display:flex;gap:1.5rem;flex-wrap:wrap;}
-.article{max-width:760px;margin:0 auto;padding:3.5rem 1.5rem 6rem;}
-h2{font-family:"DM Sans",sans-serif;font-size:1.45rem;font-weight:700;color:#0c1c2e;margin:2.5rem 0 1rem;letter-spacing:-0.02em;}
-h3{font-family:"DM Sans",sans-serif;font-size:1.1rem;font-weight:700;color:#1a2e25;margin:2rem 0 0.8rem;}
-p{font-size:0.95rem;color:var(--text);margin-bottom:1.25rem;line-height:1.85;}
-.lead{font-size:1.05rem;color:#1a2e25;line-height:1.8;margin-bottom:2rem;border-left:3px solid var(--green);padding-left:1.2rem;background:var(--green-light);padding:1rem 1.2rem;border-radius:0 8px 8px 0;}
-.signal-box{background:#f8faf9;border:1px solid var(--border2);border-radius:10px;padding:1.5rem;margin:2rem 0;}
-.signal-box-title{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);margin-bottom:1rem;}
-.signal-row{display:flex;gap:1rem;align-items:flex-start;margin-bottom:0.8rem;font-size:0.88rem;}
-.signal-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;flex-shrink:0;margin-top:2px;}
-.signal-icon.buy{background:rgba(0,149,110,0.12);color:var(--buy);border:1px solid rgba(0,149,110,0.3);}
-.signal-icon.sell{background:rgba(224,62,62,0.1);color:var(--sell);border:1px solid rgba(224,62,62,0.3);}
-.data-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
-.data-table th{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.65rem 1rem;text-align:left;border-bottom:2px solid var(--border);background:#f8faf9;}
-.data-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
-.data-table tr:last-child td{border-bottom:none;}
-.data-table td:first-child{color:#0c1c2e;font-weight:600;}
-.data-table tr:hover td{background:#f8faf9;}
-.highlight{color:var(--buy);font-weight:600;}
-.cta-box{background:linear-gradient(135deg,var(--green-light),#f0faf6);border:1px solid var(--green-border);border-radius:10px;padding:2rem;margin:3rem 0;text-align:center;}
-.cta-box h3{color:#0c1c2e;margin:0 0 0.8rem;font-size:1.1rem;}
-.cta-box p{font-size:0.88rem;color:var(--text);margin-bottom:1.5rem;}
-.cta-btn{display:inline-block;background:var(--green);color:#ffffff;font-family:"DM Sans",sans-serif;font-size:0.88rem;font-weight:700;padding:0.75rem 2rem;border-radius:8px;text-decoration:none;transition:background 0.15s;}
-.cta-btn:hover{background:var(--green-dark);}
-.related{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
-.related-title{font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
-.related-links{display:flex;flex-direction:column;gap:0.6rem;}
-.related-link{font-size:0.88rem;color:var(--green);text-decoration:none;font-weight:500;}
-.related-link:hover{color:var(--green-dark);text-decoration:underline;}
-footer{background:#f8faf9;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.78rem;color:var(--muted);}
-.footer-logo{font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;color:#0c1c2e;}
-@media(max-width:600px){.article{padding:2rem 1.1rem 4rem;}.signal-row{flex-direction:column;gap:0.4rem;}.hero{padding:6rem 1.1rem 2.5rem;}.data-table{font-size:0.78rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;}}
-
-
-
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-.nav-cta:hover{background:#007a5a;}
-
-/* Mega row */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-
-/* Mobile */
-
-
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:199;overflow-y:auto;}
-.mobile-menu.open{display:block;}
-.mobile-menu-inner{padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
-
-
-.mob-link:hover{color:var(--green);}
-.mob-link.crisis{color:#dc2626;}
-
-
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
-  
-}
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
+
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -212,74 +258,228 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
 
-/* Scanner-specific styles */
-:root{--green:#00956e;--green-light:#e6f5f1;--green-border:#b3e8d8;--red:#e03e3e;--amber:#d97706;--text:#475569;--muted:#a0b0ab;--border:#e2e8e5;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sans",sans-serif;}
-.scanner-header{background:#0c1c2e;padding:4.8rem 1.2rem 1.5rem;}
-.scanner-header h1{color:#fff;font-size:clamp(1.3rem,4vw,1.8rem);font-weight:800;letter-spacing:-0.02em;margin:0 0 0.4rem;}
-.scanner-header p{color:rgba(255,255,255,0.5);font-size:0.8rem;margin:0 0 1rem;}
-.stat-chips{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.stat-chip{border-radius:6px;padding:0.28rem 0.7rem;font-size:0.7rem;font-weight:700;}
-.chip-sell{background:rgba(248,113,113,0.12);border:1px solid rgba(248,113,113,0.3);color:#f87171;}
-.chip-hold{background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);color:#fbbf24;}
-.chip-buy{background:rgba(74,222,128,0.12);border:1px solid rgba(74,222,128,0.3);color:#4ade80;}
-.chip-date{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);}
-.legend-bar{background:#fff;border-bottom:1px solid var(--border);padding:0.5rem 1.2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
-.legend-item{display:flex;align-items:center;gap:4px;font-size:0.65rem;color:#64748b;}
-.legend-box{width:14px;height:7px;border-radius:2px;}
-.filters{background:#fff;border-bottom:1px solid var(--border);padding:0.6rem 1.2rem;position:sticky;top:58px;z-index:10;}
-.filter-row{display:flex;gap:0.3rem;flex-wrap:wrap;margin-bottom:0.35rem;}
-.filter-btn{padding:0.2rem 0.65rem;border-radius:20px;border:1.5px solid;font-size:0.7rem;font-weight:600;cursor:pointer;background:#fff;color:#475569;border-color:#e2e8e5;transition:all .12s;}
-.filter-btn.active{background:#0c1c2e;color:#fff;border-color:#0c1c2e;}
-.filter-btn.active-sell{background:#fef2f2;color:#e03e3e;border-color:#fca5a5;}
-.filter-btn.active-hold{background:#fffbeb;color:#d97706;border-color:#fde68a;}
-.filter-btn.active-buy{background:#e6f5f1;color:#00956e;border-color:#b3e8d8;}
-.filter-count{margin-left:auto;font-size:0.65rem;color:#94a3b8;align-self:center;}
-.cards{padding:1rem 1.2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.9rem;}
-.card{background:#fff;border-radius:11px;padding:0.9rem 1rem;display:flex;flex-direction:column;gap:6px;}
-.card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
-.card-name{font-weight:700;font-size:0.88rem;color:#0c1c2e;line-height:1.2;}
-.card-name-link{text-decoration:none;color:inherit;display:block;}
-.card-name-link .card-name{color:#0c1c2e;transition:color .12s;}
-.card-name-link:hover .card-name{color:#00956e;}
-.card-ticker{font-family:"IBM Plex Mono",monospace;font-size:0.6rem;color:#94a3b8;margin-top:2px;}
-.card-sub{font-size:0.6rem;color:#64748b;}
-.badges{display:flex;flex-direction:column;gap:3px;align-items:flex-end;flex-shrink:0;}
-.badge{font-size:0.6rem;font-weight:700;padding:0.1rem 0.4rem;border-radius:4px;white-space:nowrap;letter-spacing:0.03em;}
-.badge-sell{background:#fef2f2;color:#e03e3e;border:1px solid #fca5a5;}
-.badge-hold{background:#fffbeb;color:#d97706;border:1px solid #fde68a;}
-.badge-buy{background:#e6f5f1;color:#00956e;border:1px solid #b3e8d8;}
-.yield-area{background:#f8faf9;border-radius:7px;padding:0.5rem 0.7rem;}
-.yield-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
-.yield-label{font-size:0.6rem;color:#94a3b8;text-transform:uppercase;letter-spacing:0.08em;}
-.yield-val{font-family:"IBM Plex Mono",monospace;font-size:0.98rem;font-weight:800;}
-.yield-val.sell{color:#e03e3e;}.yield-val.hold{color:#d97706;}.yield-val.buy{color:#00956e;}
-.yield-bar{position:relative;height:10px;border-radius:5px;background:#f1f5f9;margin:4px 0 3px;overflow:visible;}
-.yield-zone{position:absolute;height:100%;border-radius:3px;}
-.yield-marker{position:absolute;top:-2px;width:3px;height:14px;background:#0c1c2e;border-radius:2px;transform:translateX(-50%);}
-.yield-labels{display:flex;justify-content:space-between;font-size:0.56rem;font-family:"IBM Plex Mono",monospace;}
-.card-signal{display:flex;justify-content:space-between;font-size:0.76rem;}
-.signal-name{color:#64748b;}
-.signal-val{font-family:"IBM Plex Mono",monospace;font-weight:700;}
-.card-note{font-size:0.67rem;color:#64748b;line-height:1.5;}
-.card-policy{font-size:0.62rem;color:#00956e;padding-top:4px;border-top:1px solid #f1f5f9;line-height:1.4;}
-.framework{background:#0c1c2e;border-radius:12px;padding:1.3rem;margin:0 1.2rem 2rem;}
-.fw-title{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#4ade80;margin-bottom:0.9rem;}
-.fw-row{display:flex;gap:0.8rem;margin-bottom:0.7rem;padding-bottom:0.7rem;border-bottom:1px solid rgba(255,255,255,0.06);}
-.fw-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.fw-yield{font-family:"IBM Plex Mono",monospace;font-size:0.78rem;font-weight:700;min-width:72px;flex-shrink:0;}
-.fw-text{font-size:0.76rem;color:rgba(255,255,255,0.6);line-height:1.6;}
-.fw-action{color:#fff;font-weight:700;}
-.fw-note{font-size:0.62rem;color:rgba(255,255,255,0.22);margin-top:0.3rem;}
-.empty{text-align:center;padding:3rem;color:#94a3b8;grid-column:1/-1;}
-.cta-bar{background:#e6f5f1;border:1.5px solid #b3e8d8;border-radius:10px;padding:1rem 1.2rem;margin:0 1.2rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.cta-bar p{font-size:0.82rem;color:#0c1c2e;margin:0;font-weight:600;}
-.cta-bar a{background:#00956e;color:#fff;font-size:0.78rem;font-weight:700;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;white-space:nowrap;}
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
+
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
+
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
+
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
+
+/* ── Tool pages ── */
+.tool-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.tool-hero .wrap{padding-top:2.4rem;padding-bottom:2rem;}
+.tool-h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);}
+.tool-h1 em{font-style:normal;color:var(--green);}
+.tool-lede{font-size:1rem;line-height:1.65;color:var(--text);margin-top:0.8rem;max-width:720px;}
+.tool-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:720px;}
+.prose-card{font-size:0.92rem;line-height:1.7;color:var(--text);}
+.prose-card p + p{margin-top:0.7rem;}
+.prose-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.1rem 0 0.3rem;}
+.prose-card h3:first-child{margin-top:0;}
+.prose-card ul{margin:0.5rem 0 0 1.2rem;}
+.prose-card li{margin-bottom:0.4rem;}
+.prose-card a{color:var(--green);}
+.prose-card b{color:var(--ink);}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;}
+.faq details + details{margin-top:0.5rem;}
+.faq summary{cursor:pointer;font-size:0.95rem;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--green);font-weight:700;}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:0.6rem;}
+.faq details p a{color:var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.kpi{background:#fff;border:1px solid var(--border);border-top:3px solid var(--kc);border-radius:10px;padding:0.6rem 0.8rem;}
+.kpi b{display:block;font-size:1.4rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.kpi span{font-size:0.72rem;color:var(--dim);}
+
+.rel-links{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.rel-links a{font-size:0.84rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.45rem 0.9rem;text-decoration:none;}
+.rel-links a:hover{border-color:var(--green);color:var(--green);}
+
+.dv-row{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.9fr) minmax(0,1.3fr) 100px minmax(0,2fr);gap:0.8rem;align-items:center;padding:0.7rem 1rem;border-top:1px solid var(--hair);}
+.dv-row:first-child{border-top:0;}
+.dv-h{background:var(--surface);font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--dim);}
+.dv-name a,.dv-name b{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.dv-name a:hover{color:var(--green);}
+.dv-name small{display:block;font-family:var(--mono);font-size:0.66rem;color:var(--muted);margin-top:0.1rem;}
+.dv-sec{font-size:0.8rem;color:var(--text);}
+.dv-sig a{font-size:0.82rem;font-weight:600;color:var(--ink);text-decoration:none;}
+.dv-sig a:hover{color:var(--green);}
+.dv-sig small{display:block;font-size:0.68rem;color:var(--muted);}
+.dv-sig small.stale{color:#a35a00;}
+.dv-note{font-size:0.78rem;line-height:1.5;color:var(--text);}
+.dv-tbl{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+@media(max-width:860px){
+  .dv-h{display:none;}
+  .dv-row{grid-template-columns:minmax(0,1fr) auto;gap:0.2rem 0.8rem;}
+  .dv-name{grid-column:1;}
+  .dv-z{grid-column:2;grid-row:1;}
+  .dv-sec,.dv-sig,.dv-note{grid-column:1/-1;}
+}
+.phase-tbl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;}
+@media(max-width:860px){.phase-tbl{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:480px){.phase-tbl{grid-template-columns:1fr;}}
+.pt{background:#fff;border:1px solid var(--border);border-top:4px solid var(--pc);border-radius:12px;padding:0.9rem 1rem;}
+.pt b{display:block;font-size:0.92rem;margin:0.4rem 0 0.3rem;color:var(--ink);}
+.pt p{font-size:0.8rem;line-height:1.55;color:var(--text);}
+
 </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
+     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/site.css?v=1">
 </head>
 <body>
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="logo"><div class="logo-dot"></div>Signycle</a>
@@ -289,10 +489,10 @@ html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sa
         <span class="nav-parent">Signals <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
           <a href="where-are-we-in-the-cycle.html"><b>Where are we?</b><span><span data-signal="cycleScore">73/100</span></span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>Every signal and its zone</span></a>
           <a href="signal-history.html"><b>Signal History</b><span>Real zone crossings, dated</span></a>
           <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
-          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
+          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold, silver, platinum, palladium</span></a>
           <div class="nav-drop-rule"></div>
           <a href="hormuz-dashboard.html" style="color:#dc2626"><b>Hormuz Dashboard</b><span>Live crisis tracker</span></a>
         </div>
@@ -300,9 +500,9 @@ html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sa
       <li>
         <span class="nav-parent">Cycle Tools <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
+          <a href="cycle-screener.html"><b>Cycle Screener</b><span>224 stocks by live signal zone</span></a>
           <a href="cycle-dashboard.html"><b>Cycle Dashboard</b><span>Signal cards + charts</span></a>
-          <a href="live-signals.html"><b>Live Signals</b><span>21 signals &middot; live</span></a>
+          <a href="live-signals.html"><b>Live Signals</b><span>Every signal and its zone</span></a>
           <a href="signal-history.html"><b>Signal History</b><span>Real zone crossings, dated</span></a>
           <a href="recession-tracker.html"><b>Recession Tracker</b><span><span data-signal="recessionProb">55%</span> probability</span></a>
           <a href="signal-calendar.html"><b>Signal Calendar</b><span>Upcoming macro events</span></a>
@@ -312,14 +512,14 @@ html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sa
       <li>
         <span class="nav-parent">Stock Tools <svg class="nav-chev" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="1,1 5,6 9,1"/></svg></span>
         <div class="nav-drop">
-          <a href="cycle-screener.html"><b>Cycle Screener</b><span>54 stocks by signal zone</span></a>
-          <a href="cyclical-dividend-scanner.html"><b>Dividend Scanner</b><span>Yield vs cycle &mdash; 33 stocks</span></a>
-          <a href="stock-comparison.html"><b>Stock Comparison</b><span>Side-by-side analysis</span></a>
+          <a href="cycle-screener.html"><b>Cycle Screener</b><span>224 stocks by live signal zone</span></a>
+          <a href="cyclical-dividend-scanner.html"><b>Dividend Scanner</b><span>When a high yield is a warning</span></a>
+          <a href="stock-comparison.html"><b>Stock Comparison</b><span>Two stocks, side by side</span></a>
           <a href="compare-wti-brent.html"><b>WTI vs Brent</b><span>Spread &middot; Hormuz premium</span></a>
-          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold SELL &middot; Silver SELL</span></a>
+          <a href="precious-metals-cycle.html"><b>Precious Metals</b><span>Gold, silver, platinum, palladium</span></a>
           <div class="nav-drop-rule"></div>
           <a href="market-cycles-history.html"><b>Cycle Scenarios</b><span>Historical cycle analysis hub</span></a>
-          <a href="blog-recession-cyclical-stocks.html"><b>Recession Playbook</b><span>What to buy when PMI crashes</span></a>
+          <a href="blog-recession-cyclical-stocks.html"><b>Recession Playbook</b><span>Cyclical stocks in recessions</span></a>
         </div>
       </li>
       <li>
@@ -363,7 +563,7 @@ html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sa
           <a href="jse-south-africa.html"><b>&#127480;&#127462; JSE South Africa</b><span>PGM &middot; Gold &middot; Coal</span></a>
           <a href="nse-india.html"><b>&#127470;&#127475; NSE India</b><span>Steel &middot; Coal &middot; Copper</span></a>
           <a href="bmv-mexico.html"><b>&#127474;&#127485; BMV Mexico</b><span>Copper &middot; Oil &middot; Cement</span></a>
-          <a href="exchanges.html"><b>&#127758; All 34+ Exchanges</b><span>250+ cyclical stocks</span></a>
+          <a href="exchanges.html"><b>&#127758; All 34+ Exchanges</b><span>Cyclical stocks by market</span></a>
         </div>
       </li>
       <li>
@@ -378,8 +578,8 @@ html,body{max-width:100%;overflow-x:hidden;background:#f8faf9;font-family:"DM Sa
           <a href="how-it-works.html"><b>How it works</b><span>Methodology &amp; signals</span></a>
           <a href="coming-soon.html" style="color:#00956e;"><b>Coming Soon</b><span>What&rsquo;s being built</span></a>
           <a href="market-cycles-history.html"><b>Cycle Scenarios</b><span>All historical cycle analyses</span></a>
-          <a href="blog-gfc-2008-commodity-cycle.html"><b>2008 GFC</b><span>All signals fire simultaneously</span></a>
-          <a href="blog-covid-2020-cycle.html"><b>2020 COVID</b><span>+963% GOGL &middot; fastest recovery</span></a>
+          <a href="blog-gfc-2008-commodity-cycle.html"><b>2008 GFC</b><span>Crisis, crash and recovery</span></a>
+          <a href="blog-covid-2020-cycle.html"><b>2020 COVID</b><span>Collapse and fast rebound</span></a>
           <a href="blog-sector-rotation-commodity-cycle.html"><b>Sector Rotation</b><span>Which sectors lead each phase</span></a>
           <a href="podcasts.html"><b>Podcasts</b><span>Curated for cycle investors</span></a>
           <div class="nav-drop-rule"></div>
@@ -714,317 +914,190 @@ function _initHamburger() {
 _initHamburger();
 </script>
 
+<div class="page">
 
-
-
-
-
-
-
-<div class="scanner-header">
-  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:0.4rem;">Signycle · Tool</div>
-  <h1>Cyclical Dividend Scanner</h1>
-  <p id="headerDesc">33 cyclical dividend stocks · yield vs cycle signal · Updated <span class="live-updated-date">1 Jun 2026</span></p>
-  <div class="stat-chips">
-    <div class="stat-chip chip-sell" id="chipSell">— YIELD SELL</div>
-    <div class="stat-chip chip-hold" id="chipHold">— YIELD MID</div>
-    <div class="stat-chip chip-buy" id="chipBuy">— YIELD BUY</div>
-    <div class="stat-chip chip-date live-updated-date">1 Jun 2026</div>
+<section class="tool-hero">
+<div class="wrap">
+  <div class="dash-eyebrow">Dividend scanner &middot; live zones</div>
+  <h1 class="tool-h1">Cyclical dividends: when a high yield is a <em>warning</em></h1>
+  <p class="tool-lede">Shipping, oil, mining and fertiliser companies often pay their biggest dividends right at the top of their cycle. This scanner shows 28 well-known cyclical dividend payers next to the live zone of the price that drives their earnings, so you can see whether today&rsquo;s dividends are likely to come from peak or trough earnings.</p>
+  <div class="kpis">
+    <div class="kpi" style="--kc:var(--sell);"><b id="kSell">–</b><span>driver in SELL</span></div>
+    <div class="kpi" style="--kc:var(--warn);"><b id="kWarn">–</b><span>near sell</span></div>
+    <div class="kpi" style="--kc:var(--neutral);"><b id="kNeu">–</b><span>neutral</span></div>
+    <div class="kpi" style="--kc:var(--buy);"><b id="kBuy">–</b><span>driver in BUY</span></div>
   </div>
 </div>
+</section>
 
-<div class="legend-bar">
-  <span style="font-size:0.58rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;">Yield bar:</span>
-  <div class="legend-item"><div class="legend-box" style="background:rgba(0,149,110,0.3);"></div>BUY zone</div>
-  <div class="legend-item"><div class="legend-box" style="background:rgba(217,119,6,0.3);"></div>MID zone</div>
-  <div class="legend-item"><div class="legend-box" style="background:rgba(224,62,62,0.3);"></div>SELL zone</div>
-  <div class="legend-item"><div style="width:3px;height:11px;border-radius:2px;background:#0c1c2e;"></div>Current</div>
+<div class="wrap">
+  <div class="sec-head" style="margin-top:0.4rem;"><div>
+    <h2 class="sec-title">Dividend payers and their drivers</h2>
+    <p class="sec-sub">Sorted from the most stretched driver to the cheapest. The zone is the signal&rsquo;s, not a rating of the stock.</p>
+  </div></div>
+  <div class="dv-tbl" id="dvTbl"><div class="st-empty" style="padding:2rem;text-align:center;color:var(--muted);">Loading live zones…</div></div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Why the yield misleads at the top</h2></div></div>
+  <div class="card prose-card">
+    <p>Many cyclical companies don&rsquo;t pay a fixed dividend. Shipping companies, some oil producers and several miners pay out a share of what they earn each quarter or year, so the dividend rises and falls with the cycle. When freight rates or commodity prices are at a peak, earnings are too, and so are the dividends.</p>
+    <p>The yield quoted on most websites is backward-looking: it is last year&rsquo;s dividends divided by today&rsquo;s price. At the top of the cycle that number can look extraordinary, while the market, which looks ahead, has already started to price in lower earnings. At the bottom it works the other way: dividends are small or suspended and the yield looks unattractive just when the driver is historically cheap.</p>
+    <p>That is why the zone of the driver is a useful cross-check. A very high yield with the driver in SELL deserves more caution than the same yield with the driver neutral.</p>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">What each zone suggests for the dividend</h2></div></div>
+  <div class="phase-tbl">
+    <div class="pt" style="--pc:var(--buy);"><span class="badge buy">BUY</span><b>Driver historically cheap</b><p>Earnings are likely depressed, so dividends are often low, cut or suspended. The yield looks unattractive.</p></div>
+    <div class="pt" style="--pc:var(--neutral);"><span class="badge neutral">NEUTRAL</span><b>Driver in its normal range</b><p>Dividends are more likely to reflect mid-cycle earnings. The direction of the driver matters most here.</p></div>
+    <div class="pt" style="--pc:var(--warn);"><span class="badge warn">NEAR SELL</span><b>Driver getting expensive</b><p>Earnings and dividends are often strong. Worth checking how much of the payout depends on today&rsquo;s prices.</p></div>
+    <div class="pt" style="--pc:var(--sell);"><span class="badge sell">SELL</span><b>Driver historically expensive</b><p>Dividends are likely being paid from peak earnings. A high yield now may not last once the price turns.</p></div>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Before buying a high yielder</h2></div></div>
+  <div class="card prose-card">
+    <ul>
+      <li><b>Read the dividend policy.</b> A fixed dividend, a share of earnings or a share of free cash flow behave very differently when earnings fall.</li>
+      <li><b>Look at the payout ratio.</b> A company paying out more than it earns can&rsquo;t keep that up for long.</li>
+      <li><b>Check the balance sheet.</b> Debt and upcoming investments decide whether the company can keep paying through a downturn.</li>
+      <li><b>Check the driver.</b> Open the signal page to see where the price sits against its history and how fast it is moving.</li>
+    </ul>
+  </div>
+
+
+  <div class="card alert-card">
+    <div class="alert-copy">
+      <div class="card-title">Get an email when a signal changes zone</div>
+      <div class="card-note">Free. Sent when a live-priced signal crosses into or out of BUY, near sell or SELL.</div>
+    </div>
+    <form class="alert-form" onsubmit="return submitAlertSignup(event, 'alertSignupEmail', 'alertSignupBtn', 'alertSignupMsg')">
+      <input type="email" id="alertSignupEmail" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit" id="alertSignupBtn">Get alerts</button>
+      <div class="alert-signup-msg" id="alertSignupMsg" role="status"></div>
+    </form>
+  </div>
+
+
+  <div class="sec-head"><div><h2 class="sec-title">Questions</h2></div></div>
+  <div class="faq">
+    <details><summary>Why does a high dividend yield on a cyclical stock need care?</summary><p>A trailing dividend yield divides the dividends paid over the past year by today&rsquo;s share price. For a cyclical company, those dividends were paid out of recent earnings, which may have been unusually high. If the price behind those earnings is now at a historical high, the dividend can fall sharply once it turns, and the yield you see today won&rsquo;t be repeated.</p></details>
+    <details><summary>Why are there no yield figures on this page?</summary><p>Yields change with every share price move and every dividend announcement, and Signycle has no live source for them. Rather than show figures that may be out of date, the page shows the live zone of each company&rsquo;s main driver. Check current yields and dividend policies on the company&rsquo;s investor relations pages or your broker.</p></details>
+    <details><summary>Is a stock with a low yield and a signal in BUY a good buy?</summary><p>Not necessarily. A low dividend while the driver is historically cheap is what you would expect near the bottom of a cycle, but the company also needs a balance sheet strong enough to get through the downturn. BUY levels are historical reference points, not forecasts, and nothing here is financial advice.</p></details>
+    <details><summary>Why are some drivers marked &ldquo;not tracked&rdquo;?</summary><p>A few companies depend on prices Signycle doesn&rsquo;t track, such as coal or LPG freight. They are still listed because the dividend logic applies to them too, but there is no live zone to show.</p></details>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title">Related</h2></div></div>
+  <div class="rel-links">
+    <a href="cycle-screener.html">Cycle screener: all stocks by zone</a>
+    <a href="blog-cyclical-dividend-investing.html">Cyclical dividend investing</a>
+    <a href="where-are-we-in-the-cycle.html">Where are we in the cycle?</a>
+    <a href="live-signals.html">All live signals</a>
+  </div>
+
+  <p class="foot-note">For information only, not financial advice. See the <a href="disclaimer.html">disclaimer</a>.</p>
 </div>
 
-<div class="filters">
-  <div class="filter-row" id="sectorFilters"></div>
-  <div class="filter-row" id="zoneFilters">
-    <span style="font-size:0.62rem;color:#94a3b8;align-self:center;margin-right:2px;">Filter:</span>
+</div><!-- .page -->
+
+<footer class="sx-footer">
+  <div class="sx-foot-inner">
+    <div class="sx-foot-brand">
+      <a href="index.html" class="sx-foot-logo"><span></span>Signycle</a>
+      <p>Macro signals for cyclical stocks: where commodities, freight and rates sit against their BUY and SELL levels.</p>
+    </div>
+    <div class="sx-foot-cols">
+      <div><b>Signals</b><a class="sx-fl" href="live-signals.html">Live signals</a><a class="sx-fl" href="cycle-dashboard.html">Cycle dashboard</a><a class="sx-fl" href="signal-history.html">Signal history</a><a class="sx-fl" href="recession-tracker.html">Recession tracker</a></div>
+      <div><b>Research</b><a class="sx-fl" href="blog.html">Signycle Research</a><a class="sx-fl" href="investor-guides.html">Investor guides</a><a class="sx-fl" href="how-it-works.html">How it works</a><a class="sx-fl" href="faq.html">FAQ</a></div>
+      <div><b>Signycle</b><a class="sx-fl" href="about.html">About</a><a class="sx-fl" href="contact.html">Contact</a><a class="sx-fl" href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div><b>Legal</b><a class="sx-fl" href="terms.html">Terms</a><a class="sx-fl" href="privacy.html">Privacy policy</a><a class="sx-fl" href="disclaimer.html">Disclaimer</a></div>
+    </div>
   </div>
-</div>
-
-<div class="cta-bar">
-  <p>Understand the framework first</p>
-  <a href="blog-cyclical-dividend-investing.html">Read the guide →</a>
-</div>
-
-<div class="cards" id="cards"></div>
-
-<div class="framework">
-  <div class="fw-title">The Cyclical Yield Framework</div>
-  <div class="fw-row">
-    <div class="fw-yield" style="color:#f87171;">20–45%+</div>
-    <div class="fw-text"><span class="fw-action">SELL. </span>Cycle peak. Extraordinary earnings generate extraordinary — and temporary — dividends. The cycle will turn.</div>
+  <div class="sx-foot-bottom">
+    <span>&copy; 2026 Signycle &middot; Not financial advice</span>
+    <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
   </div>
-  <div class="fw-row">
-    <div class="fw-yield" style="color:#fbbf24;">8–20%</div>
-    <div class="fw-text"><span class="fw-action">REDUCE/HOLD. </span>Late cycle. Earnings strong but fading. Watch the macro signal.</div>
-  </div>
-  <div class="fw-row">
-    <div class="fw-yield" style="color:#e2e8e5;">3–8%</div>
-    <div class="fw-text"><span class="fw-action">NEUTRAL. </span>Mid-cycle. Macro direction determines next move.</div>
-  </div>
-  <div class="fw-row">
-    <div class="fw-yield" style="color:#4ade80;">0–3%</div>
-    <div class="fw-text"><span class="fw-action">BUY ZONE. </span>Trough. Low or zero dividend = depressed earnings. Confirm with macro signal before entering.</div>
-  </div>
-  <div class="fw-note">Not financial advice. Yield estimates based on historical cycles. Always confirm with Signycle macro signals.</div>
-</div>
+</footer>
 
-<div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:10px;padding:1.2rem 1.5rem;margin:0 1.2rem 3rem;">
-  <div style="font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a0b0ab;margin-bottom:0.7rem;">Macro Cycle Intelligence</div>
-  <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
-    <a href="live-signals.html" style="background:#0c1c2e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;">📡 Live Signals →</a>
-    <a href="blog-cyclical-dividend-investing.html" style="background:#00956e;color:#fff;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;">Dividend Framework →</a>
-    <a href="blog-why-high-yield-cyclicals-sell.html" style="background:#e6f5f1;color:#00956e;font-weight:700;font-size:0.78rem;padding:0.35rem 0.9rem;border-radius:6px;text-decoration:none;border:1.5px solid #b3e8d8;">Why High Yield ≠ Buy →</a>
-  </div>
-</div>
-
-
-
+<script src="/signals-meta.js"></script>
 <script>
-var STOCKS=[
-  {n:"Frontline",t:"FRO",e:"Oslo/NYSE",url:"blog-frontline-vlcc-cycle.html",sec:"shipping",sub:"VLCC Tanker",sig:"VLCC rate",sv:120,su:"k$/day",sb:30,ss:100,yt:[0,3],ym:[6,15],yp:[25,38],yc:8,pol:"Variable quarterly — ~100% FCF",note:"VLCC $120k/day. Off Mar peak $423k."},
-  {n:"Golden Ocean",t:"GOGL",e:"Oslo/Nasdaq",url:"blog-golden-ocean-bdi-cycle.html",sec:"shipping",sub:"Dry Bulk",sig:"BDI",sv:2014,su:"pts",sb:1000,ss:3500,yt:[0,3],ym:[7,15],yp:[30,45],yc:5,pol:"Variable quarterly — near 100% FCF",note:"BDI 2,014 neutral. +963% in 2020."},
-  {n:"Star Bulk",t:"SBLK",e:"Nasdaq",url:"blog-star-bulk-bdi-cycle.html",sec:"shipping",sub:"Dry Bulk",sig:"BDI",sv:2014,su:"pts",sb:1000,ss:3500,yt:[0,2],ym:[8,16],yp:[28,40],yc:5,pol:"Variable quarterly — high FCF payout",note:"Major dry bulk operator."},
-  {n:"Höegh Autoliners",t:"HAUTO",e:"Oslo Børs",url:"blog-h-egh-autoliners-cycle.html",sec:"shipping",sub:"Car Carrier",sig:"PCTC rate",sv:95,su:"k$/day",sb:25,ss:80,yt:[0,3],ym:[6,12],yp:[20,30],yc:12,pol:"Variable semi-annual — high FCF",note:"PCTC tight from EV export boom. Late cycle."},
-  {n:"Himalaya Shipping",t:"HSHP",e:"Oslo Børs",url:"blog-himalaya-shipping-bdi.html",sec:"shipping",sub:"Dry Bulk",sig:"BDI",sv:2014,su:"pts",sb:1000,ss:3500,yt:[0,5],ym:[10,20],yp:[25,40],yc:8,pol:"Variable quarterly",note:"Higher BDI beta than large peers."},
-  {n:"Dorian LPG",t:"LPG",e:"NYSE",url:"blog-dorian-lpg-cycle.html",sec:"shipping",sub:"LPG Tanker",sig:"LPG freight",sv:65,su:"k$/day",sb:20,ss:70,yt:[0,3],ym:[6,14],yp:[20,35],yc:7,pol:"Variable quarterly — high FCF",note:"US propane export driven."},
-  {n:"BW LPG",t:"BWLPG",e:"Oslo Børs",url:"blog-bw-lpg-cycle.html",sec:"shipping",sub:"LPG Tanker",sig:"LPG freight",sv:65,su:"k$/day",sb:20,ss:70,yt:[0,4],ym:[7,15],yp:[22,32],yc:8,pol:"Variable quarterly — dual-fuel edge",note:"World's largest LPG fleet."},
-  {n:"Mowi",t:"MOWI",e:"Oslo Børs",url:"blog-mowi-salmon-cycle.html",sec:"salmon",sub:"Atlantic Salmon",sig:"Salmon spot",sv:75,su:"NOK/kg",sb:55,ss:95,yt:[1,3],ym:[4,7],yp:[8,14],yc:5,pol:"Quarterly — targets 75% payout",note:"World's largest. Most defensive."},
-  {n:"SalMar",t:"SALM",e:"Oslo Børs",url:"blog-salmar-salmon-cycle.html",sec:"salmon",sub:"Atlantic Salmon",sig:"Salmon spot",sv:75,su:"NOK/kg",sb:55,ss:95,yt:[0,3],ym:[5,9],yp:[10,18],yc:6,pol:"Variable semi-annual",note:"Norway + Iceland operations."},
-  {n:"Grieg Seafood",t:"GSF",e:"Oslo Børs",url:"blog-grieg-seafood-salmon-cycle.html",sec:"salmon",sub:"Atlantic Salmon",sig:"Salmon spot",sv:75,su:"NOK/kg",sb:55,ss:95,yt:[0,2],ym:[4,8],yp:[12,20],yc:4,pol:"Variable annual — highest beta",note:"Smaller, higher-beta than peers."},
-  {n:"Equinor",t:"EQNR",e:"Oslo/NYSE",url:"blog-equinor-brent-cycle.html",sec:"energy",sub:"Integrated E&P",sig:"Brent",sv:111,su:"$/bbl",sb:50,ss:95,yt:[1,3],ym:[4,8],yp:[10,18],yc:11,pol:"Base + variable extraordinary",note:"Brent $111 = SELL zone."},
-  {n:"Aker BP",t:"AKRBP",e:"Oslo Børs",url:"blog-akerbp-brent-cycle.html",sec:"energy",sub:"E&P",sig:"Brent",sv:111,su:"$/bbl",sb:50,ss:95,yt:[0,2],ym:[4,8],yp:[10,16],yc:9,pol:"Quarterly variable — high FCF payout",note:"Pure E&P. Higher Brent beta."},
-  {n:"Vår Energi",t:"VAR",e:"Oslo Børs",url:"blog-var-energi-oil-cycle.html",sec:"energy",sub:"E&P",sig:"Brent",sv:111,su:"$/bbl",sb:50,ss:95,yt:[2,4],ym:[6,10],yp:[12,20],yc:13,pol:"Quarterly — 20c/share target",note:"Dividend at peak territory."},
-  {n:"Yancoal Australia",t:"YAL",e:"ASX",url:"blog-yancoal-australia-dividend-cycle.html",sec:"coal",sub:"Thermal Coal",sig:"Thermal coal",sv:130,su:"$/t",sb:80,ss:200,yt:[0,3],ym:[5,12],yp:[25,35],yc:6,pol:"Variable — 60–80%+ NPAT. Fully franked.",note:"Paid 33% yield in 2022 at $450/t coal."},
-  {n:"Whitehaven Coal",t:"WHC",e:"ASX",url:"blog-whitehaven-coal-dividend-cycle.html",sec:"coal",sub:"HCC + Thermal",sig:"Hard coking coal",sv:215,su:"$/t",sb:150,ss:350,yt:[0,3],ym:[6,12],yp:[28,38],yc:8,pol:"Variable — fully franked.",note:"Paid 35%+ yield 2022–23."},
-  {n:"Yara International",t:"YAR",e:"Oslo Børs",url:"blog-yara-international-cycle.html",sec:"fertilizer",sub:"Urea & Nitrates",sig:"Urea",sv:270,su:"$/t",sb:200,ss:450,yt:[2,4],ym:[4,8],yp:[14,20],yc:6,pol:"Annual variable + buybacks",note:"Urea $270 mid-cycle."},
-  {n:"SAFCO",t:"2020.SR",e:"Tadawul",url:"blog-safco-urea-cycle.html",sec:"fertilizer",sub:"Urea",sig:"Urea",sv:270,su:"$/t",sb:200,ss:450,yt:[4,7],ym:[8,12],yp:[18,25],yc:9,pol:"Semi-annual — distributes most FCF",note:"World's lowest urea cost."},
-  {n:"BHP Group",t:"BHP",e:"ASX/LSE",url:"blog-bhp-ironore-cycle.html",sec:"mining",sub:"Iron Ore + Copper",sig:"Iron ore",sv:105,su:"$/t",sb:80,ss:160,yt:[3,4],ym:[5,8],yp:[10,14],yc:6,pol:"Min 50% of earnings — no suspension",note:"Copper also DEEP SELL."},
-  {n:"Rio Tinto",t:"RIO",e:"LSE/ASX",url:"blog-rio-tinto-analysis.html",sec:"mining",sub:"Iron Ore + Copper",sig:"Iron ore",sv:105,su:"$/t",sb:75,ss:160,yt:[3,5],ym:[6,10],yp:[12,18],yc:8,pol:"40–60% of earnings + specials",note:"Paid 18% yield at IO $200/t (2021)."},
-  {n:"Boliden",t:"BOL",e:"Stockholm",url:"blog-boliden-stock-analysis.html",sec:"mining",sub:"Copper + Zinc",sig:"LME Copper",sv:12043,su:"$/t",sb:5500,ss:10000,yt:[1,3],ym:[3,6],yp:[7,12],yc:6,pol:"Annual — 30–40% of EPS",note:"Copper DEEP SELL."},
-  {n:"Freeport-McMoRan",t:"FCX",e:"NYSE",url:"blog-freeport-copper-cycle.html",sec:"mining",sub:"Copper",sig:"LME Copper",sv:12043,su:"$/t",sb:5500,ss:10000,yt:[0,1],ym:[1,3],yp:[3,6],yc:2,pol:"Base + variable. US lower payout.",note:"Lower yield, same copper cycle."},
-  {n:"KGHM",t:"KGH",e:"Warsaw GPW",url:"blog-kghm-cycle.html",sec:"mining",sub:"Copper",sig:"LME Copper",sv:12043,su:"$/t",sb:5500,ss:10000,yt:[0,3],ym:[4,8],yp:[10,18],yc:6,pol:"Annual variable — state-owned",note:"Polish state copper miner."},
-  {n:"Nucor",t:"NUE",e:"NYSE",url:"blog-nucor-steel-cycle.html",sec:"steel",sub:"US Steel EAF",sig:"US HRC steel",sv:700,su:"$/t",sb:400,ss:1100,yt:[1,2],ym:[3,6],yp:[8,12],yc:5,pol:"Base (Aristocrat, 50yr+) + supplemental",note:"Dividend Aristocrat + superdividend."},
-  {n:"Steel Dynamics",t:"STLD",e:"Nasdaq",url:"blog-steel-dynamics-cycle.html",sec:"steel",sub:"US Steel EAF",sig:"US HRC steel",sv:700,su:"$/t",sb:400,ss:1100,yt:[1,2],ym:[3,6],yp:[7,11],yc:4,pol:"Regular + specials. EAF model.",note:"Similar model to Nucor."},
-  {n:"FLEX LNG",t:"FLNG",e:"Oslo/NYSE",url:"blog-flex-lng-cycle.html",sec:"lng",sub:"LNG Shipping",sig:"LNG freight",sv:55,su:"k$/day",sb:30,ss:80,yt:[2,5],ym:[7,12],yp:[15,22],yc:10,pol:"Quarterly variable — contracted base",note:"More stable than spot LNG."},
-  {n:"Golar LNG",t:"GLNG",e:"Oslo/Nasdaq",url:"blog-golar-lng-cycle.html",sec:"lng",sub:"FLNG",sig:"LNG price",sv:12,su:"$/MMBtu",sb:5,ss:20,yt:[0,3],ym:[4,9],yp:[12,20],yc:6,pol:"Variable — FLNG contract driven",note:"Hilli Episeyo contract base."},
-  {n:"Heidelberg Materials",t:"HDMGF",e:"Frankfurt",url:"blog-heidelberg-materials-cycle.html",sec:"materials",sub:"Cement",sig:"Global PMI",sv:51.4,su:"PMI",sb:48,ss:56,yt:[1,3],ym:[3,5],yp:[5,8],yc:4,pol:"Progressive annual — cyclical overlay",note:"Cement tracks construction PMI."},
-  {n:"CRH",t:"CRH",e:"NYSE/Dublin",url:"blog-crh-pmi-cycle.html",sec:"materials",sub:"Building Materials",sig:"Global PMI",sv:51.4,su:"PMI",sb:48,ss:56,yt:[1,3],ym:[2,4],yp:[4,7],yc:3,pol:"Progressive + large buybacks",note:"IIJA tailwind. Buyback-focused at peaks."},
-];
-
-var SECTORS=[
-  {id:"all",label:"All"},
-  {id:"shipping",label:"Shipping"},
-  {id:"salmon",label:"Salmon"},
-  {id:"energy",label:"Energy"},
-  {id:"coal",label:"Coal"},
-  {id:"fertilizer",label:"Fertilizer"},
-  {id:"mining",label:"Mining"},
-  {id:"steel",label:"Steel"},
-  {id:"lng",label:"LNG"},
-  {id:"materials",label:"Materials"},
-];
-
-var ZC={sell:"#e03e3e",hold:"#d97706",buy:"#00956e"};
-var ZBG={sell:"#fef2f2",hold:"#fffbeb",buy:"#e6f5f1"};
-var ZBD={sell:"#fca5a5",hold:"#fde68a",buy:"#b3e8d8"};
-
-function zone(s){
-  if(s.yc>=s.yp[0])return"sell";
-  if(s.yc<=s.ym[0])return"buy";
-  return"hold";
-}
-function sigZone(s){
-  if(s.sv>=s.ss)return"sell";
-  if(s.sv<=s.sb)return"buy";
-  return"hold";
-}
-
-// Every stock's sv (signal value) is a hardcoded snapshot from whenever this
-// page was written, so sigZone() above always judged the SELL/BUY badge
-// against a frozen number. Overlay the live value from signals-loader.js
-// (window.SignycleData) by matching this page's free-text "sig" name to a
-// tracked signal id — this data has no sigId field, unlike stock-comparison
-// and cycle-screener, so the match is by name. A few signals here (coking
-// coal, thermal coal, LNG price, LPG freight) aren't tracked at all and
-// simply keep their hardcoded value.
-var SIG_ID_MAP = {
-  'BDI': 'bdi', 'Brent': 'brent', 'Global PMI': 'pmi', 'Iron ore': 'ironore',
-  'LME Copper': 'copper', 'LNG freight': 'lng', 'PCTC rate': 'pctc',
-  'Salmon spot': 'salmon', 'US HRC steel': 'steel', 'Urea': 'urea', 'VLCC rate': 'vlcc'
-};
-// These three freight-rate signals are tracked live in raw $/day, but this
-// page displays and thresholds them in k$/day (sb/ss like 30/100, not
-// 30000/100000) — divide by 1000 so the live value lands on the same scale
-// as this page's own sb/ss, instead of always reading "way past SELL".
-var KILO_PER_DAY = { vlcc: 1, pctc: 1, lng: 1 };
-function withLiveSv(s){
-  var d=window.SignycleData;
-  var id=SIG_ID_MAP[s.sig];
-  var sig=id&&d&&d.signals&&d.signals[id];
-  if(!sig||sig.value==null||isNaN(parseFloat(sig.value)))return s;
-  var v=parseFloat(sig.value);
-  if(KILO_PER_DAY[id]) v=v/1000;
-  return Object.assign({},s,{sv:v});
-}
-function fmt(v){
-  if(typeof v==="number"&&v>999)return v.toLocaleString();
-  return v;
-}
-
-function renderBar(s){
-  var max=s.yp[1]*1.12;
-  var p=function(v){return Math.min((v/max)*100,100);};
-  return '<div class="yield-bar">'
-    +'<div class="yield-zone" style="left:'+p(s.yt[0])+'%;width:'+Math.max(p(s.yt[1])-p(s.yt[0]),2)+'%;background:rgba(0,149,110,0.28);"></div>'
-    +'<div class="yield-zone" style="left:'+p(s.ym[0])+'%;width:'+Math.max(p(s.ym[1])-p(s.ym[0]),2)+'%;background:rgba(217,119,6,0.28);"></div>'
-    +'<div class="yield-zone" style="left:'+p(s.yp[0])+'%;width:'+Math.max(p(s.yp[1])-p(s.yp[0]),2)+'%;background:rgba(224,62,62,0.28);"></div>'
-    +'<div class="yield-marker" style="left:'+p(s.yc)+'%;"></div>'
-    +'</div>';
-}
-
-function renderCard(s){
-  var z=zone(s),sz=sigZone(s);
-  var border=z==="sell"?"#fca5a5":z==="buy"?"#b3e8d8":"#e2e8e5";
-  return '<div class="card" style="border:1.5px solid '+border+';">'
-    +'<div class="card-header">'
-      +'<div>'+(s.url?'<a href="'+s.url+'" class="card-name-link"><div class="card-name">'+s.n+' ↗</div></a>':'<div class="card-name">'+s.n+'</div>')+'<div class="card-ticker">'+s.t+' · '+s.e+'</div><div class="card-sub">'+s.sub+'</div></div>'
-      +'<div class="badges">'
-        +'<span class="badge badge-'+z+'">'+(z==="sell"?"YIELD SELL":z==="buy"?"YIELD BUY":"YIELD MID")+'</span>'
-        +'<span class="badge badge-'+sz+'">'+s.sig.split(" ")[0].toUpperCase()+' '+sz.toUpperCase()+'</span>'
-      +'</div>'
-    +'</div>'
-    +'<div class="yield-area">'
-      +'<div class="yield-top"><span class="yield-label">Current yield</span><span class="yield-val '+z+'">'+s.yc+'%</span></div>'
-      +renderBar(s)
-      +'<div class="yield-labels"><span style="color:#00956e;">BUY '+s.yt[0]+'–'+s.yt[1]+'%</span><span style="color:#d97706;">MID '+s.ym[0]+'–'+s.ym[1]+'%</span><span style="color:#e03e3e;">SELL '+s.yp[0]+'–'+s.yp[1]+'%</span></div>'
-    +'</div>'
-    +'<div class="card-signal"><span class="signal-name">'+s.sig+'</span><span class="signal-val" style="color:'+ZC[sz]+'">'+fmt(s.sv)+' '+s.su+'</span></div>'
-    +'<div class="card-note">'+s.note+'</div>'
-    +'<div class="card-policy">↗ '+s.pol+'</div>'
-    +'</div>';
-}
-
-var currentSector="all", currentZone="all";
-
-function render(){
-  var list=STOCKS.map(withLiveSv).filter(function(s){
-    if(currentSector!=="all"&&s.sec!==currentSector)return false;
-    if(currentZone!=="all"&&zone(s)!==currentZone)return false;
-    return true;
-  });
-  list.sort(function(a,b){var o={sell:0,hold:1,buy:2};return o[zone(a)]-o[zone(b)];});
-  var html=list.length?list.map(renderCard).join(""):'<div class="empty">No stocks match this filter.</div>';
-  document.getElementById("cards").innerHTML=html;
-  document.getElementById("filterCount").textContent=list.length+" stocks";
-}
-
-function updateChips(){
-  var sell=STOCKS.filter(function(s){return zone(s)==="sell";}).length;
-  var hold=STOCKS.filter(function(s){return zone(s)==="hold";}).length;
-  var buy=STOCKS.filter(function(s){return zone(s)==="buy";}).length;
-  document.getElementById("chipSell").textContent=sell+" YIELD SELL";
-  document.getElementById("chipHold").textContent=hold+" YIELD MID";
-  document.getElementById("chipBuy").textContent=buy+" YIELD BUY";
-}
-
-function buildFilters(){
-  var sf=document.getElementById("sectorFilters");
-  sf.innerHTML='';
-  SECTORS.forEach(function(sec){
-    var btn=document.createElement("button");
-    btn.className="filter-btn"+(sec.id==="all"?" active":"");
-    btn.textContent=sec.label;
-    btn.setAttribute("data-sec",sec.id);
-    btn.onclick=function(){
-      currentSector=sec.id;
-      sf.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active");});
-      btn.classList.add("active");
-      render();
-    };
-    sf.appendChild(btn);
-  });
-
-  var zf=document.getElementById("zoneFilters");
-  zf.innerHTML='';
-  var countSpan=document.createElement("span");
-  countSpan.id="filterCount";
-  countSpan.style.cssText="margin-left:auto;font-size:0.65rem;color:#94a3b8;";
-  countSpan.textContent=STOCKS.length+" stocks";
-
-  [{"id":"all","label":"All"},{"id":"sell","label":"SELL"},{"id":"hold","label":"MID"},{"id":"buy","label":"BUY"}].forEach(function(z){
-    var btn=document.createElement("button");
-    btn.className="filter-btn"+(z.id==="all"?" active":"");
-    btn.textContent=z.label;
-    btn.setAttribute("data-zone",z.id);
-    btn.onclick=function(){
-      currentZone=z.id;
-      zf.querySelectorAll("[data-zone]").forEach(function(b){
-        b.classList.remove("active","active-sell","active-hold","active-buy");
-      });
-      if(z.id!=="all") btn.classList.add("active-"+z.id);
-      else btn.classList.add("active");
-      render();
-    };
-    zf.appendChild(btn);
-  });
-  zf.appendChild(countSpan);
-}
-
-document.addEventListener("DOMContentLoaded",function(){
-  buildFilters();
-  updateChips();
-  render();
-});
-document.addEventListener("signalsLoaded",render);
-</script>
-<script src="/signals-loader.js"></script>
-<script>
-function toggleRegion(id) {
-  var sub = document.getElementById(id + '-sub');
-  var chev = document.getElementById(id + '-chev');
-  if (!sub) return;
-  var open = sub.style.display === 'block';
-  sub.style.display = open ? 'none' : 'block';
-  chev.style.transform = open ? '' : 'rotate(90deg)';
-}
-function toggleSGX(el) {
-  var sub = el.nextElementSibling;
-  var chev = el.querySelector('.sgx-chev');
-  var open = sub.style.display === 'block';
-  sub.style.display = open ? 'none' : 'block';
-  chev.style.transform = open ? '' : 'rotate(180deg)';
-}
-// iOS Safari: attach touch+click handlers via addEventListener
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.mob-region-toggle').forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      var id = el.getAttribute('data-region');
-      if (id) toggleRegion(id);
+function submitAlertSignup(e, emailId, btnId, msgId) {
+  e.preventDefault();
+  var btn = document.getElementById(btnId);
+  var msg = document.getElementById(msgId);
+  var emailEl = document.getElementById(emailId);
+  var email = emailEl.value.trim();
+  btn.disabled = true;
+  msg.textContent = '';
+  msg.className = 'alert-signup-msg';
+  fetch('https://signycle-signals.fransbgn.workers.dev/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+    .then(function(r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
+    .then(function(res) {
+      btn.disabled = false;
+      if (res.status === 200) {
+        msg.textContent = res.data.message === 'Already subscribed' ? 'You’re already on the list.' : 'Check your email to confirm your subscription.';
+        msg.className = 'alert-signup-msg ok';
+        emailEl.value = '';
+      } else {
+        msg.textContent = res.data.error || 'Something went wrong — please try again.';
+        msg.className = 'alert-signup-msg err';
+      }
+    })
+    .catch(function() {
+      btn.disabled = false;
+      msg.textContent = 'Network error — please try again.';
+      msg.className = 'alert-signup-msg err';
     });
-    el.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      var id = el.getAttribute('data-region');
-      if (id) toggleRegion(id);
-    });
-  });
-  document.querySelectorAll('.mob-sgx-toggle').forEach(function(el) {
-    el.addEventListener('click', function(e) { toggleSGX(el); });
-    el.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      toggleSGX(el);
-    });
-  });
-});
+  return false;
+}
 </script>
 <script>
+(function() {
+  var M = window.SignycleMeta;
+  if (!M) return;
+  var META = M.META, ZH = M.ZONE_HEX, ZL = M.ZONE_LABEL, fmt = M.fmt, esc = M.esc;
+  var ROWS = [["Frontline", "FRO", "Oslo · NYSE", "blog-frontline-vlcc-cycle.html", "Shipping", "vlcc", ""], ["Golden Ocean", "GOGL", "Oslo · Nasdaq", "blog-golden-ocean-bdi-cycle.html", "Shipping", "bdi", ""], ["Star Bulk", "SBLK", "Nasdaq", "blog-star-bulk-bdi-cycle.html", "Shipping", "bdi", ""], ["Höegh Autoliners", "HAUTO", "Oslo Børs", "blog-hoegh-autoliners-pctc-cycle.html", "Shipping", "pctc", ""], ["Himalaya Shipping", "HSHP", "Oslo Børs", "blog-himalaya-shipping-bdi.html", "Shipping", "bdi", ""], ["Dorian LPG", "LPG", "NYSE", "blog-dorian-lpg-cycle.html", "Shipping", "", "LPG freight rates"], ["BW LPG", "BWLPG", "Oslo Børs", "blog-bw-lpg-cycle.html", "Shipping", "", "LPG freight rates"], ["Mowi", "MOWI", "Oslo Børs", "blog-mowi-salmon-cycle.html", "Seafood", "salmon", ""], ["SalMar", "SALM", "Oslo Børs", "blog-salmar-salmon-cycle.html", "Seafood", "salmon", ""], ["Grieg Seafood", "GSF", "Oslo Børs", "blog-grieg-seafood-salmon-cycle.html", "Seafood", "salmon", ""], ["Equinor", "EQNR", "Oslo · NYSE", "blog-equinor-brent-cycle.html", "Oil & gas", "brent", ""], ["Aker BP", "AKRBP", "Oslo Børs", "blog-akerbp-brent-cycle.html", "Oil & gas", "brent", ""], ["Vår Energi", "VAR", "Oslo Børs", "blog-var-energi-oil-cycle.html", "Oil & gas", "brent", ""], ["Yancoal Australia", "YAL", "ASX", "blog-yancoal-australia-dividend-cycle.html", "Coal", "", "Thermal coal price"], ["Whitehaven Coal", "WHC", "ASX", "blog-whitehaven-coal-dividend-cycle.html", "Coal", "", "Coking coal price"], ["Yara International", "YAR", "Oslo Børs", "blog-yara-international-cycle.html", "Fertiliser", "urea", ""], ["SAFCO", "2020.SR", "Tadawul", "blog-safco-urea-cycle.html", "Fertiliser", "urea", ""], ["BHP Group", "BHP", "ASX · LSE", "blog-bhp-ironore-cycle.html", "Mining", "ironore", ""], ["Rio Tinto", "RIO", "LSE · ASX", "blog-rio-tinto-analysis.html", "Mining", "ironore", ""], ["Boliden", "BOL", "Stockholm", "blog-boliden-stock-analysis.html", "Mining", "copper", ""], ["Freeport-McMoRan", "FCX", "NYSE", "blog-freeport-copper-cycle.html", "Mining", "copper", ""], ["KGHM", "KGH", "Warsaw GPW", "blog-kghm-copper-cycle.html", "Mining", "copper", ""], ["Nucor", "NUE", "NYSE", "blog-nucor-steel-cycle.html", "Steel", "steel", ""], ["Steel Dynamics", "STLD", "Nasdaq", "blog-steel-dynamics-cycle.html", "Steel", "steel", ""], ["FLEX LNG", "FLNG", "Oslo · NYSE", "blog-flex-lng-cycle.html", "LNG shipping", "lng", ""], ["Golar LNG", "GLNG", "Oslo · Nasdaq", "blog-golar-lng-cycle.html", "LNG shipping", "", "LNG price"], ["Heidelberg Materials", "HDMGF", "Frankfurt", "blog-heidelberg-materials-cycle.html", "Building materials", "pmi", ""], ["CRH", "CRH", "NYSE · Dublin", "blog-crh-pmi-cycle.html", "Building materials", "pmi", ""]];
+  var ORDER = { sell: 0, warn: 1, neutral: 2, buy: 3, none: 4 };
+  var NOTE = {
+    sell: 'Driver historically expensive: dividends likely reflect peak earnings.',
+    warn: 'Driver getting expensive: check how much of the payout depends on today&rsquo;s prices.',
+    neutral: 'Driver in its normal range: dividends closer to mid-cycle earnings.',
+    buy: 'Driver historically cheap: dividends likely depressed.',
+    none: 'No live zone.'
+  };
+  var $ = function(id) { return document.getElementById(id); };
+  function render(d) {
+    if (!d || !d.signals) return;
+    var S = d.signals, c = { buy: 0, neutral: 0, warn: 0, sell: 0 };
+    var list = ROWS.map(function(r) {
+      var s = r[5] && S[r[5]], ok = s && s.value != null && !isNaN(parseFloat(s.value)) && ZH[s.zone];
+      var z = ok ? s.zone : 'none';
+      if (c.hasOwnProperty(z)) c[z]++;
+      return { r: r, s: ok ? s : null, z: z, p: ok && M.THRESHOLDS[r[5]] ? M.position(r[5], parseFloat(s.value)).raw : 0 };
+    }).sort(function(a, b) { return ORDER[a.z] - ORDER[b.z] || b.p - a.p || a.r[0].localeCompare(b.r[0]); });
+    $('kSell').textContent = c.sell; $('kWarn').textContent = c.warn; $('kNeu').textContent = c.neutral; $('kBuy').textContent = c.buy;
+    $('dvTbl').innerHTML = '<div class="dv-row dv-h"><span>Company</span><span>Sector</span><span>Driver</span><span>Zone</span><span>What it suggests</span></div>' +
+      list.map(function(x) {
+        var r = x.r, m = r[5] && META[r[5]], f = x.s ? M.freshness(x.s) : null;
+        var sig = m ? (m.page ? '<a href="' + m.page + '">' + esc(m.name) + '</a>' : esc(m.name)) +
+          '<small class="' + (f && f.stale ? 'stale' : '') + '">' + (x.s ? fmt(parseFloat(x.s.value), x.s.unit) + ' · ' + (f.live ? 'Live' : esc(f.text.replace('Manual · ', 'Updated '))) : '') + '</small>'
+          : esc(r[6]) + '<small>Not tracked by Signycle</small>';
+        return '<div class="dv-row">' +
+          '<div class="dv-name">' + (r[3] ? '<a href="' + r[3] + '">' + esc(r[0]) + '</a>' : '<b>' + esc(r[0]) + '</b>') + '<small>' + esc(r[1]) + ' · ' + esc(r[2]) + '</small></div>' +
+          '<div class="dv-sec">' + esc(r[4]) + '</div>' +
+          '<div class="dv-sig">' + sig + '</div>' +
+          '<div class="dv-z">' + (x.z === 'none' ? '<span class="badge neutral" style="opacity:.6;">NO DATA</span>' : '<span class="badge ' + x.z + '">' + ZL[x.z] + '</span>') + '</div>' +
+          '<div class="dv-note">' + NOTE[x.z] + '</div></div>';
+      }).join('');
+  }
+  document.addEventListener('signalsLoaded', function(e) { render(e.detail || window.SignycleData); });
+  if (window.SignycleData && window.SignycleData.signals) render(window.SignycleData);
+})();
+</script>
+
+<script>
+
 (function(){
   var INDEX=null, isOpen=false, selIdx=-1;
   var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
@@ -1154,6 +1227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 })();
+
 </script>
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-box">
@@ -1169,41 +1243,45 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
-
+<script src="/signals-loader.js"></script>
 <script>
-(function(){
-  function render(){
-    var d = window.SignycleData;
-    if(!d || !d.updated) return;
-    var m = String(d.updated).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    var pretty = d.updated;
-    if(m){
-      var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      pretty = parseInt(m[3],10)+' '+months[parseInt(m[2],10)-1]+' '+m[1];
-    }
-    document.querySelectorAll('.live-updated-date').forEach(function(el){ el.textContent = pretty; });
-  }
-  render();
-  document.addEventListener('signalsLoaded', render);
-})();
+function toggleRegion(id) {
+  var sub = document.getElementById(id + '-sub');
+  var chev = document.getElementById(id + '-chev');
+  if (!sub) return;
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(90deg)';
+}
+function toggleSGX(el) {
+  var sub = el.nextElementSibling;
+  var chev = el.querySelector('.sgx-chev');
+  var open = sub.style.display === 'block';
+  sub.style.display = open ? 'none' : 'block';
+  chev.style.transform = open ? '' : 'rotate(180deg)';
+}
+// iOS Safari: attach touch+click handlers via addEventListener
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.mob-region-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var id = el.getAttribute('data-region');
+      if (id) toggleRegion(id);
+    });
+  });
+  document.querySelectorAll('.mob-sgx-toggle').forEach(function(el) {
+    el.addEventListener('click', function(e) { toggleSGX(el); });
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      toggleSGX(el);
+    });
+  });
+});
 </script>
-<footer class="sx-footer">
-  <div class="sx-foot-inner">
-    <div class="sx-foot-brand">
-      <a href="index.html" class="sx-foot-logo"><span></span>Signycle</a>
-      <p>Macro signals for cyclical stocks: where commodities, freight and rates sit against their BUY and SELL levels.</p>
-    </div>
-    <div class="sx-foot-cols">
-      <div><b>Signals</b><a class="sx-fl" href="live-signals.html">Live signals</a><a class="sx-fl" href="cycle-dashboard.html">Cycle dashboard</a><a class="sx-fl" href="signal-history.html">Signal history</a><a class="sx-fl" href="recession-tracker.html">Recession tracker</a></div>
-      <div><b>Research</b><a class="sx-fl" href="blog.html">Signycle Research</a><a class="sx-fl" href="investor-guides.html">Investor guides</a><a class="sx-fl" href="how-it-works.html">How it works</a><a class="sx-fl" href="faq.html">FAQ</a></div>
-      <div><b>Signycle</b><a class="sx-fl" href="about.html">About</a><a class="sx-fl" href="contact.html">Contact</a><a class="sx-fl" href="https://www.linkedin.com/company/signycle" target="_blank" rel="noopener">LinkedIn</a></div>
-      <div><b>Legal</b><a class="sx-fl" href="terms.html">Terms</a><a class="sx-fl" href="privacy.html">Privacy policy</a><a class="sx-fl" href="disclaimer.html">Disclaimer</a></div>
-    </div>
-  </div>
-  <div class="sx-foot-bottom">
-    <span>&copy; 2026 Signycle &middot; Not financial advice</span>
-    <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
-  </div>
-</footer>
+
 </body>
 </html>
