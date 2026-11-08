@@ -373,7 +373,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-hapag-lloyd-scfi-cycle</loc>
+    <loc>https://signycle.com/blog-hapag-lloyd-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -637,7 +637,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-orsted-offshore-wind</loc>
+    <loc>https://signycle.com/blog-orsted-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -758,12 +758,6 @@
   </url>
   <url>
     <loc>https://signycle.com/blog-sector-rotation-strategy</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-shell-oil-amsterdam</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1747,7 +1741,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-delta-airlines-cycle</loc>
+    <loc>https://signycle.com/blog-delta-air-lines-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1917,7 +1911,7 @@
   <url><loc>https://signycle.com/blog-petkim-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://signycle.com/blog-bim-retail-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://signycle.com/blog-sk-innovation-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://signycle.com/blog-kepco-utilities-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://signycle.com/blog-kepco-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://signycle.com/blog-hyundai-steel-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://signycle.com/blog-grupo-mexico-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://signycle.com/blog-cemex-cycle</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
@@ -2187,12 +2181,6 @@
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-delta-air-lines-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/blog-precious-metals-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -2284,12 +2272,6 @@
   </url>
   <url>
     <loc>https://signycle.com/blog-stora-enso-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-kone-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -2469,31 +2451,7 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-samsung-heavy-industries-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/blog-korean-air-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-kepco-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-tsmc-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-evergreen-marine-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -2547,24 +2505,6 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-longi-green-energy-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-byd-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-catl-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/blog-citic-special-steel-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -2583,55 +2523,7 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://signycle.com/blog-neste-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-orsted-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-vestas-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-hapag-lloyd-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-bhp-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-glencore-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-iag-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-elkem-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-norsk-hydro-cycle</loc>
+    <loc>https://signycle.com/blog-glencore-commodities-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -3596,12 +3488,6 @@
   </url>
   <url>
     <loc>https://signycle.com/blog-flex-lng-cycle</loc>
-    <lastmod>2026-11-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/blog-glencore-commodities-cycle</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
