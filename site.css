@@ -46,3 +46,73 @@
    the extra bottom padding keeps the last link clear of the home indicator. */
 html body .mobile-menu.open{bottom:0;height:auto;}
 html body .mobile-menu .mobile-menu-inner{padding-bottom:calc(4rem + env(safe-area-inset-bottom, 0px));}
+
+/* ── Site menu (.sn-*) ────────────────────────────────────────────────────
+   One menu for every page. Markup sits between <!-- SN-NAV --> markers in
+   each page; behaviour in /site-nav.js. 58px tall, like the menu it
+   replaced, so page offsets (.page{padding-top:58px}) still fit. */
+.sn-head{position:fixed;top:0;left:0;right:0;z-index:300;background:#fff;border-bottom:1px solid var(--sx-border);font-family:var(--sx-sans);}
+.sn-head *{box-sizing:border-box;}
+.sn-bar{max-width:1200px;margin:0 auto;height:58px;padding:0 1.25rem;display:flex;align-items:center;gap:0.5rem;}
+.sn-logo{display:flex;align-items:center;gap:8px;font-size:1.1rem;font-weight:700;color:var(--sx-ink);text-decoration:none;flex-shrink:0;margin-right:0.8rem;}
+.sn-logo i{width:8px;height:8px;border-radius:50%;background:var(--sx-green);display:inline-block;}
+.sn-menu{display:flex;align-items:center;flex:1;margin:0;padding:0;list-style:none;}
+.sn-item{position:relative;list-style:none;margin:0;padding:0;}
+.sn-top{display:flex;align-items:center;gap:5px;height:58px;padding:0 0.75rem;background:none;border:0;border-bottom:2px solid transparent;font-family:inherit;font-size:0.86rem;font-weight:500;color:var(--sx-text);cursor:pointer;white-space:nowrap;}
+.sn-top svg{width:9px;height:6px;opacity:.55;transition:transform .15s;}
+.sn-item.open .sn-top,.sn-item.sn-cur .sn-top{color:var(--sx-ink);}
+.sn-item.open .sn-top{border-bottom-color:var(--sx-green);}
+.sn-item.open .sn-top svg{transform:rotate(180deg);}
+.sn-drop{display:none;position:absolute;top:100%;left:0;min-width:270px;margin:0;padding:6px;list-style:none;background:#fff;border:1px solid var(--sx-border);border-radius:12px;box-shadow:0 12px 36px rgba(12,28,46,.12);}
+.sn-drop.sn-wide{min-width:440px;}
+.sn-drop.sn-wide ul{columns:2;column-gap:4px;}
+.sn-drop ul{margin:0;padding:0;list-style:none;}
+.sn-drop a{display:block;padding:8px 10px;border-radius:8px;text-decoration:none;break-inside:avoid;}
+.sn-drop a:hover,.sn-drop a:focus-visible{background:var(--sx-surface);outline:none;}
+.sn-drop a b{display:block;font-size:0.85rem;font-weight:600;color:var(--sx-ink);}
+.sn-drop a span{display:block;font-size:0.72rem;color:var(--sx-muted);margin-top:1px;line-height:1.35;}
+.sn-drop a[aria-current="page"] b{color:var(--sx-green);}
+.sn-drop .sn-all{border-top:1px solid var(--sx-hair);margin-top:4px;padding-top:4px;}
+.sn-drop .sn-all a b{color:var(--sx-green);}
+.sn-item.open .sn-drop{display:block;}
+@media(hover:hover) and (min-width:981px){
+  .sn-item:hover .sn-drop{display:block;}
+  .sn-item:hover .sn-top{color:var(--sx-ink);border-bottom-color:var(--sx-green);}
+}
+.sn-right{display:flex;align-items:center;gap:0.5rem;margin-left:auto;flex-shrink:0;}
+.sn-search{display:flex;align-items:center;gap:0.45rem;height:34px;padding:0 0.7rem;background:var(--sx-surface);border:1px solid var(--sx-border);border-radius:8px;font-family:inherit;font-size:0.8rem;color:var(--sx-dim);cursor:pointer;}
+.sn-search:hover{border-color:#c8d3ce;color:var(--sx-ink);}
+.sn-search svg{width:15px;height:15px;}
+.sn-search kbd{font-family:var(--sx-mono);font-size:0.66rem;color:var(--sx-muted);background:#fff;border:1px solid var(--sx-border);border-radius:4px;padding:0 4px;}
+.sn-cta{display:inline-flex;align-items:center;height:34px;padding:0 0.95rem;background:var(--sx-green);color:#fff;font-size:0.82rem;font-weight:700;border-radius:8px;text-decoration:none;white-space:nowrap;}
+.sn-cta:hover{background:var(--sx-green-dark);color:#fff;}
+.sn-burger{display:none;align-items:center;justify-content:center;width:40px;height:40px;background:none;border:0;cursor:pointer;padding:0;}
+.sn-burger span,.sn-burger span::before,.sn-burger span::after{display:block;width:22px;height:2px;background:var(--sx-ink);border-radius:2px;position:relative;transition:transform .2s,background .2s;}
+.sn-burger span::before,.sn-burger span::after{content:"";position:absolute;left:0;}
+.sn-burger span::before{top:-7px;}
+.sn-burger span::after{top:7px;}
+.sn-head.menu-open .sn-burger span{background:transparent;}
+.sn-head.menu-open .sn-burger span::before{transform:translateY(7px) rotate(45deg);}
+.sn-head.menu-open .sn-burger span::after{transform:translateY(-7px) rotate(-45deg);}
+.sn-mfoot{display:none;}
+@media(max-width:1120px) and (min-width:981px){.sn-search kbd{display:none;}.sn-top{padding:0 0.55rem;}}
+@media(max-width:980px){
+  .sn-bar{padding:0 0.9rem 0 1rem;}
+  .sn-burger{display:flex;}
+  .sn-cta{display:none;}
+  .sn-search{width:40px;height:40px;padding:0;justify-content:center;background:none;border:0;}
+  .sn-search .sn-st,.sn-search kbd{display:none;}
+  .sn-search svg{width:20px;height:20px;color:var(--sx-ink);}
+  .sn-menu{display:none;position:fixed;top:58px;left:0;right:0;bottom:0;flex-direction:column;align-items:stretch;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#fff;padding:0.4rem 1.25rem calc(4rem + env(safe-area-inset-bottom, 0px));}
+  .sn-head.menu-open .sn-menu{display:flex;}
+  .sn-top{width:100%;height:auto;justify-content:space-between;padding:1rem 0.1rem;border-bottom:1px solid var(--sx-hair);font-size:1rem;font-weight:700;color:var(--sx-ink);}
+  .sn-item.open .sn-top{border-bottom-color:var(--sx-hair);}
+  .sn-top svg{width:12px;height:8px;}
+  .sn-drop,.sn-drop.sn-wide{position:static;min-width:0;padding:0.3rem 0 0.7rem;border:0;border-radius:0;box-shadow:none;}
+  .sn-drop.sn-wide ul{columns:2;}
+  .sn-drop a{padding:0.6rem 0.5rem;}
+  .sn-drop a b{font-size:0.95rem;font-weight:500;}
+  .sn-drop a span{display:none;}
+  .sn-mfoot{display:block;padding-top:1.2rem;}
+  .sn-mfoot a{display:block;text-align:center;padding:0.8rem;background:var(--sx-green);color:#fff;font-weight:700;border-radius:10px;text-decoration:none;}
+}
