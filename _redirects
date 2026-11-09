@@ -143,7 +143,6 @@
 /blog-clariant-cycle.html /blog-clariant-cycle 301
 /blog-cnooc-brent-cycle.html /blog-cnooc-brent-cycle 301
 /blog-coal-india-pmi-cycle.html /blog-coal-india-pmi-cycle 301
-/blog-cockerill-maintenance-cycle.html /blog-cockerill-maintenance-cycle 301
 /blog-compound-interest-long-term.html /blog-compound-interest-long-term 301
 /blog-conocophillips-brent-cycle.html /blog-conocophillips-brent-cycle 301
 /blog-copenhagen-investor-guide.html /blog-copenhagen-investor-guide 301
@@ -210,7 +209,6 @@
 /blog-ferrovial-pmi-cycle.html /blog-ferrovial-pmi-cycle 301
 /blog-fertiglobe-cycle.html /blog-fertiglobe-cycle 301
 /blog-fertilizer-cycle-yara.html /blog-fertilizer-cycle-yara 301
-/blog-fibramq-cycle.html /blog-fibramq-cycle 301
 /blog-finnair-cycle.html /blog-finnair-cycle 301
 /blog-first-quantum-cycle.html /blog-first-quantum-cycle 301
 /blog-flex-lng-cycle.html /blog-flex-lng-cycle 301
@@ -1282,3 +1280,8 @@
 # Retired pages (Nov 2026)
 /blog-eregli-steel-cycle.html /blog-erdemir-cycle 301
 /blog-eregli-steel-cycle /blog-erdemir-cycle 301
+# Retired pages (Nov 2026)
+/blog-cockerill-maintenance-cycle.html /euronext-brussels 301
+/blog-cockerill-maintenance-cycle /euronext-brussels 301
+/blog-fibramq-cycle.html /blog-macquarie-mexico-reit-cycle 301
+/blog-fibramq-cycle /blog-macquarie-mexico-reit-cycle 301
