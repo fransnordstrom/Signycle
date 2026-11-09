@@ -125,7 +125,6 @@
 /blog-caterpillar-pmi-cycle.html /blog-caterpillar-pmi-cycle 301
 /blog-cathay-pacific-cycle.html /blog-cathay-pacific-cycle 301
 /blog-catl-battery-cycle.html /blog-catl-battery-cycle 301
-/blog-cd-projekt-cycle.html /blog-cd-projekt-cycle 301
 /blog-cemex-cycle.html /blog-cemex-cycle 301
 /blog-cenovus-energy-cycle.html /blog-cenovus-energy-cycle 301
 /blog-cf-industries-cycle.html /blog-cf-industries-cycle 301
@@ -349,7 +348,6 @@
 /blog-lng-gas-shipping-guide.html /blog-lng-gas-shipping-guide 301
 /blog-london-lse-investor-guide.html /blog-london-lse-investor-guide 301
 /blog-longi-solar-cycle.html /blog-longi-solar-cycle 301
-/blog-lonza-cycle.html /blog-lonza-cycle 301
 /blog-lpp-sa-cycle.html /blog-lpp-sa-cycle 301
 /blog-lufthansa-cycle.html /blog-lufthansa-cycle 301
 /blog-lundin-mining-analysis.html /blog-lundin-mining-analysis 301
@@ -400,7 +398,6 @@
 /blog-northam-platinum-cycle.html /blog-northam-platinum-cycle 301
 /blog-northern-star-cycle.html /blog-northern-star-cycle 301
 /blog-norwegian-salmon-farming-guide.html /blog-norwegian-salmon-farming-guide 301
-/blog-novo-nordisk-analysis.html /blog-novo-nordisk-analysis 301
 /blog-nse-india-investor-guide.html /blog-nse-investor-guide 301
 /blog-nse-india-investor-guide /blog-nse-investor-guide 301
 /blog-nse-investor-guide.html /blog-nse-investor-guide 301
@@ -426,7 +423,6 @@
 /blog-omv-cycle /blog-omv-oil-cycle 301
 /blog-omv-oil-cycle.html /blog-omv-oil-cycle 301
 /blog-ongc-brent-crude-cycle.html /blog-ongc-brent-crude-cycle 301
-/blog-opap-cycle.html /blog-opap-cycle 301
 /blog-orbia-cycle.html /blog-orbia-cycle 301
 /blog-orsted-cycle.html /blog-orsted-cycle 301
 /blog-oslo-bors-investor-guide.html /blog-oslo-bors-investor-guide 301
@@ -591,7 +587,6 @@
 /blog-turkcell-cycle.html /blog-turkcell-cycle 301
 /blog-turkish-airlines-cycle.html /blog-turkish-airlines-cycle 301
 /blog-twse-investor-guide.html /blog-twse-investor-guide 301
-/blog-ucb-cycle.html /blog-ucb-cycle 301
 /blog-ukraine-2022-energy-cycle.html /blog-ukraine-2022-energy-cycle 301
 /blog-ultratech-cement-cycle.html /blog-ultratech-cement-cycle 301
 /blog-umicore-copper-cycle.html /blog-umicore-copper-cycle 301
@@ -646,7 +641,6 @@
 /blog-wienerberger-pmi-cycle.html /blog-wienerberger-cycle 301
 /blog-wienerberger-pmi-cycle /blog-wienerberger-cycle 301
 /blog-wilmar-sgx-cycle.html /blog-wilmar-sgx-cycle 301
-/blog-wolters-kluwer-cycle.html /blog-wolters-kluwer-cycle 301
 /blog-woodside-energy-cycle.html /blog-woodside-energy-cycle 301
 /blog-yamama-cement-cycle.html /blog-yamama-cement-cycle 301
 /blog-yancoal-australia-dividend-cycle.html /blog-yancoal-australia-dividend-cycle 301
@@ -1285,3 +1279,16 @@
 /blog-cockerill-maintenance-cycle /euronext-brussels 301
 /blog-fibramq-cycle.html /blog-macquarie-mexico-reit-cycle 301
 /blog-fibramq-cycle /blog-macquarie-mexico-reit-cycle 301
+# Retired pages (Nov 2026)
+/blog-novo-nordisk-analysis.html /nasdaq-copenhagen 301
+/blog-novo-nordisk-analysis /nasdaq-copenhagen 301
+/blog-lonza-cycle.html /six-swiss-exchange 301
+/blog-lonza-cycle /six-swiss-exchange 301
+/blog-ucb-cycle.html /euronext-brussels 301
+/blog-ucb-cycle /euronext-brussels 301
+/blog-wolters-kluwer-cycle.html /euronext-amsterdam 301
+/blog-wolters-kluwer-cycle /euronext-amsterdam 301
+/blog-cd-projekt-cycle.html /warsaw-stock-exchange 301
+/blog-cd-projekt-cycle /warsaw-stock-exchange 301
+/blog-opap-cycle.html /athens-stock-exchange 301
+/blog-opap-cycle /athens-stock-exchange 301
