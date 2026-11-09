@@ -199,7 +199,6 @@
 /blog-equinor-vs-aker-bp.html /blog-equinor-vs-aker-bp 301
 /blog-eramet-cycle.html /blog-eramet-cycle 301
 /blog-erdemir-cycle.html /blog-erdemir-cycle 301
-/blog-eregli-steel-cycle.html /blog-eregli-steel-cycle 301
 /blog-erste-group-cycle.html /blog-erste-group-cycle 301
 /blog-eurobank-cycle.html /blog-eurobank-cycle 301
 /blog-ev-ebitda-explained.html /blog-ev-ebitda-explained 301
@@ -1280,3 +1279,6 @@
 # Retired pages (Nov 2026)
 /blog-ciech-cycle.html /blog-solvay-cycle 301
 /blog-ciech-cycle /blog-solvay-cycle 301
+# Retired pages (Nov 2026)
+/blog-eregli-steel-cycle.html /blog-erdemir-cycle 301
+/blog-eregli-steel-cycle /blog-erdemir-cycle 301
