@@ -42,7 +42,6 @@
 /blog-alcoa-cycle /blog-alcoa-aluminium-cycle 301
 /blog-aldar-properties-cycle.html /blog-aldar-properties-cycle 301
 /blog-alexandria-container-cycle.html /blog-alexandria-container-cycle 301
-/blog-alfa-sab-cycle.html /blog-alfa-sab-cycle 301
 /blog-alpek-cycle.html /blog-alpek-cycle 301
 /blog-alpha-bank-cycle.html /blog-alpha-bank-cycle 301
 /blog-altri-pulp-cycle.html /blog-altri-pulp-cycle 301
@@ -153,7 +152,6 @@
 /blog-csn-mineracao-cycle.html /blog-csn-mineracao-cycle 301
 /blog-cyclical-dividend-investing.html /blog-cyclical-dividend-investing 301
 /blog-cyclical-vs-defensive-stocks.html /blog-cyclical-vs-defensive-stocks 301
-/blog-damac-properties-cycle.html /blog-damac-properties-cycle 301
 /blog-dana-gas-brent-cycle.html /blog-dana-gas-brent-cycle 301
 /blog-dassault-aviation-cycle.html /blog-dassault-aviation-cycle 301
 /blog-dbs-ocbc-uob-singapore-banks-cycle.html /blog-dbs-ocbc-uob-singapore-banks-cycle 301
@@ -1298,3 +1296,8 @@
 /blog-dp-world-cycle /dubai-dfm 301
 /blog-navios-maritime-cycle.html /nyse-cyclical-stocks 301
 /blog-navios-maritime-cycle /nyse-cyclical-stocks 301
+# Retired pages (Nov 2026)
+/blog-damac-properties-cycle.html /dubai-dfm 301
+/blog-damac-properties-cycle /dubai-dfm 301
+/blog-alfa-sab-cycle.html /blog-alpek-cycle 301
+/blog-alfa-sab-cycle /blog-alpek-cycle 301
