@@ -853,7 +853,6 @@
 /tsx-cyclical-stocks.html /tsx-cyclical-stocks 301
 /twse-taiwan.html /twse-taiwan 301
 /warsaw-stock-exchange.html /warsaw-stock-exchange 301
-/watch.html /watch 301
 /what-is-baltic-dry-index.html /what-is-baltic-dry-index 301
 /what-is-brent-crude.html /what-is-brent-crude 301
 /what-is-vlcc-rate.html /what-is-vlcc-rate 301
@@ -1193,3 +1192,6 @@
 # Retired duplicate pages (step 5, Nov 2026)
 /historical-returns.html /signal-history 301
 /historical-returns /signal-history 301
+# Retired pages (Nov 2026)
+/watch.html /podcasts 301
+/watch /podcasts 301
