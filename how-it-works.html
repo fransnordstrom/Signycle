@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>How Signycle Works — Methodology, Signals and Thresholds</title>
-<meta name="description" content="How Signycle tracks 21 commodity and macro signals, sets BUY and SELL thresholds, and maps them to 400+ cyclical stocks across 39 stock exchanges.">
-<link rel="canonical" href="https://signycle.com/how-it-works">
-<meta property="og:title" content="How Signycle Works — Methodology, Signals and Thresholds">
-<meta property="og:description" content="How Signycle tracks 21 commodity and macro signals, sets BUY and SELL thresholds, and maps them to 400+ cyclical stocks across 39 stock exchanges.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Signycle Works: Signals, Levels, Sources and the Cycle Score | Signycle</title>
+<meta name="description" content="How Signycle sets BUY and SELL levels for 24 commodity, freight and macro signals, where each value comes from, how zones and the cycle score are calculated, and what they can and can&#39;t tell you.">
+<meta property="og:title" content="How Signycle Works: Signals, Levels, Sources and the Cycle Score | Signycle">
+<meta property="og:description" content="How Signycle sets BUY and SELL levels for 24 commodity, freight and macro signals, where each value comes from, how zones and the cycle score are calculated, and what they can and can&#39;t tell you.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://signycle.com/how-it-works.html">
+<meta property="og:url" content="https://signycle.com/how-it-works">
 <meta property="og:site_name" content="Signycle">
 <meta property="og:image" content="https://signycle.com/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MXQHBG9KDV"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-MXQHBG9KDV');</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485" crossorigin="anonymous"></script>
-<style>/* ── NAV ── */
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://signycle.com/how-it-works">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://signycle.com/"}, {"@type": "ListItem", "position": 2, "name": "How Signycle works", "item": "https://signycle.com/how-it-works"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. Signycle shows where prices stand against their history. It doesn’t recommend buying or selling any security, and BUY and SELL levels are reference points, not forecasts. See the disclaimer."}}, {"@type": "Question", "name": "How often are signals updated?", "acceptedAnswer": {"@type": "Answer", "text": "11 signals are fetched automatically about every 15 minutes. The other 13 are entered by hand from public reporting when new figures are available, which can mean weeks between updates. Every signal shows the date of its latest value, and values older than 45 days are flagged as possibly out of date."}}, {"@type": "Question", "name": "Why do some signals have no live feed?", "acceptedAnswer": {"@type": "Answer", "text": "Freight indices, salmon prices, fertiliser prices and survey data such as PMI are mostly published by organisations that don’t offer a free automated feed. Until one is found, they are updated by hand."}}, {"@type": "Question", "name": "Are the levels ever changed?", "acceptedAnswer": {"@type": "Answer", "text": "They can be revised if a market changes structurally, for example when costs or capacity shift permanently. Any change affects zones from that point on; past recorded zone changes in the signal history are not rewritten."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ── NAV ── */
 /* ── DROPDOWN NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
@@ -57,118 +67,159 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
   .nav-top-right{display:none;}
   .hamburger{display:flex;}
 }
-:root{--green:#00956e;--green-light:#e6f5f1;--green-border:#b3e8d8;--border:#e2e8e5;--surface:#f8faf9;--text:#475569;--dim:#6b7f78;--muted:#a0b0ab;--ink:#0c1c2e;--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif;--red:#dc2626;--orange:#d97706;}
+
+:root{
+  --bg:#f6f8f7;--card:#fff;--surface:#f8faf9;
+  --border:#e2e8e5;--hair:#eef2f0;
+  --ink:#0c1c2e;--text:#475569;--dim:#6b7f78;--muted:#94a3b8;
+  --green:#00956e;
+  --buy:#00956e;--neutral:#64748b;--warn:#d97706;--sell:#dc2626;
+  --buy-t:#d7efe6;--neutral-t:#e8edeb;--warn-t:#fbe9cf;--sell-t:#fbdcdc;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:#fff;color:var(--text);font-family:var(--sans);line-height:1.7;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+.page{padding-top:58px;}
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 3rem;}
+@media(max-width:640px){.wrap{padding:1.4rem 1rem 2.5rem;}}
 
-.logo{font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:8px;height:8px;background:var(--green);border-radius:50%;}
+/* Header */
+.dash-eyebrow{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.45rem;}
+.dash-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-0.02em;line-height:1.2;}
+.dash-sub{font-size:0.88rem;color:var(--dim);margin-top:0.4rem;line-height:1.6;}
+.dash-sub b{color:var(--text);font-weight:600;}
 
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.5rem;}
+@media(max-width:640px){.card{padding:1.1rem 1rem;}}
+.card-label{font-size:0.78rem;font-weight:600;color:var(--dim);margin-bottom:0.2rem;}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--ink);}
+.card-note{font-size:0.78rem;color:var(--dim);line-height:1.55;}
 
-.nav-link:hover,
-.nav-cta{background:var(--green);color:#fff;font-size:0.82rem;font-weight:600;padding:0.45rem 1.1rem;border-radius:6px;text-decoration:none;}
+/* Hero */
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:1rem;margin-top:1.5rem;}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+.score-row{display:flex;align-items:baseline;gap:0.5rem;margin:0.3rem 0 0.1rem;}
+.score-num{font-size:3.6rem;font-weight:700;letter-spacing:-0.03em;line-height:1;}
+.score-of{font-size:1.1rem;color:var(--muted);font-weight:600;}
+.score-phase{font-size:1.05rem;font-weight:700;margin-left:0.4rem;}
+.meter{position:relative;margin:1.3rem 0 0.4rem;}
+.meter-track{display:flex;gap:2px;height:10px;}
+.meter-track span{flex:1;border-radius:2px;}
+.meter-track span:first-child{border-radius:5px 2px 2px 5px;}
+.meter-track span:last-child{border-radius:2px 5px 5px 2px;}
+.meter-pin{position:absolute;top:-7px;width:0;height:0;transform:translateX(-7px);border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid var(--ink);transition:left .4s ease;}
+.meter-labels{display:flex;gap:2px;margin-top:0.45rem;}
+.meter-labels span{font-size:0.66rem;color:var(--muted);line-height:1.25;}
+.meter-labels span.on{color:var(--ink);font-weight:700;}
 
+.seg-bar{display:flex;gap:2px;height:28px;margin:0.8rem 0 0.6rem;}
+.seg-bar div{border-radius:4px;display:flex;align-items:center;padding:0 0.5rem;font-size:0.78rem;font-weight:700;color:#fff;min-width:0;overflow:hidden;white-space:nowrap;transition:flex-grow .4s ease;}
+.legend{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;}
+.legend span{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.76rem;color:var(--text);}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--hair);}
+.tile-label{font-size:0.72rem;color:var(--dim);line-height:1.3;}
+.tile-value{font-size:1.35rem;font-weight:700;margin-top:0.15rem;}
+.tile-sub{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;line-height:1.35;}
 
-.mobile-menu{display:none;position:fixed;top:112px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);z-index:99;}
+/* Section heads */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin:2.4rem 0 0.9rem;}
+.sec-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.01em;}
+.sec-sub{font-size:0.82rem;color:var(--dim);margin-top:0.25rem;line-height:1.55;max-width:640px;}
+.toggle{display:inline-flex;background:#fff;border:1px solid var(--border);border-radius:9px;padding:3px;}
+.toggle button{font-family:var(--sans);font-size:0.78rem;font-weight:600;border:0;background:none;color:var(--dim);padding:0.38rem 0.8rem;border-radius:6px;cursor:pointer;}
+.toggle button.on{background:var(--ink);color:#fff;}
 
-.mobile-menu-inner{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding:1.2rem 1.5rem;display:flex;flex-direction:column;gap:0.8rem;}
-.mobile-menu 
-@media(max-width:768px){nav{padding:1rem 1.25rem;}.nav-links,.nav-cta{display:none;}}
-
-.page {padding-top:58px;}
-.hero{background:linear-gradient(135deg,var(--green-light) 0%,#fff 60%);border-bottom:1px solid var(--border);padding:3rem 2rem;}
-.hero-inner{max-width:900px;margin:0 auto;}
-.eyebrow{font-family:var(--mono);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--green);margin-bottom:0.6rem;}
-h1{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.15;margin-bottom:0.8rem;}
-.hero-sub{font-size:1rem;color:var(--dim);max-width:600px;line-height:1.75;}
-
-.wrap{max-width:900px;margin:0 auto;padding:0 2rem 5rem;}
-@media(max-width:600px){.wrap{padding:0 1rem 4rem;}}
-
-h2{font-size:1.25rem;font-weight:700;color:var(--ink);margin:3rem 0 0.8rem;padding-top:1rem;}
-h3{font-size:0.95rem;font-weight:700;color:var(--ink);margin:1.5rem 0 0.4rem;}
-p{font-size:0.92rem;color:var(--text);margin-bottom:1rem;line-height:1.8;}
-
-/* Step flow */
-.steps{display:flex;flex-direction:column;gap:0;margin:2rem 0;}
-.step{display:grid;grid-template-columns:48px 1fr;gap:1.2rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
-.step:last-child{border-bottom:none;}
-.step-num{width:48px;height:48px;background:var(--ink);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:0.2rem;}
-.step-title{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
-.step-body{font-size:0.88rem;color:var(--text);line-height:1.8;}
-.step-example{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1rem;margin-top:0.7rem;font-family:var(--mono);font-size:0.78rem;color:var(--dim);}
-.step-example strong{color:var(--ink);}
-
-/* Signal table */
-.sig-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.82rem;}
-.sig-table th{font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.5rem 0.8rem;text-align:left;border-bottom:2px solid var(--border);background:var(--surface);}
-.sig-table td{padding:0.65rem 0.8rem;border-bottom:1px solid var(--border);}
-.sig-table tr:hover td{background:var(--green-light);}
-.sig-table .sname{font-weight:600;color:var(--ink);}
-.badge-s{font-family:var(--mono);font-size:0.58rem;font-weight:700;padding:0.15rem 0.4rem;border-radius:5px;}
-.b-sell{background:#fef2f2;color:#dc2626;}
-.b-warn{background:#fff7ed;color:#c2410c;}
-.b-neutral{background:var(--surface);color:var(--muted);}
-
-/* Source cards */
-.source-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;margin:1.5rem 0;}
-.source-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:0.9rem 1rem;}
-.sc-name{font-weight:700;color:var(--ink);font-size:0.88rem;margin-bottom:0.2rem;}
-.sc-what{font-size:0.72rem;color:var(--dim);}
-.sc-freq{font-family:var(--mono);font-size:0.62rem;color:var(--green);margin-top:0.3rem;}
-
-/* FAQ */
-.faq-item{border-bottom:1px solid var(--border);padding:1rem 0;}
-.faq-q{font-weight:700;color:var(--ink);font-size:0.92rem;margin-bottom:0.4rem;}
-.faq-a{font-size:0.88rem;color:var(--text);line-height:1.75;}
-
-/* Disclaimer box */
-.disclaimer{background:#fffbeb;border:1.5px solid #fcd34d;border-radius:10px;padding:1.2rem 1.5rem;margin:2rem 0;font-size:0.82rem;color:#78350f;line-height:1.7;}
-
-/* ── MEGA MENU NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);}
-.nav-top{display:flex;justify-content:space-between;align-items:center;padding:0.7rem 2rem;border-bottom:1px solid #f0f4f2;}
-.logo{font-size:1.1rem;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px;}
-.logo-dot{width:7px;height:7px;background:var(--green);border-radius:50%;}
-.nav-top-right{display:flex;gap:1rem;align-items:center;}
-.nav-top-link{font-size:0.8rem;color:var(--dim);text-decoration:none;font-weight:500;}
-.nav-top-link:hover{color:var(--green);}
-.nav-cta{background:var(--green);color:#fff;font-size:0.8rem;font-weight:600;padding:0.4rem 1rem;border-radius:6px;text-decoration:none;}
-.nav-cta:hover{background:#007a5a;}
-
-/* Mega row */
-.nav-col{padding:0.6rem 0;}
-.nav-col+.nav-col{border-left:1px solid #f0f4f2;}
-.nav-col-title{font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:0.3rem 1.2rem 0.4rem;display:flex;align-items:center;gap:0.4rem;}
-.nav-item{display:flex;align-items:center;gap:0.6rem;padding:0.3rem 1.2rem;text-decoration:none;transition:background 0.1s;cursor:pointer;}
-.nav-item:hover{background:#f8faf9;}
-.nav-item-icon{font-size:0.9rem;width:18px;text-align:center;flex-shrink:0;line-height:1;}
-.nav-item-text{font-size:0.78rem;font-weight:600;color:var(--ink);}
-.nav-item-sub{font-size:0.65rem;color:var(--muted);line-height:1.2;margin-top:0.05rem;}
-.nav-item.crisis .nav-item-text{color:#dc2626;}
-.nav-item.crisis:hover{background:#fef2f2;}
-.nav-item.featured .nav-item-text{color:#ea580c;}
-
-/* Mobile */
-
-
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:199;overflow-y:auto;}
-.mobile-menu.open{display:block;}
-.mobile-menu-inner{padding:5rem 1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
-
-
-.mob-link:hover{color:var(--green);}
-.mob-link.crisis{color:#dc2626;}
-
-
-@media(max-width:1080px){
-  .nav-top{border-bottom:none!important;padding:0.85rem 1.25rem!important;}
-  .nav-top-right{display:none!important;}
-  
+/* Position chart */
+.pos-card{padding:0.4rem 1.5rem 0.9rem;}
+@media(max-width:640px){.pos-card{padding:0.3rem 1rem 0.7rem;}}
+.pos-key{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;align-items:center;padding:0.9rem 0 0.7rem;border-bottom:1px solid var(--hair);}
+.pos-key .k-note{font-size:0.72rem;color:var(--muted);margin-left:auto;}
+.grp-title{font-family:var(--mono);font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);padding:1rem 0 0.2rem;}
+.pos-row{display:grid;grid-template-columns:minmax(150px,210px) 1fr 104px 86px;gap:1rem;align-items:center;padding:0.55rem 0.5rem;margin:0 -0.5rem;border-radius:8px;cursor:default;}
+.pos-row.clickable{cursor:pointer;}
+.pos-row:hover,.pos-row:focus-visible{background:var(--surface);outline:none;}
+.pos-row.sel{background:#eef7f3;}
+.pos-name{font-size:0.88rem;font-weight:600;color:var(--ink);text-decoration:none;}
+a.pos-name:hover{color:var(--green);}
+.pos-meta{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;display:flex;align-items:center;gap:0.3rem;}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.pos-meta.stale{color:var(--warn);}
+.track{position:relative;height:30px;}
+.track-bar{position:absolute;left:0;right:0;top:11px;height:8px;display:flex;gap:2px;}
+.track-bar span{border-radius:2px;}
+.track-bar span:first-child{border-radius:4px 2px 2px 4px;}
+.track-bar span:last-child{border-radius:2px 4px 4px 2px;}
+.track-dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(12,28,46,.18);transition:left .4s ease;}
+.track-over{position:absolute;top:7px;font-size:0.7rem;font-weight:700;line-height:16px;}
+.track-tick{position:absolute;top:21px;font-family:var(--mono);font-size:0.58rem;color:var(--muted);transform:translateX(-50%);white-space:nowrap;}
+.pos-val{text-align:right;font-size:0.92rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.pos-val small{display:block;font-size:0.66rem;font-weight:500;color:var(--muted);}
+.badge{justify-self:end;font-size:0.64rem;font-weight:700;letter-spacing:0.06em;padding:0.22rem 0.55rem;border-radius:20px;white-space:nowrap;display:inline-flex;align-items:center;gap:0.3rem;}
+.badge.buy{background:var(--buy-t);color:#00704f;}
+.badge.neutral{background:var(--neutral-t);color:#475569;}
+.badge.warn{background:var(--warn-t);color:#a35a00;}
+.badge.sell{background:var(--sell-t);color:#b01e1e;}
+@media(max-width:700px){
+  .pos-row{grid-template-columns:1fr auto;grid-template-areas:"name val" "track track";gap:0.15rem 0.8rem;padding:0.7rem 0.5rem;}
+  .pos-row>.pos-l{grid-area:name;}
+  .pos-row>.track{grid-area:track;}
+  .pos-row>.pos-val{grid-area:val;display:flex;align-items:center;gap:0.5rem;justify-content:flex-end;}
+  .pos-row>.pos-val small{display:none;}
+  .pos-row>.badge{display:none;}
+  .pos-row .badge-m{display:inline-flex;}
+  .track-tick{display:none;}
+  .track{height:22px;margin-top:0.25rem;}
+  .track-bar{top:7px;}
+  .track-dot{top:4px;}
 }
+.badge-m{display:none;}
+.pos-tip{position:fixed;z-index:400;pointer-events:none;background:var(--ink);color:#fff;font-size:0.74rem;line-height:1.5;padding:0.55rem 0.7rem;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s;}
+.pos-tip.show{opacity:1;}
+.pos-tip b{font-weight:700;}
+.pos-tip .t-dim{color:#a6b3c2;}
 
-  
-}
+/* History */
+.hist-controls{display:flex;gap:0.7rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:0.8rem;}
+.hist-controls select{font-family:var(--sans);font-size:0.88rem;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.7rem;}
+.hist-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:0.4rem;}
+.hist-now{font-size:1.5rem;font-weight:700;}
+.hist-now small{font-size:0.8rem;color:var(--dim);font-weight:500;margin-left:0.3rem;}
+.hist-chg{font-size:0.82rem;font-weight:600;}
+.chart-box{position:relative;}
+canvas{display:block;width:100%;}
+.strip-label{font-size:0.72rem;font-weight:600;color:var(--dim);margin:0.9rem 0 0.35rem;}
+.chart-tooltip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:0.72rem;padding:0.35rem 0.55rem;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity 0.1s;z-index:5;transform:translate(-50%,-115%);}
+.chart-tooltip.show{opacity:1;}
+.hist-empty{padding:2.5rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* Stocks */
+.stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0.8rem;}
+.stock-card{padding:1rem 1.1rem;}
+.stock-head{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.stock-head a{font-size:0.9rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.stock-head a:hover{color:var(--green);}
+.stock-list{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.stock-chip{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:0.35rem 0.55rem;}
+.stock-chip b{font-family:var(--mono);font-size:0.76rem;color:var(--ink);}
+.stock-chip span{font-size:0.68rem;color:var(--dim);margin-left:0.25rem;}
+
+/* Table view */
+details.tbl{margin-top:2.2rem;}
+details.tbl summary{cursor:pointer;font-size:0.86rem;font-weight:600;color:var(--green);list-style:none;}
+details.tbl summary::-webkit-details-marker{display:none;}
+details.tbl summary::before{content:'▸ ';}
+details.tbl[open] summary::before{content:'▾ ';}
+.tbl-scroll{overflow-x:auto;margin-top:0.8rem;}
+.summary-table{width:100%;border-collapse:collapse;font-size:0.8rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.summary-table th{text-align:left;padding:0.6rem 0.8rem;font-size:0.68rem;font-weight:600;color:var(--dim);border-bottom:1px solid var(--border);white-space:nowrap;}
+.summary-table td{padding:0.55rem 0.8rem;border-bottom:1px solid var(--hair);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.summary-table td.num{text-align:right;font-family:var(--mono);font-size:0.76rem;}
+.summary-table tr:last-child td{border-bottom:0;}
+.foot-note{font-size:0.74rem;color:var(--muted);line-height:1.6;margin-top:1.6rem;}
+.foot-note a{color:var(--dim);}
 
 
 
@@ -206,13 +257,224 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 .search-box-footer{padding:0.5rem 1rem;border-top:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;font-size:0.65rem;color:#94a3b8;}
 .search-box-kbd{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:3px;padding:0.1rem 0.35rem;font-family:monospace;font-size:0.65rem;color:#475569;}
 .search-box-result.sel{background:#f0fdf4;}
+
+/* ── Live signals page ── */
+@keyframes lspulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.ls-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;}
+.ls-head .dash-sub a{color:var(--green);font-weight:600;text-decoration:none;}
+.ls-head .dash-sub a:hover{text-decoration:underline;}
+.live-pill{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.76rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;white-space:nowrap;}
+.live-pill .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+/* alert signup */
+.alert-card{display:flex;gap:1rem 1.5rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.alert-copy{flex:1 1 320px;min-width:0;}
+.alert-copy .card-title{margin-bottom:0.2rem;}
+.alert-form{display:flex;gap:0.5rem;flex-wrap:wrap;flex:0 1 auto;}
+.alert-form input{font-family:var(--sans);font-size:0.86rem;padding:0.6rem 0.8rem;border:1px solid var(--border);border-radius:8px;min-width:0;width:240px;max-width:100%;background:#fff;color:var(--ink);}
+.alert-form input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(0,149,110,.12);}
+.alert-form button{font-family:var(--sans);font-size:0.86rem;font-weight:700;padding:0.6rem 1.1rem;background:var(--green);color:#fff;border:0;border-radius:8px;cursor:pointer;}
+.alert-form button:hover{background:#007a5a;}
+.alert-form button:disabled{opacity:.6;cursor:not-allowed;}
+.alert-signup-msg{font-size:0.78rem;width:100%;}
+.alert-signup-msg:empty{display:none;}
+.alert-signup-msg.ok{color:#00704f;}
+.alert-signup-msg.err{color:var(--sell);}
+@media(max-width:560px){.alert-form{width:100%;}.alert-form input{flex:1;width:auto;}}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:2.2rem 0 0.4rem;}
+.chips{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.chip{font-family:var(--sans);display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.38rem 0.8rem;cursor:pointer;}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.chip b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.chip:hover{border-color:#c8d3ce;}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+.chip.on b{color:#fff;}
+.tool-right{display:flex;gap:0.5rem;flex-wrap:wrap;}
+@media(max-width:640px){.chips{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px;scrollbar-width:none;}.chips::-webkit-scrollbar{display:none;}.chip{flex-shrink:0;}}
+
+/* signal cards */
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0.8rem;}
+@media(max-width:640px){.sig-grid{grid-template-columns:1fr;}}
+#sigGrid .grp-title{padding:1.3rem 0 0.6rem;}
+.sig-card{background:#fff;border:1px solid var(--border);border-top:3px solid var(--zc,var(--neutral));border-radius:12px;padding:1rem 1.1rem 0.85rem;display:flex;flex-direction:column;min-width:0;}
+.sig-card:hover{box-shadow:0 4px 18px rgba(12,28,46,.06);}
+.sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.6rem;}
+.sc-name{font-size:0.92rem;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.3;}
+a.sc-name:hover{color:var(--green);}
+.sc-sector{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.sc-top .badge{justify-self:auto;flex-shrink:0;}
+.sc-val{font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);margin-top:0.55rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.sc-val small{font-size:0.74rem;font-weight:500;color:var(--muted);margin-left:0.35rem;letter-spacing:0;}
+.sc-ctx{font-size:0.78rem;color:var(--text);margin-top:0.2rem;}
+.sig-card .track{height:22px;margin:0.6rem 0 0.15rem;}
+.sig-card .track-bar{top:7px;}
+.sig-card .track-dot{top:4px;}
+.sc-levels{display:flex;flex-wrap:wrap;gap:0.15rem 0.8rem;font-size:0.7rem;color:var(--dim);font-variant-numeric:tabular-nums;}
+.sc-levels b{font-weight:600;color:var(--text);}
+.sc-note{font-size:0.74rem;color:var(--dim);line-height:1.5;margin-top:0.6rem;}
+.sc-note a{color:var(--green);}
+.sc-stocks{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--hair);}
+.sc-stocks a,.sc-more{font-family:var(--mono);font-size:0.68rem;font-weight:500;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0.14rem 0.45rem;text-decoration:none;}
+.sc-stocks a:hover{border-color:var(--green);color:var(--green);}
+.sc-more{background:#fff;border-style:dashed;cursor:pointer;}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:auto;padding-top:0.7rem;}
+.sc-foot .pos-meta{margin:0;}
+.sc-chart{font-family:var(--sans);font-size:0.72rem;font-weight:600;color:var(--green);background:none;border:0;cursor:pointer;padding:0.2rem 0;}
+.sc-chart:hover{text-decoration:underline;}
+.grid-empty{padding:2rem 1rem;text-align:center;color:var(--dim);font-size:0.86rem;}
+
+/* threshold explorer */
+.exp-read{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin:0.2rem 0 0.9rem;}
+.exp-band{position:relative;display:flex;gap:2px;height:10px;margin:0 9px;}
+.exp-band span{border-radius:2px;}
+.exp-now{position:absolute;top:-5px;width:2px;height:20px;background:var(--ink);margin-left:-1px;}
+.exp-now em{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:0.62rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+#explorerSlider{width:100%;margin:0.5rem 0 0;accent-color:var(--ink);}
+.exp-actions{display:flex;justify-content:space-between;align-items:center;gap:0.6rem;flex-wrap:wrap;margin-top:0.5rem;}
+.exp-reset{font-family:var(--sans);font-size:0.76rem;font-weight:600;color:var(--green);background:none;border:1px solid var(--border);border-radius:7px;padding:0.3rem 0.65rem;cursor:pointer;}
+
+/* playbooks */
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.6rem;}
+.play{display:block;background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.8rem 0.95rem;text-decoration:none;}
+.play:hover{border-color:#bfe3d5;box-shadow:0 3px 12px rgba(12,28,46,.05);}
+.play b{display:block;font-size:0.86rem;color:var(--ink);}
+.play span{display:block;font-size:0.74rem;color:var(--dim);margin-top:0.15rem;}
+
+
+/* ── Homepage ── */
+.home-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.home-hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.2rem;align-items:center;padding-top:3rem;padding-bottom:3rem;}
+@media(max-width:900px){.home-hero .wrap{grid-template-columns:1fr;gap:1.6rem;padding-top:1.8rem;padding-bottom:2rem;}}
+.home-h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:700;letter-spacing:-0.035em;line-height:1.05;color:var(--ink);}
+.home-h1 em{font-style:normal;color:var(--green);}
+.home-lede{font-size:1.02rem;line-height:1.65;color:var(--text);margin-top:1rem;max-width:520px;}
+.home-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:520px;}
+.home-now b{font-weight:700;}
+.home-ctas{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.3rem;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--sans);font-size:0.9rem;font-weight:700;padding:0.75rem 1.2rem;border-radius:9px;text-decoration:none;border:1px solid transparent;}
+.btn-p{background:var(--green);color:#fff;}
+.btn-p:hover{background:#007a5a;}
+.btn-s{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-s:hover{border-color:#c8d3ce;}
+.home-src{font-size:0.76rem;color:var(--dim);margin-top:1rem;display:flex;align-items:center;gap:0.45rem;}
+.home-src .dot-live{width:7px;height:7px;animation:lspulse 2s infinite;}
+
+.now-card{padding:1.2rem 1.3rem 1rem;box-shadow:0 10px 40px rgba(12,28,46,.07);}
+.now-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.now-card .score-num{font-size:2.8rem;}
+.now-card .meter{margin:1rem 0 0.2rem;}
+.now-card .meter-labels span{font-size:0.6rem;}
+.now-card .seg-bar{height:22px;margin:0.9rem 0 0.2rem;}
+.now-card .seg-bar div{font-size:0.7rem;}
+.mini{margin-top:0.8rem;border-top:1px solid var(--hair);}
+.mini-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(70px,1fr) auto auto;gap:0.7rem;align-items:center;padding:0.5rem 0;border-bottom:1px solid var(--hair);text-decoration:none;}
+.mini-row:hover .mini-name{color:var(--green);}
+.mini-name{font-size:0.84rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.mini-row .track{height:14px;}
+.mini-row .track-bar{top:4px;height:6px;}
+.mini-row .track-dot{top:1px;width:12px;height:12px;margin-left:-6px;}
+.mini-val{font-size:0.84rem;font-weight:700;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;}
+.mini-row .badge{justify-self:end;min-width:74px;justify-content:center;}
+.now-foot{display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-top:0.8rem;font-size:0.8rem;}
+.now-foot a{color:var(--green);font-weight:700;text-decoration:none;}
+.now-foot span{color:var(--muted);font-size:0.72rem;}
+@media(max-width:480px){.mini-row{grid-template-columns:minmax(0,1fr) auto auto;}.mini-row .track{display:none;}.mini-row .badge{min-width:0;}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.steps{grid-template-columns:1fr;}}
+.step-n{width:28px;height:28px;border-radius:50%;background:var(--buy-t);color:#00704f;font-weight:700;font-size:0.85rem;display:flex;align-items:center;justify-content:center;margin-bottom:0.7rem;}
+.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.step p{font-size:0.84rem;line-height:1.6;color:var(--text);}
+
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:900px){.str-grid{grid-template-columns:1fr;}}
+
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.8rem;}
+.tool{display:block;background:#fff;border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;}
+.tool:hover{border-color:#bfe3d5;box-shadow:0 4px 16px rgba(12,28,46,.05);}
+.tool-k{font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);}
+.tool b{display:block;font-size:0.96rem;color:var(--ink);margin:0.25rem 0 0.2rem;}
+.tool span{display:block;font-size:0.8rem;line-height:1.5;color:var(--dim);}
+@media(max-width:560px){.tools{grid-template-columns:1fr 1fr;gap:0.6rem;}.tool{padding:0.8rem 0.85rem;}.tool b{font-size:0.88rem;}.tool span{font-size:0.74rem;}}
+.tool.hi{border-color:#bfe3d5;background:linear-gradient(180deg,#f3fbf8,#fff);}
+.tool.hi .tool-k{color:var(--green);}
+
+.ex-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.ex-chips a{font-size:0.82rem;font-weight:600;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.4rem 0.85rem;text-decoration:none;}
+.ex-chips a:hover{border-color:var(--green);color:var(--green);}
+.ex-chips a.all{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;}
+@media(max-width:800px){.trust{grid-template-columns:1fr;}}
+.trust .card-title{font-size:0.95rem;margin-bottom:0.3rem;}
+.trust .card-note{font-size:0.82rem;}
+.trust a{color:var(--green);font-weight:600;text-decoration:none;}
+
+
+/* ── Tool pages ── */
+.tool-hero{background:linear-gradient(180deg,#eef8f4 0%,var(--bg) 100%);border-bottom:1px solid var(--hair);}
+.tool-hero .wrap{padding-top:2.4rem;padding-bottom:2rem;}
+.tool-h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;color:var(--ink);}
+.tool-h1 em{font-style:normal;color:var(--green);}
+.tool-lede{font-size:1rem;line-height:1.65;color:var(--text);margin-top:0.8rem;max-width:720px;}
+.tool-now{margin-top:1rem;font-size:0.92rem;line-height:1.6;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;max-width:720px;}
+.prose-card{font-size:0.92rem;line-height:1.7;color:var(--text);}
+.prose-card p + p{margin-top:0.7rem;}
+.prose-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.1rem 0 0.3rem;}
+.prose-card h3:first-child{margin-top:0;}
+.prose-card ul{margin:0.5rem 0 0 1.2rem;}
+.prose-card li{margin-bottom:0.4rem;}
+.prose-card a{color:var(--green);}
+.prose-card b{color:var(--ink);}
+.faq details{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;}
+.faq details + details{margin-top:0.5rem;}
+.faq summary{cursor:pointer;font-size:0.95rem;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:"+";color:var(--green);font-weight:700;}
+.faq details[open] summary::after{content:"\2212";}
+.faq details p{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:0.6rem;}
+.faq details p a{color:var(--green);}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.kpi{background:#fff;border:1px solid var(--border);border-top:3px solid var(--kc);border-radius:10px;padding:0.6rem 0.8rem;}
+.kpi b{display:block;font-size:1.4rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.kpi span{font-size:0.72rem;color:var(--dim);}
+
+.doc{max-width:780px;}
+.doc .card{padding:1.4rem 1.6rem;}
+.doc h2{font-size:1.2rem;font-weight:700;color:var(--ink);margin:2rem 0 0.6rem;letter-spacing:-0.01em;}
+.doc h2:first-child{margin-top:0;}
+.doc h3{font-size:1rem;font-weight:700;color:var(--ink);margin:1.3rem 0 0.35rem;}
+.doc p,.doc li{font-size:0.95rem;line-height:1.75;color:var(--text);}
+.doc p + p{margin-top:0.7rem;}
+.doc ul,.doc ol{margin:0.5rem 0 0.8rem 1.3rem;}
+.doc li{margin-bottom:0.35rem;}
+.doc a{color:var(--green);}
+.doc b,.doc strong{color:var(--ink);}
+.doc .note{background:#fff7ec;border:1px solid #f6dfbd;border-radius:10px;padding:0.8rem 1rem;font-size:0.88rem;line-height:1.6;color:#7a4b00;margin:1rem 0;}
+.doc .callout{background:#f3fbf8;border:1px solid #cfeadf;border-left:4px solid var(--green);border-radius:10px;padding:0.9rem 1.1rem;margin:1.2rem 0;}
+.doc .meta{font-size:0.8rem;color:var(--dim);margin-bottom:1.2rem;}
+.tbl{overflow-x:auto;background:#fff;border:1px solid var(--border);border-radius:12px;margin:0.8rem 0 1.2rem;}
+.tbl table{width:100%;border-collapse:collapse;font-size:0.84rem;min-width:640px;}
+.tbl th{background:var(--surface);text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--dim);padding:0.6rem 0.8rem;white-space:nowrap;}
+.tbl td{padding:0.55rem 0.8rem;border-top:1px solid var(--hair);color:var(--text);vertical-align:top;}
+.tbl td:first-child a{font-weight:700;color:var(--ink);text-decoration:none;}
+.tbl td:first-child a:hover{color:var(--green);}
+.tbl .live{color:#00704f;font-weight:600;}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.6rem;margin-top:1.2rem;max-width:720px;}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.stats div{background:#fff;border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.85rem;}
+.stats b{display:block;font-size:1.45rem;font-weight:700;color:var(--ink);}
+.stats span{font-size:0.74rem;color:var(--dim);}
+.rel-links{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.rel-links a{font-size:0.84rem;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--border);border-radius:20px;padding:0.45rem 0.9rem;text-decoration:none;}
+.rel-links a:hover{border-color:var(--green);color:var(--green);}
+
 </style>
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@signycle">
-<meta name="twitter:title" content="How Signycle Works — Methodology, Signals and Thresholds">
-<meta name="twitter:description" content="How Signycle tracks 21 commodity and macro signals, sets BUY and SELL thresholds, and maps them to 400+ cyclical stocks across 39 stock exchanges.">
-<meta name="twitter:image" content="https://signycle.com/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "How Signycle Works", "description": "How Signycle maps macro signals to cyclical stocks across 39 stock exchanges.", "url": "https://signycle.com/how-it-works.html", "publisher": {"@type": "Organization", "name": "Signycle", "url": "https://signycle.com"}}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1973531831381485"
+     crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/site.css?v=3">
 </head>
 <body>
@@ -227,206 +489,72 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
 <script src="/site-nav.js?v=1" defer></script>
 <!-- /SN-NAV -->
 
-
-
-
-
-
-
-
 <div class="page">
 
-<div class="hero" style="padding:4rem 2rem 2.5rem;background:linear-gradient(135deg,#f0fdf4 0%,#fff 60%);border-bottom:1.5px solid #e2e8e5;">
-  <div style="max-width:860px;margin:0 auto;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#00956e;margin-bottom:0.8rem;">Methodology · How Signycle Works</div>
-    <h1 style="font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;color:#0c1c2e;letter-spacing:-0.02em;line-height:1.2;margin-bottom:1rem;">24 signals. Historical thresholds.<br>Linked to 400+ stocks.</h1>
-    <p style="font-size:1rem;color:#6b7f78;line-height:1.8;max-width:600px;">Signycle tracks commodity and macro signals — each with a historically-derived BUY threshold and SELL threshold. When a signal crosses a threshold, it has historically preceded significant moves in linked cyclical stocks.</p>
+<section class="tool-hero">
+<div class="wrap">
+  <div class="dash-eyebrow">Methodology</div>
+  <h1 class="tool-h1">How Signycle <em>works</em></h1>
+  <p class="tool-lede">Three steps: track the prices that drive cyclical companies, compare each one with its own history, and link it to the stocks that depend on it.</p>
+</div>
+</section>
+
+<div class="wrap">
+  <div class="doc">
+
+  <div class="card">
+    <h2>1. Track the signals</h2>
+    <p>Signycle follows 24 signals: commodity prices, freight rates and macro indicators that drive the earnings of cyclical companies. 11 are priced live, about every 15 minutes. The other 13 are entered by hand from public reporting and always show the date of their latest value.</p>
+
+    <h2>2. Compare each signal with its own history</h2>
+    <p>Each signal has three levels: a <b>BUY</b> level, a <b>near-sell</b> level and a <b>SELL</b> level. Its latest value puts it in one of four zones:</p>
+    <ul>
+      <li><b>BUY:</b> at or below the BUY level. Historically cheap.</li>
+      <li><b>Neutral:</b> between BUY and near sell. Within its normal range.</li>
+      <li><b>Near sell:</b> between near sell and SELL. Getting expensive against its history.</li>
+      <li><b>SELL:</b> at or above the SELL level. Historically expensive.</li>
+    </ul>
+    <p><b>How the levels are set.</b> The levels are judgement-based reference points, chosen from each signal&rsquo;s past price range: roughly where earlier cycles have bottomed out and where they have peaked. They are not the output of a statistical model and have not been independently audited. For signals with a shorter or less documented history, they should be treated as provisional.</p>
+
+    <h3>Every signal, its levels and its source</h3>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Signal</th><th>BUY at or below</th><th>Near sell from</th><th>SELL at or above</th><th>Update</th><th>Source</th></tr></thead>
+    <tbody><tr><td><a href="signal-brent-crude.html">Brent crude</a></td><td>$50</td><td>$95</td><td>$105</td><td><span class="live">Live</span></td><td>Brent crude futures (front month), via Yahoo Finance</td></tr><tr><td><a href="compare-wti-brent.html">WTI crude</a></td><td>$45</td><td>$88</td><td>$95</td><td><span class="live">Live</span></td><td>WTI crude futures (front month), via Yahoo Finance</td></tr><tr><td><a href="signal-vlcc-rate.html">VLCC tanker rate</a></td><td>$15,000</td><td>$60,000</td><td>$75,000</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-lng-freight-rate.html">LNG carrier rate</a></td><td>$10,000</td><td>$60,000</td><td>$80,000</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-baltic-dry-index.html">Baltic Dry Index</a></td><td>900</td><td>2,500</td><td>3,000</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-lme-copper.html">LME copper</a></td><td>$5,000</td><td>$8,500</td><td>$9,000</td><td><span class="live">Live</span></td><td>COMEX copper futures via Yahoo Finance, converted from $/lb to $/t</td></tr><tr><td><a href="signal-aluminium-price.html">LME aluminium</a></td><td>$1,600</td><td>$2,800</td><td>$3,200</td><td><span class="live">Live</span></td><td>COMEX aluminium futures via Yahoo Finance</td></tr><tr><td><a href="signal-gold-price.html">Gold</a></td><td>$1,200</td><td>$2,500</td><td>$2,800</td><td><span class="live">Live</span></td><td>COMEX gold futures via Yahoo Finance</td></tr><tr><td><a href="signal-salmon-price.html">Norwegian salmon</a></td><td>NOK 42</td><td>NOK 75</td><td>NOK 82</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-urea-price.html">Urea</a></td><td>$230</td><td>$550</td><td>$620</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-us-hrc-steel.html">Steel HRC</a></td><td>$700</td><td>$1,150</td><td>$1,450</td><td><span class="live">Live</span></td><td>CME US Midwest hot-rolled coil steel futures via Yahoo Finance</td></tr><tr><td><a href="signal-iron-ore-price.html">Iron ore (62% Fe)</a></td><td>$60</td><td>$85</td><td>$100</td><td><span class="live">Live</span></td><td>Iron ore 62% Fe futures via Yahoo Finance</td></tr><tr><td><a href="signal-eur-10y-rate.html">EUR 10Y rate</a></td><td>1.5%</td><td>3%</td><td>3.5%</td><td><span class="live">Live</span></td><td>European Central Bank: euro area AAA-rated 10-year government bond yield</td></tr><tr><td><a href="recession-tracker.html">US 10Y–2Y yield curve</a></td><td colspan="3">No BUY/SELL levels (shown for context)</td><td><span class="live">Live</span></td><td>FRED (St. Louis Fed): series T10Y2Y</td></tr><tr><td><a href="signal-nato-defence.html">NATO defence spending</a></td><td>2% of GDP</td><td>3% of GDP</td><td>3.5% of GDP</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-global-pmi.html">Global manufacturing PMI</a></td><td>48</td><td>55</td><td>60</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-scfi-container.html">SCFI container freight</a></td><td>800</td><td>2,500</td><td>3,500</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-nbsk-pulp-price.html">NBSK pulp</a></td><td>$750</td><td>$1,100</td><td>$1,300</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-pctc-car-carrier.html">PCTC car carrier rate</a></td><td>$8,000</td><td>$35,000</td><td>$45,000</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-rig-utilization.html">Offshore rig utilisation</a></td><td>70%</td><td>88%</td><td>92%</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td>Wide-body flying hours</td><td>85</td><td>115</td><td>130</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td>Semicon equipment (WFE)</td><td>80</td><td>120</td><td>140</td><td>By hand</td><td>Entered by hand from public reporting</td></tr><tr><td><a href="signal-lithium-carbonate.html">Lithium carbonate</a></td><td>$12,000</td><td>$30,000</td><td>$40,000</td><td><span class="live">Live</span></td><td>CME lithium hydroxide futures via Yahoo Finance, converted from $/kg to $/t</td></tr><tr><td><a href="compare-wti-brent.html">Brent–WTI spread</a></td><td>$0</td><td>$8</td><td>$12</td><td><span class="live">Live</span></td><td>Calculated: Brent minus WTI</td></tr></tbody>
+  </table></div>
+  <div class="card">
+    <h2>3. Link signals to stocks</h2>
+    <p>Each of 414 cyclical stocks on 39 exchanges is linked to the one signal that drives its earnings most: tanker owners to VLCC rates, copper miners to copper, salmon farmers to the salmon price. Many companies depend on more than one price, so the link is a simplification. Stocks whose main driver Signycle doesn&rsquo;t track are listed as &ldquo;not tracked&rdquo;. A stock&rsquo;s zone is always its signal&rsquo;s zone, not a rating of the company.</p>
+
+    <h2>The cycle score</h2>
+    <p>The <a href="where-are-we-in-the-cycle.html">cycle score</a> sums up all signals in one number. Each zone is worth fixed points (BUY 15, neutral 50, near sell 72, SELL 90), and the score is the average across all signals. In practice it runs from 15 (everything in BUY) to 90 (everything in SELL). The Brent&ndash;WTI spread, which is calculated from two other signals, and the US yield curve, a recession indicator, are left out.</p>
+
+    <h2>Alerts and history</h2>
+    <p>Live signals are checked about every 15 minutes. A move into a new zone has to hold for two checks in a row before it counts, so price jitter right at a level doesn&rsquo;t trigger anything. Confirmed changes are logged in the <a href="signal-history.html">signal history</a> and sent to anyone who has signed up for alerts.</p>
+
+    <h2>What it can and can&rsquo;t tell you</h2>
+    <ul>
+      <li>It can show which prices are historically cheap or expensive, and which stocks depend on them.</li>
+      <li>It can&rsquo;t tell you when a price will turn. Signals can stay in their SELL or BUY zone for months or years.</li>
+      <li>It doesn&rsquo;t look at company valuations, balance sheets or management.</li>
+      <li>Hand-entered signals are only as current as their last update.</li>
+    </ul>
+  </div>
+
+  <div class="sec-head"><div><h2 class="sec-title" style="margin:0;">Questions</h2></div></div>
+  <div class="faq">
+    <details><summary>Is this financial advice?</summary><p>No. Signycle shows where prices stand against their history. It doesn&rsquo;t recommend buying or selling any security, and BUY and SELL levels are reference points, not forecasts. See the <a href="disclaimer.html">disclaimer</a>.</p></details>
+    <details><summary>How often are signals updated?</summary><p>11 signals are fetched automatically about every 15 minutes. The other 13 are entered by hand from public reporting when new figures are available, which can mean weeks between updates. Every signal shows the date of its latest value, and values older than 45 days are flagged as possibly out of date.</p></details>
+    <details><summary>Why do some signals have no live feed?</summary><p>Freight indices, salmon prices, fertiliser prices and survey data such as PMI are mostly published by organisations that don&rsquo;t offer a free automated feed. Until one is found, they are updated by hand.</p></details>
+    <details><summary>Are the levels ever changed?</summary><p>They can be revised if a market changes structurally, for example when costs or capacity shift permanently. Any change affects zones from that point on; past recorded zone changes in the <a href="signal-history.html">signal history</a> are not rewritten.</p></details>
+  </div>
+  <p class="foot-note">For information only, not financial advice. See the <a href="disclaimer.html">disclaimer</a>.</p>
+
   </div>
 </div>
 
-<div style="max-width:860px;margin:0 auto;padding:2.5rem 2rem 0;">
+</div><!-- .page -->
 
-<h2>The core idea</h2>
-<p>Commodity cycles are long and predictable compared to equity cycles. Iron ore, copper, oil and shipping rates move in multi-year cycles driven by supply/demand imbalances. When you know where a commodity is in its cycle — and map it to the stocks that follow that commodity — you have an edge.</p>
-
-<p>Signycle does three things: (1) tracks 21 commodity and macro signals in real time, (2) compares each to its historical BUY and SELL threshold, and (3) maps each signal to the stocks most likely to benefit or suffer when that threshold is crossed.</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0;">
-  <div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:12px;padding:1.2rem;text-align:center;">
-    <div style="font-size:2rem;font-weight:800;color:#00956e;">21</div>
-    <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Signals tracked</div>
-  </div>
-  <div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:12px;padding:1.2rem;text-align:center;">
-    <div style="font-size:2rem;font-weight:800;color:#00956e;">250+</div>
-    <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Stocks mapped</div>
-  </div>
-  <div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:12px;padding:1.2rem;text-align:center;">
-    <div style="font-size:2rem;font-weight:800;color:#00956e;">34+</div>
-    <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Exchanges covered</div>
-  </div>
-  <div style="background:#f8faf9;border:1.5px solid #e2e8e5;border-radius:12px;padding:1.2rem;text-align:center;">
-    <div style="font-size:2rem;font-weight:800;color:#dc2626;"><span data-signal="cycleScore">73/100</span></div>
-    <div style="font-size:0.72rem;color:#6b7f78;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:0.08em;">Cycle score now</div>
-  </div>
-</div>
-
-<h2>The 24 signals</h2>
-<p>Each signal is a commodity or macro indicator with a long enough history to derive meaningful thresholds. The signals span energy, metals, shipping, agriculture and macroeconomic indicators:</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.6rem;margin:1.2rem 0 2rem;">
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🛢️ Brent Crude</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$50 · SELL &gt;$105</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🔩 LME Copper</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$5,000 · SELL &gt;$9,000</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🥇 Gold</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$1,200 · SELL &gt;$2,800</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🚢 Baltic Dry Index</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;900 · SELL &gt;3,000</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🛳️ VLCC Rate</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$15k · SELL &gt;$75k</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🐟 Salmon</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;NOK42 · SELL &gt;NOK82</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🌾 Urea</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$230 · SELL &gt;$620</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🏗️ Steel HRC</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$700 · SELL &gt;$1,450</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🔋 Aluminium</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$1,600 · SELL &gt;$3,200</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">⛏️ Iron Ore</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$60 · SELL &gt;$100</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">📊 Global PMI</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;48 · SELL &gt;60</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">💰 EUR 10Y Rate</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;1.5% · SELL &gt;3.5%</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">🛡️ Defence Spending</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;2.0% · SELL &gt;3.5% of GDP</span></div>
-  <div style="background:#fff;border:1px solid #e2e8e5;border-radius:8px;padding:0.6rem 0.9rem;font-size:0.78rem;"><strong style="color:#0c1c2e;">⛽ LNG Rate</strong><br><span style="color:#6b7f78;font-size:0.68rem;">BUY &lt;$10k · SELL &gt;$80k</span></div>
-</div>
-
-<h2>Where our data comes from</h2>
-<p>11 of the 24 signals update automatically, roughly every 15 minutes, pulled directly by our server from two free sources: <strong>Yahoo Finance</strong> (Brent, WTI, LME copper, LME aluminium, gold, steel HRC, iron ore and lithium carbonate — the Brent-WTI spread is then derived from the two live oil legs, not a separate feed) and two government statistical APIs, the <strong>ECB's Statistical Data Warehouse</strong> (EUR 10-year rate) and the <strong>St. Louis Fed's FRED</strong> (US 10Y–2Y Treasury yield curve).</p>
-<p>The remaining 10 signals — Baltic Dry Index, VLCC and LNG charter rates, Norwegian salmon price, urea, global PMI, NATO defence spending and others — don't have a free, automatable live feed we've found yet, so they're updated by hand from public reporting instead, typically weekly to quarterly depending on how often the underlying number actually moves. Every signal card shows its own last-updated date, so which ones are live and which are manual is always visible, not just asserted here.</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0.6rem;margin:1.2rem 0 2rem;">
-
-<div class="source-card"><div class="sc-name">Yahoo Finance</div><div class="sc-what">Brent, WTI, LME copper &amp; aluminium, gold, steel HRC, iron ore, lithium</div><div class="sc-freq">Live &middot; ~15 min</div></div>
-  <div class="source-card"><div class="sc-name">ECB Statistical Data Warehouse</div><div class="sc-what">EUR 10-year government bond rate</div><div class="sc-freq">Live &middot; daily</div></div>
-  <div class="source-card"><div class="sc-name">FRED (St. Louis Fed)</div><div class="sc-what">US 10Y&ndash;2Y Treasury yield curve</div><div class="sc-freq">Live &middot; daily</div></div>
-  <div class="source-card"><div class="sc-name">Hand-updated from public reporting</div><div class="sc-what">Baltic Dry Index, VLCC &amp; LNG rates, salmon, urea, PMI, defence spending and others</div><div class="sc-freq">Weekly to quarterly</div></div>
-</div>
-
-<!-- How thresholds are set -->
-<h2>How BUY and SELL thresholds are set</h2>
-<p>Thresholds are derived from 20–40 years of historical data for each signal, identifying the price levels at which forward returns for linked stocks have historically been strongest (BUY) or weakest/negative (SELL).</p>
-<p>The methodology is not quantitative in a strict statistical sense — it is pattern-based and observational. We identify the prices at which past cycles have turned, and use those as reference points. The thresholds are reviewed annually and updated when structural changes in markets warrant revision.</p>
-<p>Specifically, for each signal we look at: (1) historical cycle peaks and troughs, (2) the price levels where demand destruction or demand surge has historically occurred, (3) the relationship between signal value and subsequent 12-24 month stock returns for linked equities.</p>
-
-<div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0;">
-  <div style="font-weight:700;color:#15803d;margin-bottom:0.5rem;">Why these specific thresholds work</div>
-  <p style="font-size:0.85rem;margin:0;color:#166534;line-height:1.7;">Commodity cycles are driven by supply/demand economics with long lag times. When oil is at $20/bbl, producers cut investment — setting up the next shortage. When oil is at $100+/bbl, demand destruction sets in and investment in alternatives accelerates. These dynamics are structural, not statistical, which is why the thresholds have remained relevant across decades.</p>
-</div>
-
-<!-- Cycle score -->
-<h2>The Cycle Score (0–100)</h2>
-<p>The Signycle Cycle Score combines the tracked signals into a single 0–100 number for where the overall macro cycle stands. In practice it runs from 15 (every signal in its BUY zone) to 90 (every signal in its SELL zone).</p>
-<p>Each signal contributes equally, based on the zone it is in: BUY counts as 15 points, NEUTRAL as 50, NEAR SELL as 72 and SELL as 90. The score is the simple average of those points across every tracked signal. The Brent-WTI spread (derived from two signals already counted) and the US yield curve (a recession indicator with no BUY/SELL scale) are left out.</p>
-<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin:1rem 0;display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.82rem;">
-  <div><strong style="color:var(--green);">0–25</strong> — Deep BUY. Multiple signals at historic lows.</div>
-  <div><strong style="color:#059669;">25–45</strong> — Early Expansion. Accumulation phase.</div>
-  <div><strong style="color:var(--dim);">45–65</strong> — Mid Cycle. Neutral zone.</div>
-  <div><strong style="color:var(--orange);">65–80</strong> — Late Expansion. Caution warranted.</div>
-  <div><strong style="color:var(--red);">80–100</strong> — Distribution phase. Signals at historic highs.</div>
-</div>
-<p>Current cycle score: <strong style="color:#d97706;"><span data-signal="cycleScore">73/100</span> — <span data-signal="cyclePhase">Late Expansion</span>.</strong> The last Deep BUY score below 25 was recorded in April 2020 during COVID-19.</p>
-
-<!-- FAQ -->
-<h2>Frequently asked questions</h2>
-<div class="faq-item">
-  <div class="faq-q">Is this financial advice?</div>
-  <div class="faq-a">No. Signycle is a macro signal tracking and research tool. Nothing on this site constitutes financial advice, investment recommendations or trading signals. Always consult a qualified financial adviser before making investment decisions. Past signal performance does not guarantee future results.</div>
-</div>
-<div class="faq-item">
-  <div class="faq-q">How accurate are the signals historically?</div>
-  <div class="faq-a">The signals have a strong historical track record on a directional basis — identifying cycle phases correctly — but are imprecise on timing. A signal can be in SELL zone for months or years before the actual market turn.</div>
-</div>
-<div class="faq-item">
-  <div class="faq-q">How often are signals updated?</div>
-  <div class="faq-a">11 of the 24 signals (Brent, WTI, LME copper &amp; aluminium, gold, steel HRC, iron ore, lithium, the Brent-WTI spread, the EUR 10Y rate and the US yield curve) update automatically roughly every 15 minutes from Yahoo Finance, the ECB and FRED. The remaining 10 — Baltic Dry Index, VLCC and LNG rates, salmon, urea, PMI, defence spending and others — are updated by hand from public reporting, typically weekly to quarterly. Each signal's own card shows its last-updated date.</div>
-</div>
-<div class="faq-item">
-  <div class="faq-q">Why do you focus on cyclical stocks?</div>
-  <div class="faq-a">Cyclical stocks — energy, mining, shipping, agriculture, defence — are the most directly and predictably linked to commodity price cycles. Their earnings correlate closely with commodity prices, making the signal-to-stock mapping reliable over time. Growth stocks, financials and consumer companies are less directly driven by the same signals.</div>
-</div>
-<div class="faq-item">
-  <div class="faq-q">Does Signycle manage money or take positions?</div>
-  <div class="faq-a">No. Signycle is a data and research platform only. We do not manage assets, take investment positions or have a financial interest in any of the stocks or commodities we track.</div>
-</div>
-
-
-<h2>How Signycle compares</h2>
-<p>You don't need a Bloomberg Terminal to track commodity cycles. Here's how Signycle fits in the landscape.</p>
-
-<div style="overflow-x:auto;margin:1.5rem 0;">
-<table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
-  <thead>
-    <tr style="background:var(--surface);">
-      <th style="padding:0.7rem 1rem;text-align:left;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Feature</th>
-      <th style="padding:0.7rem 1rem;text-align:center;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);">Signycle</th>
-      <th style="padding:0.7rem 1rem;text-align:center;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Bloomberg</th>
-      <th style="padding:0.7rem 1rem;text-align:center;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">MacroMicro</th>
-      <th style="padding:0.7rem 1rem;text-align:center;border-bottom:2px solid var(--border);font-family:var(--mono);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Koyfin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">Price</td>
-      <td style="padding:0.65rem 1rem;text-align:center;font-weight:700;color:var(--green);">Free</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">~$25,000/yr</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">$200–400/yr</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">$500–1,200/yr</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border);background:var(--surface);">
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">Commodity cycle BUY/SELL thresholds</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">Stock-to-signal mapping (400+ stocks)</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">Manual</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">European/Nordic exchange focus</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅ Deep</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">Limited</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">Limited</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border);background:var(--surface);">
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">Shipping signals (BDI, VLCC, LNG)</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">Partial</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌</td>
-    </tr>
-    <tr>
-      <td style="padding:0.65rem 1rem;color:var(--ink);font-weight:500;">Macro breadth (40m+ indicators)</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">❌ Focused</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;">✅</td>
-      <td style="padding:0.65rem 1rem;text-align:center;color:var(--muted);">Partial</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-<p style="font-size:0.75rem;color:var(--muted);">Signycle is purpose-built for cyclical stock investors. Broad macro platforms are better for institutional research across all asset classes.</p>
-
-<div class="disclaimer">
-  <strong>Important disclaimer:</strong> Signycle provides macro signal data and historical context for educational and informational purposes only. The BUY and SELL thresholds shown are historical reference points — not predictions, recommendations or trading signals. Markets can remain irrational longer than any model expects. All historical returns shown reflect the best-case entry and exit at signal thresholds and do not account for transaction costs, taxes, timing slippage or individual circumstances. Do not make investment decisions based solely on Signycle data.
-</div>
-
-<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;margin-top:2rem;">
-  <div style="font-weight:700;color:var(--ink);margin-bottom:0.5rem;">Ready to see the signals live?</div>
-  <p style="font-size:0.85rem;color:var(--dim);margin-bottom:1rem;">All 24 signals updated daily. Current cycle score: <span data-signal="cycleScore">73/100</span>.</p>
-  <div style="display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;">
-    <a href="live-signals.html" style="background:var(--green);color:#fff;font-weight:700;font-size:0.85rem;padding:0.5rem 1.2rem;border-radius:8px;text-decoration:none;">📡 View live signals</a>
-    <a href="cycle-dashboard.html" style="background:#fff;color:var(--ink);font-weight:700;font-size:0.85rem;padding:0.5rem 1.2rem;border-radius:8px;text-decoration:none;border:1.5px solid var(--border);">📊 Cycle dashboard</a>
-  </div>
-</div>
-
-</div><!-- /wrap -->
-</div><!-- /page -->
 <footer class="sx-footer">
   <div class="sx-foot-inner">
     <div class="sx-foot-brand">
@@ -445,12 +573,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-botto
     <span>Much of this site is written with AI, and not every page is individually reviewed &middot; <a href="about.html#how-its-made">How it&rsquo;s made</a></span>
   </div>
 </footer>
-<script>
-var btn=document.getElementById('toolsBtn'),menu=document.getElementById('toolsMenu');
-if(btn&&menu){btn.addEventListener('click',function(e){e.stopPropagation();menu.style.display=menu.style.display==='none'?'block':'none';});document.addEventListener('click',function(e){if(menu&&!e.target.closest('#hambBtn'))menu.style.display='none';});}
-</script>
+
 
 <script>
+
 (function(){
   var INDEX=null, isOpen=false, selIdx=-1;
   var ICONS={article:'📊',exchange:'🏛️',tool:'📡',compare:'📈',guide:'📖',page:'🔵'};
@@ -580,6 +706,7 @@ if(btn&&menu){btn.addEventListener('click',function(e){e.stopPropagation();menu.
     }
   });
 })();
+
 </script>
 <div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
   <div class="search-box">
@@ -634,5 +761,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
 </body>
 </html>
