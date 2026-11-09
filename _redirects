@@ -104,7 +104,6 @@
 /blog-bmw-volkswagen-cycle.html /blog-bmw-volkswagen-cycle 301
 /blog-boliden-stock-analysis.html /blog-boliden-stock-analysis 301
 /blog-borr-drilling-cycle.html /blog-borr-drilling-cycle 301
-/blog-boskalis-cycle.html /blog-boskalis-cycle 301
 /blog-bp-cycle.html /blog-bp-oil-london 301
 /blog-bp-cycle /blog-bp-oil-london 301
 /blog-bp-oil-london.html /blog-bp-oil-london 301
@@ -169,7 +168,6 @@
 /blog-dieteren-pmi-cycle.html /blog-dieteren-pmi-cycle 301
 /blog-dno-brent-cycle.html /blog-dno-brent-cycle 301
 /blog-dorian-lpg-cycle.html /blog-dorian-lpg-cycle 301
-/blog-dp-world-cycle.html /blog-dp-world-cycle 301
 /blog-dsv-cycle.html /blog-dsv-logistics-pmi-cycle 301
 /blog-dsv-cycle /blog-dsv-logistics-pmi-cycle 301
 /blog-dsv-logistics-pmi-cycle.html /blog-dsv-logistics-pmi-cycle 301
@@ -384,7 +382,6 @@
 /blog-mytilineos-cycle.html /blog-mytilineos-alum-cycle 301
 /blog-mytilineos-cycle /blog-mytilineos-alum-cycle 301
 /blog-navigator-pulp-cycle.html /blog-navigator-pulp-cycle 301
-/blog-navios-maritime-cycle.html /blog-navios-maritime-cycle 301
 /blog-neste-renewable-fuel.html /blog-neste-renewable-fuel 301
 /blog-newmont-gold-cycle.html /blog-newmont-gold-cycle 301
 /blog-nexans-cycle.html /blog-nexans-cycle 301
@@ -1294,3 +1291,10 @@
 # Retired pages (Nov 2026)
 /blog-covestro-cycle.html /frankfurt-xetra 301
 /blog-covestro-cycle /frankfurt-xetra 301
+# Retired pages (Nov 2026)
+/blog-boskalis-cycle.html /euronext-amsterdam 301
+/blog-boskalis-cycle /euronext-amsterdam 301
+/blog-dp-world-cycle.html /dubai-dfm 301
+/blog-dp-world-cycle /dubai-dfm 301
+/blog-navios-maritime-cycle.html /nyse-cyclical-stocks 301
+/blog-navios-maritime-cycle /nyse-cyclical-stocks 301
