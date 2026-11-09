@@ -91,12 +91,12 @@ const THRESHOLDS = {
 const SIGNAL_INFO = {
   brent:   { name: 'Brent Crude',    page: 'signal-brent-crude.html' },
   wti:     { name: 'WTI Crude',      page: 'compare-wti-brent.html' },
-  copper:  { name: 'LME Copper',     page: 'signal-lme-copper.html' },
-  alum:    { name: 'LME Aluminium',  page: 'signal-aluminium-price.html' },
+  copper:  { name: 'Copper',         page: 'signal-lme-copper.html' },
+  alum:    { name: 'Aluminium',      page: 'signal-aluminium-price.html' },
   gold:    { name: 'Gold Price',     page: 'signal-gold-price.html' },
   steel:   { name: 'US HRC Steel',   page: 'signal-us-hrc-steel.html' },
   ironore: { name: 'Iron Ore',       page: 'signal-iron-ore-price.html' },
-  lithium: { name: 'Lithium Carbonate', page: 'signal-lithium-carbonate.html' },
+  lithium: { name: 'Lithium', page: 'signal-lithium-carbonate.html' },
   spread:  { name: 'Brent-WTI Spread', page: 'compare-wti-brent.html' },
   eur10y:  { name: 'EUR 10Y Yield',  page: 'signal-eur-10y-rate.html' },
 };
