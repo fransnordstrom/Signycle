@@ -434,7 +434,6 @@
 /blog-opap-cycle.html /blog-opap-cycle 301
 /blog-orbia-cycle.html /blog-orbia-cycle 301
 /blog-orsted-cycle.html /blog-orsted-cycle 301
-/blog-osebx-index-guide.html /blog-osebx-index-guide 301
 /blog-oslo-bors-investor-guide.html /blog-oslo-bors-investor-guide 301
 /blog-oslo-bors-vs-nyse.html /blog-oslo-bors-vs-nyse 301
 /blog-outokumpu-cycle.html /blog-outokumpu-steel-cycle 301
@@ -1274,3 +1273,6 @@
 # Retired pages (Nov 2026)
 /blog-2020-bulkers-bdi.html /signal-baltic-dry-index 301
 /blog-2020-bulkers-bdi /signal-baltic-dry-index 301
+# Retired pages (Nov 2026)
+/blog-osebx-index-guide.html /blog-oslo-bors-investor-guide 301
+/blog-osebx-index-guide /blog-oslo-bors-investor-guide 301
