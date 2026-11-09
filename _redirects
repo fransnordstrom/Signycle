@@ -139,7 +139,6 @@
 /blog-china-shenhua-cycle.html /blog-china-shenhua-cycle 301
 /blog-china-steel-tw-cycle.html /blog-china-steel-tw-cycle 301
 /blog-cib-egypt-cycle.html /blog-cib-egypt-cycle 301
-/blog-ciech-cycle.html /blog-ciech-cycle 301
 /blog-citic-special-steel-cycle.html /blog-citic-special-steel-cycle 301
 /blog-clariant-cycle.html /blog-clariant-cycle 301
 /blog-cnooc-brent-cycle.html /blog-cnooc-brent-cycle 301
@@ -845,8 +844,8 @@
 /blog-china-coal-energy-cycle /blog-china-coal-cycle 301
 /blog-china-shenhua-coal-cycle.html /blog-china-shenhua-cycle 301
 /blog-china-shenhua-coal-cycle /blog-china-shenhua-cycle 301
-/blog-ciech-urea-cycle.html /blog-ciech-cycle 301
-/blog-ciech-urea-cycle /blog-ciech-cycle 301
+/blog-ciech-urea-cycle.html /blog-solvay-cycle 301
+/blog-ciech-urea-cycle /blog-solvay-cycle 301
 /blog-cnooc-cycle.html /blog-cnooc-brent-cycle 301
 /blog-cnooc-cycle /blog-cnooc-brent-cycle 301
 /blog-dbs-group-cycle.html /blog-dbs-ocbc-uob-singapore-banks-cycle 301
@@ -1278,3 +1277,6 @@
 # Retired pages (Nov 2026)
 /blog-baoshan-steel-cycle.html /blog-baowu-steel-cycle 301
 /blog-baoshan-steel-cycle /blog-baowu-steel-cycle 301
+# Retired pages (Nov 2026)
+/blog-ciech-cycle.html /blog-solvay-cycle 301
+/blog-ciech-cycle /blog-solvay-cycle 301
