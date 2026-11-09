@@ -779,7 +779,6 @@
 /guide-currency-signal.html /guide-currency-signal 301
 /guide-earnings-revision-signal.html /guide-earnings-revision-signal 301
 /guide-shipping-orderbook-signal.html /guide-shipping-orderbook-signal 301
-/historical-returns.html /historical-returns 301
 /hkex-hong-kong.html /hkex-hong-kong 301
 /hormuz-dashboard.html /hormuz-dashboard 301
 /how-it-works.html /how-it-works 301
@@ -1191,3 +1190,6 @@
 /hkex-stocks-under-5hkd /hkex-hong-kong 301
 /oslo-bors-monitor.html /oslo-bors 301
 /oslo-bors-monitor /oslo-bors 301
+# Retired duplicate pages (step 5, Nov 2026)
+/historical-returns.html /signal-history 301
+/historical-returns /signal-history 301
