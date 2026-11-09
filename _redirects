@@ -13,10 +13,6 @@
 /asx-australia.html /asx-australia 301
 /athens-stock-exchange.html /athens-stock-exchange 301
 /b3-brazil.html /b3-brazil 301
-/best-copper-stocks.html /best-copper-stocks 301
-/best-stocks-during-inflation.html /best-stocks-during-inflation 301
-/best-stocks-oil-above-100.html /best-stocks-oil-above-100 301
-/best-stocks-rate-cuts.html /best-stocks-rate-cuts 301
 /blog-200-day-moving-average.html /blog-200-day-moving-average 301
 /blog-2015-2016-commodity-crash.html /blog-2015-2016-commodity-crash 301
 /blog-2020-bulkers-bdi.html /blog-2020-bulkers-bdi 301
@@ -742,7 +738,6 @@
 /bolsa-madrid.html /bolsa-madrid 301
 /bolsa-santiago.html /bolsa-santiago 301
 /borsa-italiana-milano.html /borsa-italiana-milano 301
-/brent-crude-price-history.html /brent-crude-price-history 301
 /coming-soon.html /coming-soon 301
 /compare-byd-vs-catl.html /compare-byd-vs-catl 301
 /compare-cnooc-vs-petrochina.html /compare-cnooc-vs-petrochina 301
@@ -758,7 +753,6 @@
 /compare-tata-vs-jsw-steel.html /compare-tata-vs-jsw-steel 301
 /compare-wti-brent.html /compare-wti-brent 301
 /contact.html /contact 301
-/copper-price-history.html /copper-price-history 301
 /cycle-dashboard.html /cycle-dashboard 301
 /cycle-screener.html /cycle-screener 301
 /cyclical-dividend-scanner.html /cyclical-dividend-scanner 301
@@ -802,19 +796,16 @@
 /podcasts.html /podcasts 301
 /precious-metals-cycle.html /precious-metals-cycle 301
 /privacy.html /privacy 301
-/private-equity-cycle.html /private-equity-cycle 301
 /pro-signup.html /live-signals 301
 /pro-signup /live-signals 301
 /pro.html /live-signals 301
 /pro /live-signals 301
 /recession-tracker.html /recession-tracker 301
-/search.html /search 301
 /signal-aluminium-price.html /signal-aluminium-price 301
 /signal-analysis.html /signal-analysis 301
 /signal-baltic-dry-index.html /signal-baltic-dry-index 301
 /signal-bdi-baltic.html /signal-baltic-dry-index 301
 /signal-brent-crude.html /signal-brent-crude 301
-/signal-calendar.html /signal-calendar 301
 /signal-dax-index.html /signal-dax-index 301
 /signal-eur-10y-rate.html /signal-eur-10y-rate 301
 /signal-ftse100-index.html /signal-ftse100-index 301
@@ -853,9 +844,6 @@
 /tsx-cyclical-stocks.html /tsx-cyclical-stocks 301
 /twse-taiwan.html /twse-taiwan 301
 /warsaw-stock-exchange.html /warsaw-stock-exchange 301
-/what-is-baltic-dry-index.html /what-is-baltic-dry-index 301
-/what-is-brent-crude.html /what-is-brent-crude 301
-/what-is-vlcc-rate.html /what-is-vlcc-rate 301
 /where-are-we-in-the-cycle.html /where-are-we-in-the-cycle 301
 /wiener-boerse.html /wiener-boerse 301
 /wiener-borse.html /wiener-boerse 301
@@ -1195,3 +1183,28 @@
 # Retired pages (Nov 2026)
 /watch.html /podcasts 301
 /watch /podcasts 301
+# Retired pages (Nov 2026)
+/best-copper-stocks.html /signal-lme-copper 301
+/best-copper-stocks /signal-lme-copper 301
+/copper-price-history.html /signal-lme-copper 301
+/copper-price-history /signal-lme-copper 301
+/best-stocks-during-inflation.html /blog-inflation-commodity-cycle 301
+/best-stocks-during-inflation /blog-inflation-commodity-cycle 301
+/best-stocks-oil-above-100.html /signal-brent-crude 301
+/best-stocks-oil-above-100 /signal-brent-crude 301
+/brent-crude-price-history.html /signal-brent-crude 301
+/brent-crude-price-history /signal-brent-crude 301
+/what-is-brent-crude.html /signal-brent-crude 301
+/what-is-brent-crude /signal-brent-crude 301
+/best-stocks-rate-cuts.html /signal-eur-10y-rate 301
+/best-stocks-rate-cuts /signal-eur-10y-rate 301
+/what-is-baltic-dry-index.html /blog-what-is-baltic-dry-index 301
+/what-is-baltic-dry-index /blog-what-is-baltic-dry-index 301
+/what-is-vlcc-rate.html /signal-vlcc-rate 301
+/what-is-vlcc-rate /signal-vlcc-rate 301
+/private-equity-cycle.html /where-are-we-in-the-cycle 301
+/private-equity-cycle /where-are-we-in-the-cycle 301
+/signal-calendar.html /news 301
+/signal-calendar /news 301
+/search.html /index 301
+/search /index 301

@@ -31,30 +31,6 @@
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://signycle.com/best-copper-stocks</loc>
-    <lastmod>2026-09-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/best-stocks-during-inflation</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/best-stocks-oil-above-100</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/best-stocks-rate-cuts</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/blog-200-day-moving-average</loc>
     <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
@@ -985,12 +961,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/brent-crude-price-history</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/signal-brent-crude</loc>
     <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
@@ -1051,12 +1021,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/copper-price-history</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/cycle-dashboard</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -1112,25 +1076,25 @@
   </url>
   <url>
     <loc>https://signycle.com/guide-credit-spread-signal</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://signycle.com/guide-currency-signal</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://signycle.com/guide-earnings-revision-signal</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://signycle.com/guide-shipping-orderbook-signal</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1225,26 +1189,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://signycle.com/private-equity-cycle</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://signycle.com/recession-tracker</loc>
     <lastmod>2026-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/search</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/signal-calendar</loc>
-    <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -1269,24 +1215,6 @@
   <url>
     <loc>https://signycle.com/warsaw-stock-exchange</loc>
     <lastmod>2026-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/what-is-baltic-dry-index</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/what-is-brent-crude</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://signycle.com/what-is-vlcc-rate</loc>
-    <lastmod>2026-03-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
