@@ -280,12 +280,25 @@ const LIVE_TICKERS = {
 async function fetchYahoo(ticker) {
   try {
     const res = await fetch(
-      `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`,
+      `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=10d`,
       { headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json' } }
     );
     const data = await res.json();
-    const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
-    return price ? parseFloat(price) : null;
+    const r = data?.chart?.result?.[0];
+    if (!r) return null;
+    // meta.regularMarketPrice can be frozen for years on thin contracts (TIO=F
+    // reported 161.91 from Aug 2021 while real closes were ~92 in Nov 2026), so
+    // prefer the latest actual daily close and ignore anything over 10 days old.
+    const MAX_AGE = 10 * 86400;
+    const now = Date.now() / 1000;
+    const ts = r.timestamp || [];
+    const closes = r.indicators?.quote?.[0]?.close || [];
+    for (let i = ts.length - 1; i >= 0; i--) {
+      if (closes[i] != null && !isNaN(closes[i]) && now - ts[i] < MAX_AGE) return parseFloat(closes[i]);
+    }
+    const m = r.meta || {};
+    if (m.regularMarketPrice && m.regularMarketTime && now - m.regularMarketTime < MAX_AGE) return parseFloat(m.regularMarketPrice);
+    return null;
   } catch (e) { return null; }
 }
 
