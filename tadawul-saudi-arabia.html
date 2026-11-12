@@ -621,7 +621,7 @@ function submitAlertSignup(e, emailId, btnId, msgId) {
   var M = window.SignycleMeta;
   if (!M) return;
   var META = M.META, ZH = M.ZONE_HEX, ZL = M.ZONE_LABEL, fmt = M.fmt, esc = M.esc;
-  var ROWS = [["Saudi Aramco", "2222.SR", "blog-saudi-aramco-brent-cycle.html", "brent", ""], ["Luberef (Saudi Aramco Base Oil)", "2223.SR", "blog-saudi-aramco-brent-cycle.html", "brent", ""], ["Saudi Kayan", "2350.SR", "blog-saudi-kayan-petrochemical-cycle.html", "brent", ""], ["Ma'aden", "1211.SR", "blog-maaden-copper-gold-cycle.html", "gold", ""], ["SAFCO", "2020.SR", "blog-safco-urea-cycle.html", "urea", ""]], NAME = "Tadawul";
+  var ROWS = [["Saudi Aramco", "2222.SR", "blog-saudi-aramco-brent-cycle.html", "brent", ""], ["Luberef (Saudi Aramco Base Oil)", "2223.SR", "", "brent", ""], ["Saudi Kayan", "2350.SR", "blog-saudi-kayan-petrochemical-cycle.html", "brent", ""], ["Ma'aden", "1211.SR", "blog-maaden-copper-gold-cycle.html", "gold", ""], ["SAFCO", "2020.SR", "blog-safco-urea-cycle.html", "urea", ""]], NAME = "Tadawul";
   var $ = function(id) { return document.getElementById(id); };
 
   var ZORD = { sell: 0, warn: 1, neutral: 2, buy: 3, none: 4 };
