@@ -63,7 +63,6 @@
 /blog-aperam-cycle.html /blog-aperam-cycle 301
 /blog-arabian-cement-cycle.html /blog-arabian-cement-cycle 301
 /blog-aramex-cycle.html /blog-aramex-cycle 301
-/blog-arca-continental-cycle.html /blog-arca-continental-cycle 301
 /blog-arcelormittal-steel-cycle.html /blog-arcelormittal-steel-cycle 301
 /blog-aselsan-cycle.html /blog-aselsan-cycle 301
 /blog-asm-international-cycle.html /blog-asm-international-cycle 301
@@ -312,7 +311,6 @@
 /blog-kghm-copper-cycle.html /blog-kghm-copper-cycle 301
 /blog-kghm-cycle.html /blog-kghm-copper-cycle 301
 /blog-kghm-cycle /blog-kghm-copper-cycle 301
-/blog-kingenta-cycle.html /blog-kingenta-cycle 301
 /blog-kingspan-pmi-cycle.html /blog-kingspan-pmi-cycle 301
 /blog-kinross-gold-cycle.html /blog-kinross-gold-cycle 301
 /blog-klabin-cycle.html /blog-klabin-cycle 301
@@ -1312,3 +1310,8 @@
 # Retired pages (Nov 2026)
 /blog-palabora-mining-cycle.html /jse-south-africa 301
 /blog-palabora-mining-cycle /jse-south-africa 301
+# Retired pages (Nov 2026)
+/blog-kingenta-cycle.html /szse-shenzhen 301
+/blog-kingenta-cycle /szse-shenzhen 301
+/blog-arca-continental-cycle.html /bmv-mexico 301
+/blog-arca-continental-cycle /bmv-mexico 301
