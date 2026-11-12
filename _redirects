@@ -291,7 +291,6 @@
 /blog-implats-platinum-cycle.html /blog-implats-platinum-cycle 301
 /blog-india-commodity-stocks-cycle.html /blog-india-commodity-stocks-cycle 301
 /blog-inflation-commodity-cycle.html /blog-inflation-commodity-cycle 301
-/blog-ing-heineken-amsterdam.html /blog-ing-heineken-amsterdam 301
 /blog-inpex-brent-cycle.html /blog-inpex-brent-cycle 301
 /blog-intl-seaways-vlcc-cycle.html /blog-intl-seaways-vlcc-cycle 301
 /blog-inverted-yield-curve.html /blog-inverted-yield-curve 301
@@ -343,7 +342,6 @@
 /blog-lng-gas-shipping-guide.html /blog-lng-gas-shipping-guide 301
 /blog-london-lse-investor-guide.html /blog-london-lse-investor-guide 301
 /blog-longi-solar-cycle.html /blog-longi-solar-cycle 301
-/blog-lpp-sa-cycle.html /blog-lpp-sa-cycle 301
 /blog-lufthansa-cycle.html /blog-lufthansa-cycle 301
 /blog-lundin-mining-analysis.html /blog-lundin-mining-analysis 301
 /blog-maaden-copper-gold-cycle.html /blog-maaden-copper-gold-cycle 301
@@ -432,7 +430,6 @@
 /blog-pan-ocean-bdi-cycle.html /signal-baltic-dry-index 301
 /blog-pan-ocean-bdi-cycle /signal-baltic-dry-index 301
 /blog-pan-ocean-cycle.html /blog-pan-ocean-cycle 301
-/blog-pandora-carlsberg-cycle.html /blog-pandora-carlsberg-cycle 301
 /blog-paranapanema-cycle.html /blog-paranapanema-cycle 301
 /blog-paris-investor-guide.html /blog-paris-investor-guide 301
 /blog-penoles-cycle.html /blog-penoles-cycle 301
@@ -526,7 +523,6 @@
 /blog-slc-agricola-cycle.html /blog-slc-agricola-cycle 301
 /blog-slik-handler-du-oljesyklusen.html /blog-slik-handler-du-oljesyklusen 301
 /blog-smurfit-pmi-cycle.html /blog-smurfit-pmi-cycle 301
-/blog-sofina-cycle.html /blog-sofina-cycle 301
 /blog-solaria-rate-cycle.html /blog-solaria-rate-cycle 301
 /blog-solvay-cycle.html /blog-solvay-cycle 301
 /blog-solvay-pmi-cycle.html /blog-solvay-cycle 301
@@ -1301,3 +1297,13 @@
 /blog-damac-properties-cycle /dubai-dfm 301
 /blog-alfa-sab-cycle.html /blog-alpek-cycle 301
 /blog-alfa-sab-cycle /blog-alpek-cycle 301
+# Retired pages (Nov 2026)
+/blog-pandora-carlsberg-cycle.html /nasdaq-copenhagen 301
+/blog-pandora-carlsberg-cycle /nasdaq-copenhagen 301
+/blog-ing-heineken-amsterdam.html /euronext-amsterdam 301
+/blog-ing-heineken-amsterdam /euronext-amsterdam 301
+/blog-sofina-cycle.html /euronext-brussels 301
+/blog-sofina-cycle /euronext-brussels 301
+# Retired pages (Nov 2026)
+/blog-lpp-sa-cycle.html /warsaw-stock-exchange 301
+/blog-lpp-sa-cycle /warsaw-stock-exchange 301
