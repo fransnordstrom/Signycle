@@ -503,6 +503,10 @@ export default {
     // clicked — otherwise a stranger could enrol someone else's address with
     // no way for them to consent or even know it happened.
     if (request.method === 'POST' && url.pathname === '/api/subscribe') {
+      // Alerts are discontinued; accept no new subscriptions.
+      return new Response(JSON.stringify({ error: 'Email alerts have been discontinued.' }), {
+        status: 410, headers: { ...CORS, 'Content-Type': 'application/json' }
+      });
       try {
         const body = await request.json();
         const email = (body.email || '').trim().toLowerCase();
@@ -733,13 +737,17 @@ async function checkAlerts(env) {
     ALERT_FROM: !!env.ALERT_FROM
   };
 
+  // Zone-change emails are switched off (Nov 2026): the BUY/SELL levels were
+  // never tested, and the site no longer publishes them. Zones are still
+  // computed and recorded in history, but nothing is emailed.
+  const ALERTS_ENABLED = false;
   let emailResult = null;
-  if (crossings.length && env.RESEND_API_KEY && env.ALERT_EMAIL && env.ALERT_FROM) {
+  if (ALERTS_ENABLED && crossings.length && env.RESEND_API_KEY && env.ALERT_EMAIL && env.ALERT_FROM) {
     emailResult = await sendAlertEmail(env, crossings);
   }
 
   let publicEmailResult = null;
-  if (crossings.length && env.RESEND_API_KEY && env.ALERT_FROM) {
+  if (ALERTS_ENABLED && crossings.length && env.RESEND_API_KEY && env.ALERT_FROM) {
     publicEmailResult = await sendPublicAlertEmails(env, crossings);
   }
 

@@ -1,4 +1,4 @@
-/* Signycle signal page: today's value, position bar and (for live signals)
+/* Signycle signal page: today's value in its 20-year range and (for live signals)
    price history. Needs /signals-meta.js first and a root element
    <div id="sp" data-sp-signal="ID"> (not data-signal: signals-loader.js overwrites those). Data comes from signals-loader.js. */
 (function() {
@@ -6,7 +6,7 @@
   if (!root || !window.SignycleMeta) return;
   var SIG = root.getAttribute('data-sp-signal');
   var M = window.SignycleMeta;
-  var THRESHOLDS = M.THRESHOLDS, META = M.META, LIVE_IDS = M.LIVE_IDS;
+  var META = M.META, LIVE_IDS = M.LIVE_IDS;
   var ZONE_HEX = M.ZONE_HEX, ZONE_LABEL = M.ZONE_LABEL, MONTHS = M.MONTHS;
   var esc = M.esc, fmt = M.fmt, unitLabel = M.unitLabel;
   var HISTORY_API = 'https://signycle-signals.fransbgn.workers.dev/api/history';
@@ -15,28 +15,9 @@
   var IS_LIVE = LIVE_IDS.indexOf(SIG) > -1;
 
   function renderNow() {
-    var s = DATA.signals[SIG], t = THRESHOLDS[SIG];
-    if (!s || s.value == null || isNaN(parseFloat(s.value))) return;
-    var v = parseFloat(s.value), zone = ZONE_HEX[s.zone] ? s.zone : 'neutral', u = s.unit;
-    $('spVal').innerHTML = fmt(v, u) + '<small>' + esc(unitLabel(u)) + '</small>';
-    var b = $('spBadge'); b.className = 'badge ' + zone; b.textContent = ZONE_LABEL[zone];
-    $('spCtx').textContent = M.context(SIG, v, zone);
-    var p = M.position(SIG, v), over = p.raw > 100, under = p.raw < 0;
-    var dot = over || under
-      ? '<span class="track-dot" style="left:' + p.x + '%;background:' + ZONE_HEX[zone] + ';clip-path:polygon(' + (over ? '0 0,100% 50%,0 100%' : '100% 0,0 50%,100% 100%') + ');border:0;box-shadow:none;width:13px;height:14px;"></span>'
-      : '<span class="track-dot" style="left:' + p.x + '%;background:' + ZONE_HEX[zone] + ';"></span>';
-    $('spTrack').innerHTML = '<div class="track-bar">' +
-      '<span style="width:18%;background:var(--buy-t);"></span>' +
-      '<span style="width:' + (p.warn - 18) + '%;background:var(--neutral-t);"></span>' +
-      '<span style="width:' + (82 - p.warn) + '%;background:var(--warn-t);"></span>' +
-      '<span style="flex:1;background:var(--sell-t);"></span></div>' +
-      '<span class="track-tick" style="left:18%;">BUY ' + fmt(t.buy, u) + '</span>' +
-      '<span class="track-tick" style="left:82%;">SELL ' + fmt(t.sell, u) + '</span>' + dot;
-    var f = M.freshness(s);
-    var fr = $('spFresh');
-    fr.className = 'pos-meta' + (f.stale ? ' stale' : '');
-    fr.innerHTML = f.live ? '<span class="dot-live"></span>Live · checked about every 15 minutes'
-      : esc(f.text.replace('Manual · ', 'Updated by hand · ')) + (f.stale ? ' · over ' + M.STALE_DAYS + ' days old' : '');
+    var el = $('spCard'); if (!el) return;
+    var s = DATA.signals[SIG];
+    el.innerHTML = s ? M.card(SIG, s) : M.cardMissing(SIG, DATA.hidden && DATA.hidden[SIG]);
   }
 
   // ── History chart ────────────────────────────────────────────────────
@@ -71,7 +52,6 @@
   }
   function histEmpty(msg) {
     $('histCanvas').style.display = 'none';
-    $('histStripWrap').style.display = 'none';
     $('histNow').textContent = ''; $('histChg').textContent = '';
     $('histEmpty').textContent = msg; $('histEmpty').style.display = 'block';
     chartState = null;
@@ -85,6 +65,9 @@
       .then(function(d) {
         if (histId !== id) return;
         histAll = (d && d.points) || [];
+        // Before 12 Nov 2026 the iron ore feed read a price frozen since 2021
+        // (161.91); those points are not real and are left out.
+        if (id === 'ironore') histAll = histAll.filter(function(p) { return p.value < 140; });
         if (histAll.length < 2) { histEmpty('Not enough recorded history yet for ' + META[id].name + '.'); return; }
         drawHistoryRange();
       })
@@ -101,10 +84,9 @@
     if (pts.length < 2) { histEmpty('Not enough recorded history for this range — try a wider one.'); return; }
     $('histEmpty').style.display = 'none';
     $('histCanvas').style.display = 'block';
-    $('histStripWrap').style.display = '';
     var unit = (DATA && DATA.signals[histId] && DATA.signals[histId].unit) || '';
     var first = pts[0].value, last = pts[pts.length - 1].value, zone = pts[pts.length - 1].zone;
-    $('histNow').innerHTML = fmt(last, unit) + '<small>' + esc(unit) + '</small>' + (THRESHOLDS[histId] && ZONE_HEX[zone] ? ' <span class="badge ' + zone + '" style="vertical-align:middle;">' + ZONE_LABEL[zone] + '</span>' : '');
+    $('histNow').innerHTML = fmt(last, unit) + '<small>' + esc(unit) + '</small>';
     // A percentage change of a value that can sit near or below zero
     // (spreads, yield curve) is meaningless, so show those in points.
     var txt;
@@ -117,9 +99,8 @@
     }
     $('histChg').textContent = txt + ' over ' + RANGE_TXT[histRange];
     $('histChg').style.color = 'var(--text)';
-    chartState = { pts: pts, unit: unit, t: THRESHOLDS[histId] };
+    chartState = { pts: pts, unit: unit, t: null };
     drawChart(-1);
-    drawZoneStrip($('zoneStripCanvas'), pts);
   }
 
   function niceTicks(mn, mx, n) {
@@ -285,7 +266,7 @@
   var resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() { if (chartState) { drawChart(-1); drawZoneStrip($('zoneStripCanvas'), chartState.pts); } }, 150);
+    resizeTimer = setTimeout(function() { if (chartState) drawChart(-1); }, 150);
   });
 
   var started = false;

@@ -645,21 +645,13 @@
 /bolsa-santiago.html /bolsa-santiago 301
 /borsa-italiana-milano.html /borsa-italiana-milano 301
 /coming-soon.html /coming-soon 301
-/compare-byd-vs-catl.html /compare-byd-vs-catl 301
-/compare-cnooc-vs-petrochina.html /compare-cnooc-vs-petrochina 301
-/compare-cosco-vs-yangzijiang.html /compare-cosco-vs-yangzijiang 301
-/compare-mapletree-vs-ascendas.html /compare-mapletree-vs-ascendas 301
 /compare-oil-vs-shipping.html /compare-oil-vs-shipping 301
 /compare-oslo-vs-frankfurt.html /compare-oslo-vs-frankfurt 301
 /compare-reliance-vs-ongc.html /compare-reliance-vs-ongc 301
 /compare-renewables-vs-oil.html /compare-renewables-vs-oil 301
-/compare-rio-vs-bhp.html /compare-rio-vs-bhp 301
-/compare-shell-vs-bp.html /compare-shell-vs-bp 301
-/compare-sia-vs-cathay.html /compare-sia-vs-cathay 301
 /compare-tata-vs-jsw-steel.html /compare-tata-vs-jsw-steel 301
 /compare-wti-brent.html /compare-wti-brent 301
 /contact.html /contact 301
-/cycle-dashboard.html /cycle-dashboard 301
 /cycle-screener.html /cycle-screener 301
 /cyclical-dividend-scanner.html /cyclical-dividend-scanner 301
 /disclaimer.html /disclaimer 301
@@ -680,7 +672,6 @@
 /guide-earnings-revision-signal.html /guide-earnings-revision-signal 301
 /guide-shipping-orderbook-signal.html /guide-shipping-orderbook-signal 301
 /hkex-hong-kong.html /hkex-hong-kong 301
-/hormuz-dashboard.html /hormuz-dashboard 301
 /how-it-works.html /how-it-works 301
 /index_updated.html / 301
 /index_updated / 301
@@ -750,7 +741,6 @@
 /tsx-cyclical-stocks.html /tsx-cyclical-stocks 301
 /twse-taiwan.html /twse-taiwan 301
 /warsaw-stock-exchange.html /warsaw-stock-exchange 301
-/where-are-we-in-the-cycle.html /where-are-we-in-the-cycle 301
 /wiener-boerse.html /wiener-boerse 301
 /wiener-borse.html /wiener-boerse 301
 /wiener-borse /wiener-boerse 301
@@ -768,7 +758,7 @@
 /blog-london-investor-guide.html /london-stock-exchange 301
 /blog-madrid-investor-guide.html /bolsa-madrid 301
 /blog-mapletree-logistics-cycle.html /singapore-exchange 301
-/blog-mapletree-reit-cycle.html /compare-mapletree-vs-ascendas 301
+/blog-mapletree-reit-cycle.html /blog-sgx-reits-cycle 301
 /blog-mermaid-maritime-cycle.html /singapore-exchange 301
 /blog-milano-investor-guide.html /borsa-italiana-milano 301
 /blog-pacific-basin-sgx-cycle.html /singapore-exchange 301
@@ -956,7 +946,7 @@
 /blog-london-investor-guide /london-stock-exchange 301
 /blog-madrid-investor-guide /bolsa-madrid 301
 /blog-mapletree-logistics-cycle /singapore-exchange 301
-/blog-mapletree-reit-cycle /compare-mapletree-vs-ascendas 301
+/blog-mapletree-reit-cycle /blog-sgx-reits-cycle 301
 /blog-mermaid-maritime-cycle /singapore-exchange 301
 /blog-milano-investor-guide /borsa-italiana-milano 301
 /blog-pacific-basin-sgx-cycle /singapore-exchange 301
@@ -992,8 +982,8 @@
 # Retired duplicate pages (step 5, Nov 2026)
 /backtest.html /signal-history 301
 /backtest /signal-history 301
-/liquidity-cycle.html /where-are-we-in-the-cycle 301
-/liquidity-cycle /where-are-we-in-the-cycle 301
+/liquidity-cycle.html /live-signals 301
+/liquidity-cycle /live-signals 301
 # Retired duplicate pages (step 5, Nov 2026)
 /oslo-shipping-sector.html /oslo-bors 301
 /oslo-shipping-sector /oslo-bors 301
@@ -1108,8 +1098,8 @@
 /what-is-baltic-dry-index /blog-what-is-baltic-dry-index 301
 /what-is-vlcc-rate.html /signal-vlcc-rate 301
 /what-is-vlcc-rate /signal-vlcc-rate 301
-/private-equity-cycle.html /where-are-we-in-the-cycle 301
-/private-equity-cycle /where-are-we-in-the-cycle 301
+/private-equity-cycle.html /live-signals 301
+/private-equity-cycle /live-signals 301
 /signal-calendar.html /news 301
 /signal-calendar /news 301
 /search.html /index 301
@@ -1135,10 +1125,10 @@
 /blog-urea-530-near-sell-march-2026 /signal-urea-price 301
 /blog-vlcc-68k-approaching-sell-march-2026.html /signal-vlcc-rate 301
 /blog-vlcc-68k-approaching-sell-march-2026 /signal-vlcc-rate 301
-/blog-hormuz-crisis-signals.html /hormuz-dashboard 301
-/blog-hormuz-crisis-signals /hormuz-dashboard 301
-/blog-hormuz-deal-largely-negotiated.html /hormuz-dashboard 301
-/blog-hormuz-deal-largely-negotiated /hormuz-dashboard 301
+/blog-hormuz-crisis-signals.html /live-signals 301
+/blog-hormuz-crisis-signals /live-signals 301
+/blog-hormuz-deal-largely-negotiated.html /live-signals 301
+/blog-hormuz-deal-largely-negotiated /live-signals 301
 /blog-gold-worst-week-fed-commodities.html /signal-gold-price 301
 /blog-gold-worst-week-fed-commodities /signal-gold-price 301
 /blog-nippon-yusen-nyk-cycle.html /blog-nippon-yusen-shipping-cycle 301
@@ -1319,3 +1309,25 @@
 /blog-india-commodity-stocks-cycle /blog-nse-investor-guide 301
 /blog-japan-commodity-stocks-cycle.html /blog-tokyo-tse-investor-guide 301
 /blog-japan-commodity-stocks-cycle /blog-tokyo-tse-investor-guide 301
+# Retired pages (Nov 2026)
+/where-are-we-in-the-cycle.html /live-signals 301
+/where-are-we-in-the-cycle /live-signals 301
+/cycle-dashboard.html /live-signals 301
+/cycle-dashboard /live-signals 301
+/hormuz-dashboard.html /live-signals 301
+/hormuz-dashboard /live-signals 301
+# Retired pages (Nov 2026)
+/compare-byd-vs-catl.html /blog-byd-ev-copper-cycle 301
+/compare-byd-vs-catl /blog-byd-ev-copper-cycle 301
+/compare-cnooc-vs-petrochina.html /blog-cnooc-brent-cycle 301
+/compare-cnooc-vs-petrochina /blog-cnooc-brent-cycle 301
+/compare-cosco-vs-yangzijiang.html /blog-cosco-shipping-bdi-cycle 301
+/compare-cosco-vs-yangzijiang /blog-cosco-shipping-bdi-cycle 301
+/compare-mapletree-vs-ascendas.html /blog-sgx-reits-cycle 301
+/compare-mapletree-vs-ascendas /blog-sgx-reits-cycle 301
+/compare-rio-vs-bhp.html /blog-rio-tinto-analysis 301
+/compare-rio-vs-bhp /blog-rio-tinto-analysis 301
+/compare-shell-vs-bp.html /blog-shell-oil-cycle 301
+/compare-shell-vs-bp /blog-shell-oil-cycle 301
+/compare-sia-vs-cathay.html /blog-sia-aviation-cycle 301
+/compare-sia-vs-cathay /blog-sia-aviation-cycle 301

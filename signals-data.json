@@ -1,155 +1,127 @@
 {
   "updated": "2026-09-10",
-  "cycleScore": 73,
-  "cyclePhase": "Late Expansion",
-  "recessionProb": 55,
-  "sellZoneCount": 5,
-  "hormuzStatus": "Deal stalled \u2014 Hezbollah rejected US ceasefire \u00b7 New clashes US/Iran \u00b7 Brent bounced $92\u2192$96 \u00b7 OPEC+ +188k bpd July \u00b7 China imports 10-yr low",
-  "hormuzColor": "red",
   "signals": {
     "brent": {
       "value": 108.7,
       "unit": "$/bbl",
-      "date": "10 Sep 2026",
-      "zone": "sell"
+      "date": "10 Sep 2026"
     },
     "wti": {
       "value": 91.5,
       "unit": "$/bbl",
-      "date": "9 Jun 2026",
-      "zone": "sell"
+      "date": "9 Jun 2026"
     },
     "vlcc": {
       "value": 1263569,
       "unit": "$/day",
-      "date": "6 Nov 2026",
-      "zone": "sell"
+      "date": "6 Nov 2026"
     },
     "lng": {
       "value": 75000,
       "unit": "$/day",
-      "date": "9 Jun 2026",
-      "zone": "warn"
+      "date": "9 Jun 2026"
     },
     "bdi": {
       "value": 3180,
       "unit": "pts",
-      "date": "9 Jun 2026",
-      "zone": "sell"
+      "date": "9 Jun 2026"
     },
     "copper": {
       "value": 13200,
       "unit": "$/t",
-      "date": "9 Jun 2026",
-      "zone": "sell"
+      "date": "9 Jun 2026"
     },
     "alum": {
       "value": 3478,
       "unit": "$/t",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "gold": {
       "value": 4365.1,
       "unit": "$/oz",
-      "date": "10 Sep 2026",
-      "zone": "sell"
+      "date": "10 Sep 2026"
     },
     "salmon": {
-      "value": 91,
+      "value": 73.35,
       "unit": "NOK/kg",
-      "date": "22 Apr 2026",
-      "zone": "sell"
+      "date": "8 Nov 2026",
+      "src": "Statistics Norway (SSB) export price, week 45"
     },
     "urea": {
-      "value": 530,
+      "value": 420,
       "unit": "$/t",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "31 Oct 2026",
+      "src": "World Bank Pink Sheet, October 2026 average"
     },
     "steel": {
       "value": 1192,
       "unit": "$/t",
-      "date": "9 Jun 2026",
-      "zone": "warn"
+      "date": "9 Jun 2026"
     },
     "ironore": {
       "value": 96,
       "unit": "$/t",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "eur10y": {
       "value": 2.93,
       "unit": "%",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "yieldCurve": {
       "value": 0.31,
       "unit": "%",
-      "date": "24 Sep 2026",
-      "zone": "neutral"
+      "date": "24 Sep 2026"
     },
     "defense": {
       "value": 2.4,
       "unit": "% GDP",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "pmi": {
       "value": 51.4,
       "unit": "index",
-      "date": "Feb 2026",
-      "zone": "neutral"
+      "date": "Feb 2026"
     },
     "scfi": {
       "value": 1850,
       "unit": "index",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "nbsk": {
       "value": 920,
       "unit": "$/t",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "pctc": {
       "value": 28000,
       "unit": "$/day",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "rig": {
       "value": 82,
       "unit": "%",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "flying": {
       "value": 104,
       "unit": "index",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "wfe": {
       "value": 102,
       "unit": "index",
-      "date": "2025 est.",
-      "zone": "neutral"
+      "date": "2025 est."
     },
     "lithium": {
       "value": 17000,
       "unit": "$/t",
-      "date": "22 Apr 2026",
-      "zone": "neutral"
+      "date": "22 Apr 2026"
     },
     "spread": {
       "value": 4.5,
       "unit": "$/bbl",
-      "date": "9 Jun 2026",
-      "zone": "warn"
+      "date": "9 Jun 2026"
     }
   }
 }
