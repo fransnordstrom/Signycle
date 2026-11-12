@@ -423,7 +423,6 @@
 /blog-pacific-basin-cycle.html /blog-pacific-basin-cycle 301
 /blog-pacific-basin-shipping-cycle.html /signal-baltic-dry-index 301
 /blog-pacific-basin-shipping-cycle /signal-baltic-dry-index 301
-/blog-palabora-mining-cycle.html /blog-palabora-mining-cycle 301
 /blog-palm-hills-cycle.html /blog-palm-hills-cycle 301
 /blog-pan-ocean-bdi-cycle.html /signal-baltic-dry-index 301
 /blog-pan-ocean-bdi-cycle /signal-baltic-dry-index 301
@@ -1310,3 +1309,6 @@
 /blog-egyptian-fertilizers-cycle /blog-abu-qir-fertilizers-cycle 301
 /blog-juhayna-food-cycle.html /egypt-egx 301
 /blog-juhayna-food-cycle /egypt-egx 301
+# Retired pages (Nov 2026)
+/blog-palabora-mining-cycle.html /jse-south-africa 301
+/blog-palabora-mining-cycle /jse-south-africa 301
