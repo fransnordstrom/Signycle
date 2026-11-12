@@ -106,7 +106,6 @@
 /blog-bp-cycle /blog-bp-oil-london 301
 /blog-bp-oil-london.html /blog-bp-oil-london 301
 /blog-brasilagro-cycle.html /blog-brasilagro-cycle 301
-/blog-brazil-commodity-stocks-cycle.html /blog-brazil-commodity-stocks-cycle 301
 /blog-brussels-investor-guide.html /blog-brussels-investor-guide 301
 /blog-bucher-industries-cycle.html /blog-bucher-industries-cycle 301
 /blog-buffett-indicator.html /blog-buffett-indicator 301
@@ -287,13 +286,11 @@
 /blog-iberdrola-wind-cycle.html /blog-iberdrola-wind-cycle 301
 /blog-idemitsu-kosan-cycle.html /blog-idemitsu-kosan-cycle 301
 /blog-implats-platinum-cycle.html /blog-implats-platinum-cycle 301
-/blog-india-commodity-stocks-cycle.html /blog-india-commodity-stocks-cycle 301
 /blog-inflation-commodity-cycle.html /blog-inflation-commodity-cycle 301
 /blog-inpex-brent-cycle.html /blog-inpex-brent-cycle 301
 /blog-intl-seaways-vlcc-cycle.html /blog-intl-seaways-vlcc-cycle 301
 /blog-inverted-yield-curve.html /blog-inverted-yield-curve 301
 /blog-istanbul-investor-guide.html /blog-istanbul-investor-guide 301
-/blog-japan-commodity-stocks-cycle.html /blog-japan-commodity-stocks-cycle 301
 /blog-jardine-matheson-cycle.html /blog-jardine-matheson-cycle 301
 /blog-jfe-holdings-steel-cycle.html /blog-jfe-holdings-steel-cycle 301
 /blog-jiangxi-copper-hk-cycle.html /blog-jiangxi-copper-hk-cycle 301
@@ -1315,3 +1312,10 @@
 /blog-kingenta-cycle /szse-shenzhen 301
 /blog-arca-continental-cycle.html /bmv-mexico 301
 /blog-arca-continental-cycle /bmv-mexico 301
+# Retired pages (Nov 2026)
+/blog-brazil-commodity-stocks-cycle.html /blog-b3-investor-guide 301
+/blog-brazil-commodity-stocks-cycle /blog-b3-investor-guide 301
+/blog-india-commodity-stocks-cycle.html /blog-nse-investor-guide 301
+/blog-india-commodity-stocks-cycle /blog-nse-investor-guide 301
+/blog-japan-commodity-stocks-cycle.html /blog-tokyo-tse-investor-guide 301
+/blog-japan-commodity-stocks-cycle /blog-tokyo-tse-investor-guide 301
