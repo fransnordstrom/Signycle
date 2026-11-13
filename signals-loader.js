@@ -113,7 +113,8 @@
         var w = workerData.signals[k], v = w.value;
         // Treat 0, null and NaN from the Worker as missing.
         if (v == null || v === 0 || isNaN(parseFloat(v))) continue;
-        merged.signals[k] = { value: v, unit: w.unit || (merged.signals[k] || {}).unit, date: 'Live', live: !!w.live };
+        if (!w.live) continue; // a stored, non-live value: keep the dated value from signals-data.json
+        merged.signals[k] = { value: v, unit: w.unit || (merged.signals[k] || {}).unit, date: 'Live', live: true };
       }
     }
     return merged;
